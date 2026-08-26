@@ -1,0 +1,149 @@
+/* ==========================================================================
+   T.J.S Engineering College - Dropdown menu redesign
+   Matches the competitor (Saveetha) pattern:
+     - long single lists (Academics, Gallery, Students Life, Placement,
+       Admission, About TJSEC) render as a wide 2-column card instead of
+       one long scrolling column
+     - nested items (e.g. About TJSEC -> Accreditation -> NAAC/NIRF) fly
+       out to the side of their parent row, not inline/downward
+   The original theme's nested-flyout background used an undefined CSS
+   variable (--rs-theme-secondary), which rendered fully transparent and
+   let the hero photo/video bleed through - this file forces a solid,
+   consistent card background at every level instead.
+   ========================================================================== */
+
+.main-menu .submenu {
+    background-color: #ffffff;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    box-shadow: 0 16px 36px rgba(3, 3, 3, 0.14);
+    border: 1px solid rgba(3, 3, 3, 0.06);
+    border-radius: 10px;
+    width: 280px;
+    padding: 8px;
+}
+
+/* Clean rows: no clunky dividers, subtle tint + accent bar on hover instead */
+.main-menu .submenu li:not(:last-child) {
+    border-bottom: none;
+}
+
+.main-menu .submenu li {
+    position: relative;
+    border-radius: 6px;
+    border-inline-start: 3px solid transparent;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.main-menu .submenu li:hover {
+    background-color: var(--rs-bg-secondary);
+    border-inline-start-color: var(--rs-theme-yellow);
+}
+
+.main-menu .submenu li a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-inline-start: 13px !important;
+    line-height: 1.4;
+}
+
+.main-menu .submenu li a::before {
+    content: none;
+}
+
+.main-menu .submenu li.active,
+.main-menu .submenu li:hover {
+    background-color: var(--rs-bg-secondary);
+    border-inline-start-color: var(--rs-theme-yellow);
+}
+
+.main-menu .submenu li.active>a,
+.main-menu .submenu li:hover>a {
+    padding-inline-start: 13px !important;
+    color: var(--rs-theme-yellow);
+    font-weight: 600;
+}
+
+/* ---- Nested (3rd level+) flyouts: fly out beside the parent row, like
+   the reference site's "Academic Life -> Overview / Library / ..." panel.
+   Given its own solid background/shadow/z-index so it never inherits a
+   transparent fallback again. ---- */
+.main-menu .submenu ul {
+    background-color: #ffffff;
+    box-shadow: 0 16px 36px rgba(3, 3, 3, 0.14);
+    border: 1px solid rgba(3, 3, 3, 0.06);
+    border-radius: 10px;
+    width: 260px;
+    padding: 8px;
+    position: absolute;
+    inset-inline-start: 100%;
+    top: 0;
+    margin-inline-start: 8px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 20;
+    transition: opacity 0.2s ease;
+}
+
+.main-menu .submenu li:hover>ul {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* ---- Wide 2-column layout for long single-level lists (7+ items):
+   About TJSEC, Academics, Admission, Students Life, Gallery, Placement ---- */
+.main-menu .submenu:has(>li:nth-child(7)) {
+    width: 480px;
+    column-count: 2;
+    column-gap: 22px;
+    column-rule: 1px solid rgba(3, 3, 3, 0.08);
+    padding: 14px 18px;
+}
+
+.main-menu .submenu:has(>li:nth-child(7))>li {
+    break-inside: avoid;
+}
+
+/* ---- Right-edge nav items (Gallery, Placement): opening a wide panel
+   to the right would spill off-screen, so anchor it to the right edge of
+   the trigger instead and let nested flyouts open leftward too. ---- */
+.main-menu>ul>li:nth-last-child(-n+2)>.submenu {
+    inset-inline-start: auto;
+    inset-inline-end: 0;
+}
+
+.main-menu>ul>li:nth-last-child(-n+2) .submenu ul {
+    inset-inline-start: auto;
+    inset-inline-end: 100%;
+    margin-inline-start: 0;
+    margin-inline-end: 8px;
+}
+
+/* ==========================================================================
+   Top nav alignment: the nav was centered as a compact block inside the
+   wide flexible region between the logo and the admission-code badge,
+   which left an uneven dead-space gap on one side depending on screen
+   width. Instead, let the nav items themselves spread evenly across the
+   full available width - a clean, deliberate look with no dead zones,
+   regardless of viewport width.
+   ========================================================================== */
+@media only screen and (min-width: 992px) {
+    .rs-header-one .header-wrapper .header-menu {
+        justify-content: flex-start;
+    }
+
+    .rs-header-one .header-wrapper .header-menu .main-menu {
+        width: 100%;
+        margin-inline-start: 32px;
+    }
+
+    .rs-header-one .header-wrapper .header-menu .main-menu>ul {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 0 16px;
+    align-items: center;
+}
+}

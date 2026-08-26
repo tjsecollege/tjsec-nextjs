@@ -1,0 +1,56 @@
+/* ==========================================================================
+   T.J.S Engineering College - Application form dropdowns + consent checkbox
+   The theme styles .rs-contact-input input/textarea but not <select>, so
+   dropdowns need matching dark-navy styling plus a custom arrow (native
+   select arrows don't recolor for a dark background).
+   ========================================================================== */
+
+.rs-contact-one .rs-contact-input select {
+    height: 50px;
+    width: 100%;
+    border-radius: 8px;
+    padding-inline-start: 20px;
+    padding-inline-end: 40px;
+    background-color: #003359;
+    border: 1px solid #003359;
+    color: var(--rs-white);
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 15'%3E%3Cpath d='M9 10.5 3.5 5 5 3.5 9 7.5l4-4L14.5 5Z' fill='%23d3b96d'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    background-size: 14px;
+    cursor: pointer;
+}
+
+.rs-contact-one .rs-contact-input select:focus {
+    outline: none;
+    border-color: var(--rs-theme-yellow);
+}
+
+.rs-contact-one .rs-contact-input select option {
+    background-color: #003359;
+    color: var(--rs-white);
+}
+
+.rs-contact-one .rs-form-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 4px;
+    margin-bottom: 10px;
+}
+
+.rs-contact-one .rs-form-check input[type="checkbox"] {
+    margin-top: 4px;
+    flex: 0 0 auto;
+    accent-color: var(--rs-theme-yellow);
+}
+
+.rs-contact-one .rs-form-check label {
+    position: relative;
+    z-index: 0;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 13.5px;
+    line-height: 1.5;
+}

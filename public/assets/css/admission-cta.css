@@ -1,0 +1,25 @@
+/* ==========================================================================
+   T.J.S Engineering College - Admission CTA card
+   Replaces the stock student-photo strip with a bold stat number instead.
+   ========================================================================== */
+
+.rs-admission-cta-stat {
+    display: flex;
+    flex-direction: column;
+    margin-top: 4px;
+    margin-bottom: 18px;
+}
+
+.rs-admission-cta-number {
+    font-family: var(--rs-ff-title);
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--rs-theme-yellow);
+}
+
+.rs-admission-cta-label {
+    color: var(--rs-white);
+    font-size: 15px;
+    margin-top: 4px;
+}

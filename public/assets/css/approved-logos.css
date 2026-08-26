@@ -1,0 +1,91 @@
+/* ==========================================================================
+   T.J.S Engineering College - Approvals/accreditation badge strip
+   Each badge crops one logo out of the single approvedogo.png sprite
+   (no separate logo files exist) using a percentage-based background-size
+   / background-position pair per logo, computed from the sprite's actual
+   pixel boundaries - so it stays correct at any card size.
+   ========================================================================== */
+
+.rs-approved-logos {
+    padding: 0px 0 120px;
+    background: #f6f4ee;
+}
+
+.rs-approved-logos .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 26px;
+}
+
+.rs-approved-card {
+    position: relative;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 220px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    background: var(--card-bg);
+    box-shadow: 0 10px 20px rgba(3, 3, 3, 0.14);
+}
+
+.rs-approved-card::before {
+    content: "";
+    position: absolute;
+    left: -8px;
+    bottom: -8px;
+    width: 36px;
+    height: 36px;
+    background: var(--card-accent);
+    border-radius: 6px;
+    transform: rotate(20deg);
+    z-index: -1;
+}
+
+.rs-approved-card-badge {
+    flex: 0 0 auto;
+    width: 58px;
+    height: 58px;
+    background: #ffffff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    box-sizing: border-box;
+}
+
+.rs-approved-card-logo {
+    width: 100%;
+    aspect-ratio: var(--ratio);
+    background-image: url('../images/approvedogo.png');
+    background-repeat: no-repeat;
+    background-size: var(--sx) 100%;
+    background-position: var(--px) 0%;
+}
+
+.rs-approved-card-text {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.3;
+    text-transform: uppercase;
+}
+
+.rs-approved-card-text span {
+    display: block;
+    font-size: 11.5px;
+    font-weight: 600;
+    text-transform: none;
+    opacity: 0.92;
+    margin-top: 2px;
+}
+
+@media (max-width: 575px) {
+    .rs-approved-card {
+        width: 100%;
+        max-width: 320px;
+    }
+}

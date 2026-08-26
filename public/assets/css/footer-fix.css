@@ -1,0 +1,22 @@
+/* ==========================================================================
+   T.J.S Engineering College - Footer alignment fix
+   .rs-footer-wrapper is a CSS grid (fixed-width left column, flexible
+   right column), and grid items stretch to match row height by default.
+   The left column (logo + contact + long wrapping address) ends up much
+   taller than the right column's widgets, but the copyright block only
+   has a fixed margin-top - so it floats near the top of the stretched
+   right column instead of sitting flush with the bottom of the left
+   column. Turn the right column into a flex column and push the
+   copyright row to the bottom instead.
+   ========================================================================== */
+
+.rs-footer-one .rs-footer-right {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.rs-footer-one .rs-footer-right .rs-footer-copyright-area.rs-copyright-one {
+    margin-top: auto;
+    padding-top: 40px;
+}
