@@ -14,7 +14,6 @@
 .main-menu .submenu li {
     position: relative;
     border-radius: 6px;
-    border-inline-start: 3px solid transparent;
     transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 .main-menu .submenu li:hover {
@@ -84,11 +83,11 @@ width: 510px;
 }
 @media only screen and (min-width: 992px) {
     .rs-header-one .header-wrapper .header-menu { justify-content: flex-start; }
-    .rs-header-one .header-wrapper .header-menu .main-menu { width: 100%; margin-inline-start: 32px; }
+    .rs-header-one .header-wrapper .header-menu .main-menu { width: 100%;  }
     .rs-header-one .header-wrapper .header-menu .main-menu>ul {
     display: flex;
     width: 100%;
-    justify-content: center;
+    justify-content: start;
     gap: 0 25px;
     align-items: center;
 }
@@ -245,6 +244,133 @@ width: 510px;
 .rs-contact-one .rs-form-check { display: flex; align-items: flex-start; gap: 10px; margin-top: 4px; margin-bottom: 10px; }
 .rs-contact-one .rs-form-check input[type="checkbox"] { margin-top: 4px; flex: 0 0 auto; accent-color: var(--rs-theme-yellow); }
 .rs-contact-one .rs-form-check label { position: relative; z-index: 0; color: rgba(255, 255, 255, 0.85); font-size: 13.5px; line-height: 1.5; }
+
+/* ---- header-redesign.css ---- */
+.rs-topbar-tjs { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; background: #eef0f3; padding: 7px 30px; border-bottom: 1px solid #e2e5ea; }
+.rs-topbar-tjs .topbar-links { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.rs-topbar-tjs a { color: var(--rs-theme-blue); font-size: 13px; font-weight: 500; }
+.rs-topbar-tjs a:hover { color: var(--rs-theme-red); }
+.rs-topbar-tjs .topbar-divider { width: 1px; height: 14px; background: rgba(44, 51, 112, 0.18); }
+.rs-topbar-tjs .topbar-highlight { background: #f4c6c2; color: var(--rs-theme-blue); padding: 4px 14px; border-radius: 4px; }
+.rs-topbar-tjs .topbar-highlight:hover { color: var(--rs-theme-blue); }
+.rs-topbar-tjs .topbar-btn { background: var(--rs-theme-red); color: #fff; padding: 5px 16px; border-radius: 4px; font-weight: 600; }
+.rs-topbar-tjs .topbar-btn:hover { background: var(--rs-theme-yellow); color: #fff; }
+.rs-topbar-tjs .topbar-icon-link { display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; font-size: 12px; color: var(--rs-theme-blue); }
+.rs-topbar-tjs .topbar-code { font-size: 12.5px; font-weight: 600; color: var(--rs-theme-blue); background: rgba(44, 51, 112, 0.08); padding: 4px 12px; border-radius: 4px; border: 1px solid rgba(44, 51, 112, 0.2); }
+.rs-topbar-tjs .topbar-links-right a:nth-child(3) { color: #2f6fed; }
+.rs-topbar-tjs .topbar-links-right a:nth-child(5) { color: var(--rs-theme-red); }
+@media (max-width: 767px) { .rs-topbar-tjs { justify-content: center; padding: 8px 15px; } .rs-topbar-tjs .topbar-links { justify-content: center; width: 100%; } }
+
+/* Solid navy nav bar (not the template's transparent-over-banner look), to
+   match the reference site's opaque header. */
+.rs-header-one .header-wrapper { background: var(--rs-theme-blue) !important; }
+
+.rs-header-badges-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 5px 30px; flex-wrap: wrap; background: #fff; border-bottom: 1px solid var(--rs-border-primary); }
+.rs-header-badges-left { display: flex; align-items: center; gap: 14px; }
+.rs-header-badges-logo img { max-height: 110px; width: auto; }
+.rs-header-college-name { line-height: 1.25; }
+.rs-header-college-name strong { display: block; font-size: 20px; color: var(--rs-theme-blue); font-family: var(--rs-ff-title); }
+.rs-header-college-name span { font-size: 12.5px; color: var(--rs-text-secondary); }
+.rs-header-badges-list { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.rs-header-badge { display: flex; align-items: center; justify-content: center; padding: 4px 12px; border-radius: 8px; background: #fff; height: 62px; box-sizing: border-box; }
+.rs-header-badge img { max-height: 50px; max-width: 150px; width: auto; height: auto; object-fit: contain; }
+.rs-header-badges-list .rs-header-badge:nth-child(1),
+.rs-header-badges-list .rs-header-badge:nth-child(2) { height: 74px; }
+.rs-header-badges-list .rs-header-badge:nth-child(1) img,
+.rs-header-badges-list .rs-header-badge:nth-child(2) img { max-height: 62px; max-width: 190px; }
+.rs-header-search-box { display: flex; align-items: center; border: 2px solid #c6c6c6; border-radius: 24px; padding: 6px 6px 6px 16px; gap: 8px; min-width: 300px; }
+.rs-header-search-box input {
+    border: none;
+    outline: none;
+    font-size: 13px;
+    flex: 1;
+    background: transparent;
+    height: 30px;
+    padding: 0;
+}
+.rs-header-search-box button {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    color: var(--rs-theme-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex: 0 0 auto;
+    font-size: 20px;
+}
+@media (max-width: 991px) { .rs-header-badges-row { justify-content: center; text-align: center; } }
+@media (max-width: 575px) { .rs-header-search-box { display: none; } }
+
+/* Compact the nav row so all 10 top-level items fit on one line like the
+   reference site — the template's default 16px font / 25px gap was sized
+   for ~6 items and wrapped to two lines with the new, longer menu. */
+.rs-header-one .header-logo img { max-height: 36px; width: auto; }
+.header-menu .main-menu { margin-inline-start: 0; width: auto; }
+.header-menu .main-menu > ul { flex-wrap: nowrap; gap: 0 6px; justify-content: center; }
+.header-menu .main-menu > ul > li > a { font-size: 13.5px; white-space: nowrap; padding-inline: 8px; }
+.header-menu .main-menu > ul > li.menu-item-has-children > a::after { margin-inline-start: 3px; }
+.header-menu .main-menu > ul > li > a .ri-home-4-line { font-size: 22px; }
+@media (max-width: 1300px) { .header-menu .main-menu > ul { gap: 0 3px; } .header-menu .main-menu > ul > li > a { font-size: 12.5px; padding-inline: 5px; } }
+
+/* Flat, flush dropdown panel + solid active-tab highlight, matching the
+   reference site's look (no floating rounded card / shadow). */
+.header-menu .main-menu > ul > li > a { padding-block: 16px; }
+.header-menu .main-menu > ul > li:hover > a,
+.header-menu .main-menu > ul > li.active > a { color: #ff7a1a; }
+.header-menu .main-menu > ul > li:hover > a::after,
+.header-menu .main-menu > ul > li.active > a::after { color: #ff7a1a; }
+.header-menu .main-menu .submenu li:hover > a,
+.header-menu .main-menu .submenu li.active > a { color: #ff7a1a; }
+.header-menu .main-menu .submenu { border-radius: 0; box-shadow: 0 12px 24px rgba(3, 3, 3, 0.18); border: none; padding: 0; width: 260px; }
+.header-menu .main-menu .submenu li { border-radius: 0; }
+.header-menu .main-menu .submenu li a { padding-inline-start: 18px !important; padding-inline-end: 18px; }
+.header-menu .main-menu .submenu ul { border-radius: 0; box-shadow: 0 12px 24px rgba(3, 3, 3, 0.18); border: none;padding: 0; width: 240px; margin-inline-start: 0; }
+
+/* Keep every dropdown a single column (menu-clean.css auto-switched to a
+   2-column layout once a submenu had 7+ items — the reference site keeps
+   long lists as one column with a scroll instead). */
+.header-menu .main-menu .submenu:has(> li:nth-child(7)),
+.header-menu .main-menu .submenu.submenu-column-1:has(> li:nth-child(7)) {
+    width: 260px;
+    column-count: 1;
+    column-gap: 0;
+    column-rule: none;
+    padding: 0;
+}
+
+/* ---- footer-redesign.css ---- */
+.tjs-footer { background: var(--rs-theme-blue); padding: 60px 0 0; }
+/* The events ticker is fixed to the viewport bottom and otherwise covers
+   the last bit of page content (the copyright line) once fully scrolled. */
+.tjs-footer-bottom { padding-bottom: 60px; }
+.tjs-footer-columns { display: flex; flex-wrap: wrap; gap: 40px; padding-bottom: 40px; }
+.tjs-footer-col { flex: 1 1 180px; color: rgba(255, 255, 255, 0.75); font-size: 14px; line-height: 1.7; }
+.tjs-footer-col.tjs-footer-address { flex: 1.4 1 260px; }
+.tjs-footer-col h5 { color: #fff; font-family: var(--rs-ff-title); font-size: 19px; font-weight: 600; margin-bottom: 20px; }
+.tjs-footer-college-name { color: #fff; font-weight: 700; font-size: 16px; letter-spacing: 0.3px; margin-bottom: 12px; }
+.tjs-footer-address p { color: rgba(255, 255, 255, 0.92); }
+.tjs-footer-col p { margin-bottom: 12px; }
+.tjs-footer-col p i { color: var(--rs-theme-yellow); margin-inline-end: 6px; }
+.tjs-footer-col a { color: inherit; transition: color 0.2s ease; }
+.tjs-footer-col a:hover { color: var(--rs-theme-yellow); }
+.tjs-footer-col ul { list-style: none; margin: 0; padding: 0; }
+.tjs-footer-col ul li { margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.tjs-footer-col ul li i { color: var(--rs-white); font-size: 15px; flex: 0 0 auto; }
+.tjs-footer-social ul li { margin-bottom: 18px; }
+.tjs-footer-social ul li a { display: flex; align-items: center; gap: 14px; font-size: 15px; }
+.tjs-footer-social-icon { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 19px; flex: 0 0 auto; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); }
+.tjs-footer-col .tjs-footer-social-icon i {font-size: 19px; }
+.tjs-social-instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.tjs-social-facebook { background: #1877f2; }
+.tjs-social-linkedin { background: #0a66c2; }
+.tjs-social-twitter { background: #000; }
+.tjs-social-youtube { background: #ff0000; }
+.tjs-footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.15); padding: 18px 0; }
+.tjs-footer-bottom p { margin: 0; color: rgba(255, 255, 255, 0.6); font-size: 13px; }
+@media (max-width: 767px) { .tjs-footer-columns { gap: 30px; } }
 
 /* ---- header-utility.css ---- */
 .header-utility-icons { display: flex; align-items: center; gap: 8px; margin-inline-end: 12px; }

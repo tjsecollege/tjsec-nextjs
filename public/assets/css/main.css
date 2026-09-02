@@ -5008,8 +5008,8 @@ html.lenis body {
     .rs-header-one .header-wrapper {
     padding-inline-start: 15px;
     padding-inline-end: 15px;
-    padding-top: 13px;
-    padding-bottom: 13px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     position: absolute;
     width: 100%;
 }
@@ -5040,8 +5040,8 @@ html.lenis body {
 
 .rs-header-one .rs-sticky-header.active {
     background: var(--rs-theme-blue);
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
 @media only screen and (max-width: 1199px) {
@@ -5052,7 +5052,7 @@ html.lenis body {
 }
 
 .rs-header-one .rs-sticky-header.active .main-menu>ul>li>a {
-    padding: 12px 0px;
+    padding: 8px 0px;
 }
 
 .rs-header-one .rs-sticky-header.active.has-bg {
@@ -5087,7 +5087,7 @@ html.lenis body {
 }
 
 .rs-header-one.has-space .main-menu>ul>li>a {
-    padding: 14px 0px;
+    padding: 8px 0px;
 }
 
 .rs-header-one.has-space-two .header-wrapper {
@@ -6159,9 +6159,10 @@ html.lenis body {
         width: 150px;
     }
     .rs-header-one .rs-sticky-header.active {
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
+
 .rs-header-one .rs-sticky-header.active .header-logo {
     width: 95px;
 }
@@ -6370,8 +6371,8 @@ html.lenis body {
 }
 
 .header-bar-icon {
-    width: 40px;
-    height: 28px;
+    width: 35px;
+    height: 25px;
     display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-box;
@@ -6385,7 +6386,7 @@ html.lenis body {
 
 
 .header-bar-icon span {
-    width: 40px;
+    width: 35px;
     height: 3px;
     background: var(--rs-white);
     display: inline-block;
@@ -6396,17 +6397,17 @@ html.lenis body {
 }
 
 .header-bar-icon span:nth-child(1) {
-    width: 40px;
+    width: 35px;
     transition: all 0.3s linear;
 }
 
 .header-bar-icon span:nth-child(2) {
-    width: 40px;
+    width: 35px;
     transition: all 0.3s linear;
 }
 
 .header-bar-icon span:nth-child(3) {
-    width: 40px;
+    width: 35px;
     transition: all 0.3s linear;
 }
 

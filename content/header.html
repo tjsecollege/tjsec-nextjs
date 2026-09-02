@@ -4,205 +4,198 @@
     <!-- cursor end -->
 
     <!-- Topbar start -->
-    <!-- Topbar removed per site owner request: all its links (RTI, IQAC,
-         Committees, Controller of Examination, ERP Login, Online Grievance,
-         Contact Us) now live inside the main menu dropdowns below. Phone
-         and email moved to small icons in the header itself. Original
-         markup kept here, commented out, so it can be restored if needed.
-    <div class="rs-topbar">
-        <div class="rs-topbar-inner">
-            <div class="rs-topbar-left">
-                <a href="tel:+914427967602"><i class="ri-phone-fill"></i> 044-27967602</a>
-                <a href="mailto:admission@tjsec.in"><i class="ri-mail-fill"></i> admission@tjsec.in</a>
-            </div>
-            <div class="rs-topbar-mid">
-                <a href="https://tjsec.in/wp-content/uploads/2025/03/Statutory-Declaration-on-RTI-Act.pdf" target="_blank" rel="noopener">RTI</a>
-                <a href="https://tjsec.in/iqac/" target="_blank" rel="noopener">IQAC</a>
-                <a href="https://tjsec.in/committees-and-activities/" target="_blank" rel="noopener">Committees</a>
-                <a href="https://tjsec.in/coe/" target="_blank" rel="noopener">Controller of Examination</a>
-                <a href="https://cims.mastersofterp.in/" target="_blank" rel="noopener">ERP Login</a>
-                <a href="https://tjsec.in/feedback-form/" target="_blank" rel="noopener">Online Grievance</a>
-                <a href="https://tjsec.in/contact-4/" target="_blank" rel="noopener">Contact Us</a>
-            </div>
-            <div class="rs-topbar-right">
-                <a href="#" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
-                <a href="#" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
-                <a href="#" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
-                <a href="#" aria-label="X"><i class="ri-twitter-x-fill"></i></a>
-                <a href="#" aria-label="YouTube"><i class="ri-youtube-fill"></i></a>
-            </div>
+    <!-- Utility bar: audience quick-links + external portals. Non-sticky —
+         scrolls away, leaving the compact sticky header (below) in view. -->
+    <div class="rs-topbar-tjs">
+        <div class="topbar-links topbar-links-left">
+            <a href="tel:+914427967602" class="topbar-icon-link" aria-label="Call us"><i class="ri-phone-fill"></i></a>
+            <a href="mailto:admission@tjsec.in" class="topbar-icon-link" aria-label="Email us"><i class="ri-mail-fill"></i></a>
+            <span class="topbar-divider"></span>
+            <a href="#">Students</a>
+            <a href="#">Faculty</a>
+            <a href="#">Parents</a>
+            <a href="#">Careers</a>
+            <a href="#">Contact</a>
+            <a href="#" class="topbar-highlight">Admissions</a>
+            <span class="topbar-code">Admission Code: 1241</span>
+        </div>
+        <div class="topbar-links topbar-links-right">
+            <a href="https://cims.mastersofterp.in/" target="_blank" rel="noopener">ERP</a>
+            <span class="topbar-divider"></span>
+            <a href="#">LAUDEA</a>
+            <span class="topbar-divider"></span>
+            <a href="#">CANTEEN</a>
+            <a href="#" class="topbar-btn">Fee Online</a>
         </div>
     </div>
-    -->
     <!-- Topbar end -->
+
+    <!-- Badge row start: logo, accreditation badges (placeholders — swap
+         for real artwork when supplied) and search box. Non-sticky. -->
+    <div class="rs-header-badges-row">
+        <div class="rs-header-badges-left">
+            <a href="#home" class="rs-header-badges-logo"><img src="/assets/images/logo/logo.png" alt="T.J.S Engineering College logo"></a>
+        </div>
+        <div class="rs-header-badges-list">
+            <span class="rs-header-badge"><img src="/assets/images/naac_icon.jpg" alt="NAAC A Grade"></span>
+            <span class="rs-header-badge"><img src="/assets/images/mhrd_logo.jpg" alt="MHRD Innovation Cell"></span>
+            <span class="rs-header-badge"><img src="/assets/images/159_college_rank.jpg" alt="159th College Ranking 2026"></span>
+        </div>
+        <form class="rs-header-search-box" role="search" onsubmit="return false;">
+            <input type="text" placeholder="Search">
+            <button type="submit" aria-label="Search"><i class="ri-search-line"></i></button>
+        </form>
+        <span class="rs-header-badge"><img src="/assets/images/hcl_tech.jpg" alt="Centre of Excellence – HCLTech"></span>
+    </div>
+    <!-- Badge row end -->
 
     <!-- Header area start -->
     <header>
         <div class="rs-header-area rs-header-one">
             <div class="container-fluid g-0">
                 <div id="rs-sticky-header" class="header-wrapper rs-sticky-header">
-                    <div class="header-left">
-                        <div class="header-logo">
-                            <a href="#home"><img src="/assets/images/logo/logo2.png" alt="T.J.S Engineering College logo"></a>
-                        </div>
-                    </div>
                     <div class="header-menu">
                         <nav id="mobile-menu" class="main-menu">
                             <ul class="multipage-menu">
-                                <li><a href="#home">Home</a></li>
+                                <li><a href="#home" aria-label="Home"><i class="ri-home-4-line"></i></a></li>
                                 <li class="menu-item-has-children">
-                                    <a href="https://tjsec.in/about-us-2/">About TJSEC</a>
-                                    <ul class="submenu submenu-column-1">
-                                        <li><a href="https://tjsec.in/about-us-2/">About T.J.S. Engineering College</a></li>
-                                        <li><a href="#">About the Trust</a></li>
-                                        <li><a href="#">Vision, Mission &amp; Core Values</a></li>
-                                        <li><a href="https://tjsec.in/about-tjsec/">Leadership / Management</a></li>
-                                        <li><a href="https://tjsec.in/principals-desk/">Principal's Desk</a></li>
-                                        <li><a href="#">Why Choose T.J.S.?</a></li>
-                                        <li><a href="#">Accreditations &amp; Approvals</a></li>
-                                        <li><a href="#campus-life">Campus &amp; Infrastructure</a></li>
-                                        <li><a href="#">Milestones &amp; Achievements</a></li>
-                                        <li><a href="https://tjsec.in/wp-content/uploads/2025/03/Statutory-Declaration-on-RTI-Act.pdf">Policies &amp; Statutory Information</a></li>
+                                    <a href="#">About</a>
+                                    <ul class="submenu">
+                                        <li class="menu-item-has-children">
+                                            <a href="#">Administration</a>
+                                            <ul class="submenu">
+                                                <li><a href="#">Managing Trustee</a></li>
+                                                <li><a href="#">Secretary</a></li>
+                                                <li><a href="#">Directors</a></li>
+                                                <li><a href="#">Governing Council</a></li>
+                                                <li><a href="#">Principal</a></li>
+                                                <li><a href="#">HOD's</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Committees</a></li>
+                                        <li><a href="#">Approval &amp; Affiliation</a></li>
+                                        <li><a href="#">Organogram</a></li>
                                     </ul>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="https://tjsec.in/overview/">Academics</a>
+                                    <a href="#">Academics</a>
                                     <ul class="submenu">
-                                        <li><a href="https://tjsec.in/overview/">Overview</a></li>
+                                        <li><a href="#">Programme Offered</a></li>
+                                        <li><a href="#">Regulation and Curriculam</a></li>
+                                        <li><a href="#">Academic Calendar</a></li>
+                                        <li><a href="#">Controller of Examinations</a></li>
+                                        <li><a href="#">BOS Minutes</a></li>
+                                        <li><a href="#">Regulations</a></li>
+                                        <li><a href="#">Curriculum and Syllabus</a></li>
                                         <li class="menu-item-has-children">
-                                            <a href="https://tjsec.in/?page_id=10009">Programmes</a>
+                                            <a href="#">Services and Facilities</a>
                                             <ul class="submenu">
-                                                <li><a href="https://tjsec.in/ug-programmes/">UG Programmes</a></li>
-                                                <li><a href="https://tjsec.in/pg-programmes/">PG Programmes</a></li>
+                                                <li><a href="#">Learning Management System</a></li>
+                                                <li><a href="#">Academics Portal</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="https://tjsec.in/teaching-staff/">Teaching Staff</a></li>
-                                        <li><a href="https://tjsec.in/non-teaching-staff/">Non Teaching Staff</a></li>
-                                        <li class="menu-item-has-children">
-                                            <a href="https://tjsec.in/?page_id=6233">Course Materials</a>
-                                            <ul class="submenu">
-                                                <li><a href="https://tjsec.in/">B.Tech Artificial Intelligence And Data Science</a></li>
-                                                <li><a href="https://tjsec.in/b-e-cse/">B.E – CSE</a></li>
-                                                <li><a href="https://tjsec.in/b-e-ece/">B.E – ECE</a></li>
-                                                <li><a href="https://tjsec.in/be-eee/">B.E – EEE</a></li>
-                                                <li><a href="https://tjsec.in/be-mechanical/">B.E – Mechanical</a></li>
-                                                <li><a href="https://tjsec.in/science-humanities/">Science &amp; Humanities</a></li>
-                                                <li><a href="https://tjsec.in/placement/">Placement</a></li>
-                                                <li><a href="https://tjsec.in/master-of-business-administrationmba/">Master of Business Administration (MBA)</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item-has-children">
-                                            <a href="https://tjsec.in/faculty-achievements/">Faculty Achievements</a>
-                                            <ul class="submenu">
-                                                <li><a href="https://tjsec.in/faculty-industry-certifications/">Faculty Industry Certifications</a></li>
-                                                <li><a href="https://tjsec.in/faculty-nptel-achievements/">Faculty NPTEL Achievements</a></li>
-                                                <li><a href="https://tjsec.in/faculty-recognition/">Faculty Recognition</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="https://tjsec.in/academic-schedule/">Academic schedule</a></li>
-                                        <li><a href="https://tjsec.in/event-calendar/">Academic Calendar</a></li>
-                                        <li><a href="https://tjsec.in/value-added-courses/">Value Added Courses</a></li>
-                                        <li><a href="https://tjsec.in/">SWAYAM NPTEL MOOC Courses</a></li>
-                                        <li><a href="https://tjsec.in/stake-holder-action-taken-report/">Stake Holder Action Taken Report</a></li>
-                                        <li><a href="https://tjsec.in/">Best Practices</a></li>
-                                        <li><a href="https://tjsec.in/">Distinctiveness of the Institution</a></li>
-                                        <li><a href="https://tjsec.in/">Academic Collaboration</a></li>
-                                        <li><a href="https://tjsec.in/iqac/">IQAC</a></li>
-                                        <li><a href="https://tjsec.in/library/">Library</a></li>
-                                        <li class="menu-item-has-children">
-                                            <a href="https://tjsec.in/rd-cell-profile/">Research</a>
-                                            <ul class="submenu">
-                                                <li><a href="https://tjsec.in/rd-cell-profile/">R&amp;D Cell Profile</a></li>
-                                                <li><a href="https://tjsec.in/list-of-doctorate-faculty/">List of Doctorate Faculty</a></li>
-                                                <li><a href="https://tjsec.in/list-of-consultancy-work/">List of consultancy work</a></li>
-                                                <li><a href="https://tjsec.in/list-of-publications/">List of Publications</a></li>
-                                                <li><a href="https://tjsec.in/patent/">Patent</a></li>
-                                                <li><a href="https://tjsec.in/entrepreneurship/">Entrepreneurship Development Cell</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="https://tjsec.in/coe/">Controller of Examination</a></li>
                                     </ul>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="https://tjsec.in/ug-pg-admissions/">Admission</a>
+                                    <a href="#">Programmes</a>
                                     <ul class="submenu">
-                                        <li><a href="https://tjsec.in/ug-pg-admissions/">UG/PG Admissions</a></li>
-                                        <li><a href="https://tjsec.in/courses-offered/">Courses Offered</a></li>
-                                        <li><a href="https://tjsec.in/contact-details/">Contact Details</a></li>
-                                        <li><a href="https://tjsec.in/admission-eligibility-criteria/">Admission Process and Guidelines</a></li>
-                                        <li><a href="https://tjsec.in/admission-enquiries/">Admission Enquiries</a></li>
-                                        <li><a href="https://tjsec.in/scholarships-2/">Scholarships</a></li>
-                                        <li><a href="https://tjsec.in/">Prospectus</a></li>
-                                        <li><a href="https://tjsec.in/">Fee Refund Policy</a></li>
-                                        <li><a href="https://cims.mastersofterp.in/">ERP Login</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item-has-children">
-                                    <a href="https://tjsec.in/facilities/">Students Life</a>
-                                    <ul class="submenu">
-                                        <li><a href="https://tjsec.in/facilities/">Infrastructure Facilities</a></li>
-                                        <li><a href="https://tjsec.in/food-court/">Canteen</a></li>
-                                        <li><a href="https://tjsec.in/guest-house/">Guest House</a></li>
-                                        <li><a href="https://tjsec.in/hostel/">Hostel</a></li>
-                                        <li><a href="https://tjsec.in/library/">Library</a></li>
-                                        <li><a href="https://tjsec.in/nss/">NSS</a></li>
-                                        <li><a href="https://tjsec.in/overview-2/">Overview</a></li>
-                                        <li><a href="https://tjsec.in/seminar-hall/">Seminar Hall</a></li>
-                                        <li><a href="https://tjsec.in/sports/">Sports</a></li>
-                                        <li><a href="https://tjsec.in/transport-2/">Transport</a></li>
-                                        <li><a href="https://tjsec.in/barrier-free-environment/">Barrier Free Environment</a></li>
-                                        <li><a href="https://tjsec.in/health-centre/">Health Centre</a></li>
                                         <li class="menu-item-has-children">
-                                            <a href="https://tjsec.in/aids/">Gallery</a>
+                                            <a href="#">UG Programmes</a>
                                             <ul class="submenu">
+                                                <li><a href="#">B.E – Computer Science and Engineering</a></li>
+                                                <li><a href="#">B.E – Computer Science and Engineering (AI &amp; ML)</a></li>
+                                                <li><a href="#">B.E – Electrical and Communication Engineering</a></li>
+                                                <li><a href="#">B.E – Electrical and Electronics Engineering</a></li>
+                                                <li><a href="#">B.E – Mechanical Engineering</a></li>
+                                                <li><a href="#">B.Tech – Information Technology</a></li>
+                                                <li><a href="#">B.Tech – Artificial Intelligence and Data Science (AIDS)</a></li>
                                                 <li class="menu-item-has-children">
-                                                    <a href="https://tjsec.in/aids/">AIDS</a>
+                                                    <a href="#">Science and Humanities</a>
                                                     <ul class="submenu">
-                                                        <li><a href="https://tjsec.in/nptelnptel-achievers-2026-certificate/">NPTEL Achievers 2026 – Certificate</a></li>
+                                                        <li><a href="#">Department of Chemistry</a></li>
+                                                        <li><a href="#">Department of English</a></li>
+                                                        <li><a href="#">Department of Maths</a></li>
+                                                        <li><a href="#">Department of Physics</a></li>
                                                     </ul>
                                                 </li>
-                                                <li><a href="https://tjsec.in/cse/">CSE</a></li>
-                                                <li><a href="https://tjsec.in/ece/">ECE</a></li>
-                                                <li><a href="https://tjsec.in/eee/">EEE</a></li>
-                                                <li><a href="https://tjsec.in/fdp/">Events</a></li>
-                                                <li><a href="https://tjsec.in/guest-lecture/">Infrastructure</a></li>
-                                                <li><a href="https://tjsec.in/it-aiml/">IT/AIML</a></li>
-                                                <li><a href="https://tjsec.in/mech/">MECH</a></li>
-                                                <li><a href="https://tjsec.in/iic/">MBA</a></li>
-                                                <li><a href="https://tjsec.in/graduation-day/">Graduation Day – 2023</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-item-has-children">
+                                            <a href="#">PG Programmes</a>
+                                            <ul class="submenu">
+                                                <li><a href="#">M.E – Computer Science and Engineering</a></li>
+                                                <li><a href="#">M.E – VLSI &amp; Design</a></li>
+                                                <li><a href="#">M.B.A – Master of Business Administration</a></li>
                                             </ul>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="https://tjsec.in/about-the-placement/">Placement</a>
+                                    <a href="#">Research</a>
                                     <ul class="submenu">
-                                        <li><a href="https://tjsec.in/about-the-placement/">About the Placement</a></li>
-                                        <li><a href="https://tjsec.in/career-development-program/">Career Development Program</a></li>
-                                        <li><a href="https://tjsec.in/centre-of-excellence/">Centre of Excellence</a></li>
-                                        <li><a href="https://tjsec.in/eminent-recruiters/">Eminent Recruiters</a></li>
-                                        <li><a href="https://tjsec.in/photo-gallery/">Photo Gallery</a></li>
-                                        <li><a href="https://tjsec.in/placement-contact/">Placement Contact</a></li>
-                                        <li><a href="https://tjsec.in/placement-records/">Placement Records</a></li>
-                                        <li><a href="https://tjsec.in/entrepreneurship/">Entrepreneurship</a></li>
-                                        <li><a href="https://tjsec.in/feedback-form/">Online Grievance</a></li>
-                                        <li><a href="https://tjsec.in/contact-4/">Contact Us</a></li>
+                                        <li><a href="#">Publication</a></li>
+                                        <li><a href="#">Patents</a></li>
+                                        <li><a href="#">Research Facilities</a></li>
+                                        <li><a href="#">Research Forms</a></li>
+                                        <li><a href="#">Research Scholars</a></li>
+                                        <li><a href="#">Services</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item-has-children">
+                                    <a href="#">Campus Life</a>
+                                    <ul class="submenu">
+                                        <li><a href="#">Library</a></li>
+                                        <li><a href="#">Convention Centre</a></li>
+                                        <li><a href="#">Wellness Centre</a></li>
+                                        <li><a href="#">Sports and Fitness</a></li>
+                                        <li><a href="#">Students Club</a></li>
+                                        <li><a href="#">Transport</a></li>
+                                        <li><a href="#">Software Development Cell</a></li>
+                                        <li><a href="#">Canteen</a></li>
+                                        <li class="menu-item-has-children">
+                                            <a href="#">Other Facilities</a>
+                                            <ul class="submenu">
+                                                <li><a href="#">Student Hostel</a></li>
+                                                <li><a href="#">Medical Centre</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item-has-children">
+                                    <a href="#">Industry Interface</a>
+                                    <ul class="submenu">
+                                        <li><a href="#">About</a></li>
+                                        <li><a href="#">Professor and Practice</a></li>
+                                        <li><a href="#">Industry Academy Conclave</a></li>
+                                        <li><a href="#">List of MoUs</a></li>
+                                        <li><a href="#">Industry Visit (IV) Forms</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Placements</a></li>
+                                <li class="menu-item-has-children">
+                                    <a href="#">IQAC</a>
+                                    <ul class="submenu">
+                                        <li><a href="#">About IQAC</a></li>
+                                        <li><a href="#">NAAC</a></li>
+                                        <li><a href="#">MHRD</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Alumni</a></li>
+                                <li class="menu-item-has-children">
+                                    <a href="#">Grievances</a>
+                                    <ul class="submenu">
+                                        <li><a href="#">Student</a></li>
+                                        <li><a href="#">Faculty</a></li>
+                                        <li><a href="#">Staff</a></li>
+                                        <li><a href="#">Parent</a></li>
+                                        <li><a href="#">Alumni</a></li>
                                     </ul>
                                 </li>
                             </ul>
                         </nav>
                     </div>
-                    <div class="rs-admission-badge">
-                        <span class="label">Tnea Code</span>
-                        <span class="code">1241</span>
-                    </div>
                     <div class="header-right">
                         <div class="header-icon-wrapper">
-                            <div class="header-utility-icons">
-                                <a href="tel:+914427967602" class="header-utility-icon" aria-label="Call us"><i class="ri-phone-fill"></i></a>
-                                <a href="mailto:admission@tjsec.in" class="header-utility-icon" aria-label="Email us"><i class="ri-mail-fill"></i></a>
-                            </div>
-                            <!-- search area end -->
                             <!-- hamburger start -->
                             <div class="header-hamburger">
                                 <div class="sidebar-toggle">
@@ -228,167 +221,148 @@
         <div class="rs-header-area rs-header-one header-transparent has-space" style="position: relative;">
             <div class="container-fluid g-0">
                 <div class="header-wrapper">
-                    <div class="header-left">
-                        <div class="header-logo">
-                            <a href="#home"><img src="/assets/images/logo/logo2.png" alt="T.J.S Engineering College logo"></a>
-                        </div>
-                    </div>
                     <div class="header-menu">
                         <nav id="mobile-menu-two" class="main-menu">
                             <ul class="multipage-menu">
-                                <li><a href="#home">Home</a></li>
+                                <li><a href="#home" aria-label="Home"><i class="ri-home-4-line"></i></a></li>
                                 <li class="menu-item-has-children">
-                                    <a href="https://tjsec.in/about-us-2/">About TJSEC</a>
-                                    <ul class="submenu submenu-column-1">
-                                        <li><a href="https://tjsec.in/about-us-2/">About T.J.S. Engineering College</a></li>
-                                        <li><a href="#">About the Trust</a></li>
-                                        <li><a href="#">Vision, Mission &amp; Core Values</a></li>
-                                        <li><a href="https://tjsec.in/about-tjsec/">Leadership / Management</a></li>
-                                        <li><a href="https://tjsec.in/principals-desk/">Principal's Desk</a></li>
-                                        <li><a href="#">Why Choose T.J.S.?</a></li>
-                                        <li><a href="#">Accreditations &amp; Approvals</a></li>
-                                        <li><a href="#campus-life">Campus &amp; Infrastructure</a></li>
-                                        <li><a href="#">Milestones &amp; Achievements</a></li>
-                                        <li><a href="https://tjsec.in/wp-content/uploads/2025/03/Statutory-Declaration-on-RTI-Act.pdf">Policies &amp; Statutory Information</a></li>
+                                    <a href="#">About</a>
+                                    <ul class="submenu">
+                                        <li class="menu-item-has-children">
+                                            <a href="#">Administration</a>
+                                            <ul class="submenu">
+                                                <li><a href="#">Managing Trustee</a></li>
+                                                <li><a href="#">Secretary</a></li>
+                                                <li><a href="#">Directors</a></li>
+                                                <li><a href="#">Governing Council</a></li>
+                                                <li><a href="#">Principal</a></li>
+                                                <li><a href="#">HOD's</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Committees</a></li>
+                                        <li><a href="#">Approval &amp; Affiliation</a></li>
+                                        <li><a href="#">Organogram</a></li>
                                     </ul>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="https://tjsec.in/overview/">Academics</a>
+                                    <a href="#">Academics</a>
                                     <ul class="submenu">
-                                        <li><a href="https://tjsec.in/overview/">Overview</a></li>
+                                        <li><a href="#">Programme Offered</a></li>
+                                        <li><a href="#">Regulation and Curriculam</a></li>
+                                        <li><a href="#">Academic Calendar</a></li>
+                                        <li><a href="#">Controller of Examinations</a></li>
+                                        <li><a href="#">BOS Minutes</a></li>
+                                        <li><a href="#">Regulations</a></li>
+                                        <li><a href="#">Curriculum and Syllabus</a></li>
                                         <li class="menu-item-has-children">
-                                            <a href="https://tjsec.in/?page_id=10009">Programmes</a>
+                                            <a href="#">Services and Facilities</a>
                                             <ul class="submenu">
-                                                <li><a href="https://tjsec.in/ug-programmes/">UG Programmes</a></li>
-                                                <li><a href="https://tjsec.in/pg-programmes/">PG Programmes</a></li>
+                                                <li><a href="#">Learning Management System</a></li>
+                                                <li><a href="#">Academics Portal</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="https://tjsec.in/teaching-staff/">Teaching Staff</a></li>
-                                        <li><a href="https://tjsec.in/non-teaching-staff/">Non Teaching Staff</a></li>
-                                        <li class="menu-item-has-children">
-                                            <a href="https://tjsec.in/?page_id=6233">Course Materials</a>
-                                            <ul class="submenu">
-                                                <li><a href="https://tjsec.in/">B.Tech Artificial Intelligence And Data Science</a></li>
-                                                <li><a href="https://tjsec.in/b-e-cse/">B.E – CSE</a></li>
-                                                <li><a href="https://tjsec.in/b-e-ece/">B.E – ECE</a></li>
-                                                <li><a href="https://tjsec.in/be-eee/">B.E – EEE</a></li>
-                                                <li><a href="https://tjsec.in/be-mechanical/">B.E – Mechanical</a></li>
-                                                <li><a href="https://tjsec.in/science-humanities/">Science &amp; Humanities</a></li>
-                                                <li><a href="https://tjsec.in/placement/">Placement</a></li>
-                                                <li><a href="https://tjsec.in/master-of-business-administrationmba/">Master of Business Administration (MBA)</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item-has-children">
-                                            <a href="https://tjsec.in/faculty-achievements/">Faculty Achievements</a>
-                                            <ul class="submenu">
-                                                <li><a href="https://tjsec.in/faculty-industry-certifications/">Faculty Industry Certifications</a></li>
-                                                <li><a href="https://tjsec.in/faculty-nptel-achievements/">Faculty NPTEL Achievements</a></li>
-                                                <li><a href="https://tjsec.in/faculty-recognition/">Faculty Recognition</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="https://tjsec.in/academic-schedule/">Academic schedule</a></li>
-                                        <li><a href="https://tjsec.in/event-calendar/">Academic Calendar</a></li>
-                                        <li><a href="https://tjsec.in/value-added-courses/">Value Added Courses</a></li>
-                                        <li><a href="https://tjsec.in/">SWAYAM NPTEL MOOC Courses</a></li>
-                                        <li><a href="https://tjsec.in/stake-holder-action-taken-report/">Stake Holder Action Taken Report</a></li>
-                                        <li><a href="https://tjsec.in/">Best Practices</a></li>
-                                        <li><a href="https://tjsec.in/">Distinctiveness of the Institution</a></li>
-                                        <li><a href="https://tjsec.in/">Academic Collaboration</a></li>
-                                        <li><a href="https://tjsec.in/iqac/">IQAC</a></li>
-                                        <li><a href="https://tjsec.in/library/">Library</a></li>
-                                        <li class="menu-item-has-children">
-                                            <a href="https://tjsec.in/rd-cell-profile/">Research</a>
-                                            <ul class="submenu">
-                                                <li><a href="https://tjsec.in/rd-cell-profile/">R&amp;D Cell Profile</a></li>
-                                                <li><a href="https://tjsec.in/list-of-doctorate-faculty/">List of Doctorate Faculty</a></li>
-                                                <li><a href="https://tjsec.in/list-of-consultancy-work/">List of consultancy work</a></li>
-                                                <li><a href="https://tjsec.in/list-of-publications/">List of Publications</a></li>
-                                                <li><a href="https://tjsec.in/patent/">Patent</a></li>
-                                                <li><a href="https://tjsec.in/entrepreneurship/">Entrepreneurship Development Cell</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="https://tjsec.in/coe/">Controller of Examination</a></li>
                                     </ul>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="https://tjsec.in/ug-pg-admissions/">Admission</a>
+                                    <a href="#">Programmes</a>
                                     <ul class="submenu">
-                                        <li><a href="https://tjsec.in/ug-pg-admissions/">UG/PG Admissions</a></li>
-                                        <li><a href="https://tjsec.in/courses-offered/">Courses Offered</a></li>
-                                        <li><a href="https://tjsec.in/contact-details/">Contact Details</a></li>
-                                        <li><a href="https://tjsec.in/admission-eligibility-criteria/">Admission Process and Guidelines</a></li>
-                                        <li><a href="https://tjsec.in/admission-enquiries/">Admission Enquiries</a></li>
-                                        <li><a href="https://tjsec.in/scholarships-2/">Scholarships</a></li>
-                                        <li><a href="https://tjsec.in/">Prospectus</a></li>
-                                        <li><a href="https://tjsec.in/">Fee Refund Policy</a></li>
-                                        <li><a href="https://cims.mastersofterp.in/">ERP Login</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item-has-children">
-                                    <a href="https://tjsec.in/facilities/">Students Life</a>
-                                    <ul class="submenu">
-                                        <li><a href="https://tjsec.in/facilities/">Infrastructure Facilities</a></li>
-                                        <li><a href="https://tjsec.in/food-court/">Canteen</a></li>
-                                        <li><a href="https://tjsec.in/guest-house/">Guest House</a></li>
-                                        <li><a href="https://tjsec.in/hostel/">Hostel</a></li>
-                                        <li><a href="https://tjsec.in/library/">Library</a></li>
-                                        <li><a href="https://tjsec.in/nss/">NSS</a></li>
-                                        <li><a href="https://tjsec.in/overview-2/">Overview</a></li>
-                                        <li><a href="https://tjsec.in/seminar-hall/">Seminar Hall</a></li>
-                                        <li><a href="https://tjsec.in/sports/">Sports</a></li>
-                                        <li><a href="https://tjsec.in/transport-2/">Transport</a></li>
-                                        <li><a href="https://tjsec.in/barrier-free-environment/">Barrier Free Environment</a></li>
-                                        <li><a href="https://tjsec.in/health-centre/">Health Centre</a></li>
                                         <li class="menu-item-has-children">
-                                            <a href="https://tjsec.in/aids/">Gallery</a>
+                                            <a href="#">UG Programmes</a>
                                             <ul class="submenu">
+                                                <li><a href="#">B.E – Computer Science and Engineering</a></li>
+                                                <li><a href="#">B.E – Computer Science and Engineering (AI &amp; ML)</a></li>
+                                                <li><a href="#">B.E – Electrical and Communication Engineering</a></li>
+                                                <li><a href="#">B.E – Electrical and Electronics Engineering</a></li>
+                                                <li><a href="#">B.E – Mechanical Engineering</a></li>
+                                                <li><a href="#">B.Tech – Information Technology</a></li>
+                                                <li><a href="#">B.Tech – Artificial Intelligence and Data Science (AIDS)</a></li>
                                                 <li class="menu-item-has-children">
-                                                    <a href="https://tjsec.in/aids/">AIDS</a>
+                                                    <a href="#">Science and Humanities</a>
                                                     <ul class="submenu">
-                                                        <li><a href="https://tjsec.in/nptelnptel-achievers-2026-certificate/">NPTEL Achievers 2026 – Certificate</a></li>
+                                                        <li><a href="#">Department of Chemistry</a></li>
+                                                        <li><a href="#">Department of English</a></li>
+                                                        <li><a href="#">Department of Maths</a></li>
+                                                        <li><a href="#">Department of Physics</a></li>
                                                     </ul>
                                                 </li>
-                                                <li><a href="https://tjsec.in/cse/">CSE</a></li>
-                                                <li><a href="https://tjsec.in/ece/">ECE</a></li>
-                                                <li><a href="https://tjsec.in/eee/">EEE</a></li>
-                                                <li><a href="https://tjsec.in/fdp/">Events</a></li>
-                                                <li><a href="https://tjsec.in/guest-lecture/">Infrastructure</a></li>
-                                                <li><a href="https://tjsec.in/it-aiml/">IT/AIML</a></li>
-                                                <li><a href="https://tjsec.in/mech/">MECH</a></li>
-                                                <li><a href="https://tjsec.in/iic/">MBA</a></li>
-                                                <li><a href="https://tjsec.in/graduation-day/">Graduation Day – 2023</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-item-has-children">
+                                            <a href="#">PG Programmes</a>
+                                            <ul class="submenu">
+                                                <li><a href="#">M.E – Computer Science and Engineering</a></li>
+                                                <li><a href="#">M.E – VLSI &amp; Design</a></li>
+                                                <li><a href="#">M.B.A – Master of Business Administration</a></li>
                                             </ul>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="https://tjsec.in/about-the-placement/">Placement</a>
+                                    <a href="#">Research</a>
                                     <ul class="submenu">
-                                        <li><a href="https://tjsec.in/about-the-placement/">About the Placement</a></li>
-                                        <li><a href="https://tjsec.in/career-development-program/">Career Development Program</a></li>
-                                        <li><a href="https://tjsec.in/centre-of-excellence/">Centre of Excellence</a></li>
-                                        <li><a href="https://tjsec.in/eminent-recruiters/">Eminent Recruiters</a></li>
-                                        <li><a href="https://tjsec.in/photo-gallery/">Photo Gallery</a></li>
-                                        <li><a href="https://tjsec.in/placement-contact/">Placement Contact</a></li>
-                                        <li><a href="https://tjsec.in/placement-records/">Placement Records</a></li>
-                                        <li><a href="https://tjsec.in/entrepreneurship/">Entrepreneurship</a></li>
-                                        <li><a href="https://tjsec.in/feedback-form/">Online Grievance</a></li>
-                                        <li><a href="https://tjsec.in/contact-4/">Contact Us</a></li>
+                                        <li><a href="#">Publication</a></li>
+                                        <li><a href="#">Patents</a></li>
+                                        <li><a href="#">Research Facilities</a></li>
+                                        <li><a href="#">Research Forms</a></li>
+                                        <li><a href="#">Research Scholars</a></li>
+                                        <li><a href="#">Services</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item-has-children">
+                                    <a href="#">Campus Life</a>
+                                    <ul class="submenu">
+                                        <li><a href="#">Library</a></li>
+                                        <li><a href="#">Convention Centre</a></li>
+                                        <li><a href="#">Wellness Centre</a></li>
+                                        <li><a href="#">Sports and Fitness</a></li>
+                                        <li><a href="#">Students Club</a></li>
+                                        <li><a href="#">Transport</a></li>
+                                        <li><a href="#">Software Development Cell</a></li>
+                                        <li><a href="#">Canteen</a></li>
+                                        <li class="menu-item-has-children">
+                                            <a href="#">Other Facilities</a>
+                                            <ul class="submenu">
+                                                <li><a href="#">Student Hostel</a></li>
+                                                <li><a href="#">Medical Centre</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item-has-children">
+                                    <a href="#">Industry Interface</a>
+                                    <ul class="submenu">
+                                        <li><a href="#">About</a></li>
+                                        <li><a href="#">Professor and Practice</a></li>
+                                        <li><a href="#">Industry Academy Conclave</a></li>
+                                        <li><a href="#">List of MoUs</a></li>
+                                        <li><a href="#">Industry Visit (IV) Forms</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Placements</a></li>
+                                <li class="menu-item-has-children">
+                                    <a href="#">IQAC</a>
+                                    <ul class="submenu">
+                                        <li><a href="#">About IQAC</a></li>
+                                        <li><a href="#">NAAC</a></li>
+                                        <li><a href="#">MHRD</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Alumni</a></li>
+                                <li class="menu-item-has-children">
+                                    <a href="#">Grievances</a>
+                                    <ul class="submenu">
+                                        <li><a href="#">Student</a></li>
+                                        <li><a href="#">Faculty</a></li>
+                                        <li><a href="#">Staff</a></li>
+                                        <li><a href="#">Parent</a></li>
+                                        <li><a href="#">Alumni</a></li>
                                     </ul>
                                 </li>
                             </ul>
                         </nav>
                     </div>
-                    <div class="rs-admission-badge">
-                        <span class="label">Admission Code</span>
-                        <span class="code">1241</span>
-                    </div>
                     <div class="header-right">
                         <div class="header-icon-wrapper">
-                            <div class="header-utility-icons">
-                                <a href="tel:+914427967602" class="header-utility-icon" aria-label="Call us"><i class="ri-phone-fill"></i></a>
-                                <a href="mailto:admission@tjsec.in" class="header-utility-icon" aria-label="Email us"><i class="ri-mail-fill"></i></a>
-                            </div>
                             <!-- hamburger start -->
                             <div class="header-hamburger">
                                 <div class="sidebar-toggle">
