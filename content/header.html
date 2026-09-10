@@ -49,11 +49,23 @@
     </div>
     <!-- Badge row end -->
 
+    <!-- Mobile-only admission code strip (hidden on desktop — the badge row
+         above already shows this info there). -->
+    <div class="mobile-code-strip">
+        <a href="#" class="mobile-code-strip-admissions">Admissions</a>
+        <span class="mobile-code-strip-code">Admission Code: <strong>1241</strong></span>
+    </div>
+
     <!-- Header area start -->
     <header>
         <div class="rs-header-area rs-header-one">
             <div class="container-fluid g-0">
                 <div id="rs-sticky-header" class="header-wrapper rs-sticky-header">
+                    <div class="mobile-header-brand">
+                        <a href="#home">
+                            <img src="/assets/images/logo/logo.png" alt="T.J.S Engineering College logo">
+                        </a>
+                    </div>
                     <div class="header-menu">
                         <nav id="mobile-menu" class="main-menu">
                             <ul class="multipage-menu">
@@ -80,7 +92,7 @@
                                 <li class="menu-item-has-children">
                                     <a href="#">Academics</a>
                                     <ul class="submenu">
-                                        <li><a href="#">Programme Offered</a></li>
+                                        <li><a href="/programmes-offered">Programme Offered</a></li>
                                         <li><a href="#">Regulation and Curriculam</a></li>
                                         <li><a href="#">Academic Calendar</a></li>
                                         <li><a href="#">Controller of Examinations</a></li>
@@ -102,7 +114,7 @@
                                         <li class="menu-item-has-children">
                                             <a href="#">UG Programmes</a>
                                             <ul class="submenu">
-                                                <li><a href="#">B.E – Computer Science and Engineering</a></li>
+                                                <li><a href="/departments/cse">B.E – Computer Science and Engineering</a></li>
                                                 <li><a href="#">B.E – Computer Science and Engineering (AI &amp; ML)</a></li>
                                                 <li><a href="#">B.E – Electrical and Communication Engineering</a></li>
                                                 <li><a href="#">B.E – Electrical and Electronics Engineering</a></li>
@@ -123,7 +135,7 @@
                                         <li class="menu-item-has-children">
                                             <a href="#">PG Programmes</a>
                                             <ul class="submenu">
-                                                <li><a href="#">M.E – Computer Science and Engineering</a></li>
+                                                <li><a href="/departments/cse">M.E – Computer Science and Engineering</a></li>
                                                 <li><a href="#">M.E – VLSI &amp; Design</a></li>
                                                 <li><a href="#">M.B.A – Master of Business Administration</a></li>
                                             </ul>
@@ -221,6 +233,11 @@
         <div class="rs-header-area rs-header-one header-transparent has-space" style="position: relative;">
             <div class="container-fluid g-0">
                 <div class="header-wrapper">
+                    <div class="mobile-header-brand">
+                        <a href="#home">
+                            <img src="/assets/images/logo/logo.png" alt="T.J.S Engineering College logo">
+                        </a>
+                    </div>
                     <div class="header-menu">
                         <nav id="mobile-menu-two" class="main-menu">
                             <ul class="multipage-menu">
@@ -247,7 +264,7 @@
                                 <li class="menu-item-has-children">
                                     <a href="#">Academics</a>
                                     <ul class="submenu">
-                                        <li><a href="#">Programme Offered</a></li>
+                                        <li><a href="/programmes-offered">Programme Offered</a></li>
                                         <li><a href="#">Regulation and Curriculam</a></li>
                                         <li><a href="#">Academic Calendar</a></li>
                                         <li><a href="#">Controller of Examinations</a></li>
@@ -269,7 +286,7 @@
                                         <li class="menu-item-has-children">
                                             <a href="#">UG Programmes</a>
                                             <ul class="submenu">
-                                                <li><a href="#">B.E – Computer Science and Engineering</a></li>
+                                                <li><a href="/departments/cse">B.E – Computer Science and Engineering</a></li>
                                                 <li><a href="#">B.E – Computer Science and Engineering (AI &amp; ML)</a></li>
                                                 <li><a href="#">B.E – Electrical and Communication Engineering</a></li>
                                                 <li><a href="#">B.E – Electrical and Electronics Engineering</a></li>
@@ -290,7 +307,7 @@
                                         <li class="menu-item-has-children">
                                             <a href="#">PG Programmes</a>
                                             <ul class="submenu">
-                                                <li><a href="#">M.E – Computer Science and Engineering</a></li>
+                                                <li><a href="/departments/cse">M.E – Computer Science and Engineering</a></li>
                                                 <li><a href="#">M.E – VLSI &amp; Design</a></li>
                                                 <li><a href="#">M.B.A – Master of Business Administration</a></li>
                                             </ul>
@@ -401,6 +418,31 @@
                                     class="offcanvas-m-line line--3"></span>
                                 </span>
                             </button>
+                        </div>
+                    </div>
+                    <!-- Topbar links + accreditation badges, mobile/tablet only
+                         (hidden on desktop, where the topbar + badge row above
+                         the nav already show these — see .offcanvas-mobile-extras
+                         in tjs-custom-styles.css). -->
+                    <div class="offcanvas-mobile-extras mb-30">
+                        <ul class="offcanvas-mobile-links">
+                            <li><a href="#">Students</a></li>
+                            <li><a href="#">Faculty</a></li>
+                            <li><a href="#">Parents</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#" class="offcanvas-mobile-highlight">Admissions</a></li>
+                            <li><a href="https://cims.mastersofterp.in/" target="_blank" rel="noopener">ERP</a></li>
+                            <li><a href="#">LAUDEA</a></li>
+                            <li><a href="#">CANTEEN</a></li>
+                            <li><a href="#" class="offcanvas-mobile-btn">Fee Online</a></li>
+                        </ul>
+                        <p class="offcanvas-mobile-code">Admission Code: 1241</p>
+                        <div class="offcanvas-mobile-badges">
+                            <img src="/assets/images/naac_icon.jpg" alt="NAAC A Grade">
+                            <img src="/assets/images/mhrd_logo.jpg" alt="MHRD Innovation Cell">
+                            <img src="/assets/images/159_college_rank.jpg" alt="159th College Ranking 2026">
+                            <img src="/assets/images/hcl_tech.jpg" alt="Centre of Excellence – HCLTech">
                         </div>
                     </div>
                     <div class="offcanvas-about mb-30 d-none d-xl-block">

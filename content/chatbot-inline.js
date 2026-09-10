@@ -75,7 +75,7 @@
         return null;
     }
 
-    document.addEventListener("DOMContentLoaded", function () {
+    function initTjsChatbot() {
         var root = document.getElementById("tjsChatbot");
         if (!root) return;
 
@@ -269,5 +269,15 @@
         });
 
         startConversation();
-    });
+    }
+
+    // next/script's afterInteractive strategy runs this well after the
+    // initial DOMContentLoaded event has already fired, so waiting for
+    // that event (as this script originally did as a static <script> tag
+    // parsed inline) would never invoke the handler.
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initTjsChatbot);
+    } else {
+        initTjsChatbot();
+    }
 })();
