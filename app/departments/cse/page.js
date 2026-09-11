@@ -82,17 +82,36 @@ const FACULTY = [];
 const NON_TEACHING_STAFF = [];
 
 const INTERNSHIPS = [
-  { company: "SAP", year: 2024, students: 30 },
-  { company: "IIT Srirangam", year: 2023, students: 55 },
-  { company: "IITDM", year: 2022, students: 28 },
-  { company: "IIT Madras", year: 2022, students: 19 },
-  { company: "eSilicon", year: 2021, students: 17 },
-  { company: "Kaar", year: 2023, students: 15 },
-  { company: "ELGI", year: 2024, students: 10 },
-  { company: "IIT Guwahati", year: 2022, students: 7 },
-  { company: "IIT Palakkad", year: 2021, students: 7 },
-  { company: "Vyoma Systems", year: 2021, students: 2 },
+  { company: "SAP", year: 2024, students: 30, color: "#16225c" },
+  { company: "Kaar", year: 2023, students: 15, color: "#2ba9c4" },
+  { company: "ELGI", year: 2024, students: 10, color: "#8e5fb5" },
+  { company: "eSilicon", year: 2021, students: 17, color: "#f4a340" },
+  { company: "Vyoma Systems", year: 2021, students: 2, color: "#d9534f" },
+  { company: "IIT Guwahati", year: 2022, students: 7, color: "#2bb7a0" },
+  { company: "IIT Madras", year: 2022, students: 19, color: "#7b5ea7" },
+  { company: "IIT Srirangam", year: 2023, students: 55, color: "#4a7fc1" },
+  { company: "IIT Palakkad", year: 2021, students: 7, color: "#8bc34a" },
+  { company: "IITDM", year: 2022, students: 28, color: "#6b8e23" },
 ];
+const CHART_X_MAX = 60;
+const CHART_Y_MIN = 2019;
+const CHART_Y_MAX = 2025;
+const CHART_W = 860;
+const CHART_H = 380;
+const PAD_L = 60;
+const PAD_R = 30;
+const PAD_T = 30;
+const PAD_B = 55;
+function chartX(students) {
+  return PAD_L + (students / CHART_X_MAX) * (CHART_W - PAD_L - PAD_R);
+}
+function chartY(year) {
+  return CHART_H - PAD_B - ((year - CHART_Y_MIN) / (CHART_Y_MAX - CHART_Y_MIN)) * (CHART_H - PAD_T - PAD_B);
+}
+function chartR(students) {
+  const maxStudents = Math.max(...INTERNSHIPS.map((r) => r.students));
+  return 9 + 24 * Math.sqrt(students / maxStudents);
+}
 
 export default function CSEDepartment() {
   const [track, setTrack] = useState("B.E - CSE");
@@ -323,12 +342,36 @@ export default function CSEDepartment() {
         <h2>Regulations</h2>
         <h3>UG Regulations</h3>
         <div className="tjs-dept-link-list">
-          <a href="#">B.E. and B.Tech. Regulations (2025) &rarr;</a>
+          <a href="#">
+            <span>B.E. and B.Tech. Regulations (2025)</span>
+            <span className="tjs-dept-link-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </a>
         </div>
         <h3>PG Regulations</h3>
         <div className="tjs-dept-link-list">
-          <a href="#">M.E. Regulations (2025) &rarr;</a>
-          <a href="#">M.B.A. Regulations (2025) &rarr;</a>
+          <a href="#">
+            <span>M.E. Regulations (2025)</span>
+            <span className="tjs-dept-link-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </a>
+          <a href="#">
+            <span>M.B.A. Regulations (2025)</span>
+            <span className="tjs-dept-link-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </a>
         </div>
       </section>
 
@@ -338,7 +381,13 @@ export default function CSEDepartment() {
         <div className="tjs-dept-link-list">
           {SYLLABUS_UG.map((item) => (
             <a href="#" key={item}>
-              {item} &rarr;
+              <span>{item}</span>
+              <span className="tjs-dept-link-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
             </a>
           ))}
         </div>
@@ -346,7 +395,13 @@ export default function CSEDepartment() {
         <div className="tjs-dept-link-list">
           {SYLLABUS_PG.map((item) => (
             <a href="#" key={item}>
-              {item} &rarr;
+              <span>{item}</span>
+              <span className="tjs-dept-link-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
             </a>
           ))}
         </div>
@@ -378,25 +433,58 @@ export default function CSEDepartment() {
         </div>
 
         <h3>Internships and In-plant Trainings</h3>
-        <div className="tjs-dept-table-wrap">
-          <table className="tjs-dept-table">
-            <thead>
-              <tr>
-                <th>Company / Institute</th>
-                <th>Academic Year</th>
-                <th>No. of Students</th>
-              </tr>
-            </thead>
-            <tbody>
-              {INTERNSHIPS.map((row) => (
-                <tr key={row.company}>
-                  <td>{row.company}</td>
-                  <td>{row.year}</td>
-                  <td>{row.students}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="tjs-dept-bubble-wrap">
+          <svg viewBox={"0 0 " + CHART_W + " " + CHART_H} className="tjs-dept-bubble-svg" role="img" aria-label="Internships and in-plant trainings by company and academic year">
+            <text x={CHART_W / 2} y={18} textAnchor="middle" className="tjs-bubble-title">
+              Internships and In-plant Trainings
+            </text>
+
+            {[2019, 2020, 2021, 2022, 2023, 2024, 2025].map((year) => (
+              <g key={year}>
+                <line x1={PAD_L} x2={CHART_W - PAD_R} y1={chartY(year)} y2={chartY(year)} className="tjs-bubble-grid" />
+                <text x={PAD_L - 10} y={chartY(year)} textAnchor="end" dominantBaseline="middle" className="tjs-bubble-axis-label">
+                  {year}
+                </text>
+              </g>
+            ))}
+
+            {[5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60].map((val) => (
+              <text key={val} x={chartX(val)} y={CHART_H - PAD_B + 22} textAnchor="middle" className="tjs-bubble-axis-label">
+                {val}
+              </text>
+            ))}
+            <text x={(CHART_W - PAD_R + PAD_L) / 2} y={CHART_H - 6} textAnchor="middle" className="tjs-bubble-axis-title">
+              No of Students
+            </text>
+            <text
+              x={-CHART_H / 2}
+              y={16}
+              textAnchor="middle"
+              transform="rotate(-90)"
+              className="tjs-bubble-axis-title"
+            >
+              Academic Year
+            </text>
+
+            {INTERNSHIPS.map((row) => (
+              <circle
+                key={row.company}
+                cx={chartX(row.students)}
+                cy={chartY(row.year)}
+                r={chartR(row.students)}
+                fill={row.color}
+                opacity="0.9"
+              />
+            ))}
+          </svg>
+          <div className="tjs-dept-bubble-legend">
+            {INTERNSHIPS.map((row) => (
+              <span className="tjs-dept-bubble-legend-item" key={row.company}>
+                <span className="tjs-dept-bubble-dot" style={{ background: row.color }}></span>
+                {row.company}
+              </span>
+            ))}
+          </div>
         </div>
       </section>
 

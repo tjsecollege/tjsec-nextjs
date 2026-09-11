@@ -316,6 +316,13 @@ width: 510px;
    equal specificity, so source order decides the winner at ≤991px. */
 @media (max-width: 991px) {
     .rs-header-one .header-wrapper { background: #fff !important; border-bottom: 1px solid var(--rs-border-primary); }
+    /* The non-sticky header (header-two) is absolutely positioned in the base
+       template so it can float over a tall banner — with no banner behind it
+       here, that made it overlap the page content right below it. Put it
+       back in normal flow on mobile so it reserves its own space instead.
+       (Scoped away from #rs-sticky-header, which must stay position:fixed
+       for its scroll-to-sticky behavior — it's invisible until then anyway.) */
+    .rs-header-one .header-wrapper:not(.rs-sticky-header) { position: static !important; }
     .header-bar-icon span,
     .header-transparent .sidebar-toggle .header-bar-icon span,
     .rs-sticky-header .sidebar-toggle .header-bar-icon span { background: var(--rs-theme-blue); }
@@ -466,7 +473,7 @@ width: 510px;
 .tjs-dept-hero-label { color: var(--rs-theme-yellow); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
 .tjs-dept-hero-text h1 { position: relative; font-size: 34px; font-weight: 800; color: var(--rs-title-primary); margin-bottom: 22px; padding-bottom: 16px; line-height: 1.2; }
 .tjs-dept-hero-text h1::after { content: ""; position: absolute; left: 0; bottom: 0; width: 54px; height: 3px; background: var(--rs-theme-yellow); border-radius: 2px; }
-.tjs-dept-hero-text p { color: var(--rs-text-secondary); font-size: 15px; line-height: 1.7; max-width: 480px; }
+.tjs-dept-hero-text p { color: var(--rs-text-primary); font-size: 16px; line-height: 1.7; max-width: 480px; }
 .tjs-dept-hero-image { flex: 1 1 50%; position: relative; min-height: 360px; }
 .tjs-dept-hero-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
 @media (max-width: 767px) {
@@ -488,20 +495,44 @@ width: 510px;
     top: 46px;
     z-index: 1;
 }
-.tjs-dept-jump a { font-size: 13px; font-weight: 600; color: var(--rs-title-primary); padding: 6px 12px; border-radius: 20px; }
+.tjs-dept-jump a { font-size: 13px; font-weight: 600; color: var(--rs-title-primary); padding: 6px 12px; border-radius: 20px; white-space: nowrap; }
 .tjs-dept-jump a:hover { background: var(--rs-bg-secondary); color: var(--rs-theme-blue); }
+@media (max-width: 767px) {
+    .tjs-dept-jump {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 6px;
+        padding: 10px 14px;
+    }
+    .tjs-dept-jump::-webkit-scrollbar { display: none; }
+    .tjs-dept-jump a { flex: 0 0 auto; font-size: 12.5px; padding: 6px 14px; background: var(--rs-bg-secondary); }
+}
 .tjs-dept-section { padding: 50px 0; }
-.tjs-dept-section-alt { background: var(--rs-bg-secondary); margin: 0 -20px; padding: 50px 20px; }
+.tjs-dept-section-alt { background: var(--rs-bg-secondary); margin: 0 0px; padding: 50px 20px; }
 .tjs-dept-section h2 { position: relative; color: var(--rs-theme-blue); font-size: 26px; font-weight: 700; margin-bottom: 28px; padding-bottom: 14px; }
 .tjs-dept-section h2::after { content: ""; position: absolute; left: 0; bottom: 0; width: 54px; height: 3px; background: var(--rs-theme-yellow); border-radius: 2px; }
 .tjs-dept-section h3 { color: var(--rs-theme-blue); font-size: 18px; font-weight: 700; margin: 26px 0 12px; }
-.tjs-dept-section p { color: var(--rs-text-secondary); line-height: 1.7; margin-bottom: 14px; }
+.tjs-dept-section p { color: var(--rs-text-primary); line-height: 1.7; margin-bottom: 14px; }
 .tjs-dept-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 20px 0; }
 .tjs-dept-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .tjs-dept-card { background: #fff; border: 1px solid var(--rs-border-primary); border-radius: 12px; padding: 24px; box-shadow: 0 8px 22px rgba(3, 3, 3, 0.05); }
 .tjs-dept-card h3 { margin-top: 0; }
-.tjs-dept-card ul { margin: 0; padding-inline-start: 18px; color: var(--rs-text-secondary); }
-.tjs-dept-card ul li { margin-bottom: 8px; line-height: 1.6; }
+.tjs-dept-card ul { margin: 0; padding: 0; list-style: none; color: var(--rs-text-primary); }
+.tjs-dept-card ul li { position: relative; margin-bottom: 12px; padding-inline-start: 26px; line-height: 1.6; }
+.tjs-dept-card ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 15px;
+    height: 13px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='13' viewBox='0 0 15 13'%3E%3Cpath fill='%23ec6a40' d='M6.39959 12.3594C6.35715 12.3594 6.31517 12.3506 6.27629 12.3336C6.2374 12.3166 6.20246 12.2917 6.17365 12.2606L0.0817469 5.67088C0.0411367 5.62695 0.0142147 5.57213 0.00427583 5.51313C-0.00566304 5.45414 0.00181231 5.39352 0.0257871 5.33871C0.0497619 5.2839 0.0891961 5.23726 0.139263 5.20452C0.189331 5.17177 0.247859 5.15433 0.307685 5.15432H3.23999C3.28402 5.15433 3.32753 5.16378 3.3676 5.18203C3.40766 5.20029 3.44334 5.22692 3.47224 5.26014L5.50818 7.60242C5.72821 7.13208 6.15415 6.34894 6.90159 5.39466C8.00658 3.98389 10.0619 1.90909 13.5783 0.0361075C13.6463 -8.57115e-05 13.7254 -0.00947928 13.7999 0.00978174C13.8745 0.0290428 13.9391 0.0755582 13.981 0.140143C14.023 0.204728 14.0392 0.282687 14.0264 0.358628C14.0137 0.434568 13.9729 0.502968 13.9122 0.550323C13.8988 0.560815 12.5429 1.62851 10.9826 3.58417C9.54652 5.38386 7.63753 8.32663 6.69818 12.1257C6.68168 12.1925 6.6433 12.2517 6.58916 12.2941C6.53503 12.3365 6.46835 12.3594 6.39959 12.3594Z'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+}
 .tjs-dept-pending { font-style: italic; color: var(--rs-text-secondary); opacity: 0.8; }
 .tjs-dept-hod { display: flex; gap: 28px; align-items: flex-start; }
 .tjs-dept-hod-photo { flex: 0 0 auto; width: 130px; height: 160px; border-radius: 10px; background: var(--rs-border-primary); color: var(--rs-text-secondary); display: flex; align-items: center; justify-content: center; font-size: 13px; }
@@ -514,6 +545,15 @@ width: 510px;
 .tjs-dept-table th, .tjs-dept-table td { border: 1px solid var(--rs-border-primary); padding: 10px 14px; font-size: 14px; text-align: left; }
 .tjs-dept-table th { background: var(--rs-theme-blue); color: #fff; font-weight: 600; }
 .tjs-dept-table-pending { text-align: center; font-style: italic; color: var(--rs-text-secondary); }
+.tjs-dept-bubble-wrap { background: #fff; border: 1px solid var(--rs-border-primary); border-radius: 12px; padding: 20px; }
+.tjs-dept-bubble-svg { width: 100%; height: auto; overflow: visible; }
+.tjs-bubble-title { font-family: var(--rs-ff-title); font-size: 17px; font-weight: 700; fill: var(--rs-title-primary); }
+.tjs-bubble-grid { stroke: var(--rs-border-primary); stroke-width: 1; }
+.tjs-bubble-axis-label { font-size: 11px; fill: var(--rs-text-secondary); }
+.tjs-bubble-axis-title { font-size: 12px; font-weight: 600; fill: var(--rs-text-primary); }
+.tjs-dept-bubble-legend { display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: center; margin-top: 6px; }
+.tjs-dept-bubble-legend-item { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--rs-title-primary); }
+.tjs-dept-bubble-dot { width: 10px; height: 10px; border-radius: 50%; flex: 0 0 auto; }
 .tjs-dept-people-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 10px; }
 .tjs-dept-people-card { background: #fff; border: 1px solid var(--rs-border-primary); border-radius: 12px; overflow: hidden; text-align: center; box-shadow: 0 8px 20px rgba(3, 3, 3, 0.05); }
 .tjs-dept-people-photo { background: #e3ecf9; padding: 26px 0 18px; }
@@ -524,15 +564,17 @@ width: 510px;
 .tjs-dept-people-spec { font-size: 12.5px; color: var(--rs-title-primary); margin-bottom: 10px !important; padding: 0 12px; }
 .tjs-dept-people-email { display: block; font-size: 12.5px; color: var(--rs-theme-yellow); font-weight: 600; padding-bottom: 18px; }
 @media (max-width: 991px) { .tjs-dept-people-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 575px) { .tjs-dept-people-grid { grid-template-columns: 1fr; } }
+@media (max-width: 575px) { .tjs-dept-people-grid { grid-template-columns: 1fr; }.tjs-dept-page {    padding: 0 15px 40px;} .tjs-dept-jump { top: 70px; } }
 .tjs-dept-tabs { display: inline-flex; gap: 6px; background: var(--rs-bg-secondary); border-radius: 30px; padding: 5px; margin-bottom: 24px; }
 .tjs-dept-tab { border: none; background: transparent; padding: 9px 20px; border-radius: 30px; font-size: 13.5px; font-weight: 600; cursor: pointer; color: var(--rs-title-primary); }
 .tjs-dept-tab.active { background: var(--rs-theme-blue); color: #fff; }
 .tjs-dept-peo-list { display: flex; flex-direction: column; gap: 14px; margin-bottom: 10px; }
 .tjs-dept-peo { background: #fff; border-inline-start: 3px solid var(--rs-theme-yellow); border-radius: 6px; padding: 14px 18px; box-shadow: 0 4px 14px rgba(3, 3, 3, 0.05); }
-.tjs-dept-peo h4 { color: var(--rs-theme-blue); font-size: 15px; margin-bottom: 6px; }
-.tjs-dept-peo p { margin: 0; font-size: 14px; }
+.tjs-dept-peo h4 { color: var(--rs-theme-blue); font-size: 16px; margin-bottom: 6px; }
+.tjs-dept-peo p { margin: 0; font-size: 15px; }
 .tjs-dept-link-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px; }
-.tjs-dept-link-list a { background: #fff; border: 1px solid var(--rs-border-primary); border-radius: 8px; padding: 12px 18px; font-weight: 600; color: var(--rs-theme-blue); }
+.tjs-dept-link-list a { display: flex; align-items: center; justify-content: space-between; gap: 16px; background: #fff; border: 1px solid var(--rs-border-primary); border-radius: 8px; padding: 12px 18px; font-weight: 600; color: var(--rs-text-primary); }
 .tjs-dept-link-list a:hover { border-color: var(--rs-theme-blue); }
+.tjs-dept-link-arrow { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: var(--rs-bg-secondary); color: var(--rs-theme-blue); font-weight: 400; flex: 0 0 auto; transition: background-color 0.2s ease; }
+.tjs-dept-link-list a:hover .tjs-dept-link-arrow { background: var(--rs-theme-blue); color: #fff; }
 .tjs-dept-bullets { color: var(--rs-text-secondary); line-height: 1.8; padding-inline-start: 20px; }
