@@ -163,7 +163,7 @@ width: 510px;
 .tjs-chatbot-input button { width: 36px; height: 36px; flex: 0 0 auto; border: none; border-radius: 50%; background: var(--rs-theme-blue); color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .tjs-chatbot-input button svg { width: 15px; height: 15px; fill: #fff; }
 @media (max-width: 420px) {
-    .tjs-chatbot { right: 14px; bottom: 80px; }
+    .tjs-chatbot { right: 14px; bottom: 20px; }
     .tjs-chatbot-panel { width: calc(100vw - 28px); }
     .tjs-chatbot-teaser { width: 220px; right: 60px; }
 }
@@ -578,3 +578,73 @@ width: 510px;
 .tjs-dept-link-arrow { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: var(--rs-bg-secondary); color: var(--rs-theme-blue); font-weight: 400; flex: 0 0 auto; transition: background-color 0.2s ease; }
 .tjs-dept-link-list a:hover .tjs-dept-link-arrow { background: var(--rs-theme-blue); color: #fff; }
 .tjs-dept-bullets { color: var(--rs-text-secondary); line-height: 1.8; padding-inline-start: 20px; }
+
+/* ---- about-hero.css ---- */
+.tjs-about-hero {
+    position: relative; min-height: 440px; display: flex; align-items: center;
+    background-size: cover; background-position: top; background-repeat: no-repeat;
+}
+.tjs-about-hero::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(44, 51, 112, 0.88) 0%, rgba(44, 51, 112, 0.6) 55%, rgba(44, 51, 112, 0.28) 100%);
+}
+.tjs-about-hero-content { position: relative; z-index: 1; max-width: 640px; padding: 40px 60px; }
+.tjs-about-hero-label { display: inline-flex; align-items: center; gap: 8px; color: var(--rs-theme-yellow); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 16px; }
+.tjs-about-hero-content h1 { color: #fff; font-size: 38px; font-weight: 700; line-height: 1.25; margin-bottom: 18px; }
+.tjs-about-hero-content p { color: rgba(255, 255, 255, 0.85); font-size: 15.5px; line-height: 1.7; }
+@media (max-width: 767px) {
+    .tjs-about-hero { min-height: 360px; }
+    .tjs-about-hero-content { padding: 30px 24px; }
+    .tjs-about-hero-content h1 { font-size: 26px; }
+}
+
+.tjs-dept-breadcrumb { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 13px; color: var(--rs-text-secondary); padding: 20px 0 0; }
+.tjs-dept-breadcrumb a { color: var(--rs-theme-blue); font-weight: 600; }
+.tjs-dept-breadcrumb a:hover { color: var(--rs-theme-yellow); }
+
+/* ---- subpage-banner.css (thin title + breadcrumb bar, reused across About sub-pages) ---- */
+.tjs-subpage-banner {
+    position: relative; display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap;
+    gap: 10px; min-height: 130px; padding: 24px 40px;
+    background-size: cover; background-position: center; background-repeat: no-repeat;
+}
+.tjs-subpage-banner::before { content: ""; position: absolute; inset: 0; background: rgb(21 27 86 / 57%); }
+.tjs-subpage-banner h1 { position: relative; z-index: 1; color: #fff; font-size: 30px; font-weight: 700; margin: 0; }
+.tjs-subpage-crumb { position: relative; z-index: 1; display: flex; gap: 8px; color: rgba(255, 255, 255, 0.85); font-size: 14px; }
+.tjs-subpage-crumb a { color: rgba(255, 255, 255, 0.85); }
+.tjs-subpage-crumb a:hover { color: var(--rs-theme-yellow); }
+@media (max-width: 575px) { .tjs-subpage-banner h1 { font-size: 24px; } }
+
+.tjs-dept-section .tjs-subpage-title { display: flex; align-items: center; gap: 12px; color: var(--rs-theme-blue); font-size: 26px; font-weight: 800; margin-bottom: 28px; padding-bottom: 0; }
+/* Cancel the orange underline this h2 would otherwise inherit from
+   .tjs-dept-section h2 — same specificity (2 classes), so this must stay
+   after that rule in the file for the tie to resolve in its favor. */
+.tjs-dept-section .tjs-subpage-title::after { content: none; }
+.tjs-subpage-title-bar { display: inline-block; width: 5px; height: 26px; background: var(--rs-theme-red); border-radius: 2px; flex: 0 0 auto; }
+
+.tjs-trustee-grid { display: grid; grid-template-columns: 280px 1fr; gap: 28px; align-items: start; }
+.tjs-trustee-photo-card { background: var(--rs-bg-secondary); border-radius: 12px; padding: 30px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+.tjs-trustee-photo { width: 190px; height: 190px; border-radius: 50%; background: #fff; box-shadow: 0 8px 24px rgba(3, 3, 3, 0.1); display: flex; align-items: center; justify-content: center; color: var(--rs-text-secondary); font-size: 13px; overflow: hidden; }
+.tjs-trustee-photo img { width: 100%; height: 100%; object-fit: cover; }
+.tjs-trustee-name-card { background: #fff; border: 1px solid var(--rs-border-primary); border-radius: 12px; padding: 18px 20px; margin-bottom: 16px; }
+.tjs-trustee-name-card h3 { color: var(--rs-theme-blue); font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.tjs-trustee-role { font-weight: 700; color: var(--rs-title-primary); font-size: 13.5px; margin-bottom: 2px !important; }
+.tjs-trustee-org { color: var(--rs-text-secondary); font-size: 13px; }
+.tjs-trustee-cta { display: block; background: var(--rs-theme-green, #1d8a4a); color: #fff; border-radius: 10px; padding: 14px 18px; font-size: 13.5px; font-weight: 600; line-height: 1.5; text-align: center; }
+.tjs-trustee-cta i { margin-inline-start: 4px; }
+.tjs-trustee-cta:hover { opacity: 0.92; color: #fff; }
+.tjs-trustee-message-card { background: #fff; border: 1px solid var(--rs-border-primary); border-radius: 12px; padding: 30px; box-shadow: 0 8px 22px rgba(3, 3, 3, 0.05); }
+.tjs-trustee-message-card h3 { color: var(--rs-theme-blue); font-size: 17px; font-weight: 700; margin-bottom: 14px; }
+.tjs-trustee-message-card p { color: var(--rs-text-primary); line-height: 1.75; margin-bottom: 16px; }
+.tjs-trustee-quote { background: var(--rs-theme-blue); color: #fff; border-radius: 10px; padding: 20px 24px; margin-top: 10px; }
+.tjs-trustee-quote p { color: #fff; font-style: italic; font-size: 15px; margin-bottom: 8px !important; }
+.tjs-trustee-quote span { color: var(--rs-theme-yellow); font-size: 13.5px; font-weight: 600; }
+@media (max-width: 767px) {
+    .tjs-trustee-grid { grid-template-columns: 1fr; }
+    .tjs-trustee-side { max-width: 320px; margin: 0 auto 24px; }
+}
+
+@media (max-width: 767px) {
+    .rs-fixed-admissions-btn { display: none !important; }
+    .rs-events-ticker { display: none !important; }
+}
