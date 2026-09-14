@@ -648,3 +648,32 @@ width: 510px;
     .rs-fixed-admissions-btn { display: none !important; }
     .rs-events-ticker { display: none !important; }
 }
+
+/* ---- committees-accordion.css ---- */
+.tjs-committee-list { display: flex; flex-direction: column; gap: 12px; }
+.tjs-committee-item { border: 1px solid var(--rs-border-primary); border-radius: 10px; overflow: hidden; background: #fff; }
+.tjs-committee-toggle {
+    display: flex; align-items: center; justify-content: space-between; width: 100%;
+    border: none; background: #fff; padding: 16px 20px; font-size: 15px; font-weight: 700;
+    color: var(--rs-theme-blue); cursor: pointer; text-align: left;
+}
+.tjs-committee-toggle i { font-size: 20px; color: var(--rs-text-secondary); transition: transform 0.2s ease; flex: 0 0 auto; }
+.tjs-committee-toggle.active { background: var(--rs-bg-secondary); }
+.tjs-committee-toggle.active i { transform: rotate(180deg); color: var(--rs-theme-blue); }
+.tjs-committee-body { padding: 20px 24px 26px; border-top: 1px solid var(--rs-border-primary); }
+.tjs-committee-body h4 { color: var(--rs-theme-blue); font-size: 16px; font-weight: 700; margin: 22px 0 10px; }
+.tjs-committee-body h4:first-child { margin-top: 0; }
+.tjs-committee-body p { color: var(--rs-text-primary); line-height: 1.7; margin-bottom: 14px; }
+.tjs-committee-body ul { color: var(--rs-text-primary); line-height: 1.7; padding-inline-start: 20px; margin-bottom: 14px; }
+.tjs-committee-body ul li { margin-bottom: 8px; }
+
+/* Offcanvas "Follow Us" reuses the footer's colored social icons — icons
+   only, laid out in a row (overriding the template's bare circular-anchor
+   style and the footer's own vertical icon+label stack). */
+.offcanvas-social.tjs-footer-social ul { display: flex; align-items: center; gap: 12px; }
+.offcanvas-social.tjs-footer-social ul li { display: block; margin-inline-end: 0; }
+.offcanvas-social.tjs-footer-social ul li a {
+    width: auto; height: auto; background: none; border: none; border-radius: 0;
+}
+.offcanvas-social.tjs-footer-social ul li a:hover { background: none; border: none; }
+.offcanvas-social.tjs-footer-social .tjs-footer-social-icon { width: 38px; height: 38px; }
