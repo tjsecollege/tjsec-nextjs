@@ -373,7 +373,7 @@ width: 510px;
 .rs-header-one .header-logo img { max-height: 36px; width: auto; }
 .header-menu .main-menu { margin-inline-start: 0; width: auto; }
 .header-menu .main-menu > ul { flex-wrap: nowrap; gap: 0 6px; justify-content: center; }
-.header-menu .main-menu > ul > li > a { font-size: 13.5px; white-space: nowrap; padding-inline: 8px; }
+.header-menu .main-menu > ul > li > a { font-size: 15px; white-space: nowrap; padding-inline: 8px; }
 .header-menu .main-menu > ul > li.menu-item-has-children > a::after { margin-inline-start: 3px; }
 .header-menu .main-menu > ul > li > a .ri-home-4-line { font-size: 22px; }
 @media (max-width: 1300px) { .header-menu .main-menu > ul { gap: 0 3px; } .header-menu .main-menu > ul > li > a { font-size: 12.5px; padding-inline: 5px; } }
@@ -620,7 +620,7 @@ width: 510px;
    .tjs-dept-section h2 — same specificity (2 classes), so this must stay
    after that rule in the file for the tie to resolve in its favor. */
 .tjs-dept-section .tjs-subpage-title::after { content: none; }
-.tjs-subpage-title-bar { display: inline-block; width: 5px; height: 26px; background: var(--rs-theme-red); border-radius: 2px; flex: 0 0 auto; }
+.tjs-subpage-title-bar { display: inline-block; width: 5px; height: 26px; background: var(--rs-theme-blue); border-radius: 2px; flex: 0 0 auto; }
 
 .tjs-trustee-grid { display: grid; grid-template-columns: 280px 1fr; gap: 28px; align-items: start; }
 .tjs-trustee-photo-card { background: var(--rs-bg-secondary); border-radius: 12px; padding: 30px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
@@ -677,3 +677,33 @@ width: 510px;
 }
 .offcanvas-social.tjs-footer-social ul li a:hover { background: none; border: none; }
 .offcanvas-social.tjs-footer-social .tjs-footer-social-icon { width: 38px; height: 38px; }
+
+/* ---- approvals-viewer.css ---- */
+.tjs-approvals-layout { display: grid; grid-template-columns: 240px 1fr; gap: 24px; align-items: start; overflow-x: hidden; }
+.tjs-approvals-sidebar { display: flex; flex-direction: column; gap: 2px; border: 1px solid var(--rs-border-primary); border-radius: 10px; overflow: hidden; background: #fff; }
+.tjs-approvals-cat { border: none; background: #fff; padding: 16px 18px; text-align: left; font-size: 15px; font-weight: 700; color: var(--rs-theme-blue); cursor: pointer; }
+.tjs-approvals-cat:not(:last-child) { border-bottom: 1px solid var(--rs-border-primary); }
+.tjs-approvals-cat.active { background: var(--rs-theme-yellow); color: #fff; }
+.tjs-approvals-panel { min-width: 0; border: 3px solid var(--rs-theme-blue); border-radius: 14px; padding: 24px; background: #fff; }
+.tjs-approvals-panel h3 { color: var(--rs-title-primary); font-size: 18px; font-weight: 800; margin-bottom: 16px;margin-top: 0; }
+.tjs-approvals-year-tabs-row { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--rs-border-primary); min-width: 0; }
+.tjs-approvals-year-tabs { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; min-width: 0; scroll-behavior: smooth; }
+.tjs-approvals-year-tabs::-webkit-scrollbar { display: none; }
+.tjs-approvals-year-nav {
+    flex: 0 0 auto; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px;
+    border-radius: 50%; border: 1px solid var(--rs-border-primary); background: #fff; color: var(--rs-theme-blue);
+    cursor: pointer; font-size: 16px;
+}
+.tjs-approvals-year-nav:hover { background: var(--rs-theme-blue); color: #fff; border-color: var(--rs-theme-blue); }
+.tjs-approvals-year-nav:disabled { opacity: 0.35; cursor: default; }
+.tjs-approvals-year-nav:disabled:hover { background: #fff; color: var(--rs-theme-blue); border-color: var(--rs-border-primary); }
+.tjs-approvals-year { flex: 0 0 auto; border: 1px solid var(--rs-border-primary); background: #fff; color: var(--rs-theme-blue); font-weight: 700; font-size: 13.5px; padding: 10px 18px; border-radius: 8px; cursor: pointer; white-space: nowrap; }
+.tjs-approvals-year.active { background: var(--rs-theme-blue); color: #fff; border-color: var(--rs-theme-blue); }
+.tjs-approvals-viewer { border: 1px solid var(--rs-border-primary); border-radius: 8px; overflow: hidden; height: 640px; }
+.tjs-approvals-viewer iframe { width: 100%; height: 100%; border: none; }
+@media (max-width: 767px) {
+    .tjs-approvals-layout { grid-template-columns: 1fr; }
+    .tjs-approvals-sidebar { flex-direction: row; flex-wrap: wrap; }
+    .tjs-approvals-cat:not(:last-child) { border-bottom: none; border-inline-end: 1px solid var(--rs-border-primary); }
+    .tjs-approvals-viewer { height: 460px; }
+}
