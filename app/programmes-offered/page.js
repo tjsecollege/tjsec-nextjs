@@ -55,8 +55,6 @@ export default function ProgrammesOffered() {
             <h3>{prog.name}</h3>
             <span className="tjs-prog-degree-tag">{active} Degree</span>
             <div className="tjs-prog-meta">
-              {prog.intake ? <span>Intake: {prog.intake}</span> : null}
-              {prog.intake ? <span className="tjs-prog-meta-sep">&middot;</span> : null}
               <span>{prog.duration}</span>
             </div>
             <a href={prog.href || "#"} className="tjs-prog-explore">

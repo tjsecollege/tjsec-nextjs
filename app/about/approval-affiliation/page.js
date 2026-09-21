@@ -44,7 +44,6 @@ const ANNA_UNIV_DOCS = [
 ];
 
 const UGC_DOCS = [
-  { year: "Autonomous Approval (2025-2035)", file: "Anna University Autonomous approval letter 2025-2035.pdf" },
   { year: "UGC Certificate", file: "Autonomous certificate for UGC - T.J.S. Engineering College (1).pdf" },
 ];
 
@@ -118,14 +117,16 @@ export default function ApprovalAffiliation() {
               {category.docs.length > 0 ? (
                 <>
                   <div className="tjs-approvals-year-tabs-row">
-                    <button
-                      type="button"
-                      className="tjs-approvals-year-nav"
-                      aria-label="Scroll years left"
-                      onClick={() => scrollYearTabs(-1)}
-                    >
-                      <i className="ri-arrow-left-s-line"></i>
-                    </button>
+                    {category.docs.length > 1 && (
+                      <button
+                        type="button"
+                        className="tjs-approvals-year-nav"
+                        aria-label="Scroll years left"
+                        onClick={() => scrollYearTabs(-1)}
+                      >
+                        <i className="ri-arrow-left-s-line"></i>
+                      </button>
+                    )}
                     <div className="tjs-approvals-year-tabs" ref={yearTabsRef}>
                       {category.docs.map((doc) => (
                         <button
@@ -138,14 +139,16 @@ export default function ApprovalAffiliation() {
                         </button>
                       ))}
                     </div>
-                    <button
-                      type="button"
-                      className="tjs-approvals-year-nav"
-                      aria-label="Scroll years right"
-                      onClick={() => scrollYearTabs(1)}
-                    >
-                      <i className="ri-arrow-right-s-line"></i>
-                    </button>
+                    {category.docs.length > 1 && (
+                      <button
+                        type="button"
+                        className="tjs-approvals-year-nav"
+                        aria-label="Scroll years right"
+                        onClick={() => scrollYearTabs(1)}
+                      >
+                        <i className="ri-arrow-right-s-line"></i>
+                      </button>
+                    )}
                   </div>
 
                   {activeDoc && (

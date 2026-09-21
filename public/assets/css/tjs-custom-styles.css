@@ -36,7 +36,7 @@
 .main-menu .submenu li:hover>a {
     padding-inline-start: 13px !important;
     color: var(--rs-theme-yellow);
-    font-weight: 600;
+    
 }
 .main-menu .submenu ul {
     background-color: #ffffff;
@@ -81,7 +81,7 @@ width: 510px;
     margin-inline-start: 0;
     margin-inline-end: 8px;
 }
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 1200px) {
     .rs-header-one .header-wrapper .header-menu { justify-content: flex-start; }
     .rs-header-one .header-wrapper .header-menu .main-menu { width: 100%;  }
     .rs-header-one .header-wrapper .header-menu .main-menu>ul {
@@ -261,8 +261,12 @@ width: 510px;
 .rs-topbar-tjs .topbar-links-right a:nth-child(5) { color: var(--rs-theme-red); }
 /* Topbar + badge row take too much vertical space on phones/tablets — hide
    them there and surface the same links/badges inside the offcanvas menu
-   instead (see .offcanvas-mobile-extras below), opened via the hamburger. */
-@media (max-width: 991px) {
+   instead (see .offcanvas-mobile-extras below), opened via the hamburger.
+   This must match meanmenu's own breakpoint (meanScreenWidth: "1199" in
+   main.js) — otherwise there's a gap where the nav is already a JS-driven
+   hamburger but this compact header hasn't kicked in yet, and the full
+   desktop topbar/badges-row/search-box don't fit and wrap badly. */
+@media (max-width: 1199px) {
     .rs-topbar-tjs,
     .rs-header-badges-row { display: none !important; }
 }
@@ -271,11 +275,8 @@ width: 510px;
    (nav collapses to the hamburger + offcanvas menu, like the reference). */
 .mobile-code-strip { display: none; }
 .mobile-header-brand { display: none; }
-@media (max-width: 991px) {
-    .mobile-code-strip {
-        display: flex; align-items: center; justify-content: center; gap: 10px;
-        background: #eef0f3; padding: 8px 15px; flex-wrap: wrap;
-    }
+@media (max-width: 1199px) {
+    .mobile-code-strip { display: none !important; }
     .mobile-code-strip-admissions {
         background: #f4c6c2; color: var(--rs-theme-blue); font-size: 12.5px; font-weight: 600;
         padding: 4px 14px; border-radius: 4px;
@@ -294,7 +295,7 @@ width: 510px;
 }
 
 .offcanvas-mobile-extras { display: none; }
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
     .offcanvas-mobile-extras { display: block; padding-bottom: 20px; border-bottom: 1px solid rgba(3, 3, 3, 0.08); }
 }
 .offcanvas-mobile-links { display: flex; flex-wrap: wrap; gap: 10px 14px; list-style: none; margin: 0 0 14px; padding: 0; }
@@ -314,7 +315,7 @@ width: 510px;
    it stays navy — so flip the hamburger bars to a dark color. This must
    stay AFTER the unconditional navy rule above: both are !important with
    equal specificity, so source order decides the winner at ≤991px. */
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
     .rs-header-one .header-wrapper { background: #fff !important; border-bottom: 1px solid var(--rs-border-primary); }
     /* The non-sticky header (header-two) is absolutely positioned in the base
        template so it can float over a tall banner — with no banner behind it
@@ -330,7 +331,8 @@ width: 510px;
 
 .rs-header-badges-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 5px 30px; flex-wrap: wrap; background: #fff; border-bottom: 1px solid var(--rs-border-primary); }
 .rs-header-badges-left { display: flex; align-items: center; gap: 14px; }
-.rs-header-badges-logo img { max-height: 110px; width: auto; }
+.rs-header-badges-list { margin-inline-start: auto; }
+.rs-header-badges-logo img { height: 120px; width: auto; }
 .rs-header-college-name { line-height: 1.25; }
 .rs-header-college-name strong { display: block; font-size: 20px; color: var(--rs-theme-blue); font-family: var(--rs-ff-title); }
 .rs-header-college-name span { font-size: 12.5px; color: var(--rs-text-secondary); }
@@ -341,7 +343,7 @@ width: 510px;
 .rs-header-badges-list .rs-header-badge:nth-child(2) { height: 74px; }
 .rs-header-badges-list .rs-header-badge:nth-child(1) img,
 .rs-header-badges-list .rs-header-badge:nth-child(2) img { max-height: 62px; max-width: 190px; }
-.rs-header-search-box { display: flex; align-items: center; border: 2px solid #c6c6c6; border-radius: 24px; padding: 6px 6px 6px 16px; gap: 8px; min-width: 300px; }
+.rs-header-search-box { display: flex; align-items: center; border: 2px solid #c6c6c6; border-radius: 24px; padding: 6px 6px 6px 16px; gap: 8px; min-width: 300px; margin-inline-start: auto; }
 .rs-header-search-box input {
     border: none;
     outline: none;
@@ -398,7 +400,11 @@ width: 510px;
 .header-menu .main-menu .submenu:has(> li:nth-child(7)),
 .header-menu .main-menu .submenu.submenu-column-1:has(> li:nth-child(7)) {
     width: 260px;
-    column-count: 1;
+    /* column-count must stay "auto" (not 1) — a multicol formatting
+       context, even with a single column, makes Chrome stretch this
+       container's height to include its absolutely-positioned flyout
+       submenus, leaving a blank gap below the last item. */
+    column-count: auto;
     column-gap: 0;
     column-rule: none;
     padding: 0;
@@ -471,7 +477,7 @@ width: 510px;
     padding: 50px 60px; background: repeating-linear-gradient(135deg, #fff 0px, #fff 46px, #f4f5f7 46px, #f4f5f7 48px);
 }
 .tjs-dept-hero-label { color: var(--rs-theme-yellow); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
-.tjs-dept-hero-text h1 { position: relative; font-size: 34px; font-weight: 800; color: var(--rs-title-primary); margin-bottom: 22px; padding-bottom: 16px; line-height: 1.2; }
+.tjs-dept-hero-text h1 { position: relative; font-size: 34px; font-weight: 700; color: var(--rs-title-primary); margin-bottom: 22px; padding-bottom: 16px; line-height: 1.2; }
 .tjs-dept-hero-text h1::after { content: ""; position: absolute; left: 0; bottom: 0; width: 54px; height: 3px; background: var(--rs-theme-yellow); border-radius: 2px; }
 .tjs-dept-hero-text p { color: var(--rs-text-primary); font-size: 16px; line-height: 1.7; max-width: 480px; }
 .tjs-dept-hero-image { flex: 1 1 50%; position: relative; min-height: 360px; }
@@ -615,7 +621,7 @@ width: 510px;
 .tjs-subpage-crumb a:hover { color: var(--rs-theme-yellow); }
 @media (max-width: 575px) { .tjs-subpage-banner h1 { font-size: 24px; } }
 
-.tjs-dept-section .tjs-subpage-title { display: flex; align-items: center; gap: 12px; color: var(--rs-theme-blue); font-size: 26px; font-weight: 800; margin-bottom: 28px; padding-bottom: 0; }
+.tjs-dept-section .tjs-subpage-title { display: flex; align-items: center; gap: 12px; color: var(--rs-theme-blue); font-size: 26px; font-weight: 700; margin-bottom: 28px; padding-bottom: 0; }
 /* Cancel the orange underline this h2 would otherwise inherit from
    .tjs-dept-section h2 — same specificity (2 classes), so this must stay
    after that rule in the file for the tie to resolve in its favor. */
@@ -627,7 +633,8 @@ width: 510px;
 .tjs-trustee-photo { width: 190px; height: 190px; border-radius: 50%; background: #fff; box-shadow: 0 8px 24px rgba(3, 3, 3, 0.1); display: flex; align-items: center; justify-content: center; color: var(--rs-text-secondary); font-size: 13px; overflow: hidden; }
 .tjs-trustee-photo img { width: 100%; height: 100%; object-fit: cover; }
 .tjs-trustee-name-card { background: #fff; border: 1px solid var(--rs-border-primary); border-radius: 12px; padding: 18px 20px; margin-bottom: 16px; }
-.tjs-trustee-name-card h3 { color: var(--rs-theme-blue); font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.tjs-trustee-name-card h3 { color: var(--rs-theme-blue); font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+.tjs-trustee-qualification { color: var(--rs-text-secondary); font-size: 12px; white-space: nowrap; margin-bottom: 6px !important; }
 .tjs-trustee-role { font-weight: 700; color: var(--rs-title-primary); font-size: 13.5px; margin-bottom: 2px !important; }
 .tjs-trustee-org { color: var(--rs-text-secondary); font-size: 13px; }
 .tjs-trustee-cta { display: block; background: var(--rs-theme-green, #1d8a4a); color: #fff; border-radius: 10px; padding: 14px 18px; font-size: 13.5px; font-weight: 600; line-height: 1.5; text-align: center; }
@@ -660,8 +667,13 @@ width: 510px;
 .tjs-committee-toggle i { font-size: 20px; color: var(--rs-text-secondary); transition: transform 0.2s ease; flex: 0 0 auto; }
 .tjs-committee-toggle.active { background: var(--rs-bg-secondary); }
 .tjs-committee-toggle.active i { transform: rotate(180deg); color: var(--rs-theme-blue); }
-.tjs-committee-body { padding: 20px 24px 26px; border-top: 1px solid var(--rs-border-primary); }
-.tjs-committee-body h4 { color: var(--rs-theme-blue); font-size: 16px; font-weight: 700; margin: 22px 0 10px; }
+.tjs-committee-body { padding: 20px 24px 26px;}
+.tjs-committee-body h4 {
+    color: var(--rs-theme-blue);
+    font-size: 17px;
+    font-weight: 700;
+    margin: 22px 0 15px;
+}
 .tjs-committee-body h4:first-child { margin-top: 0; }
 .tjs-committee-body p { color: var(--rs-text-primary); line-height: 1.7; margin-bottom: 14px; }
 .tjs-committee-body ul { color: var(--rs-text-primary); line-height: 1.7; padding-inline-start: 20px; margin-bottom: 14px; }
@@ -685,7 +697,7 @@ width: 510px;
 .tjs-approvals-cat:not(:last-child) { border-bottom: 1px solid var(--rs-border-primary); }
 .tjs-approvals-cat.active { background: var(--rs-theme-yellow); color: #fff; }
 .tjs-approvals-panel { min-width: 0; border: 3px solid var(--rs-theme-blue); border-radius: 14px; padding: 24px; background: #fff; }
-.tjs-approvals-panel h3 { color: var(--rs-title-primary); font-size: 18px; font-weight: 800; margin-bottom: 16px;margin-top: 0; }
+.tjs-approvals-panel h3 { color: var(--rs-title-primary); font-size: 18px; font-weight: 700; margin-bottom: 16px;margin-top: 0; }
 .tjs-approvals-year-tabs-row { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--rs-border-primary); min-width: 0; }
 .tjs-approvals-year-tabs { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; min-width: 0; scroll-behavior: smooth; }
 .tjs-approvals-year-tabs::-webkit-scrollbar { display: none; }
@@ -707,3 +719,12 @@ width: 510px;
     .tjs-approvals-cat:not(:last-child) { border-bottom: none; border-inline-end: 1px solid var(--rs-border-primary); }
     .tjs-approvals-viewer { height: 460px; }
 }
+
+/* ---- iqac-contact.css ---- */
+.tjs-iqac-contact-card { display: flex; align-items: center; gap: 22px; padding: 10px; }
+.tjs-iqac-contact-card img { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; box-shadow: 0 8px 20px rgba(3, 3, 3, 0.12); flex: 0 0 auto; }
+.tjs-iqac-contact-card h4 { color: var(--rs-theme-blue); font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+.tjs-iqac-contact-card p { color: var(--rs-text-primary); line-height: 1.7; margin: 0 0 4px !important; }
+.tjs-iqac-contact-card a { color: var(--rs-theme-blue); font-weight: 600; }
+@media (max-width: 480px) { .tjs-iqac-contact-card { flex-direction: column; text-align: center; } }
+.tjs-iqac-diagram { display: block; max-width: 720px; width: 100%; height: auto; margin: 20px auto; }

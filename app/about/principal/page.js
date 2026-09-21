@@ -23,12 +23,13 @@ export default function Principal() {
           <div className="tjs-trustee-grid">
             <div className="tjs-trustee-side">
               <div className="tjs-trustee-photo-card">
-                <div className="tjs-trustee-photo" aria-hidden="true">
-                  <span>Photo</span>
+                <div className="tjs-trustee-photo">
+                  <img src="/assets/images/principal.jpg" alt="Dr. J. Prakash, Principal" />
                 </div>
               </div>
               <div className="tjs-trustee-name-card">
                 <h3>Dr. J. Prakash</h3>
+                <p className="tjs-trustee-qualification">M.E., Ph.D., MISTE., MIE.,</p>
                 <p className="tjs-trustee-role">Principal</p>
                 <p className="tjs-trustee-org">T.J.S. Engineering College</p>
               </div>
@@ -60,7 +61,7 @@ export default function Principal() {
                 contribute to the nation and the world.
               </p>
               <p className="tjs-dept-hod-sign">
-                <strong>Dr. J. Prakash</strong>
+                <strong>Dr. J. Prakash, M.E., Ph.D., MISTE., MIE.,</strong>
                 <br />
                 <em>Principal</em>
                 <br />
