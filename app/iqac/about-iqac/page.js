@@ -527,8 +527,8 @@ export default function AboutIQAC() {
                   <h4>Feedback Forms</h4>
                   <LinkList items={FEEDBACK_FORMS} keyField="label" urlField="url" iconClass="ri-external-link-line" />
 
-                  <h4>Feedback Report</h4>
-                  <p className="tjs-dept-pending">Report will be added soon.</p>
+                  {/* <h4>Feedback Report</h4>
+                  <p className="tjs-dept-pending">Report will be added soon.</p> */}
                 </div>
               )}
 

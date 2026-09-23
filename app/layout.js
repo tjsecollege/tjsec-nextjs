@@ -50,7 +50,7 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="/assets/css/vendor/remixicon.css" />
         <link rel="stylesheet" href="/assets/css/main.css?=29" />
         {/* Consolidated page-specific overrides (was an inline <style> block in the original file) */}
-        <link rel="stylesheet" href="/assets/css/tjs-custom-styles.css?=68" />
+        <link rel="stylesheet" href="/assets/css/tjs-custom-styles.css?=85" />
       </head>
       <body className="rs-smoother-yes">
         <div dangerouslySetInnerHTML={{ __html: headerHtml }} />
@@ -83,7 +83,7 @@ export default function RootLayout({ children }) {
         <Script src="/assets/js/plugins/flatpickr.min.js" strategy="afterInteractive" />
         <Script src="/assets/js/plugins/nouislider.min.js" strategy="afterInteractive" />
         <Script src="/assets/js/vendor/odometer.min.js" strategy="afterInteractive" />
-        <Script src="/assets/js/main.js?=1" strategy="afterInteractive" />
+        <Script src="/assets/js/main.js?=2" strategy="afterInteractive" />
 
         <Script
           id="tjs-chatbot-inline"

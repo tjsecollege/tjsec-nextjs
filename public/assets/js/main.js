@@ -702,6 +702,11 @@
             duration: 1.8,
             lerp: 0.05,
         });
+        // Exposed so other scripts (e.g. a modal that needs to freeze
+        // background scrolling) can pause/resume this Lenis instance —
+        // setting `overflow:hidden` on <body> alone doesn't stop it, since
+        // Lenis drives scrolling itself instead of relying on native scroll.
+        window.tjsLenis = lenis;
         function raf(time) {
             lenis.raf(time);
             requestAnimationFrame(raf);

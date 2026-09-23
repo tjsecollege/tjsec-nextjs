@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const AICTE_DOCS = [
   { year: "2026-27", file: "EOA Report 2026-2027.pdf" },
@@ -60,10 +60,31 @@ function docUrl(folder, file) {
 export default function ApprovalAffiliation() {
   const [activeCat, setActiveCat] = useState("aicte");
   const [activeYear, setActiveYear] = useState(AICTE_DOCS[0].year);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
   const yearTabsRef = useRef(null);
 
   const category = CATEGORIES.find((c) => c.id === activeCat);
   const activeDoc = category.docs.find((d) => d.year === activeYear);
+
+  function updateScrollState() {
+    const el = yearTabsRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 1);
+    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 1);
+  }
+
+  useEffect(() => {
+    updateScrollState();
+    const el = yearTabsRef.current;
+    if (!el) return;
+    el.addEventListener("scroll", updateScrollState);
+    window.addEventListener("resize", updateScrollState);
+    return () => {
+      el.removeEventListener("scroll", updateScrollState);
+      window.removeEventListener("resize", updateScrollState);
+    };
+  }, [activeCat]);
 
   function selectCategory(cat) {
     setActiveCat(cat.id);
@@ -123,6 +144,7 @@ export default function ApprovalAffiliation() {
                         className="tjs-approvals-year-nav"
                         aria-label="Scroll years left"
                         onClick={() => scrollYearTabs(-1)}
+                        disabled={!canScrollLeft}
                       >
                         <i className="ri-arrow-left-s-line"></i>
                       </button>
@@ -145,6 +167,7 @@ export default function ApprovalAffiliation() {
                         className="tjs-approvals-year-nav"
                         aria-label="Scroll years right"
                         onClick={() => scrollYearTabs(1)}
+                        disabled={!canScrollRight}
                       >
                         <i className="ri-arrow-right-s-line"></i>
                       </button>

@@ -9,18 +9,18 @@ const PROGRAMMES = {
     { name: "Computer Science and Engineering", duration: "4 Years", intake: 120, href: "/departments/cse" },
     { name: "Computer Science and Engineering (AI & ML)", duration: "4 Years", intake: 60 },
     { name: "Electrical and Communication Engineering", duration: "4 Years", intake: 60 },
-    { name: "Electrical and Electronics Engineering", duration: "4 Years", intake: 60 },
-    { name: "Mechanical Engineering", duration: "4 Years", intake: 30 },
+    { name: "Electrical and Electronics Engineering", duration: "4 Years", intake: 60, href: "/departments/eee" },
+    { name: "Mechanical Engineering", duration: "4 Years", intake: 30, href: "/departments/mech" },
   ],
   "B.Tech": [
-    { name: "Information Technology", duration: "4 Years" },
+    { name: "Information Technology", duration: "4 Years", href: "/departments/it" },
     { name: "Artificial Intelligence and Data Science (AIDS)", duration: "4 Years" },
   ],
   "M.E": [
     { name: "Computer Science and Engineering", duration: "2 Years", href: "/departments/cse" },
     { name: "VLSI & Design", duration: "2 Years" },
   ],
-  MBA: [{ name: "Master of Business Administration", duration: "2 Years" }],
+  MBA: [{ name: "Master of Business Administration", duration: "2 Years", href: "/departments/mba" }],
 };
 
 export default function ProgrammesOffered() {
