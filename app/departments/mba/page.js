@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import DeptJumpNav from "../DeptJumpNav";
 
 const FACULTY = [
   { name: "Dr. N. Jayanthi", qual: "MBA, M.Com, M.Phil, SLET, Ph.D", role: "Associate Professor & Head" },
@@ -278,16 +279,18 @@ export default function MBADepartment() {
       </section>
 
       <div className="tjs-dept-page">
-        <nav className="tjs-dept-jump">
-          <a href="#about">About</a>
-          <a href="#bos">Board of Studies</a>
-          <a href="#people">Faculty &amp; Staff</a>
-          <a href="#programmes">Programmes Offered</a>
-          <a href="#curriculum">Curriculum</a>
-          <a href="#regulations">Regulations</a>
-          <a href="#teaching">Teaching Practices</a>
-          <a href="#internship">Internship</a>
-        </nav>
+        <DeptJumpNav
+          items={[
+            { href: "#about", label: "About" },
+            { href: "#bos", label: "Board of Studies" },
+            { href: "#people", label: "Faculty & Staff" },
+            { href: "#programmes", label: "Programmes Offered" },
+            { href: "#curriculum", label: "Curriculum" },
+            { href: "#regulations", label: "Regulations" },
+            { href: "#teaching", label: "Teaching Practices" },
+            { href: "#internship", label: "Internship" },
+          ]}
+        />
 
         <section id="about" className="tjs-dept-section">
           <h2>About the Department</h2>

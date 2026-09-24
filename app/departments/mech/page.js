@@ -1,3 +1,5 @@
+import DeptJumpNav from "../DeptJumpNav";
+
 const FACULTY = [
   { name: "Dr. E. Sivakumar", qual: "Ph.D", joined: "22.08.2022", role: "Professor" },
   { name: "Dr. V. Valasamuthiram", qual: "Ph.D.", joined: "03.10.2022", role: "Professor" },
@@ -74,13 +76,15 @@ export default function MechanicalDepartment() {
       </section>
 
       <div className="tjs-dept-page">
-        <nav className="tjs-dept-jump">
-          <a href="#about">About</a>
-          <a href="#people">Faculty &amp; Staff</a>
-          <a href="#programmes">Programmes Offered</a>
-          <a href="#facilities">Facilities &amp; Laboratories</a>
-          <a href="#library">Library</a>
-        </nav>
+        <DeptJumpNav
+          items={[
+            { href: "#about", label: "About" },
+            { href: "#people", label: "Faculty & Staff" },
+            { href: "#programmes", label: "Programmes Offered" },
+            { href: "#facilities", label: "Facilities & Laboratories" },
+            { href: "#library", label: "Library" },
+          ]}
+        />
 
         <section id="about" className="tjs-dept-section">
           <h2>About the Department</h2>

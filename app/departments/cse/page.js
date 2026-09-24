@@ -1,5 +1,6 @@
 import { getDepartment } from "../../../lib/wordpress";
 import ProgrammesTabs from "./ProgrammesTabs";
+import DeptJumpNav from "../DeptJumpNav";
 
 const CHART_X_MAX = 60;
 const CHART_Y_MIN = 2019;
@@ -63,17 +64,19 @@ export default async function CSEDepartment() {
       </section>
 
       <div className="tjs-dept-page">
-        <nav className="tjs-dept-jump">
-          <a href="#about">About</a>
-          <a href="#hod">HOD&apos;s Desk</a>
-          <a href="#people">Faculty &amp; Staff</a>
-          <a href="#programmes">Programmes Offered</a>
-          <a href="#regulations">Regulations</a>
-          <a href="#curriculum">Curriculum &amp; Syllabi</a>
-          <a href="#industry">Industry Interface</a>
-          <a href="#research">Research</a>
-          <a href="#facilities">Facilities</a>
-        </nav>
+        <DeptJumpNav
+          items={[
+            { href: "#about", label: "About" },
+            { href: "#hod", label: "HOD's Desk" },
+            { href: "#people", label: "Faculty & Staff" },
+            { href: "#programmes", label: "Programmes Offered" },
+            { href: "#regulations", label: "Regulations" },
+            { href: "#curriculum", label: "Curriculum & Syllabi" },
+            { href: "#industry", label: "Industry Interface" },
+            { href: "#research", label: "Research" },
+            { href: "#facilities", label: "Facilities" },
+          ]}
+        />
 
         <section id="about" className="tjs-dept-section">
           <h2>About the Department</h2>

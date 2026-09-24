@@ -1,11 +1,22 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import DeptJumpNav from "../DeptJumpNav";
+
+const ArrowIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="5" y1="12" x2="19" y2="12"></line>
+    <polyline points="12 5 19 12 12 19"></polyline>
+  </svg>
+);
 
 const FACULTY = [
-  { name: "J. Agnes", qual: "B.Tech (IT), M.E (CSE), (Ph.D)", role: "Assistant Professor", email: "agnes.pravin@gmail.com" },
-  { name: "N. Anu", qual: "B.Tech (IT), M.E (CSE)", role: "Assistant Professor", email: "anusimon1111@gmail.com" },
-  { name: "R. Antony Juliet", qual: "B.Tech (IT), M.E (CSE), (Ph.D)", role: "Assistant Professor", email: "antonyjuliet2021@gmail.com" },
+  { name: "J. Agnes", qual: "B.Tech (IT), M.E (CSE), (Ph.D)", role: "Assistant Professor", email: "agnes@tjsec.in" },
+  { name: "N. Anu", qual: "B.Tech (IT), M.E (CSE)", role: "Assistant Professor", email: "anu@tjsec.in" },
+  { name: "Godwinjosep Paul", qual: "B.Tech (IT), M.E (CSE)", role: "Assistant Professor", email: "" },
+  { name: "R. Antony Juliet", qual: "B.Tech (IT), M.E (CSE), (Ph.D)", role: "Assistant Professor", email: "antonyjuliet@tjsec.in" },
+  { name: "Priyanka M", qual: "M.E", role: "Assistant Professor", email: "" },
+  { name: "Vutuchuru Vasantha M", qual: "M.Tech", role: "Assistant Professor", email: "" },
 ];
 
 const PEOS = [
@@ -36,206 +47,32 @@ const PSOS = [
   "Have excitement towards research in applied computer technologies.",
 ];
 
-const SEMESTERS = [
-  {
-    id: "I",
-    total: "27 / 20",
-    rows: [
-      ["1", "26EN101", "Professional English", "T", "2-0-0", "2", "HS"],
-      ["2", "26TA101", "Heritage of Tamils", "T", "1-0-0", "1", "HS"],
-      ["3", "26MA101", "Matrices and Calculus", "T", "3-1-0", "4", "BS"],
-      ["4", "26PH201", "Engineering Physics", "LIT", "2-0-2", "3", "BS"],
-      ["5", "26CY201", "Engineering Chemistry", "LIT", "2-0-2", "3", "BS"],
-      ["6", "26CS201", "Fundamentals of Programming in C", "LIT", "3-0-2", "4", "ES"],
-      ["7", "26EN301", "Life Skills for Engineers", "L", "0-0-2", "1", "HS"],
-      ["8", "26ME301", "Makerspace", "L", "0-0-4", "2", "ES"],
-      ["9", "–", "Physical Education-I", "–", "0-0-1", "–", "–"],
-      ["10", "–", "NCC/NSS/NSO/YRC", "–", "–", "–", "–"],
-    ],
-  },
-  {
-    id: "II",
-    total: "28 / 22",
-    rows: [
-      ["1", "26TA102", "Tamils and Technology", "T", "1-0-0", "1", "HS"],
-      ["2", "26MA102", "Transforms and its Applications", "T", "3-1-0", "4", "BS"],
-      ["3", "26PH104", "Physics for Information Science", "T", "3-0-0", "3", "BS"],
-      ["4", "26EE201", "Basic Electrical and Electronics Engineering", "LIT", "3-0-2", "4", "ES"],
-      ["5", "26CS202", "Problem Solving using Python Programming", "LIT", "3-0-2", "4", "ES"],
-      ["6", "26EC202", "Digital Logic Design", "LIT", "3-0-2", "4", "ES"],
-      ["7", "26EN302", "English Essentials", "L", "0-0-2", "1", "HS"],
-      ["8", "26SD301", "Employability Enhancement Skills-I", "L", "0-0-2", "1", "EE"],
-      ["9", "–", "Physical Education-II", "–", "0-0-1", "–", "–"],
-    ],
-  },
-  {
-    id: "III",
-    total: "31 / 25",
-    rows: [
-      ["1", "26MA104", "Discrete Mathematics", "T", "3-1-0", "4", "BS"],
-      ["2", "26IT101", "Computer Architecture and Organisation", "T", "3-0-0", "3", "PC"],
-      ["3", "26CS204", "Operating Systems", "LIT", "3-0-2", "4", "PC"],
-      ["4", "26CS205", "Object Oriented Programming", "LIT", "3-0-2", "4", "PC"],
-      ["5", "26CS206", "Data Structures and Algorithms", "LIT", "3-0-2", "4", "PC"],
-      ["6", "26AL202", "Artificial Intelligence and Machine Learning", "LIT", "3-0-2", "4", "PC"],
-      ["7", "26EN303", "English Communication Skills Laboratory-I", "L", "0-0-2", "1", "HS"],
-      ["8", "26SD302", "Employability Enhancement Skills-II", "L", "0-0-2", "1", "EE"],
-    ],
-  },
-  {
-    id: "IV",
-    total: "32 / 25",
-    rows: [
-      ["1", "26MA106", "Probability and Statistics", "T", "3-1-0", "4", "BS"],
-      ["2", "26IT201", "Automata and Compiler Design", "LIT", "3-0-2", "4", "PC"],
-      ["3", "26IT204", "Computer Networks", "LIT", "3-0-2", "4", "PC"],
-      ["4", "26AD201", "Fundamentals of Data Science", "LIT", "3-0-2", "4", "PC"],
-      ["5", "26CS209", "Java Programming", "LIT", "3-0-2", "4", "PC"],
-      ["6", "26IT205", "Database Systems and Security", "LIT", "2-0-2", "3", "PC"],
-      ["7", "26EN304", "English Communication Skills Laboratory-II", "L", "0-0-2", "1", "HS"],
-      ["8", "26SD303", "Employability Enhancement Skills-III", "L", "0-0-2", "1", "EE"],
-    ],
-  },
-  {
-    id: "V",
-    total: "21",
-    rows: [
-      ["1", "26CS101", "Object Oriented Software Engineering", "T", "3-0-0", "3", "PC"],
-      ["2", "–", "Open Elective-I", "T", "3-0-0", "3", "OE"],
-      ["3", "–", "Professional Elective-I", "T/LIT", "–", "3", "PE"],
-      ["4", "–", "Professional Elective-II", "T/LIT", "–", "3", "PE"],
-      ["5", "26IT206", "Embedded Programming", "LIT", "3-0-2", "4", "PC"],
-      ["6", "26IT207", "Web Technologies", "LIT", "3-0-2", "4", "PC"],
-      ["7", "26SD304", "Employability Enhancement Skills-IV", "L", "0-0-2", "1", "EE"],
-      ["8", "–", "Mandatory Course-I", "T", "2-0-0", "–", "MC"],
-    ],
-    note: "Honours: Capstone Design Project-Level I (6 cr.) or Honours Elective I & II. Minor: Minor Elective-I & II.",
-  },
-  {
-    id: "VI",
-    total: "22",
-    rows: [
-      ["1", "26CY101", "Climate Change and Environmental Sustainability", "T", "2-0-0", "2", "HS"],
-      ["2", "–", "Open Elective-II", "T", "3-0-0", "3", "OE"],
-      ["3", "–", "Professional Elective-III", "T/LIT", "–", "3", "PE"],
-      ["4", "–", "Professional Elective-IV", "T/LIT", "–", "3", "PE"],
-      ["5", "26CS214", "Full Stack Development", "LIT", "3-0-2", "4", "PC"],
-      ["6", "26IT208", "Principles of Communication Systems", "LIT", "3-0-2", "4", "PC"],
-      ["7", "26SD305", "Employability Enhancement Skills-V", "L", "0-0-2", "1", "EE"],
-      ["8", "26PW401", "Engineering Design Project", "L", "0-0-4", "2", "EE"],
-      ["9", "–", "Mandatory Course-II", "T", "2-0-0", "–", "MC"],
-    ],
-    note: "Honours: Capstone Design Project-Level II (6 cr.) or Honours Elective III & IV. Minor: Minor Elective-III & IV.",
-  },
-  {
-    id: "VII",
-    total: "21",
-    rows: [
-      ["1", "26EN102", "Human Values and Ethics", "T", "3-0-0", "3", "HS"],
-      ["2", "–", "Open Elective-III", "T", "3-0-0", "3", "OE"],
-      ["3", "–", "Professional Elective-V", "T/LIT", "–", "3", "PE"],
-      ["4", "–", "Professional Elective-VI", "T/LIT", "–", "3", "PE"],
-      ["5", "26CS213", "Cloud Computing and Internet of Things", "LIT", "3-0-2", "4", "PC"],
-      ["6", "26IT223", "Mobile and Pervasive Computing", "LIT", "3-0-2", "4", "PC"],
-      ["7", "26IN401", "Internship", "–", "–", "1", "EE"],
-    ],
-    note: "Honours: Capstone Design Project-Level III (6 cr.) or Honours Elective V & VI. Minor: Minor Elective-V & VI.",
-  },
-  {
-    id: "VIII",
-    total: "16 / 8",
-    rows: [
-      ["1", "26PW402", "Project Work / Project Work-cum-Internship", "L", "0-0-16", "8", "EE"],
-    ],
-  },
-];
-
-const VERTICALS = [
-  { name: "Vertical 1 – Artificial Intelligence and Machine Learning", courses: ["Knowledge Engineering", "Soft Computing", "Generative AI and Agentic AI", "Introduction to Natural Language Processing", "Introduction to Large Language Models", "Forward Deployed Engineering"] },
-  { name: "Vertical 2 – Data Science", courses: ["Exploratory Data Analysis", "Recommender Systems", "Data Warehousing", "Big Data Analysis", "Business Analytics", "Computer Vision and Image Processing"] },
-  { name: "Vertical 3 – Cybersecurity", courses: ["Modern Cryptography", "Social Network Security", "Network Security", "Security and Privacy in Cloud", "Ethical Hacking", "Cryptocurrency and Blockchain Technologies"] },
-  { name: "Vertical 4 – IT Infrastructure and Enterprise Systems", courses: ["IT Infrastructure Architecture", "Data Center Design and Operations", "Server Administration and Automation", "Storage Systems and Disaster Recovery", "Enterprise IT Governance and Management", "Enterprise System Integration"] },
-  { name: "Vertical 5 – Creative Media Technologies", courses: ["Multimedia and Animation", "Video Creation and Editing", "3D Printing and Design", "Augmented Reality and Virtual Reality", "Artificial Intelligence and Visual Effects", "Digital Marketing"] },
-  { name: "Vertical 6 – Full Stack Development", courses: ["UI and UX Design", "NextGen Web Development", "App Development", "Cloud Native Development", "Software Testing and Automation", "Open Source Technologies"] },
-];
-
-const MINOR_VERTICALS = [
-  { name: "Vertical 1 – Fintech and Blockchain", courses: ["Financial Management", "Fundamentals of Investment", "Banking Financial Services and Insurance", "Blockchain and its Applications", "Introduction to Fintech", "Fintech Personal Finance and Payments"] },
-  { name: "Vertical 2 – Entrepreneurship", courses: ["Engineering Entrepreneurship and IPR", "Team Building and Leadership Management for Business", "Creativity & Innovation in Entrepreneurship", "Principles of Marketing Management for Business", "Human Resource Management for Entrepreneurs", "Financing New Business Ventures"] },
-  { name: "Vertical 3 – Public Administration", courses: ["Principles of Public Administration", "Constitution of India", "Public Personnel Administration", "Administrative Theories", "Indian Administrative System", "Public Policy Administration"] },
-  { name: "Vertical 4 – Business Data Analytics", courses: ["Statistics for Management", "Datamining for Business Intelligence", "Human Resource Analytics", "Marketing and Social Media Web Analytics", "Operation and Supply Chain Analytics", "Financial Analytics"] },
-  { name: "Vertical 5 – Sustainable Development", courses: ["Sustainable Infrastructure Development", "Sustainable Agriculture and Environmental Management", "Sustainable Bio Materials", "Materials for Energy Sustainability", "Energy Efficiency for Sustainable Development", "Integrated Energy Planning for Sustainable Development"] },
-];
-
-const CREDIT_DIST = [
-  ["HS", "4", "2", "1", "1", "–", "2", "3", "–", "13"],
-  ["BS", "10", "7", "4", "4", "–", "–", "–", "–", "25"],
-  ["ES", "6", "12", "–", "–", "–", "–", "–", "–", "18"],
-  ["PC", "–", "–", "19", "19", "11", "8", "8", "–", "65"],
-  ["PE", "–", "–", "–", "–", "6", "6", "6", "–", "18"],
-  ["OE", "–", "–", "–", "–", "3", "3", "3", "–", "9"],
-  ["EE", "–", "1", "1", "1", "1", "3", "1", "8", "16"],
-  ["MC", "–", "–", "–", "–", "x", "x", "–", "–", "0"],
-];
-
-const KEY_REGULATIONS = [
-  {
-    title: "Programme Duration & Attendance",
-    points: [
-      "B.Tech. Information Technology is a 4-year (8-semester) programme under TJSEC-AR-2026-UG, applicable from Academic Year 2026-2027.",
-      "Minimum overall attendance required to appear for End Semester Examinations: 80% (70% considered only with an approved Medical Certificate).",
-      "Maximum credit registration limit per semester: 36 credits.",
-    ],
-  },
-  {
-    title: "Assessment Weightage",
-    points: [
-      "Theory (T) courses: 40% Continuous Assessment + 60% End Semester Examination.",
-      "Laboratory Integrated with Theory (LIT) courses: 50% Continuous Assessment + 50% End Semester Examination.",
-      "Laboratory (L) courses: 60% Continuous Assessment + 40% End Semester Examination.",
-      "Project Work: 60% Continuous Assessment + 40% End Semester Examination.",
-      "Mini Project / Mandatory / Value Added / Internship courses: 100% Continuous Assessment, no End Semester Examination.",
-    ],
-  },
-  {
-    title: "Passing Criteria",
-    points: [
-      "Theory / LIT / Laboratory courses: minimum 45% in the End Semester Examination and minimum 50% aggregate.",
-      "Project Work / Internship-cum-Project: minimum 45% in the End Semester component and minimum 50% aggregate.",
-      "Internship / Industrial Training, Mini Project, Life Skills, Employability Enhancement, Value Added and Mandatory Courses: minimum 50% in Continuous Assessment.",
-    ],
-  },
-  {
-    title: "Grading (Absolute Grading System)",
-    points: [
-      "S (91-100) = 10 grade points, A+ (81-90) = 9, A (71-80) = 8, B+ (66-70) = 7, B (61-65) = 6.5, C+ (56-60) = 6, C (50-55) = 5, U (<50) = 0.",
-    ],
-  },
-  {
-    title: "Degree Classification",
-    points: [
-      "First Class with Distinction (Honours): all courses — including additional Honours courses — passed in the first appearance, CGPA ≥ 8.50, never prevented from an end semester exam.",
-      "First Class with Distinction: all courses passed in the first appearance, CGPA ≥ 8.50.",
-      "First Class: all courses passed within the prescribed duration, CGPA ≥ 6.50, never prevented from an exam.",
-      "Second Class: all courses passed within the prescribed duration, CGPA below 6.50 (or with a prevention).",
-    ],
-  },
-  {
-    title: "Honours & Minor Degree",
-    points: [
-      "Eligibility: minimum CGPA of 7.0 (Semesters III & IV combined) with no history of arrears, from Semester V onwards.",
-      "Honours: either a Capstone Design Project (18 credits, Semesters V–VII, in a 4–6-member multidisciplinary team) or 6 additional Elective courses (18 credits). Honours is conferred only if CGPA ≥ 8.50 on completion.",
-      "Minor Degree: 6 courses (18 credits) from one Minor Elective vertical, from Semester V onwards; grades count towards CGPA.",
-      "A student may opt for either Honours or Minor, not both.",
-    ],
-  },
-];
-
 const INDUSTRIAL_VISITS = [
+  {
+    date: "04-08-2025",
+    title: "RETECH, Selvanagar & Kancheepuram (III Year)",
+    desc: "Industrial visit to RETECH, Selvanagar, Kadaperi West, Chennai, with additional stops at Kancheepuram and Old Perungalathur, organised jointly by the Department of CSE (AI&ML) and Department of Information Technology.",
+    imgs: [
+      { src: "/assets/images/it/it_web_pg/image_16.jpg", alt: "Industrial Visit to RETECH, Selvanagar, Kadaperi West" },
+      { src: "/assets/images/it/it_web_pg/image_9.jpg", alt: "Students at the RETECH Industrial Visit" },
+      { src: "/assets/images/it/it_web_pg/image_17.jpg", alt: "Industrial Visit session at Kancheepuram" },
+      { src: "/assets/images/it/it_web_pg/image_18.jpg", alt: "Industrial Visit session at Old Perungalathur" },
+    ],
+  },
   {
     title: "TANSAM, TIDEL Park (III Year)",
     desc: "Industrial visit to TANSAM, TIDEL Park, Rajiv Gandhi IT Expressway, Tharamani, Chennai on 3rd February, organised jointly by the Department of CSE (AI&ML) and Department of Information Technology. Resource person Mr. Natesh explained the usage of Virtual Reality & Augmented Reality, the technical skills required for IoT, and the importance of AI in day-to-day life such as traffic control and AI integration, along with ML certification and career opportunities.",
     imgs: [{ src: "/assets/images/it/it_web_pg/image_10.jpg", alt: "Industrial Visit to TANSAM, TIDEL Park", wide: true }],
+  },
+  {
+    date: "25-10-2025",
+    title: "Lohmanradhri Towers, Egmore, Chennai",
+    desc: "Industrial visit to Lohmanradhri Towers, Pantheon Road, Egmore, Chennai, by the Department of Information Technology, including a session on “Cybersecurity: The Skills, Tools, and Career.”",
+    imgs: [
+      { src: "/assets/images/it/it_web_pg/image_19.jpg", alt: "Industrial Visit to Lohmanradhri Towers, Egmore" },
+      { src: "/assets/images/it/it_web_pg/image_20.jpg", alt: "Session at Lohmanradhri Towers, Egmore" },
+      { src: "/assets/images/it/it_web_pg/image_21.jpg", alt: "Cybersecurity session at Lohmanradhri Towers, Egmore" },
+    ],
   },
   {
     title: "DIGIAURA, Ekkattuthangal",
@@ -243,11 +80,7 @@ const INDUSTRIAL_VISITS = [
     imgs: [{ src: "/assets/images/it/it_web_pg/image_12.jpg", alt: "Industrial Visit to DigiAura, Ekkattuthangal", wide: true }],
   },
   {
-    title: "RETECH",
-    desc: "Industrial visit to RETECH, Selvanagar, Kadaperi West, Chennai, by the Department of CSE (AI&ML) and Department of Information Technology.",
-    imgs: [{ src: "/assets/images/it/it_web_pg/image_9.jpg", alt: "Industrial Visit to RETECH" }],
-  },
-  {
+    date: "21-08-2026",
     title: "SoftLogic Academy, Navalur",
     desc: "Industrial visit to SoftLogic Academy, Navalur, Chennai, by the Department of AI&ML and IT.",
     imgs: [{ src: "/assets/images/it/it_web_pg/image_11.png", alt: "Industrial Visit to SoftLogic Academy, Navalur", wide: true }],
@@ -259,6 +92,20 @@ const INDUSTRIAL_VISITS = [
       { src: "/assets/images/it/it_web_pg/image_13.jpg", alt: "Students departing for DigiAura VFX Academy visit" },
       { src: "/assets/images/it/it_web_pg/image_6.jpeg", alt: "Students arriving at DigiAura VFX Academy" },
       { src: "/assets/images/it/it_web_pg/image_8.jpg", alt: "Session at DigiAura VFX Academy on Introduction to Film Making Pipeline" },
+    ],
+  },
+];
+
+const WORKSHOPS = [
+  {
+    date: "23-09-2025",
+    title: "Computer Laboratory Workshop, Puduvoyal",
+    desc: "Students of the Department of Information Technology participated in a workshop held at the Main Building computer laboratory, Puduvoyal.",
+    imgs: [
+      { src: "/assets/images/it/it_web_pg/image_1.jpg", alt: "Workshop session in the computer laboratory" },
+      { src: "/assets/images/it/it_web_pg/image_4.jpg", alt: "Workshop session on Cyberattack awareness" },
+      { src: "/assets/images/it/it_web_pg/image_5.jpg", alt: "Workshop session presentation" },
+      { src: "/assets/images/it/it_web_pg/image_3.jpg", alt: "Group photo at the close of the workshop" },
     ],
   },
 ];
@@ -346,57 +193,31 @@ const PUBLICATIONS = [
   {
     title: "Advanced hybrid attention-based deep learning network with heuristic algorithm for adaptive CT and PET image fusion in lung cancer detection",
     by: "Shalini Chowdary",
-    venue: "Medical Engineering & Physics, 2024",
-    impact: "Impact Factor 2.5",
-    citation: "Citation 52",
+    year: "2024",
+    journal: "Medical Engineering & Physics",
+    impactFactor: "2.5",
+    citations: "52",
     link: "https://scholar.google.com/scholar?oi=bibs&cluster=18051348610961890072&btnI=1&hl=en",
   },
   {
     title: "An Improved Archimedes Optimization-aided Multi-scale Deep Learning Segmentation with dilated ensemble CNN classification for detecting lung cancer using CT images",
     by: "Shalini Chowdary",
-    venue: "Network: Computation in Neural Systems, 2025",
-    impact: "Impact Factor 7.5",
-    citation: "Citation 5",
+    year: "2025",
+    journal: "Network: Computation in Neural Systems",
+    impactFactor: "7.5",
+    citations: "5*",
     link: "https://scholar.google.com/scholar?oi=bibs&cluster=7814968460803286478&btnI=1&hl=en",
   },
   {
     title: "Exploitation of Spectrum White Spaces by Using Energy Based Primary Transmitter Detection Approach for Cognitive Radio Networks",
     by: "Shalini Chowdary",
-    venue: "Power Energy and Secure Smart Technologies, 2025",
-    impact: null,
-    citation: null,
+    year: "2025",
+    journal: "Power Energy and Secure Smart Technologies",
+    impactFactor: null,
+    citations: null,
     link: "https://scholar.google.com/scholar?oi=bibs&cluster=1278709396236894687&btnI=1&hl=en",
   },
 ];
-
-function AccordionSection({ items }) {
-  const [open, setOpen] = useState(0);
-  return (
-    <div className="tjs-committee-list">
-      {items.map((item, i) => (
-        <div className="tjs-committee-item" key={item.title}>
-          <button
-            type="button"
-            className={"tjs-committee-toggle" + (open === i ? " active" : "")}
-            onClick={() => setOpen(open === i ? -1 : i)}
-          >
-            <span>{item.title}</span>
-            <i className="ri-arrow-down-s-line"></i>
-          </button>
-          {open === i && (
-            <div className="tjs-committee-body">
-              <ul>
-                {item.points.map((p, j) => (
-                  <li key={j}>{p}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
-  );
-}
 
 function EventCard({ date, title, desc, imgs, children }) {
   return (
@@ -604,9 +425,6 @@ function Slider({ items }) {
 }
 
 export default function ITDepartment() {
-  const [activeSem, setActiveSem] = useState("I");
-  const semester = SEMESTERS.find((s) => s.id === activeSem);
-
   return (
     <>
       <section className="tjs-dept-hero-split">
@@ -625,34 +443,30 @@ export default function ITDepartment() {
       </section>
 
       <div className="tjs-dept-page">
-        <nav className="tjs-dept-jump">
-          <a href="#about">About</a>
-          <a href="#hod">HOD&apos;s Desk</a>
-          <a href="#people">Faculty &amp; Staff</a>
-          <a href="#programmes">Programmes Offered</a>
-          <a href="#curriculum">Curriculum</a>
-          <a href="#regulations">Regulations</a>
-          <a href="#facilities">Facilities &amp; Library</a>
-          <a href="#industry">Industry Interface</a>
-          <a href="#events">Events &amp; Achievements</a>
-          <a href="#research">Research</a>
-        </nav>
+        <DeptJumpNav
+          items={[
+            { href: "#about", label: "About" },
+            { href: "#hod", label: "HOD's Desk" },
+            { href: "#people", label: "Faculty & Staff" },
+            { href: "#programmes", label: "Programmes Offered" },
+            { href: "#curriculum", label: "Curriculum" },
+            { href: "#regulations", label: "Regulations" },
+            { href: "#facilities", label: "Facilities & Library" },
+            { href: "#industry", label: "Industry Interface" },
+            { href: "#events", label: "Events & Achievements" },
+            { href: "#research", label: "Research" },
+          ]}
+        />
 
         <section id="about" className="tjs-dept-section">
           <h2>About the Department</h2>
           <p>
-            The Department of Information Technology was established in the academic year 2024-2028 with an
-            initial intake of 60 students. The department offers a four-year B.Tech degree program in Information
-            Technology, committed to delivering quality technical education and developing technically competent,
-            ethically strong, and socially responsible professionals capable of meeting the challenges of the
-            rapidly evolving IT industry.
+            The Department of Information Technology was established in the academic year 2024–2028 with an initial intake of 60 students. The department offers a four-year B.Tech degree program in Information Technology.
           </p>
           <p>
-            The mission of the department is to provide value-based education, enhance employability skills,
-            encourage innovation, and nurture entrepreneurial abilities among students through effective
-            teaching-learning methodologies, continuously upgrading its curriculum and infrastructure to align with
-            global industry standards.
+            The department is committed to delivering quality technical education in the field of Information Technology. It focuses on developing technically competent, ethically strong, and socially responsible professionals who are capable of meeting the challenges of the rapidly evolving IT industry.
           </p>
+          <p>The mission of the Department of Information Technology is to provide value-based education, enhance employability skills, encourage innovation, and nurture entrepreneurial abilities among students through effective teaching-learning methodologies. The department continuously upgrades its curriculum and infrastructure to align with global industry standards.</p>
 
           <div className="tjs-dept-grid-2">
             <div className="tjs-dept-card">
@@ -812,7 +626,7 @@ export default function ITDepartment() {
                     <td>{f.name}</td>
                     <td>{f.qual}</td>
                     <td>{f.role}</td>
-                    <td><a href={"mailto:" + f.email}>{f.email}</a></td>
+                    <td>{f.email ? <a href={"mailto:" + f.email}>{f.email}</a> : null}</td>
                   </tr>
                 ))}
               </tbody>
@@ -852,149 +666,91 @@ export default function ITDepartment() {
         </section>
 
         <section id="curriculum" className="tjs-dept-section">
-          <h2>Curriculum – Regulations 2026 (CBCS)</h2>
-          <p>
-            Choice Based Credit System curriculum for B.Tech. Information Technology, applicable to students
-            admitted in the Academic Year 2026-2027.
-          </p>
-
-          <div className="tjs-dept-tabs" style={{ flexWrap: "wrap" }}>
-            {SEMESTERS.map((s) => (
-              <button
-                key={s.id}
-                type="button"
-                className={"tjs-dept-tab" + (activeSem === s.id ? " active" : "")}
-                onClick={() => setActiveSem(s.id)}
-              >
-                Semester {s.id}
-              </button>
-            ))}
-          </div>
-
-          <div className="tjs-dept-table-wrap">
-            <table className="tjs-dept-table">
-              <thead>
-                <tr>
-                  <th>S.No</th>
-                  <th>Course Code</th>
-                  <th>Course Title</th>
-                  <th>Type</th>
-                  <th>L-T-P</th>
-                  <th>Credit</th>
-                  <th>Category</th>
-                </tr>
-              </thead>
-              <tbody>
-                {semester.rows.map((row) => (
-                  <tr key={row[0] + row[2]}>
-                    {row.map((cell, i) => (
-                      <td key={i}>{cell}</td>
-                    ))}
-                  </tr>
-                ))}
-                <tr>
-                  <td colSpan={5} style={{ textAlign: "right", fontWeight: 700 }}>TOTAL (TCP / Credit)</td>
-                  <td colSpan={2} style={{ fontWeight: 700 }}>{semester.total}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          {semester.note && <p className="tjs-dept-pending">{semester.note}</p>}
-
-          <h3>Professional Elective Verticals</h3>
-          <div className="tjs-dept-grid-2">
-            {VERTICALS.map((v) => (
-              <div className="tjs-dept-card" key={v.name}>
-                <h3 style={{ marginTop: 0 }}>{v.name}</h3>
-                <ul style={{ marginBottom: 0 }}>
-                  {v.courses.map((c) => (
-                    <li key={c}>{c}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          <h3>Minor Elective Verticals</h3>
-          <div className="tjs-dept-grid-2">
-            {MINOR_VERTICALS.map((v) => (
-              <div className="tjs-dept-card" key={v.name}>
-                <h3 style={{ marginTop: 0 }}>{v.name}</h3>
-                <ul style={{ marginBottom: 0 }}>
-                  {v.courses.map((c) => (
-                    <li key={c}>{c}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          <h3>Credit Distribution Across Semesters</h3>
-          <div className="tjs-dept-table-wrap">
-            <table className="tjs-dept-table">
-              <thead>
-                <tr>
-                  <th>Category</th>
-                  <th>I</th>
-                  <th>II</th>
-                  <th>III</th>
-                  <th>IV</th>
-                  <th>V</th>
-                  <th>VI</th>
-                  <th>VII</th>
-                  <th>VIII</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                {CREDIT_DIST.map((row) => (
-                  <tr key={row[0]}>
-                    {row.map((cell, i) => (
-                      <td key={i}>{cell}</td>
-                    ))}
-                  </tr>
-                ))}
-                <tr>
-                  <td style={{ fontWeight: 700 }}>Total</td>
-                  <td>20</td><td>22</td><td>25</td><td>25</td><td>21</td><td>22</td><td>21</td><td>8</td>
-                  <td style={{ fontWeight: 700 }}>164</td>
-                </tr>
-              </tbody>
-            </table>
+          <h2>Curriculum &amp; Syllabus</h2>
+          <h3>Undergraduate</h3>
+          <div className="tjs-dept-link-list">
+            <a href="/assets/pdf/IT%202026%20CURRICULUM%20AND%20SYLLABUS%20UG.pdf" target="_blank" rel="noopener">
+              <span>B.Tech Information Technology – Curriculum &amp; Syllabus (Regulations 2026)</span>
+              <span className="tjs-dept-link-arrow">
+                <ArrowIcon />
+              </span>
+            </a>
           </div>
         </section>
 
         <section id="regulations" className="tjs-dept-section tjs-dept-section-alt">
-          <h2>Academic Regulations 2026 – Key Points</h2>
-          <p>
-            T.J.S. Engineering College Academic Regulations 2026 (TJSEC-AR-2026-UG) govern all B.E. / B.Tech.
-            programmes of the Institution, an Autonomous Institution affiliated to Anna University, Chennai. Key
-            provisions relevant to Information Technology students are summarised below.
-          </p>
-          <AccordionSection items={KEY_REGULATIONS} />
+          <h2>Regulations</h2>
+          <h3>Undergraduate</h3>
+          <div className="tjs-dept-link-list">
+            <a href="/assets/pdf/IT%202026%20REGULATIONS%20UG.pdf" target="_blank" rel="noopener">
+              <span>B.Tech Information Technology – Academic Regulations 2026</span>
+              <span className="tjs-dept-link-arrow">
+                <ArrowIcon />
+              </span>
+            </a>
+          </div>
         </section>
 
         <section id="facilities" className="tjs-dept-section">
           <h2>Facilities &amp; Library</h2>
           <h3>Laboratories</h3>
-          <ul className="tjs-dept-bullets">
-            <li>Computer Laboratory</li>
-          </ul>
-          <div className="tjs-dept-event-imgs">
-            <img src="/assets/images/it/it_web_pg/image_1.jpg" alt="Students at the Computer Laboratory" />
-            <img src="/assets/images/it/it_web_pg/image_4.jpg" alt="A training session at the Computer Laboratory" />
+          <div className="tjs-dept-media-row">
+            <div className="tjs-dept-media-row-text">
+              <ul className="tjs-dept-bullets">
+                <li>Computer Laboratory</li>
+              </ul>
+              <p>
+                The Information Technology Laboratory of the Department of Information Technology is designed to
+                provide students with hands-on experience in computer programming, software development, database
+                management, networking, web technologies, and information systems.
+              </p>
+              <p>
+                The laboratory supports practical learning in areas such as programming languages, data structures,
+                database systems, web development, computer networks, operating systems, software engineering, and
+                emerging information technologies. Through systematic laboratory exercises and projects, students
+                develop essential skills in problem-solving, algorithm design, coding, system development, data
+                management, and software testing.
+              </p>
+              <p>
+                The laboratory bridges the gap between theoretical concepts and practical applications, enabling
+                students to apply classroom knowledge to real-world computing problems. It provides an environment
+                for students to develop technical, analytical, and programming skills required for careers in
+                software development, information technology, data management, networking, and related industries.
+              </p>
+            </div>
+            <div className="tjs-dept-media-row-img">
+              <img src="/assets/images/it/it_web_pg/image_15.jpg" alt="Information Technology Laboratory" />
+            </div>
           </div>
 
+          <hr className="tjs-dept-divider" />
+
           <h3>Department Library</h3>
-          <p>
-            The Department of Information Technology has a dedicated library facility with a wide collection of
-            textbooks, reference books, and technical resources covering programming, networking, databases,
-            artificial intelligence, and emerging technologies. Students use these resources for assignments,
-            projects, examinations, and research activities, promoting a culture of self-learning and continuous
-            knowledge development.
-          </p>
-          <div className="tjs-dept-event-imgs">
-            <img src="/assets/images/it/it_web_pg/image_7.jpeg" alt="Department of Information Technology library shelves" />
+          <div className="tjs-dept-media-row">
+            <div className="tjs-dept-media-row-text">
+              <ul className="tjs-dept-bullets">
+                <li>
+                  The Department of Information Technology has a dedicated library facility with a wide collection
+                  of textbooks, reference books, and technical resources.
+                </li>
+                <li>It supports students in strengthening their academic knowledge and technical skills.</li>
+                <li>
+                  The library provides resources covering programming, networking, databases, artificial
+                  intelligence, and emerging technologies.
+                </li>
+                <li>
+                  Students can utilize these resources for assignments, projects, examinations, and research
+                  activities.
+                </li>
+                <li>
+                  It promotes a culture of self-learning, continuous knowledge development, and academic
+                  excellence.
+                </li>
+              </ul>
+            </div>
+            <div className="tjs-dept-media-row-img">
+              <img src="/assets/images/it/it_web_pg/image_7.jpeg" alt="Department of Information Technology library shelves" />
+            </div>
           </div>
         </section>
 
@@ -1003,7 +759,16 @@ export default function ITDepartment() {
           <h3>Industrial Visits</h3>
           <div className="tjs-dept-event-list">
             {INDUSTRIAL_VISITS.map((v) => (
-              <EventCard key={v.title} title={v.title} desc={v.desc} imgs={v.imgs} />
+              <EventCard key={v.title} date={v.date} title={v.title} desc={v.desc} imgs={v.imgs} />
+            ))}
+          </div>
+
+          <hr className="tjs-dept-divider" />
+
+          <h3>Workshops</h3>
+          <div className="tjs-dept-event-list">
+            {WORKSHOPS.map((w) => (
+              <EventCard key={w.title} date={w.date} title={w.title} desc={w.desc} imgs={w.imgs} />
             ))}
           </div>
         </section>
@@ -1042,6 +807,35 @@ export default function ITDepartment() {
 
         <section id="research" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Research &amp; Development</h2>
+
+          <h3>Publications Summary</h3>
+          <div className="tjs-dept-table-wrap">
+            <table className="tjs-dept-table">
+              <thead>
+                <tr>
+                  <th>S.No</th>
+                  <th>Date / Year Published</th>
+                  <th>Topic / Research Paper Title</th>
+                  <th>Publication / Journal</th>
+                  <th>Impact Factor</th>
+                  <th>Citations</th>
+                </tr>
+              </thead>
+              <tbody>
+                {PUBLICATIONS.map((p, i) => (
+                  <tr key={p.title}>
+                    <td>{i + 1}</td>
+                    <td>{p.year}</td>
+                    <td>{p.title}</td>
+                    <td>{p.journal}</td>
+                    <td>{p.impactFactor || "—"}</td>
+                    <td>{p.citations || "—"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
           <h3>Publications</h3>
           <div className="tjs-pub-list">
             {PUBLICATIONS.map((p) => (
@@ -1054,12 +848,12 @@ export default function ITDepartment() {
                     {p.title} <i className="ri-external-link-line"></i>
                   </h4>
                   <p className="tjs-pub-meta">
-                    <strong>{p.by}</strong> &middot; {p.venue}
+                    <strong>{p.by}</strong> &middot; {p.journal}, {p.year}
                   </p>
-                  {(p.impact || p.citation) && (
+                  {(p.impactFactor || p.citations) && (
                     <div className="tjs-pub-badges">
-                      {p.impact && <span className="tjs-pub-badge">{p.impact}</span>}
-                      {p.citation && <span className="tjs-pub-badge tjs-pub-badge-alt">{p.citation}</span>}
+                      {p.impactFactor && <span className="tjs-pub-badge">Impact Factor {p.impactFactor}</span>}
+                      {p.citations && <span className="tjs-pub-badge tjs-pub-badge-alt">Citation {p.citations}</span>}
                     </div>
                   )}
                 </div>

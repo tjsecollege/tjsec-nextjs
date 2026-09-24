@@ -1,3 +1,5 @@
+import DeptJumpNav from "../DeptJumpNav";
+
 const ArrowIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
     <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -265,18 +267,20 @@ export default function EEEDepartment() {
       </section>
 
       <div className="tjs-dept-page">
-        <nav className="tjs-dept-jump">
-          <a href="#about">About</a>
-          <a href="#hod">HOD&apos;s Desk</a>
-          <a href="#people">Faculty &amp; Staff</a>
-          <a href="#programmes">Programmes Offered</a>
-          <a href="#regulations">Regulations &amp; Curriculum</a>
-          <a href="#facilities">Facilities &amp; Labs</a>
-          <a href="#industry">Industry Interface</a>
-          <a href="#events">Events &amp; Achievements</a>
-          <a href="#internships">Internships &amp; Placements</a>
-          <a href="#research">Research &amp; Publications</a>
-        </nav>
+        <DeptJumpNav
+          items={[
+            { href: "#about", label: "About" },
+            { href: "#hod", label: "HOD's Desk" },
+            { href: "#people", label: "Faculty & Staff" },
+            { href: "#programmes", label: "Programmes Offered" },
+            { href: "#regulations", label: "Regulations & Curriculum" },
+            { href: "#facilities", label: "Facilities & Labs" },
+            { href: "#industry", label: "Industry Interface" },
+            { href: "#events", label: "Events & Achievements" },
+            { href: "#internships", label: "Internships & Placements" },
+            { href: "#research", label: "Research & Publications" },
+          ]}
+        />
 
         <section id="about" className="tjs-dept-section">
           <h2>About the Department</h2>
