@@ -619,6 +619,32 @@ width: 510px;
 .tjs-dept-card h3 { margin-top: 0; }
 .tjs-dept-card ul { margin: 0; padding: 0; list-style: none; color: var(--rs-text-primary); }
 .tjs-dept-card ul li { position: relative; margin-bottom: 12px; padding-inline-start: 26px; line-height: 1.6; }
+/* Premium checkmark bullet list for named coordinators/participants inside
+   an event card (e.g. Industrial Visit faculty lists) — same checkmark
+   glyph as .tjs-dept-card ul, sized down to sit inline in a smaller card. */
+.tjs-dept-person-list { list-style: none; margin: 12px 0 0; padding: 0; }
+.tjs-dept-person-list li {
+    position: relative;
+    padding-inline-start: 22px;
+    margin-bottom: 8px;
+    line-height: 1.5;
+    font-size: 14px;
+    color: var(--rs-text-primary);
+}
+.tjs-dept-person-list li:last-child { margin-bottom: 0; }
+.tjs-dept-person-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 13px;
+    height: 11px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='13' viewBox='0 0 15 13'%3E%3Cpath fill='%23ec6a40' d='M6.39959 12.3594C6.35715 12.3594 6.31517 12.3506 6.27629 12.3336C6.2374 12.3166 6.20246 12.2917 6.17365 12.2606L0.0817469 5.67088C0.0411367 5.62695 0.0142147 5.57213 0.00427583 5.51313C-0.00566304 5.45414 0.00181231 5.39352 0.0257871 5.33871C0.0497619 5.2839 0.0891961 5.23726 0.139263 5.20452C0.189331 5.17177 0.247859 5.15433 0.307685 5.15432H3.23999C3.28402 5.15433 3.32753 5.16378 3.3676 5.18203C3.40766 5.20029 3.44334 5.22692 3.47224 5.26014L5.50818 7.60242C5.72821 7.13208 6.15415 6.34894 6.90159 5.39466C8.00658 3.98389 10.0619 1.90909 13.5783 0.0361075C13.6463 -8.57115e-05 13.7254 -0.00947928 13.7999 0.00978174C13.8745 0.0290428 13.9391 0.0755582 13.981 0.140143C14.023 0.204728 14.0392 0.282687 14.0264 0.358628C14.0137 0.434568 13.9729 0.502968 13.9122 0.550323C13.8988 0.560815 12.5429 1.62851 10.9826 3.58417C9.54652 5.38386 7.63753 8.32663 6.69818 12.1257C6.68168 12.1925 6.6433 12.2517 6.58916 12.2941C6.53503 12.3365 6.46835 12.3594 6.39959 12.3594Z'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.tjs-dept-person-list .tjs-dept-person-role { color: var(--rs-text-secondary); font-weight: 500; }
 .tjs-dept-card ul li::before {
     content: "";
     position: absolute;
@@ -720,6 +746,51 @@ width: 510px;
 }
 .tjs-dept-divider { border: none; border-top: 1px solid var(--rs-border-primary); margin: 36px 0 6px; }
 
+/* Compact photo gallery slider used inside .tjs-dept-media-row-img — a
+   single large frame with overlay prev/next arrows and dot indicators,
+   for facilities that have more than one reference photo. */
+.tjs-dept-photo-slider-frame {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(20, 25, 60, 0.16);
+}
+.tjs-dept-photo-slider-frame img { width: 100%; height: auto; display: block; aspect-ratio: 4 / 3; object-fit: cover; }
+.tjs-dept-photo-slider-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(4px);
+    color: var(--rs-theme-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(20, 25, 60, 0.2);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.tjs-dept-photo-slider-nav:hover { background: var(--rs-theme-blue); color: #fff; }
+.tjs-dept-photo-slider-prev { left: 12px; }
+.tjs-dept-photo-slider-next { right: 12px; }
+.tjs-dept-photo-slider-dots { display: flex; justify-content: center; gap: 8px; margin-top: 14px; }
+.tjs-dept-photo-slider-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: var(--rs-border-primary);
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.tjs-dept-photo-slider-dot.active { background: var(--rs-theme-blue); transform: scale(1.25); }
+
 /* Generic rectangular "photo pending" placeholder — used for lab/event/
    activity photos where the source PDF only had scanned images, not
    separate uploadable files. */
@@ -730,6 +801,14 @@ width: 510px;
     display: flex; align-items: center; justify-content: center; font-size: 12.5px; flex: 0 0 auto;
 }
 .tjs-dept-photo-box.tjs-dept-logo-box { background: #fff; font-weight: 600; text-align: center; padding: 8px; }
+.tjs-dept-photo-real {
+    width: 160px; height: 110px; border-radius: 8px; object-fit: cover;
+    border: 1px solid var(--rs-border-primary); flex: 0 0 auto;
+}
+.tjs-dept-logo-real {
+    width: 160px; height: 90px; border-radius: 8px; background: #fff; object-fit: contain;
+    border: 1px solid var(--rs-border-primary); flex: 0 0 auto; padding: 10px;
+}
 
 /* Dated activity entries (industrial visits, FDPs, guest lectures,
    workshops, conferences, alumni interactions, achievements). */
@@ -741,7 +820,7 @@ width: 510px;
 .tjs-dept-event ul { margin: 6px 0 0; padding-inline-start: 20px; color: var(--rs-text-secondary); font-size: 13.5px; line-height: 1.7; }
 .tjs-dept-event-imgs { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; }
 .tjs-dept-event-imgs img { width: 320px; height: 220px; object-fit: cover; border-radius: 10px; border: 1px solid var(--rs-border-primary); box-shadow: 0 6px 18px rgba(3, 3, 3, 0.08); }
-.tjs-dept-event-imgs img.tjs-dept-event-img-wide { width: 100%; height: auto; max-width: 640px; object-fit: contain; }
+.tjs-dept-event-imgs img.tjs-dept-event-img-wide { width: 100%; height: auto; max-width: 640px; max-height: 420px; object-fit: contain; }
 @media (max-width: 575px) {
     .tjs-dept-event-imgs img { width: 100%; height: auto; max-width: 100%; }
 }
@@ -774,6 +853,25 @@ width: 510px;
     .tjs-slider-card { flex-basis: 100%; }
 }
 .tjs-slider-card-img { width: 100%; height: 170px; object-fit: cover; display: block; }
+
+/* Circular-photo people carousel (Academic Toppers, etc.) — same nav-arrow
+   pattern as the blog-card slider above, sized for .tjs-dept-people-card. */
+.tjs-people-carousel-wrap { position: relative; display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+.tjs-people-carousel-track {
+    display: flex; flex: 1 1 auto; gap: 20px; overflow-x: auto; scroll-behavior: smooth; scrollbar-width: none;
+    padding: 4px 4px 10px; min-width: 0; scroll-snap-type: x mandatory;
+}
+.tjs-people-carousel-track::-webkit-scrollbar { display: none; }
+.tjs-people-carousel-track .tjs-dept-people-card { flex: 0 0 calc((100% - 60px) / 4); min-width: 0; scroll-snap-align: start; margin-bottom: 0; }
+@media (max-width: 991px) {
+    .tjs-people-carousel-track .tjs-dept-people-card { flex-basis: calc((100% - 40px) / 3); }
+}
+@media (max-width: 767px) {
+    .tjs-people-carousel-track .tjs-dept-people-card { flex-basis: calc((100% - 20px) / 2); }
+}
+@media (max-width: 575px) {
+    .tjs-people-carousel-track .tjs-dept-people-card { flex-basis: 85%; }
+}
 .tjs-slider-card-img-ph {
     width: 100%; height: 170px; background: var(--rs-bg-secondary); display: flex;
     align-items: center; justify-content: center; color: var(--rs-text-secondary); font-size: 13px;

@@ -1,4 +1,8 @@
 import DeptJumpNav from "../DeptJumpNav";
+import PeopleCarousel from "../PeopleCarousel";
+import DeptPhotoSlider from "../DeptPhotoSlider";
+import EventAccordion from "../EventAccordion";
+import EventSlider from "../EventSlider";
 
 const ArrowIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -8,11 +12,13 @@ const ArrowIcon = () => (
 );
 
 const TOPPERS = [
-  { name: "Kaviyasri S" },
-  { name: "Oviya R" },
-  { name: "Sandhiya A S" },
-  { name: "Kamesh G" },
-  { name: "Hariniya S" },
+  { name: "Kaviyasri S", photo: "/assets/images/eee/image_103.jpeg" },
+  { name: "Oviya R", photo: "/assets/images/eee/image_102.jpeg" },
+  { name: "Sandhiya A S", photo: "/assets/images/eee/image_101.jpeg" },
+  { name: "Kamesh G", photo: "/assets/images/eee/image_100.jpeg" },
+  { name: "Hariniya S", photo: "/assets/images/eee/image_99.jpeg" },
+  { name: "Anandh R", photo: "/assets/images/eee/image_97.jpeg" },
+  { name: "Hemavathi R", photo: "/assets/images/eee/image_98.jpeg" },
 ];
 
 const FACULTY = [
@@ -61,76 +67,365 @@ const REGULATIONS = [
 const LABS = [
   {
     name: "1. Electrical Machines Lab",
-    text: "The Electrical Machines Laboratory of the Department of Electrical and Electronics Engineering is designed to provide students with hands-on experience in the operation, testing, performance evaluation, and analysis of electrical machines. The laboratory supports the practical learning of DC machines, transformers, induction motors, synchronous machines, and special electrical machines. Through systematic experiments, students develop an understanding of machine characteristics, losses, efficiency, speed control, torque characteristics, voltage regulation, and operating performance. The laboratory bridges the gap between theoretical concepts and practical applications, enabling students to develop essential technical and experimental skills required for careers in electrical engineering and related industries.",
-    photos: 2,
+    paragraphs: [
+      "The Electrical Machines Laboratory of the Department of Electrical and Electronics Engineering is designed to provide students with hands-on experience in the operation, testing, performance evaluation, and analysis of electrical machines.",
+      "The laboratory supports the practical learning of DC machines, transformers, induction motors, synchronous machines, and special electrical machines. Through systematic experiments, students develop an understanding of machine characteristics, losses, efficiency, speed control, torque characteristics, voltage regulation, and operating performance.",
+      "The laboratory bridges the gap between theoretical concepts and practical applications, enabling students to develop essential technical and experimental skills required for careers in electrical engineering and related industries.",
+    ],
+    imgs: [
+      { src: "/assets/images/eee/image_109.jpeg", alt: "Electrical Machines Lab entrance" },
+      { src: "/assets/images/eee/image_111.jpeg", alt: "Electrical Machines Lab interior" },
+    ],
   },
   {
     name: "2. Power Electronics Lab",
-    text: "The Power Electronics Laboratory provides students with hands-on experience in the design, analysis, control and application of power electronic converters and semiconductor switching devices. The laboratory enables students to understand the practical operation of power semiconductor devices, controlled rectifiers, DC-DC converters, inverters, AC voltage controllers and cycloconverters. Students perform experiments to study output waveforms, triggering techniques, voltage and current control, efficiency and performance of power electronic circuits. The laboratory bridges theoretical concepts with practical applications in industrial drives, renewable energy systems, electric vehicles, battery systems and power conversion applications.",
-    photos: 1,
+    paragraphs: [
+      "The Power Electronics Laboratory of the Department of Electrical and Electronics Engineering provides students with hands-on experience in the design, analysis, control and application of power electronic converters and semiconductor switching devices.",
+      "The laboratory enables students to understand the practical operation of power semiconductor devices, controlled rectifiers, DC-DC converters, inverters, AC voltage controllers and cycloconverters. Students perform experiments to study output waveforms, triggering techniques, voltage and current control, efficiency and performance of power electronic circuits.",
+      "The laboratory bridges theoretical concepts with practical applications in industrial drives, renewable energy systems, electric vehicles, battery systems and power conversion applications.",
+    ],
+    imgs: [{ src: "/assets/images/eee/image_108.jpeg", alt: "Students at the Power Electronics Lab" }],
   },
   {
     name: "3. Control and Instrumentation Laboratory",
-    text: "The Control and Instrumentation Laboratory provides students with practical knowledge in measurement, instrumentation, control systems, sensors, transducers and feedback control techniques. The laboratory enables students to understand the behaviour of dynamic systems and to experimentally study open-loop and closed-loop control systems, time response, frequency response, stability, controllers and industrial measurement systems. Students also gain hands-on experience with sensors, transducers and electronic instrumentation used in engineering applications.",
-    photos: 1,
+    paragraphs: [
+      "The Control and Instrumentation Laboratory of the Department of Electrical and Electronics Engineering provides students with practical knowledge in measurement, instrumentation, control systems, sensors, transducers and feedback control techniques.",
+      "The laboratory enables students to understand the behaviour of dynamic systems and to experimentally study open-loop and closed-loop control systems, time response, frequency response, stability, controllers and industrial measurement systems. Students also gain hands-on experience with sensors, transducers and electronic instrumentation used in engineering applications.",
+    ],
+    imgs: [{ src: "/assets/images/eee/image_95.jpeg", alt: "Control and Instrumentation Laboratory entrance" }],
   },
   {
     name: "4. Power System Simulation Laboratory",
-    text: "The Power System Simulation Laboratory provides students with practical training in the modelling, analysis and simulation of electrical power systems using modern computational tools. The laboratory enables students to simulate and analyze power-flow studies, fault analysis, transmission-line performance, load-frequency control, economic operation and stability of power systems. Students develop the ability to model electrical networks and interpret simulation results for planning, operation and control of modern power systems.",
-    photos: 2,
+    paragraphs: [
+      "The Power System Simulation Laboratory of the Department of Electrical and Electronics Engineering provides students with practical training in the modelling, analysis and simulation of electrical power systems using modern computational tools.",
+      "The laboratory enables students to simulate and analyze power-flow studies, fault analysis, transmission-line performance, load-frequency control, economic operation and stability of power systems. Students develop the ability to model electrical networks and interpret simulation results for planning, operation and control of modern power systems.",
+    ],
+    imgs: [
+      { src: "/assets/images/eee/image_96.jpeg", alt: "Power System Simulation Laboratory" },
+      { src: "/assets/images/eee/image_107.jpeg", alt: "Power System Simulation Laboratory computers" },
+    ],
   },
 ];
 
 const INDUSTRIAL_VISITS = [
-  { date: "27-02-2025", title: "Adani Port, Kattupalli", desc: "II & III Year students visited the Port Operation Building, coordinated by Mrs. M. Shunmuga Sankari (HOD/EEE), Mr. T. Kamal Kumar, Mr. M. Arjunkumar, Mrs. C. Anusha, Mr. B. Murali and Mr. K. Shanmugaraj (AP/LI, EEE)." },
-  { date: "19-02-2025", title: "North Chennai Thermal Power Station Stage-I (NCTPS-1)", desc: "II & III Year students, coordinated by Mr. S. Ganesh, Mrs. C. Anusha (AP/EEE) and Mr. B. Murali (LI/EEE)." },
-  { date: "13-02-2026", title: "Globesci Technology, Korattur, Chennai", desc: "II & III Year students visited for career growth and future scope." },
-  { date: "08-08-2025", title: "North Chennai Thermal Power Station Stage-II, Ennore", desc: "II, III and IV Year students." },
-  { date: "12-09-2025", title: "BSNL", desc: "II & III Year students, coordinated by Mr. S. Ganesh and Mrs. C. Anusha (AP/EEE)." },
-  { date: "24-09-2026", title: "Voltech Manufacturing Company, Chennai", desc: "EEE Department students." },
-  { date: "08-09-2026", title: "Approtech R&D Solutions Pvt. Ltd, Chennai", desc: "EEE Department students." },
-  { date: "28-08-2026", title: "Niile Technical Skill and Consulting Pvt Ltd, Chennai", desc: "EEE Department students." },
+  {
+    date: "27-02-2025",
+    title: "Adani Port, Kattupalli",
+    desc: "Industrial Visit for the students of the II, III year to visit the Adani Port, Kattupalli with the co-ordination of following faculties,",
+    people: [
+      { name: "Mrs. M. Shunmuga Sankari", role: "HOD/EEE" },
+      { name: "Mr. T. Kamal Kumar", role: "AP/EEE" },
+      { name: "Mr. M. Arjunkumar", role: "AP/EEE" },
+      { name: "Mrs. C. Anusha", role: "AP/EEE" },
+      { name: "Mr. B. Murali", role: "LI/EEE" },
+      { name: "Mr. K. Shanmugaraj", role: "LI/EEE" },
+    ],
+    imgs: [
+      { src: "/assets/images/eee/image_82.jpeg", alt: "Industrial Visit to Adani Port, Kattupalli" },
+      { src: "/assets/images/eee/image_83.jpeg", alt: "Road safety session at Adani Port, Kattupalli" },
+    ],
+  },
+  {
+    date: "19-02-2025",
+    title: "North Chennai Thermal Power Station Stage-I (NCTPS-1)",
+    desc: "II Year & III Year Students went to Industrial Visit for “North Chennai Thermal Power Station Stage-I (NCTPS-1)” with the co-ordination of",
+    people: [
+      { name: "Mr. S. Ganesh", role: "AP/EEE" },
+      { name: "Mrs. C. Anusha", role: "AP/EEE" },
+      { name: "Mr. B. Murali", role: "LI/EEE" },
+    ],
+    imgs: [
+      { src: "/assets/images/eee/image_78.jpeg", alt: "Group photo at NCTPS-1" },
+      { src: "/assets/images/eee/image_79.jpeg", alt: "Students with safety helmets at NCTPS-1" },
+      { src: "/assets/images/eee/image_80.jpeg", alt: "Students at the NCTPS-1 plant model" },
+      { src: "/assets/images/eee/image_81.jpeg", alt: "Group photo at the North Chennai Thermal Power Station signboard" },
+    ],
+  },
+  {
+    date: "13-02-2026",
+    title: "Globesci Technology, Korattur, Chennai",
+    desc: "II & III Year students visited for career growth and future scope.",
+    imgs: [{ src: "/assets/images/eee/image_85.jpeg", alt: "Industrial Visit to Globesci Technology, Korattur", wide: true }],
+  },
+  {
+    date: "08-08-2025",
+    title: "North Chennai Thermal Power Station Stage-II, Ennore",
+    desc: "II, III and IV Year students.",
+    imgs: [
+      { src: "/assets/images/eee/image_86.jpeg", alt: "Group photo at NCTPS-2, Ennore" },
+      { src: "/assets/images/eee/image_87.jpeg", alt: "Students at NCTPS-2, Ennore" },
+      { src: "/assets/images/eee/image_93.jpeg", alt: "Group photo at the NCTPS-2 gate" },
+    ],
+  },
+  {
+    date: "12-09-2025",
+    title: "BSNL",
+    desc: "Our II & III Year students went to Industrial visit for BSNL with the coordination of Faculty members listed below:",
+    people: [
+      { name: "Mr. S. Ganesh", role: "AP-EEE" },
+      { name: "Mrs. C. Anusha", role: "AP-EEE" },
+    ],
+    imgs: [
+      { src: "/assets/images/eee/image_92.jpeg", alt: "Students at the RGM TTC Administrative Block, BSNL" },
+      { src: "/assets/images/eee/image_88.jpeg", alt: "Session at BSNL" },
+      { src: "/assets/images/eee/image_89.jpeg", alt: "Session at BSNL" },
+      { src: "/assets/images/eee/image_90.jpeg", alt: "Students attending the BSNL session" },
+      { src: "/assets/images/eee/image_91.jpeg", alt: "Students attending the BSNL session" },
+      { src: "/assets/images/eee/image_113.jpeg", alt: "Resource person addressing students at BSNL" },
+    ],
+  },
+  {
+    date: "28-08-2026",
+    title: "Voltech Manufacturing Company, Chennai",
+    desc: "EEE Department students.",
+    imgs: [
+      { src: "/assets/images/eee/image_131.jpeg", alt: "Industrial Visit to Voltech Manufacturing Company" },
+      { src: "/assets/images/eee/image_114.jpeg", alt: "Students boarding the bus for the Voltech Manufacturing Company visit" },
+    ],
+  },
+  {
+    date: "08-09-2026",
+    title: "Approtech R&D Solutions Pvt. Ltd, Chennai",
+    desc: "EEE Department students.",
+    imgs: [
+      { src: "/assets/images/eee/image_138.jpeg", alt: "Industrial Visit to Approtech R&D Solutions" },
+      { src: "/assets/images/eee/image_139.jpeg", alt: "Session at Approtech R&D Solutions" },
+    ],
+  },
+  {
+    date: "28-08-2026",
+    title: "Niile Technical Skill and Consulting Pvt Ltd, Chennai",
+    desc: "EEE Department students.",
+    imgs: [
+      { src: "/assets/images/eee/image_137.jpeg", alt: "Industrial Visit to Niile Technical Skill and Consulting" },
+      { src: "/assets/images/eee/image_140.jpeg", alt: "Group photo at Niile Technical Skill and Consulting" },
+    ],
+  },
 ];
 
 const FDPS_ATTENDED = [
-  { date: "27.01.2025 – 01.02.2025", title: "The Future of Smart Mobility – Integrating AI and IoT in Electric Vehicle Ecosystems", org: "ATAL, Sree Sakthi Engineering College", by: "Mrs. M. Shunmuga Sankari (HOD), Mr. T. Kamalkumar" },
-  { date: "17.02.2025 – 22.02.2025", title: "Impact of Urban Greenspaces in Alleviating Micro-Climate Change Using Geospatial Techniques", org: "ATAL, Sri Ramakrishna Engineering College", by: "Mrs. M. Shunmuga Sankari, Mr. T. Kamalkumar, Mrs. C. Anusha" },
-  { date: "10.02.2025 – 16.02.2025", title: "E-Vehicle Fundamentals / EV Technology for EEE", org: "Naan Mudhalvan (University College of Villupuram / Anna University, Guindy)", by: "Mr. M. Arjunkumar, Mr. S. Ganesh" },
-  { date: "25.02.2026", title: "Generative AI for Teaching", org: "Dept. of ECE, T.J.S. Engineering College", by: "Mrs. M. Shunmuga Sankari, Mr. T. Kamalkumar, Mr. S. Ganesh, Mrs. C. Anusha" },
-  { date: "03.11.2025 – 08.11.2025", title: "The Evolving Landscape in Teaching and Research: AI and Data Approaches", org: "ATAL Academy & Nehru Institute of Technology", by: "Mr. S. Ganesh" },
-  { date: "08.11.2025", title: "Market Ka Eklavya", org: "NSDL Technology, Trust & Reach", by: "Mrs. M. Shunmuga Sankari" },
-  { date: "18.11.2025", title: "Sustainable Computing and Green IT Solutions", org: "Nehru Institute of Technology, Coimbatore", by: "Mrs. M. Shunmuga Sankari, Mr. T. Kamalkumar, Mr. S. Ganesh, Mrs. C. Anusha, Mr. M. Arjunkumar" },
-  { date: "12.12.2025", title: "Quantum Computing: Basic and Applications", org: "Nehru Institute of Technology, Coimbatore", by: "Mr. T. Kamalkumar" },
-  { date: "15.12.2025 – 20.12.2025", title: "Electric Vehicles – Breakthroughs and Challenges", org: "AMS College of Engineering", by: "Mrs. M. Shunmuga Sankari, Mr. T. Kamalkumar, Mr. S. Ganesh" },
-  { date: "Jul – Oct 2025", title: "Introduction to Machine Learning", org: "NPTEL – AICTE", by: "Mrs. M. Shunmuga Sankari" },
-  { date: "26.01.2026", title: "Block Chain in Logistics", org: "GRT Institute of Engineering and Technology, Tiruttani", by: "Mrs. M. Shunmuga Sankari, Mr. T. Kamalkumar" },
+  {
+    date: "27.01.2025 – 01.02.2025",
+    title: "The Future of Smart Mobility – Integrating AI and IoT in Electric Vehicle Ecosystems",
+    org: "ATAL, Sree Sakthi Engineering College",
+    by: "Mrs. M. Shunmuga Sankari (HOD), Mr. T. Kamalkumar",
+    imgs: [
+      { src: "/assets/images/eee/image_135.png", alt: "ATAL FDP certificate – T. Kamalkumar" },
+      { src: "/assets/images/eee/image_136.png", alt: "ATAL FDP certificate – M. Shunmuga Sankari" },
+    ],
+  },
+  {
+    date: "17.02.2025 – 22.02.2025",
+    title: "Impact of Urban Greenspaces in Alleviating Micro-Climate Change Using Geospatial Techniques",
+    org: "ATAL, Sri Ramakrishna Engineering College",
+    by: "Mrs. M. Shunmuga Sankari, Mr. T. Kamalkumar, Mrs. C. Anusha",
+    imgs: [
+      { src: "/assets/images/eee/image_134.png", alt: "ATAL FDP certificate – Anusha C" },
+      { src: "/assets/images/eee/image_143.png", alt: "ATAL FDP certificate – T. Kamalkumar" },
+      { src: "/assets/images/eee/image_149.png", alt: "ATAL FDP certificate – M. Shunmuga Sankari" },
+    ],
+  },
+  {
+    date: "10.02.2025 – 16.02.2025",
+    title: "E-Vehicle Fundamentals / EV Technology for EEE",
+    org: "Naan Mudhalvan (University College of Villupuram / Anna University, Guindy)",
+    by: "Mr. M. Arjunkumar, Mr. S. Ganesh",
+    imgs: [
+      { src: "/assets/images/eee/image_147.jpeg", alt: "Naan Mudhalvan training session" },
+      { src: "/assets/images/eee/image_150.jpeg", alt: "Naan Mudhalvan training session at Anna University" },
+      { src: "/assets/images/eee/image_148.jpeg", alt: "Faculty at the E-Vehicle Fundamentals programme, Viluppuram" },
+      { src: "/assets/images/eee/image_144.png", alt: "Faculty at Anna University for the Naan Mudhalvan programme" },
+    ],
+  },
+  {
+    date: "25.02.2026",
+    title: "Generative AI for Teaching",
+    org: "Dept. of ECE, T.J.S. Engineering College",
+    by: "Mrs. M. Shunmuga Sankari, Mr. T. Kamalkumar, Mr. S. Ganesh, Mrs. C. Anusha",
+    imgs: [
+      { src: "/assets/images/eee/image_133.png", alt: "Generative AI for Teaching certificate – Ganesh S" },
+      { src: "/assets/images/eee/image_142.png", alt: "Generative AI for Teaching certificate – Anusha C" },
+      { src: "/assets/images/eee/image_145.png", alt: "Generative AI for Teaching certificate – Shunmuga Sankari M" },
+    ],
+  },
+  {
+    date: "03.11.2025 – 08.11.2025",
+    title: "The Evolving Landscape in Teaching and Research: AI and Data Approaches",
+    org: "ATAL Academy & Nehru Institute of Technology",
+    by: "Mr. S. Ganesh",
+    imgs: [{ src: "/assets/images/eee/image_132.png", alt: "ATAL Academy FDP certificate – Ganesh S" }],
+  },
+  {
+    date: "08.11.2025",
+    title: "Market Ka Eklavya",
+    org: "NSDL Technology, Trust & Reach",
+    by: "Mrs. M. Shunmuga Sankari",
+    imgs: [{ src: "/assets/images/eee/image_121.png", alt: "Market Ka Eklavya certificate – Shunmuga Sankari M" }],
+  },
+  {
+    date: "18.11.2025",
+    title: "Sustainable Computing and Green IT Solutions",
+    org: "Nehru Institute of Technology, Coimbatore",
+    by: "Mrs. M. Shunmuga Sankari, Mr. T. Kamalkumar, Mr. S. Ganesh, Mrs. C. Anusha, Mr. M. Arjunkumar",
+    imgs: [
+      { src: "/assets/images/eee/image_116.png", alt: "Sustainable Computing FDP certificate – Ganesh S" },
+      { src: "/assets/images/eee/image_117.png", alt: "Sustainable Computing FDP certificate – Arjunkumar" },
+      { src: "/assets/images/eee/image_118.png", alt: "Sustainable Computing FDP certificate – Shunmuga Sankari M" },
+      { src: "/assets/images/eee/image_119.png", alt: "Sustainable Computing FDP certificate – Anusha C" },
+    ],
+  },
+  {
+    date: "12.12.2025",
+    title: "Quantum Computing: Basic and Applications",
+    org: "Nehru Institute of Technology, Coimbatore",
+    by: "Mr. T. Kamalkumar",
+    imgs: [{ src: "/assets/images/eee/image_115.png", alt: "Quantum Computing FDP certificate – Kamalkumar T" }],
+  },
+  {
+    date: "15.12.2025 – 20.12.2025",
+    title: "Electric Vehicles – Breakthroughs and Challenges",
+    org: "AMS College of Engineering",
+    by: "Mrs. M. Shunmuga Sankari, Mr. T. Kamalkumar, Mr. S. Ganesh",
+    imgs: [
+      { src: "/assets/images/eee/image_122.png", alt: "AMS College FDP certificate – Shunmuga Sankari M" },
+      { src: "/assets/images/eee/image_123.png", alt: "AMS College FDP certificate – Kamalkumar T" },
+      { src: "/assets/images/eee/image_124.png", alt: "AMS College FDP certificate – Ganesh S" },
+    ],
+  },
+  {
+    date: "Jul – Oct 2025",
+    title: "Introduction to Machine Learning",
+    org: "NPTEL – AICTE",
+    by: "Mrs. M. Shunmuga Sankari",
+    imgs: [{ src: "/assets/images/eee/image_130.png", alt: "NPTEL-AICTE certificate – Introduction to Machine Learning" }],
+  },
+  {
+    date: "Jul – Oct 2025",
+    title: "Power Electronics Applications in Power Systems",
+    org: "NPTEL, IIT Guwahati",
+    by: "Mrs. M. Shunmuga Sankari",
+    imgs: [{ src: "/assets/images/eee/image_127.png", alt: "NPTEL certificate – Power Electronics Applications in Power Systems" }],
+  },
+  {
+    date: "Jul – Oct 2025",
+    title: "Machine Learning and Deep Learning – Fundamentals and Applications",
+    org: "NPTEL, IIT Guwahati (Elite)",
+    by: "Mrs. M. Shunmuga Sankari",
+    imgs: [{ src: "/assets/images/eee/image_128.png", alt: "NPTEL Elite certificate – Machine Learning and Deep Learning" }],
+  },
+  {
+    date: "Jul – Oct 2025",
+    title: "Machine Learning for Core Engineering Disciplines",
+    org: "NPTEL, IISc Bangalore (Elite)",
+    by: "Mrs. M. Shunmuga Sankari",
+    imgs: [{ src: "/assets/images/eee/image_129.png", alt: "NPTEL Elite certificate – Machine Learning for Core Engineering Disciplines" }],
+  },
+  {
+    date: "26.01.2026",
+    title: "Block Chain in Logistics",
+    org: "GRT Institute of Engineering and Technology, Tiruttani",
+    by: "Mrs. M. Shunmuga Sankari, Mr. T. Kamalkumar",
+    imgs: [
+      { src: "/assets/images/eee/image_125.png", alt: "GRT FDP certificate – Kamalkumar T" },
+      { src: "/assets/images/eee/image_126.png", alt: "GRT FDP certificate – Shunmuga Sankari M" },
+    ],
+  },
 ];
 
 const GUEST_LECTURES = [
-  { date: "28-01-2026", title: "IoT – Fundamentals and Applications", desc: "Handled by Ms. Nandhini, FIIT Formacion Pvt Ltd, at the EEE Seminar Hall, in association with FIIT Formacion Pvt Ltd." },
-  { date: "21-02-2026", title: "Why Engineering is the Best Choice for Diploma Students", desc: "Career guidance program by Mr. Sujeeth Vishnu, Chief Business Development Executive, OPC Pvt Ltd, coordinated by Mrs. M. Shunmuga Sankari and Mr. T. Kamalkumar." },
+  {
+    date: "28-01-2026",
+    title: "IoT – Fundamentals and Applications",
+    desc: "Handled by Ms. Nandhini, FIIT Formacion Pvt Ltd, at the EEE Seminar Hall, in association with FIIT Formacion Pvt Ltd.",
+    imgs: [
+      { src: "/assets/images/eee/image_35.jpeg", alt: "Guest Lecture on IoT – Fundamentals and Applications" },
+      { src: "/assets/images/eee/image_36.jpeg", alt: "Ms. Nandhini delivering the guest lecture on IoT" },
+      { src: "/assets/images/eee/image_33.jpeg", alt: "Students attending the guest lecture on IoT" },
+      { src: "/assets/images/eee/image_34.jpeg", alt: "Resource person presenting on IoT networking" },
+    ],
+  },
+  {
+    date: "21-02-2026",
+    title: "Why Engineering is the Best Choice for Diploma Students",
+    desc: "Career guidance program by Mr. Sujeeth Vishnu, Chief Business Development Executive, OPC Pvt Ltd, coordinated by Mrs. M. Shunmuga Sankari and Mr. T. Kamalkumar.",
+    imgs: [{ src: "/assets/images/eee/image_31.jpeg", alt: "Guest lecture: Why Engineering is the Best Choice for Diploma Students" }],
+  },
 ];
 
 const WORKSHOPS = [
-  { date: "30-07-2025 to 31-07-2025", title: "Generation Incoming: Vehicle Operates with Three Fuels", desc: "Two-day hands-on workshop conducted by Mr. V. Sujeeth Vishnu, NTLS Consultancy OPC Pvt Ltd, for II, III & IV Year students at the Seminar Hall." },
+  {
+    date: "30-07-2025 to 31-07-2025",
+    title: "Generation Incoming: Vehicle Operates with Three Fuels",
+    desc: "Two-day hands-on workshop conducted by Mr. V. Sujeeth Vishnu, NTLS Consultancy OPC Pvt Ltd, for II, III & IV Year students at the Seminar Hall.",
+    imgs: [
+      { src: "/assets/images/eee/image_21.png", alt: "Workshop participation certificate – Hemaraj R" },
+      { src: "/assets/images/eee/image_28.png", alt: "Workshop participation certificate – Aravind T" },
+      { src: "/assets/images/eee/image_29.png", alt: "Workshop participation certificate – M. Lokesh" },
+      { src: "/assets/images/eee/image_30.png", alt: "Workshop participation certificate – Kishore B" },
+    ],
+  },
   { date: "29-10-2024", title: "Industrial Training Workshop", desc: "Presented by Axis Global Institute of Industrial Training, attended by II, III & IV Year students." },
 ];
 
 const CONFERENCES = [
   { date: "13-03-2026", title: "International Conference (Online)", desc: "IV Year students attended at SKP Engineering College, Thiruvannamalai." },
-  { date: "25-03-2026", title: "National Conference – Best Paper Award", desc: "III Year students presented “Solar Integrated Power Management System for Electric Two Wheeler” at Prathyusha Engineering College and won the Best Paper Award. Presented by T. Kamalkumar, L. Dhanasekar, A. Anbumuthu, M. Lokesh, G. Kamesh." },
+  {
+    date: "04-03-2026",
+    title: "2nd International Conference on AI, Cybersecurity and Emerging Technologies (ICACET-IHAE 2026)",
+    desc: "Mrs. M. Shunmuga Sankari, Mr. T. Kamalkumar, Oviya R and R. Samuel presented a paper titled “Smart Dual-Battery EV Charging System with Thermal Management and Energy Recovery” at S.K.P. Engineering College, Tiruvannamalai.",
+    imgs: [
+      { src: "/assets/images/eee/image_27.png", alt: "ICACET-IHAE 2026 certificate – M. Shunmuga Sankari" },
+      { src: "/assets/images/eee/image_39.png", alt: "ICACET-IHAE 2026 certificate – T. Kamalkumar" },
+      { src: "/assets/images/eee/image_76.png", alt: "ICACET-IHAE 2026 certificate – Oviya R" },
+      { src: "/assets/images/eee/image_77.png", alt: "ICACET-IHAE 2026 certificate – R. Samuel" },
+    ],
+  },
+  {
+    date: "25-03-2026",
+    title: "National Conference – Best Paper Award",
+    desc: "III Year students presented “Solar Integrated Power Management System for Electric Two Wheeler” at Prathyusha Engineering College and won the Best Paper Award. Presented by T. Kamalkumar, L. Dhanasekar, A. Anbumuthu, M. Lokesh, G. Kamesh.",
+    imgs: [
+      { src: "/assets/images/eee/image_26.png", alt: "Best Paper Award certificate" },
+      { src: "/assets/images/eee/image_22.png", alt: "Certificate of Participation – L. Dhanasekar" },
+      { src: "/assets/images/eee/image_23.png", alt: "Certificate of Participation – A. Anbumuthu" },
+      { src: "/assets/images/eee/image_24.png", alt: "Certificate of Participation – M. Lokesh" },
+      { src: "/assets/images/eee/image_25.png", alt: "Certificate of Participation – G. Kamesh" },
+    ],
+  },
 ];
 
 const SEMINARS_EVENTS = [
   { date: "06-10-2025", title: "Seminar on Data Science", desc: "II, III & IV Year students attended, conducted by Lokesh Kumar." },
-  { date: "29-01-2026", title: "IIC Seminar – Introduction and Application of AI", desc: "Conducted by Ms. P. Pavithra, AP-AIDS, for II & III Year EEE students, under MIC Driven Activity – Atmanirbhar Bharat: HEI Pre-Summit Engagements towards IndiaAI Impact Summit 2026." },
-  { date: "09-08-2025", title: "Special Corporate Session on Interview Readiness", desc: "III & IV Year students attended, conducted by Mr. Sarath Chandar Sukumar, General Manager – HR, Vaken Technologies." },
-  { date: "09-03-2026", title: "IIC Meeting – Sabka Sath Sabka Vikas", desc: "II & III Year students attended the online MIC Driven Activity." },
+  {
+    date: "29-01-2026",
+    title: "IIC Seminar – Introduction and Application of AI",
+    desc: "Conducted by Ms. P. Pavithra, AP-AIDS, for II & III Year EEE students, under MIC Driven Activity – Atmanirbhar Bharat: HEI Pre-Summit Engagements towards IndiaAI Impact Summit 2026.",
+    imgs: [{ src: "/assets/images/eee/image_32.jpeg", alt: "IIC Seminar – Introduction and Application of AI" }],
+  },
+  {
+    date: "09-08-2025",
+    title: "Special Corporate Session on Interview Readiness",
+    desc: "III & IV Year students attended, conducted by Mr. Sarath Chandar Sukumar, General Manager – HR, Vaken Technologies.",
+    imgs: [{ src: "/assets/images/eee/image_19.jpeg", alt: "Special Corporate Session on Interview Readiness" }],
+  },
+  {
+    date: "09-03-2026",
+    title: "IIC Meeting – Sabka Sath Sabka Vikas",
+    desc: "II & III Year students attended the online MIC Driven Activity.",
+    imgs: [{ src: "/assets/images/eee/image_94.jpeg", alt: "Students attending the IIC online meeting", wide: true }],
+  },
 ];
 
 const EVENTS_ORGANISED = {
   title: "Six Days Faculty Development Program – “Electrical Technology: Recent Trends and Innovations”",
   desc: "Organised by the Department of Electrical and Electronics Engineering, 02-02-2026 to 07-02-2026 (online mode).",
+  imgs: [
+    { src: "/assets/images/eee/image_6.jpeg", alt: "Day 1 – Dr. J. Prakash on Advanced Techniques in Solar Photovoltaic Systems" },
+    { src: "/assets/images/eee/image_8.jpeg", alt: "Day 3 – Dr. Amos Edinakaran on ANSYS Maxwell and Induction Motor Design" },
+    { src: "/assets/images/eee/image_3.jpeg", alt: "Day 4 – Dr. Mohamed Abbas S on Internet of Things and its Applications" },
+    { src: "/assets/images/eee/image_2.jpeg", alt: "Day 5 – Dr. P. Selvaraj on Renewable Energy, Smart Grids and Vehicle-to-Grid Integration" },
+    { src: "/assets/images/eee/image_4.jpeg", alt: "Day 6 – Dr. P. Raja on DC Micro-Grid and Protection" },
+  ],
   days: [
     { date: "02-02-2026", topic: "Advanced Techniques in Solar Photovoltaic Systems", speaker: "Dr. J. Prakash, Principal, T.J.S. Engineering College" },
     { date: "03-02-2026", topic: "Power to the People – Smart Grid – Your Own Electricity Market", speaker: "Dr. J. Balamurugan, Assistant Executive Engineer, TANGEDCO" },
@@ -142,28 +437,107 @@ const EVENTS_ORGANISED = {
 };
 
 const OTHER_DEPT_EVENTS = [
-  { date: "28-10-2025", title: "Symposium – GNISTA 2K25", desc: "16th National Level Technical Symposium organised by the Association of Electrical and Electronics Engineering, chief guest Dr. V. S. Sriraja Balaguru (Assistant Executive Engineer, IT, TNEB)." },
+  {
+    date: "28-10-2025",
+    title: "Symposium – GNISTA 2K25",
+    desc: "16th National Level Technical Symposium organised by the Association of Electrical and Electronics Engineering, chief guest Dr. V. S. Sriraja Balaguru (Assistant Executive Engineer, IT, TNEB).",
+    imgs: [{ src: "/assets/images/eee/image_5.jpeg", alt: "Symposium – GNISTA 2K25", wide: true }],
+  },
 ];
 
 const ALUMNI_INTERACTIONS = [
   { date: "26-02-2025", title: "Thirukumaran P & Akash D", desc: "Thirukumaran P (Senior Engineer, Alstom Transport India Pvt Ltd) and Akash D (Business – Foods and Beverages) interacted with II year students." },
-  { date: "13-08-2025", title: "Karthick B", desc: "Alumnus from Sharekhan Company Limited, Chetpat, interacted with II Year students on career growth and future scope." },
-  { date: "14-11-2025", title: "Saikrishnan Radhakrishnan (Batch 2021)", desc: "Working at Tata Consultancy Services, met with II and III Year students." },
+  {
+    date: "13-08-2025",
+    title: "Karthick B",
+    desc: "Alumnus from Sharekhan Company Limited, Chetpat, interacted with II Year students on career growth and future scope.",
+    imgs: [
+      { src: "/assets/images/eee/image_14.jpeg", alt: "Karthick B interacting with students" },
+      { src: "/assets/images/eee/image_15.jpeg", alt: "Alumni interaction session with Karthick B" },
+    ],
+  },
+  {
+    date: "14-11-2025",
+    title: "Saikrishnan Radhakrishnan (Batch 2021)",
+    desc: "Working at Tata Consultancy Services, met with II and III Year students.",
+    imgs: [
+      { src: "/assets/images/eee/image_12.jpeg", alt: "Saikrishnan Radhakrishnan interacting with students" },
+      { src: "/assets/images/eee/image_13.jpeg", alt: "Alumni interaction session with Saikrishnan Radhakrishnan" },
+    ],
+  },
   { date: "02-02-2026", title: "Mr. B. Udhayakumaran (Batch 2025)", desc: "Interacted with II year students." },
 ];
 
 const ACHIEVEMENTS = [
-  { date: "31-01-2025", title: "Trainer Certification – Grade B", desc: "Mrs. Shunmuga Sankari M cleared the assessment as a Trainer (Trainer ID TR176420) for the Qualification Pack of Hydrogen Plant Technician (Installation, Commissioning and Maintenance), NSQF Level 4." },
-  { date: "28-02-2025", title: "Inventec Project Expo – 1st Prize", desc: "Kamesh G and Perarasu K (II year) won 1st Prize at the Inventec Project Expo organised by Gojan School of Business and Technology, Redhills." },
-  { date: "04-03-2026", title: "Techuyugam 2026 – Project Expo", desc: "II & III Year students won cash prizes and rewards at Veltech Multitech Engineering College, Avadi." },
-  { date: "13-03-2026", title: "Xempler 2026 Symposium", desc: "II & III Year students attended at Velammal Engineering College." },
+  {
+    date: "31-01-2025",
+    title: "Trainer Certification – Grade B",
+    desc: "Mrs. Shunmuga Sankari M cleared the assessment as a Trainer (Trainer ID TR176420) for the Qualification Pack of Hydrogen Plant Technician (Installation, Commissioning and Maintenance), NSQF Level 4.",
+    imgs: [{ src: "/assets/images/eee/image_20.png", alt: "Trainer Certification – Grade B, Shunmuga Sankari M" }],
+  },
+  {
+    date: "28-02-2025",
+    title: "Inventec Project Expo – 1st Prize",
+    desc: "Kamesh G and Perarasu K (II year) won 1st Prize at the Inventec Project Expo organised by Gojan School of Business and Technology, Redhills.",
+    imgs: [
+      { src: "/assets/images/eee/image_38.jpeg", alt: "Kamesh G and Perarasu K receiving the Inventec Project Expo award" },
+      { src: "/assets/images/eee/image_75.jpeg", alt: "Award presentation at Gojan School of Business and Technology" },
+    ],
+  },
+  {
+    date: "04-03-2026",
+    title: "Techuyugam 2026 – Project Expo",
+    desc: "II & III Year students won cash prizes and rewards at Veltech Multitech Engineering College, Avadi.",
+    imgs: [{ src: "/assets/images/eee/image_65.jpeg", alt: "Techuyugam 2026 – Project Expo, Veltech Multitech Engineering College", wide: true }],
+  },
+  {
+    date: "13-03-2026",
+    title: "Xempler 2026 Symposium",
+    desc: "II & III Year students attended at Velammal Engineering College.",
+    imgs: [{ src: "/assets/images/eee/image_64.png", alt: "Xempler 2026 Symposium certificate – A. Angumuthu" }],
+  },
   { date: "14-03-2026", title: "Technoverse Hackathon 2026", desc: "III year students participated at St. Joseph’s College of Engineering & Technology." },
-  { date: "18-03-2026", title: "Ideathon", desc: "III Year students went to St. Peter’s Engineering College." },
-  { date: "14-02-2025", title: "Blood Donation Camp", desc: "Mitsuba India Pvt. Ltd. conducted a blood donation camp at T.J.S. Arts & Science College; Lingeshwaran N, Perarasu K and Vijayakumar V donated blood." },
-  { date: "14-11-2025", title: "Blood Donation Camp – Rela Hospital", desc: "Three II year students donated blood at the camp conducted at T.J.S. Arts & Science College, Peruvoyal." },
+  {
+    date: "18-03-2026",
+    title: "Ideathon",
+    desc: "III Year students went to St. Peter’s Engineering College.",
+    imgs: [{ src: "/assets/images/eee/image_62.png", alt: "St. Peter's Ideathon certificate – Hinduja V" }],
+  },
+  {
+    date: "14-02-2025",
+    title: "Blood Donation Camp",
+    desc: "Mitsuba India Pvt. Ltd. conducted a blood donation camp at T.J.S. Arts & Science College; Lingeshwaran N, Perarasu K and Vijayakumar V donated blood.",
+    imgs: [
+      { src: "/assets/images/eee/image_66.jpeg", alt: "Blood Donation Camp certificate presentation" },
+      { src: "/assets/images/eee/image_67.jpeg", alt: "Students at the Blood Donation Camp" },
+      { src: "/assets/images/eee/image_68.jpeg", alt: "Student donating blood at the camp" },
+    ],
+  },
+  {
+    date: "14-11-2025",
+    title: "Blood Donation Camp – Rela Hospital",
+    desc: "Three II year students donated blood at the camp conducted at T.J.S. Arts & Science College, Peruvoyal.",
+    imgs: [
+      { src: "/assets/images/eee/image_59.png", alt: "Rela Hospital blood donation certificate – M. Karan" },
+      { src: "/assets/images/eee/image_60.png", alt: "Rela Hospital blood donation certificate" },
+      { src: "/assets/images/eee/image_61.png", alt: "Rela Hospital blood donation certificate – Kishore B" },
+    ],
+  },
 ];
 
-const RECRUITERS = ["HT & NISSI Energy Integrated", "Michelin", "Emerald", "Wipro", "Caplin Steriles", "Thinksynq", "Mitsuba India", "Infosys", "TCS"];
+const RECRUITERS = [
+  { name: "HT", logo: "/assets/images/eee/image_47.jpeg" },
+  { name: "NISSI Energy Integrated", logo: "/assets/images/eee/image_49.jpeg" },
+  { name: "Michelin", logo: "/assets/images/eee/image_48.png" },
+  { name: "Emerald", logo: "/assets/images/eee/image_40.jpeg" },
+  { name: "Wipro", logo: "/assets/images/eee/image_55.jpeg" },
+  { name: "Caplin Steriles", logo: "/assets/images/eee/image_54.png" },
+  { name: "Thinksynq", logo: "/assets/images/eee/image_53.jpeg" },
+  { name: "Mitsuba India", logo: "/assets/images/eee/image_51.png" },
+  { name: "Infosys", logo: "/assets/images/eee/image_1.png" },
+  { name: "TCS", logo: "/assets/images/eee/image_50.png" },
+  { name: "Sakura", logo: "/assets/images/eee/image_52.jpeg" },
+];
 
 const INTERNSHIPS = [
   { org: "Prolific Systems & Technologies Pvt. Ltd.", date: "27-01-2025 to 10-02-2025", who: "II Year students (21 nos.)" },
@@ -171,10 +545,34 @@ const INTERNSHIPS = [
     org: "V V Electro Systems, Gummidipoondi",
     date: "06-02-2025 to 20-02-2025",
     who: "III Year students: Hemaraj R, Logendheran R, Sanjay U, Surya Prakash T, Avinash K, Gopiraj M, Sakthivel V, Samuel R, Santhosh M, Kaviya Sri S, Nageshwari R, Sandhiya A S, Kalaiselvi P, Oviya R",
+    imgs: [
+      { src: "/assets/images/eee/image_45.jpeg", alt: "Interns at V V Electro Systems, Gummidipoondi" },
+      { src: "/assets/images/eee/image_46.jpeg", alt: "Hands-on training at V V Electro Systems" },
+      { src: "/assets/images/eee/image_56.jpeg", alt: "Students soldering circuits at V V Electro Systems" },
+      { src: "/assets/images/eee/image_57.jpeg", alt: "Practical session at V V Electro Systems" },
+      { src: "/assets/images/eee/image_58.jpeg", alt: "Practical session at V V Electro Systems" },
+      { src: "/assets/images/eee/image_69.jpeg", alt: "Students working on a PCB at V V Electro Systems" },
+      { src: "/assets/images/eee/image_70.jpeg", alt: "Interns discussing components at V V Electro Systems" },
+      { src: "/assets/images/eee/image_71.jpeg", alt: "Interns at V V Electro Systems" },
+      { src: "/assets/images/eee/image_72.jpeg", alt: "Interns at V V Electro Systems" },
+    ],
   },
   { org: "Mitsuba India Pvt Ltd", date: "02-03-2026 to 31-03-2026", who: "II & III Year students" },
-  { org: "IIT Madras", date: "12-02-2025 to 11-04-2025", who: "IV Year students: Vayuluru Mouli, Udhayakumaran B" },
-  { org: "Jana Engineering Industries, Gummidipoondi", date: "16-09-2025 (15 days)", who: "Kamesh G (II Year)" },
+  {
+    org: "IIT Madras",
+    date: "12-02-2025 to 11-04-2025",
+    who: "IV Year students: Vayuluru Mouli, Udhayakumaran B",
+    imgs: [
+      { src: "/assets/images/eee/image_43.png", alt: "Bonafide certificate – B. Udhayakumaran, IIT Madras internship" },
+      { src: "/assets/images/eee/image_44.png", alt: "Bonafide certificate – Vayuluru Mouli, IIT Madras internship" },
+    ],
+  },
+  {
+    org: "Jana Engineering Industries, Gummidipoondi",
+    date: "16-09-2025 (15 days)",
+    who: "Kamesh G (II Year)",
+    imgs: [{ src: "/assets/images/eee/image_42.png", alt: "Bonafide certificate – Kamesh G, Jana Engineering Industries internship" }],
+  },
   {
     org: "NCTPS-III, Ennore",
     date: "16-09-2025",
@@ -237,17 +635,6 @@ function LinkList({ items }) {
   );
 }
 
-function EventCard({ date, title, desc, children }) {
-  return (
-    <div className="tjs-dept-event">
-      <span className="tjs-dept-event-date">{date}</span>
-      <p className="tjs-dept-event-title">{title}</p>
-      {desc ? <p>{desc}</p> : null}
-      {children}
-    </div>
-  );
-}
-
 export default function EEEDepartment() {
   return (
     <>
@@ -284,6 +671,10 @@ export default function EEEDepartment() {
 
         <section id="about" className="tjs-dept-section">
           <h2>About the Department</h2>
+
+          <h3>Academic Toppers</h3>
+          <PeopleCarousel items={TOPPERS} role="Academic Topper" />
+
           <p>
             The Department of Electrical and Electronics Engineering (EEE) was established in the year 2009 with the
             objective of imparting quality education and developing competent professionals in the field of
@@ -299,10 +690,31 @@ export default function EEEDepartment() {
             growth.
           </p>
           <p>
+            The department has well-equipped laboratories that provide students with hands-on experience and
+            practical understanding of electrical and electronic systems. The laboratory facilities support areas
+            including Electrical Machines, Power Systems, Power Electronics, Control and Instrumentation,
+            Measurements and Instrumentation, Electrical Circuits, Digital and Analog Electronics, Microprocessors
+            and Microcontrollers, Renewable Energy Systems, Embedded Systems, and Industrial Automation.
+          </p>
+          <p>
             The department places considerable emphasis on experiential learning through laboratory work, mini
             projects, major projects, technical seminars, workshops, industrial visits, internships, and technical
-            competitions, encouraging students to apply their theoretical knowledge to real-world engineering
-            problems.
+            competitions. Students are encouraged to apply their theoretical knowledge to real-world engineering
+            problems and develop skills in problem-solving, teamwork, innovation, and communication.
+          </p>
+          <p>
+            Industry interaction and professional exposure form an important part of the department&apos;s academic
+            activities. Through industrial visits, expert lectures, training programmes, internships, and
+            collaborative initiatives, students are provided opportunities to understand current industrial
+            practices and emerging technological trends. The department also encourages students and faculty members
+            to participate in research, innovation, consultancy, and technical development activities.
+          </p>
+          <p>
+            The Department of EEE is committed to continuously improving its academic environment and providing
+            students with opportunities to develop into technically competent, innovative, and socially responsible
+            engineers. Through quality teaching, practical learning, research orientation, and industry interaction,
+            the department strives to prepare its graduates for successful careers in core electrical and
+            electronics industries, emerging technology sectors, higher education, research, and entrepreneurship.
           </p>
 
           <div className="tjs-dept-grid-2">
@@ -323,21 +735,6 @@ export default function EEEDepartment() {
             </div>
           </div>
 
-          <h3>Department Advisory Committee</h3>
-          <p>Mrs. M. Shunmuga Sankari</p>
-
-          <h3>Academic Toppers</h3>
-          <div className="tjs-dept-people-grid">
-            {TOPPERS.map((t) => (
-              <div className="tjs-dept-people-card" key={t.name}>
-                <div className="tjs-dept-people-photo">
-                  <span>Photo</span>
-                </div>
-                <h4>{t.name}</h4>
-                <p className="tjs-dept-people-role">Academic Topper</p>
-              </div>
-            ))}
-          </div>
         </section>
 
         <section id="hod" className="tjs-dept-section tjs-dept-section-alt">
@@ -348,6 +745,7 @@ export default function EEEDepartment() {
             </div>
             <div className="tjs-dept-hod-message">
               <h3>Welcome to the Department of Electrical and Electronics Engineering</h3>
+              <p>Welcome to the Department of Electrical and Electronics Engineering at T.J.S. Engineering College.</p>
               <p>
                 It is my privilege to lead a department committed to academic excellence, technical competency,
                 innovation, and the holistic development of aspiring electrical and electronics engineers.
@@ -367,51 +765,79 @@ export default function EEEDepartment() {
               <p>
                 The department provides a strong foundation in fundamental and advanced areas of Electrical and
                 Electronics Engineering through effective classroom teaching, laboratory-based learning, project
-                work, seminars, workshops, and technical activities, encouraging analytical thinking, problem-solving
-                abilities, creativity, and a continuous-learning mindset.
+                work, seminars, workshops, and technical activities. Our academic practices encourage students to
+                develop analytical thinking, problem-solving abilities, creativity, and a continuous-learning
+                mindset.
               </p>
 
               <h4>Practical Learning and Innovation</h4>
               <p>
-                Our well-equipped laboratories and practical learning environment enable students to gain hands-on
-                experience and understand the application of engineering concepts, undertaking innovative projects
-                and participating in technical events, competitions and workshops.
+                We strongly believe that engineering education extends beyond the classroom. Our well-equipped
+                laboratories and practical learning environment enable students to gain hands-on experience and
+                understand the application of engineering concepts. Students are encouraged to undertake innovative
+                projects and participate in technical events, competitions, workshops, and other experiential
+                learning activities.
               </p>
 
               <h4>Research and Development</h4>
               <p>
+                Research and innovation are important components of the department&apos;s academic environment.
                 Faculty members and students are encouraged to explore emerging areas of Electrical and Electronics
-                Engineering and develop solutions to contemporary technological and societal challenges through
-                project-based learning, technical research, innovation, and knowledge sharing.
+                Engineering and develop solutions to contemporary technological and societal challenges. The
+                department promotes project-based learning, technical research, innovation, and knowledge sharing.
               </p>
 
               <h4>Industry Interaction</h4>
               <p>
+                The department recognizes the importance of strong interaction between academia and industry.
                 Industrial visits, expert lectures, internships, training programmes, workshops, and project-based
-                activities provide students with exposure to industrial practices and emerging technologies, helping
-                them prepare for successful careers.
+                activities provide students with exposure to industrial practices and emerging technologies. Such
+                initiatives help students understand professional requirements and prepare themselves for successful
+                careers.
               </p>
 
               <h4>Student Development</h4>
               <p>
-                Students are encouraged to participate in technical associations, seminars, workshops, conferences,
-                project activities, co-curricular programmes, and extracurricular activities that strengthen
-                communication, teamwork, leadership, creativity, and professional skills.
+                At T.J.S. Engineering College, we focus on developing students as technically competent and
+                responsible professionals. Students are encouraged to participate in technical associations,
+                seminars, workshops, conferences, project activities, co-curricular programmes, and extracurricular
+                activities. These opportunities help them strengthen their communication, teamwork, leadership,
+                creativity, and professional skills.
+              </p>
+
+              <h4>Faculty</h4>
+              <p>
+                Our faculty members are committed to providing quality education and mentoring students throughout
+                their academic journey. With diverse areas of expertise, the faculty encourage students to explore
+                new ideas, develop technical competencies, and pursue their academic and professional aspirations.
+                Continuous learning and professional development are encouraged among faculty members to keep pace
+                with advancements in technology.
               </p>
 
               <h4>Infrastructure and Laboratories</h4>
               <p>
-                The department provides access to laboratories and learning resources that support both theoretical
-                and practical education across electrical machines, power systems, power electronics, control
-                systems, measurements and instrumentation, electronics, microprocessors and microcontrollers,
-                renewable energy, and embedded systems.
+                The department provides students with access to laboratories and learning resources that support
+                both theoretical and practical education. The facilities enable students to gain hands-on experience
+                in electrical machines, power systems, power electronics, control systems, measurements and
+                instrumentation, electronics, microprocessors and microcontrollers, renewable energy, embedded
+                systems, and other relevant areas.
+              </p>
+
+              <h4>Our Commitment</h4>
+              <p>
+                The Department of Electrical and Electronics Engineering is committed to creating an environment
+                where students can learn, explore, innovate, and grow. Our goal is to nurture graduates who possess
+                strong technical knowledge, professional competence, ethical values, and a sense of responsibility
+                towards society.
+              </p>
+              <p>
+                I warmly welcome aspiring engineers to the Department of Electrical and Electronics Engineering at
+                T.J.S. Engineering College and invite them to be part of a learning community that encourages
+                curiosity, innovation, collaboration, and continuous growth.
               </p>
 
               <p className="tjs-dept-hod-quote">
-                &ldquo;Our goal is to nurture graduates who possess strong technical knowledge, professional
-                competence, ethical values, and a sense of responsibility towards society. I warmly welcome aspiring
-                engineers to be part of a learning community that encourages curiosity, innovation, collaboration,
-                and continuous growth. With best wishes for a successful and rewarding engineering journey.&rdquo;
+                &ldquo;With best wishes for a successful and rewarding engineering journey.&rdquo;
               </p>
               <p className="tjs-dept-hod-sign">
                 Mrs. M. Shunmuga Sankari
@@ -445,15 +871,6 @@ export default function EEEDepartment() {
               </tbody>
             </table>
           </div>
-
-          <h3>Visiting Faculty Members</h3>
-          <p className="tjs-dept-pending">None at present.</p>
-
-          <h3>Supporting Staff Members</h3>
-          <p className="tjs-dept-pending">None at present.</p>
-
-          <h3>Professional Societies</h3>
-          <p>Mr. Kamalkumar T – Membership in IAENG (International Association of Engineers).</p>
         </section>
 
         <section id="programmes" className="tjs-dept-section tjs-dept-section-alt">
@@ -496,39 +913,67 @@ export default function EEEDepartment() {
 
         <section id="facilities" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Facilities &amp; Laboratories</h2>
+
+          <h3>Department Library</h3>
+          <div className="tjs-dept-media-row">
+            <div className="tjs-dept-media-row-text">
+              <p>
+                The Department Library of the Department of Electrical and Electronics Engineering (EEE) serves as a
+                valuable academic resource centre that supports teaching, learning, research, and professional
+                development. The library provides access to a wide range of textbooks, reference books, journals, and
+                learning resources related to Electrical and Electronics Engineering.
+              </p>
+              <p>
+                The library is designed to enhance students&apos; technical knowledge, encourage self-learning, and
+                support faculty members in their academic and research activities. It provides a conducive environment
+                for reading, knowledge sharing, and continuous learning.
+              </p>
+              <p>
+                The Department Library is committed to promoting academic excellence, encouraging lifelong learning,
+                and supporting the overall growth of students and faculty members in the field of Electrical and
+                Electronics Engineering.
+              </p>
+            </div>
+            <div className="tjs-dept-media-row-img">
+              <DeptPhotoSlider
+                images={[
+                  { src: "/assets/images/eee/image_106.jpeg", alt: "Students reading in the Department Library" },
+                  { src: "/assets/images/eee/image_112.jpeg", alt: "Department Library book cabinets" },
+                ]}
+              />
+            </div>
+          </div>
+
           {LABS.map((lab) => (
             <div key={lab.name}>
               <h3>{lab.name}</h3>
-              <p>{lab.text}</p>
-              <div className="tjs-dept-photo-grid">
-                {Array.from({ length: lab.photos }).map((_, i) => (
-                  <div className="tjs-dept-photo-box" key={i}>Photo</div>
-                ))}
+              <div className="tjs-dept-media-row">
+                <div className="tjs-dept-media-row-text">
+                  {lab.paragraphs.map((para, i) => (
+                    <p key={i}>{para}</p>
+                  ))}
+                </div>
+                <div className="tjs-dept-media-row-img">
+                  <DeptPhotoSlider images={lab.imgs} />
+                </div>
               </div>
             </div>
           ))}
-
-          <h3>Department Library</h3>
-          <p>
-            The Department Library serves as a valuable academic resource centre that supports teaching, learning,
-            research, and professional development, providing access to a wide range of textbooks, reference books,
-            journals, and learning resources related to Electrical and Electronics Engineering.
-          </p>
-          <div className="tjs-dept-photo-grid">
-            <div className="tjs-dept-photo-box">Photo</div>
-          </div>
 
           <h3>Innovative Teaching &amp; Learning Practices</h3>
           <ul className="tjs-dept-bullets">
             <li>Smart classroom – Interactive digital teaching using smart boards, projectors and multimedia.</li>
           </ul>
           <div className="tjs-dept-photo-grid">
-            <div className="tjs-dept-photo-box">Photo</div>
+            <img src="/assets/images/eee/image_94.jpeg" alt="Smart classroom session" className="tjs-dept-photo-real" />
           </div>
         </section>
 
         <section id="industry" className="tjs-dept-section">
           <h2>Industry Interface</h2>
+          <h3>Professional Societies</h3>
+          <p>Mr. Kamalkumar T – Membership in IAENG (International Association of Engineers).</p>
+
           <h3>Centre of Excellence</h3>
           <div className="tjs-dept-card">
             <h4 style={{ marginTop: 0, color: "var(--rs-theme-blue)" }}>Prolific Systems &amp; Technologies Pvt Ltd</h4>
@@ -550,85 +995,81 @@ export default function EEEDepartment() {
           <p className="tjs-dept-pending">Details will be updated soon.</p>
 
           <h3>Industrial Visits</h3>
-          <div className="tjs-dept-event-list">
-            {INDUSTRIAL_VISITS.map((v) => (
-              <EventCard key={v.date + v.title} date={v.date} title={v.title} desc={v.desc} />
-            ))}
-          </div>
+          <EventAccordion items={INDUSTRIAL_VISITS} />
         </section>
 
         <section id="events" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Events &amp; Achievements</h2>
-
-          <h3>Events Organised by the Department</h3>
-          <div className="tjs-dept-event-list">
-            <div className="tjs-dept-event">
-              <span className="tjs-dept-event-date">02-02-2026 to 07-02-2026</span>
-              <p className="tjs-dept-event-title">{EVENTS_ORGANISED.title}</p>
-              <p>{EVENTS_ORGANISED.desc}</p>
-              <ul>
-                {EVENTS_ORGANISED.days.map((d) => (
-                  <li key={d.date}>
-                    <strong>{d.date}:</strong> {d.topic} — {d.speaker}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            {OTHER_DEPT_EVENTS.map((e) => (
-              <EventCard key={e.date + e.title} date={e.date} title={e.title} desc={e.desc} />
-            ))}
-          </div>
-
-          <h3>Faculty Development Programmes Attended</h3>
-          <div className="tjs-dept-event-list">
-            {FDPS_ATTENDED.map((f) => (
-              <EventCard key={f.date + f.title} date={f.date} title={f.title} desc={f.org}>
-                <p>Attended by: {f.by}</p>
-              </EventCard>
-            ))}
-          </div>
-
-          <h3>Guest Lectures</h3>
-          <div className="tjs-dept-event-list">
-            {GUEST_LECTURES.map((g) => (
-              <EventCard key={g.date + g.title} date={g.date} title={g.title} desc={g.desc} />
-            ))}
-          </div>
-
-          <h3>Workshops</h3>
-          <div className="tjs-dept-event-list">
-            {WORKSHOPS.map((w) => (
-              <EventCard key={w.date + w.title} date={w.date} title={w.title} desc={w.desc} />
-            ))}
-          </div>
-
-          <h3>Conferences</h3>
-          <div className="tjs-dept-event-list">
-            {CONFERENCES.map((c) => (
-              <EventCard key={c.date + c.title} date={c.date} title={c.title} desc={c.desc} />
-            ))}
-          </div>
-
-          <h3>Seminars &amp; Other Sessions</h3>
-          <div className="tjs-dept-event-list">
-            {SEMINARS_EVENTS.map((s) => (
-              <EventCard key={s.date + s.title} date={s.date} title={s.title} desc={s.desc} />
-            ))}
-          </div>
-
-          <h3>Alumni Interactions</h3>
-          <div className="tjs-dept-event-list">
-            {ALUMNI_INTERACTIONS.map((a) => (
-              <EventCard key={a.date + a.title} date={a.date} title={a.title} desc={a.desc} />
-            ))}
-          </div>
-
-          <h3>Faculty &amp; Student Achievements</h3>
-          <div className="tjs-dept-event-list">
-            {ACHIEVEMENTS.map((a) => (
-              <EventCard key={a.date + a.title} date={a.date} title={a.title} desc={a.desc} />
-            ))}
-          </div>
+          <EventSlider
+            items={[
+              {
+                title: EVENTS_ORGANISED.title,
+                date: "02-02-2026 to 07-02-2026",
+                category: "Event Organised",
+                img: EVENTS_ORGANISED.imgs[0]?.src,
+                desc:
+                  EVENTS_ORGANISED.desc +
+                  "\n\n" +
+                  EVENTS_ORGANISED.days.map((d) => `${d.date}: ${d.topic} — ${d.speaker}`).join("\n\n"),
+              },
+              ...OTHER_DEPT_EVENTS.map((e) => ({
+                title: e.title,
+                date: e.date,
+                category: "Symposium",
+                img: e.imgs?.[0]?.src,
+                desc: e.desc,
+              })),
+              ...FDPS_ATTENDED.map((f) => ({
+                title: f.title,
+                date: f.date,
+                category: "FDP Attended",
+                img: f.imgs?.[0]?.src,
+                desc: f.org + "\n\nAttended by: " + f.by,
+              })),
+              ...GUEST_LECTURES.map((g) => ({
+                title: g.title,
+                date: g.date,
+                category: "Guest Lecture",
+                img: g.imgs?.[0]?.src,
+                desc: g.desc,
+              })),
+              ...WORKSHOPS.map((w) => ({
+                title: w.title,
+                date: w.date,
+                category: "Workshop",
+                img: w.imgs?.[0]?.src,
+                desc: w.desc,
+              })),
+              ...CONFERENCES.map((c) => ({
+                title: c.title,
+                date: c.date,
+                category: "Conference",
+                img: c.imgs?.[0]?.src,
+                desc: c.desc,
+              })),
+              ...SEMINARS_EVENTS.map((s) => ({
+                title: s.title,
+                date: s.date,
+                category: "Seminar",
+                img: s.imgs?.[0]?.src,
+                desc: s.desc,
+              })),
+              ...ALUMNI_INTERACTIONS.map((a) => ({
+                title: a.title,
+                date: a.date,
+                category: "Alumni Interaction",
+                img: a.imgs?.[0]?.src,
+                desc: a.desc,
+              })),
+              ...ACHIEVEMENTS.map((a) => ({
+                title: a.title,
+                date: a.date,
+                category: "Achievement",
+                img: a.imgs?.[0]?.src,
+                desc: a.desc,
+              })),
+            ]}
+          />
         </section>
 
         <section id="internships" className="tjs-dept-section">
@@ -655,10 +1096,21 @@ export default function EEEDepartment() {
             </table>
           </div>
 
+          {INTERNSHIPS.filter((row) => row.imgs).map((row) => (
+            <div key={row.org}>
+              <h4>{row.org}</h4>
+              <div className="tjs-dept-event-imgs">
+                {row.imgs.map((img) => (
+                  <img key={img.src} src={img.src} alt={img.alt} className={img.wide ? "tjs-dept-event-img-wide" : ""} />
+                ))}
+              </div>
+            </div>
+          ))}
+
           <h3>Placements – Major Recruiters</h3>
           <div className="tjs-dept-photo-grid">
             {RECRUITERS.map((r) => (
-              <div className="tjs-dept-photo-box tjs-dept-logo-box" key={r}>{r}</div>
+              <img key={r.name} src={r.logo} alt={r.name} title={r.name} className="tjs-dept-logo-real" />
             ))}
           </div>
 
