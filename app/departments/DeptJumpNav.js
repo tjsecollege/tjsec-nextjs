@@ -4,6 +4,29 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 const MOBILE_BREAKPOINT = 767;
 const GAP = 4;
+// Combined height of the sticky site header (46px) + this sticky jump-nav
+// bar (~56px) plus a little breathing room, so an anchor jump doesn't land
+// a section's own heading underneath those fixed bars.
+const SCROLL_OFFSET = 120;
+
+function scrollToSection(e, href) {
+  // Let modifier/middle clicks behave normally (open in new tab, etc).
+  if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+  const el = document.querySelector(href);
+  if (!el) return;
+  e.preventDefault();
+  if (window.tjsLenis) {
+    // Lenis drives scrolling itself, so a native hash-jump gets fought (and
+    // usually reverted) by its own render loop on the very next frame —
+    // route the scroll through Lenis instead of relying on the browser's
+    // default anchor behaviour.
+    window.tjsLenis.scrollTo(el, { offset: -SCROLL_OFFSET });
+  } else {
+    const top = el.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
+    window.scrollTo({ top, behavior: "smooth" });
+  }
+  history.replaceState(null, "", href);
+}
 
 export default function DeptJumpNav({ items }) {
   const containerRef = useRef(null);
@@ -77,7 +100,7 @@ export default function DeptJumpNav({ items }) {
           "Others" dropdown below into a clipped, scrollable sliver. */}
       <div className="tjs-dept-jump-tabs">
         {visible.map((item) => (
-          <a key={item.href} href={item.href}>
+          <a key={item.href} href={item.href} onClick={(e) => scrollToSection(e, item.href)}>
             {item.label}
           </a>
         ))}
@@ -91,7 +114,14 @@ export default function DeptJumpNav({ items }) {
           {open && (
             <div className="tjs-dept-jump-others-menu">
               {overflow.map((item) => (
-                <a key={item.href} href={item.href} onClick={() => setOpen(false)}>
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={(e) => {
+                    scrollToSection(e, item.href);
+                    setOpen(false);
+                  }}
+                >
                   {item.label}
                 </a>
               ))}

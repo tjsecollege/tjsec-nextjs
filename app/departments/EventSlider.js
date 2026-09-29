@@ -29,6 +29,8 @@ function SimpleCard({ img, date, title, desc, onClick }) {
 }
 
 function EventModal({ item, onClose }) {
+  const [imgIndex, setImgIndex] = useState(0);
+
   useEffect(() => {
     function onKey(e) {
       if (e.key === "Escape") onClose();
@@ -58,6 +60,7 @@ function EventModal({ item, onClose }) {
   }, [onClose]);
 
   const hasMeta = item.category || item.date;
+  const imgs = item.imgs && item.imgs.length > 0 ? item.imgs : item.img ? [item.img] : [];
 
   return (
     <div className="tjs-modal-overlay" onClick={onClose}>
@@ -66,9 +69,40 @@ function EventModal({ item, onClose }) {
           <i className="ri-close-line"></i>
         </button>
         <div className="tjs-modal-scroll">
-          {item.img ? (
+          {imgs.length > 0 ? (
             <div className="tjs-modal-img-wrap">
-              <img src={item.img} alt={item.title} className="tjs-modal-img" />
+              <img src={imgs[imgIndex]} alt={item.title} className="tjs-modal-img" />
+              {imgs.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    className="tjs-modal-img-nav tjs-modal-img-prev"
+                    aria-label="Previous photo"
+                    onClick={() => setImgIndex((i) => (i - 1 + imgs.length) % imgs.length)}
+                  >
+                    <i className="ri-arrow-left-s-line"></i>
+                  </button>
+                  <button
+                    type="button"
+                    className="tjs-modal-img-nav tjs-modal-img-next"
+                    aria-label="Next photo"
+                    onClick={() => setImgIndex((i) => (i + 1) % imgs.length)}
+                  >
+                    <i className="ri-arrow-right-s-line"></i>
+                  </button>
+                  <div className="tjs-modal-img-dots">
+                    {imgs.map((src, i) => (
+                      <button
+                        type="button"
+                        key={src}
+                        className={"tjs-modal-img-dot" + (i === imgIndex ? " active" : "")}
+                        aria-label={`Show photo ${i + 1}`}
+                        onClick={() => setImgIndex(i)}
+                      />
+                    ))}
+                  </div>
+                </>
+              )}
               {hasMeta && (
                 <div className="tjs-modal-meta-float">
                   {item.category && (

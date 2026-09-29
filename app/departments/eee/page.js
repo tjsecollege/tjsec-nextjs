@@ -221,8 +221,8 @@ const FDPS_ATTENDED = [
     by: "Mrs. M. Shunmuga Sankari, Mr. T. Kamalkumar, Mrs. C. Anusha",
     imgs: [
       { src: "/assets/images/eee/image_134.png", alt: "ATAL FDP certificate – Anusha C" },
-      { src: "/assets/images/eee/image_143.png", alt: "ATAL FDP certificate – T. Kamalkumar" },
-      { src: "/assets/images/eee/image_149.png", alt: "ATAL FDP certificate – M. Shunmuga Sankari" },
+      { src: "/assets/images/eee/image_142.png", alt: "ATAL FDP certificate – T. Kamalkumar" },
+      { src: "/assets/images/eee/image_146.png", alt: "ATAL FDP certificate – M. Shunmuga Sankari" },
     ],
   },
   {
@@ -235,6 +235,8 @@ const FDPS_ATTENDED = [
       { src: "/assets/images/eee/image_150.jpeg", alt: "Naan Mudhalvan training session at Anna University" },
       { src: "/assets/images/eee/image_148.jpeg", alt: "Faculty at the E-Vehicle Fundamentals programme, Viluppuram" },
       { src: "/assets/images/eee/image_144.png", alt: "Faculty at Anna University for the Naan Mudhalvan programme" },
+      { src: "/assets/images/eee/image_143.png", alt: "Faculty at the E-Vehicle Fundamentals programme, Viluppuram" },
+      { src: "/assets/images/eee/image_149.png", alt: "Faculty at Anna University for the Naan Mudhalvan programme" },
     ],
   },
   {
@@ -244,7 +246,7 @@ const FDPS_ATTENDED = [
     by: "Mrs. M. Shunmuga Sankari, Mr. T. Kamalkumar, Mr. S. Ganesh, Mrs. C. Anusha",
     imgs: [
       { src: "/assets/images/eee/image_133.png", alt: "Generative AI for Teaching certificate – Ganesh S" },
-      { src: "/assets/images/eee/image_142.png", alt: "Generative AI for Teaching certificate – Anusha C" },
+      { src: "/assets/images/eee/image_141.png", alt: "Generative AI for Teaching certificate – Anusha C" },
       { src: "/assets/images/eee/image_145.png", alt: "Generative AI for Teaching certificate – Shunmuga Sankari M" },
     ],
   },
@@ -272,6 +274,7 @@ const FDPS_ATTENDED = [
       { src: "/assets/images/eee/image_117.png", alt: "Sustainable Computing FDP certificate – Arjunkumar" },
       { src: "/assets/images/eee/image_118.png", alt: "Sustainable Computing FDP certificate – Shunmuga Sankari M" },
       { src: "/assets/images/eee/image_119.png", alt: "Sustainable Computing FDP certificate – Anusha C" },
+      { src: "/assets/images/eee/image_120.png", alt: "Sustainable Computing FDP certificate – Kamalkumar T" },
     ],
   },
   {
@@ -595,21 +598,91 @@ const PATENTS = [
 ];
 
 const PUBLICATIONS = [
-  "DABPR: A large-scale internet of things-based data aggregation back pressure routing for disaster management",
-  "Design of PSO-Fuzzy MPPT Controller for Photovoltaic Application",
-  "Cuckoo search assisted fuzzy logic algorithm for smart WSN routing system",
-  "Design of coordinated control scheme for hybrid resonant boost converter and multi level inverter",
-  "Design of Soft Switching Interleaved Boost converter for Photovoltaic application",
-  "MPPT in partially shaded PV system with the use of WODE technique",
-  "An investigation of various actuation mechanisms in robot arm",
-  "Design and Development of Solar Photovoltaic System Using Single-Phase MLI",
-  "Performance analysis and simulation of five level and seven level single phase multilevel inverters",
-  "Sinusoidal Output Voltage H-bridge Multilevel Inverters",
-  "Design of polarization splitter using elliptically dual core – Cladding photonic crystal fiber",
-  "A novel technique for common mode-voltage elimination and DC-link balancing in three-level inverter",
-  "Topology and performance analysis of cascadable nine level inverter by packed U-cell inverter and using multi-mode synchronized PWM schemes",
-  "Polymers based material as a safety suit for high power utilities working",
-  "Design and Development of Control Scheme for Solar PV System Using Single Phase Multilevel Inverter",
+  {
+    title: "DABPR: A Large-Scale Internet of Things-Based Data Aggregation Back Pressure Routing for Disaster Management",
+    by: "Dr. J. Prakash",
+    link: "https://link.springer.com/article/10.1007/s11276-019-02122-3",
+  },
+  {
+    title: "Design of PSO-Fuzzy MPPT Controller for Photovoltaic Application",
+    by: "Dr. J. Prakash",
+    link: "https://doi.org/10.1007/978-81-322-2119-7_130",
+  },
+  {
+    title: "Cuckoo Search Assisted Fuzzy Logic Algorithm for Smart WSN Routing System",
+    by: "Dr. J. Prakash",
+    link: "https://doi.org/10.1504/IJAHUC.2022.123532",
+  },
+  {
+    title: "Design of Coordinated Control Scheme for Hybrid Resonant Boost Converter and Multi Level Inverter",
+    by: "Dr. J. Prakash",
+    link: "https://doi.org/10.17485/ijst/2016/v9i11/89389",
+  },
+  {
+    title: "Design of Soft Switching Interleaved Boost Converter for Photovoltaic Application",
+    by: "Dr. J. Prakash",
+    link: "https://www.researchgate.net/publication/282069245_Design_of_Soft_Switching_Interleaved_Boost_Converter_for_Photovoltaic_Application",
+  },
+  {
+    title: "MPPT in Partially Shaded PV System with the Use of WODE Technique",
+    by: "Dr. J. Prakash",
+    link: "https://www.researchgate.net/publication/297679592_Fuzzy_Logic_Controller_for_Partial_Shaded_Photovoltaic_Array_Fed_Modular_Multilevel_Converter",
+  },
+  {
+    title: "An Investigation of Various Actuation Mechanisms in Robot Arm",
+    by: "Dr. J. Prakash",
+    link: "https://doi.org/10.1177/0020294019866854",
+  },
+  {
+    title: "Design and Development of Solar Photovoltaic System Using Single-Phase MLI",
+    by: "Dr. J. Prakash",
+    link: "https://doi.org/10.1007/978-981-15-2256-7_58",
+  },
+  {
+    title: "Performance Analysis and Simulation of Five Level and Seven Level Single Phase Multilevel Inverters",
+    by: "Dr. J. Prakash",
+    link: "https://doi.org/10.1049/cp.2012.2227",
+  },
+  {
+    title: "Sinusoidal Output Voltage H-Bridge Multilevel Inverters",
+    by: "Dr. J. Prakash",
+    link: "https://doi.org/10.1049/cp.2012.2224",
+  },
+  {
+    title: "Reward-Based Residential Wireless Sensor Optimization Approach for Appliance Monitoring",
+    by: "Dr. J. Prakash",
+    link: "https://doi.org/10.1007/s00500-020-05525-z",
+  },
+  {
+    title: "Design of Polarization Splitter Using Elliptically Dual Core–Cladding Photonic Crystal Fiber",
+    by: "Dr. J. Prakash",
+    link: "https://doi.org/10.1016/j.rinp.2019.102279",
+  },
+  {
+    title: "A Novel Technique for Common Mode-Voltage Elimination and DC-Link Balancing in Three-Level Inverter",
+    by: "Dr. J. Prakash",
+    link: "https://www.praiseworthyprize.org/latest_issues/IREMOS-latest/IREMOS_vol_5_n_2.html",
+  },
+  {
+    title: "Retraction Note: Reward-Based Residential Wireless Sensor Optimization Approach for Appliance Monitoring",
+    by: "Dr. J. Prakash",
+    link: "https://doi.org/10.1007/s00500-024-10229-9",
+  },
+  {
+    title: "Topology and Performance Analysis of Cascadable Nine Level Inverter by Packed U-Cell Inverter and Using Multi-Mode Synchronized PWM Schemes",
+    by: "Dr. J. Prakash",
+    link: "https://eurekamag.com/research/105/008/105008685.php",
+  },
+  {
+    title: "Polymers Based Material as a Safety Suit for High Power Utilities Working",
+    by: "Dr. J. Prakash",
+    link: "https://www.researchgate.net/publication/350942260_Polymers_Based_Material_as_A_Safety_Suit_for_High_Power_Utilities_Working",
+  },
+  {
+    title: "Design and Development of Control Scheme for Solar PV System Using Single Phase Multilevel Inverter",
+    by: "Dr. J. Prakash",
+    link: "https://eurekamag.com/research/103/808/103808228.php",
+  },
 ];
 
 const DISTINGUISHED_ALUMNI = [
@@ -734,7 +807,6 @@ export default function EEEDepartment() {
               </ul>
             </div>
           </div>
-
         </section>
 
         <section id="hod" className="tjs-dept-section tjs-dept-section-alt">
@@ -1007,6 +1079,7 @@ export default function EEEDepartment() {
                 date: "02-02-2026 to 07-02-2026",
                 category: "Event Organised",
                 img: EVENTS_ORGANISED.imgs[0]?.src,
+                imgs: EVENTS_ORGANISED.imgs.map((i) => i.src),
                 desc:
                   EVENTS_ORGANISED.desc +
                   "\n\n" +
@@ -1017,6 +1090,7 @@ export default function EEEDepartment() {
                 date: e.date,
                 category: "Symposium",
                 img: e.imgs?.[0]?.src,
+                imgs: e.imgs?.map((i) => i.src),
                 desc: e.desc,
               })),
               ...FDPS_ATTENDED.map((f) => ({
@@ -1024,6 +1098,7 @@ export default function EEEDepartment() {
                 date: f.date,
                 category: "FDP Attended",
                 img: f.imgs?.[0]?.src,
+                imgs: f.imgs?.map((i) => i.src),
                 desc: f.org + "\n\nAttended by: " + f.by,
               })),
               ...GUEST_LECTURES.map((g) => ({
@@ -1031,6 +1106,7 @@ export default function EEEDepartment() {
                 date: g.date,
                 category: "Guest Lecture",
                 img: g.imgs?.[0]?.src,
+                imgs: g.imgs?.map((i) => i.src),
                 desc: g.desc,
               })),
               ...WORKSHOPS.map((w) => ({
@@ -1038,6 +1114,7 @@ export default function EEEDepartment() {
                 date: w.date,
                 category: "Workshop",
                 img: w.imgs?.[0]?.src,
+                imgs: w.imgs?.map((i) => i.src),
                 desc: w.desc,
               })),
               ...CONFERENCES.map((c) => ({
@@ -1045,6 +1122,7 @@ export default function EEEDepartment() {
                 date: c.date,
                 category: "Conference",
                 img: c.imgs?.[0]?.src,
+                imgs: c.imgs?.map((i) => i.src),
                 desc: c.desc,
               })),
               ...SEMINARS_EVENTS.map((s) => ({
@@ -1052,6 +1130,7 @@ export default function EEEDepartment() {
                 date: s.date,
                 category: "Seminar",
                 img: s.imgs?.[0]?.src,
+                imgs: s.imgs?.map((i) => i.src),
                 desc: s.desc,
               })),
               ...ALUMNI_INTERACTIONS.map((a) => ({
@@ -1059,6 +1138,7 @@ export default function EEEDepartment() {
                 date: a.date,
                 category: "Alumni Interaction",
                 img: a.imgs?.[0]?.src,
+                imgs: a.imgs?.map((i) => i.src),
                 desc: a.desc,
               })),
               ...ACHIEVEMENTS.map((a) => ({
@@ -1066,6 +1146,7 @@ export default function EEEDepartment() {
                 date: a.date,
                 category: "Achievement",
                 img: a.imgs?.[0]?.src,
+                imgs: a.imgs?.map((i) => i.src),
                 desc: a.desc,
               })),
             ]}
@@ -1097,8 +1178,8 @@ export default function EEEDepartment() {
           </div>
 
           {INTERNSHIPS.filter((row) => row.imgs).map((row) => (
-            <div key={row.org}>
-              <h4>{row.org}</h4>
+            <div className="tjs-dept-intern-photos" key={row.org}>
+              <h4 className="tjs-dept-intern-org">{row.org}</h4>
               <div className="tjs-dept-event-imgs">
                 {row.imgs.map((img) => (
                   <img key={img.src} src={img.src} alt={img.alt} className={img.wide ? "tjs-dept-event-img-wide" : ""} />
@@ -1186,12 +1267,24 @@ export default function EEEDepartment() {
             </table>
           </div>
 
-          <h3>Publications (Dr. J. Prakash – 19 Journals)</h3>
-          <ul className="tjs-dept-bullets">
-            {PUBLICATIONS.map((pub) => (
-              <li key={pub}>{pub}</li>
+          <h3>Publications (19 Journals)</h3>
+          <div className="tjs-pub-list">
+            {PUBLICATIONS.map((p) => (
+              <a href={p.link} target="_blank" rel="noopener" className="tjs-pub-card" key={p.title}>
+                <div className="tjs-pub-icon">
+                  <i className="ri-file-text-line"></i>
+                </div>
+                <div className="tjs-pub-content">
+                  <h4 className="tjs-pub-title">
+                    {p.title} <i className="ri-external-link-line"></i>
+                  </h4>
+                  <p className="tjs-pub-meta">
+                    <strong>{p.by}</strong>
+                  </p>
+                </div>
+              </a>
             ))}
-          </ul>
+          </div>
         </section>
       </div>
     </>

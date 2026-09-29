@@ -607,11 +607,12 @@ width: 510px;
     .tjs-dept-jump-tabs::-webkit-scrollbar { display: none; }
     .tjs-dept-jump a { flex: 0 0 auto; font-size: 12.5px; padding: 6px 14px; background: var(--rs-bg-secondary); }
 }
-.tjs-dept-section { padding: 50px 0; }
+.tjs-dept-section { padding: 50px 0; scroll-margin-top: 120px; }
 .tjs-dept-section-alt { background: var(--rs-bg-secondary); margin: 0 0px; padding: 50px 20px; }
 .tjs-dept-section h2 { position: relative; color: var(--rs-theme-blue); font-size: 26px; font-weight: 700; margin-bottom: 28px; padding-bottom: 14px; }
 .tjs-dept-section h2::after { content: ""; position: absolute; left: 0; bottom: 0; width: 54px; height: 3px; background: var(--rs-theme-yellow); border-radius: 2px; }
 .tjs-dept-section h3 { color: var(--rs-theme-blue); font-size: 18px; font-weight: 700; margin: 26px 0 12px; }
+.tjs-dept-section h4 { color: var(--rs-text-primary); font-size: 16px; font-weight: 700; margin: 0px 0 12px; }
 .tjs-dept-section p { color: var(--rs-text-primary); line-height: 1.7; margin-bottom: 14px; }
 .tjs-dept-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 20px 0; }
 .tjs-dept-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -819,6 +820,13 @@ width: 510px;
 .tjs-dept-event p { margin-bottom: 6px !important; font-size: 14px; }
 .tjs-dept-event ul { margin: 6px 0 0; padding-inline-start: 20px; color: var(--rs-text-secondary); font-size: 13.5px; line-height: 1.7; }
 .tjs-dept-event-imgs { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; }
+
+/* Per-organisation photo blocks under the Internships table — clear
+   heading + divider between each company so the galleries don't run
+   together. */
+.tjs-dept-intern-photos { margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--rs-border-primary); }
+.tjs-dept-intern-photos:first-of-type { margin-top: 22px; padding-top: 0; border-top: none; }
+.tjs-dept-intern-org { color: var(--rs-theme-blue); font-size: 16px; font-weight: 700; margin: 0 0 4px; }
 .tjs-dept-event-imgs img { width: 320px; height: 220px; object-fit: cover; border-radius: 10px; border: 1px solid var(--rs-border-primary); box-shadow: 0 6px 18px rgba(3, 3, 3, 0.08); }
 .tjs-dept-event-imgs img.tjs-dept-event-img-wide { width: 100%; height: auto; max-width: 640px; max-height: 420px; object-fit: contain; }
 @media (max-width: 575px) {
@@ -919,6 +927,41 @@ width: 510px;
 .tjs-modal-close:hover { background: var(--rs-theme-blue); color: #fff; transform: rotate(90deg); }
 .tjs-modal-img-wrap { position: relative; }
 .tjs-modal-img { width: 100%; max-height: 340px; object-fit: cover; display: block; border-radius: 20px 20px 0 0; }
+.tjs-modal-img-nav {
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(4px);
+    color: var(--rs-theme-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(20, 25, 60, 0.2);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.tjs-modal-img-nav:hover { background: var(--rs-theme-blue); color: #fff; }
+.tjs-modal-img-prev { left: 16px; }
+.tjs-modal-img-next { right: 16px; }
+.tjs-modal-img-dots { position: absolute; left: 0; right: 0; bottom: 30px; display: flex; justify-content: center; gap: 8px; }
+.tjs-modal-img-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+.tjs-modal-img-dot.active { background: #fff; transform: scale(1.25); }
 .tjs-modal-meta-float {
     position: absolute; left: 24px; bottom: -18px; background: #fff; border-radius: 30px;
     padding: 9px 20px; display: flex; flex-wrap: wrap; gap: 14px; font-size: 12.5px; font-weight: 600;
