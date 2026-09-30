@@ -1,3 +1,16 @@
+const DIRECTORS = [
+  { name: "Mr. T.J. Govindarajan", role: "Chairman", photo: "/assets/images/directorphotos/CHAIRMAN-TJG.jpg" },
+  { name: "Mr. T.J. Arumugam", role: "Trustee", photo: "/assets/images/directorphotos/T.J.Arumugam.jpg" },
+  { name: "Mr. T.J. Desamuthu", role: "Trustee", photo: "/assets/images/directorphotos/T.J.Desamuthu.jpg" },
+  { name: "Dr. A. Palani", qual: "B.D.S.,", role: "Director", photo: "/assets/images/directorphotos/Dr.A.Palani.jpg" },
+  { name: "A. Kabilan", qual: "B.A., B.L., M.B.A.,", role: "Director", photo: "/assets/images/directorphotos/A.Kabilan.jpg" },
+  { name: "A. Vijayakumar", qual: "M.E.,", role: "Director", photo: "/assets/images/directorphotos/A.Vijayakumar.jpg" },
+  { name: "D. Dinesh", qual: "B.Com., L.L.B.,", role: "Director", photo: "/assets/images/directorphotos/D.Dinesh.jpg" },
+  { name: "T.J.S.G. Tamilarasan", qual: "B.Com., M.B.A.,", role: "Director", photo: null },
+  { name: "Mr. S. Elumalai", role: "Administrative Officer", photo: "/assets/images/directorphotos/S.%20ELUMALAI.jpeg" },
+  { name: "Correspondent", role: "T.J.S. Engineering College", photo: "/assets/images/directorphotos/Correspondent.jpg" },
+];
+
 export default function Directors() {
   return (
     <>
@@ -20,48 +33,49 @@ export default function Directors() {
             Directors
           </h2>
 
-          <div className="tjs-trustee-grid">
-            <div className="tjs-trustee-side">
-              <div className="tjs-trustee-photo-card">
-                <div className="tjs-trustee-photo" aria-hidden="true">
-                  <span>Photo</span>
+          <div className="tjs-team-grid">
+            {DIRECTORS.map((d) => (
+              <div className="tjs-team-card" key={d.name}>
+                <div className="tjs-team-photo">
+                  {d.photo ? <img src={d.photo} alt={d.name} /> : <span>Photo</span>}
+                </div>
+                <div className="tjs-team-info">
+                  <h4>{d.name}</h4>
+                  {d.qual && <p className="tjs-trustee-qualification">{d.qual}</p>}
+                  <p>{d.role}</p>
                 </div>
               </div>
-              <div className="tjs-trustee-name-card">
-                <h3>Directors</h3>
-                <p className="tjs-trustee-org">T.J.S. Engineering College</p>
-              </div>
-            </div>
+            ))}
+          </div>
 
-            <div className="tjs-trustee-message-card">
-              <h3>Directors&apos; Message</h3>
-              <p>
-                At T.J.S. Engineering College, we believe that every student has the potential to achieve
-                excellence when provided with the right knowledge, guidance, and opportunities. Our
-                commitment is to build an academic environment that encourages students to learn, innovate,
-                explore, and grow with confidence.
-              </p>
-              <p>
-                We continuously strive to strengthen teaching and learning through modern technologies,
-                industry interaction, research, skill development, and experiential education. Along with
-                technical competence, we place equal importance on discipline, leadership, teamwork, ethical
-                values, and social responsibility.
-              </p>
-              <p>
-                Our endeavour is to prepare students to meet the demands of a rapidly evolving professional
-                world and to become capable individuals who can create meaningful impact in society.
-              </p>
-              <p>
-                With the dedicated efforts of our faculty, staff, students, and stakeholders, we look forward
-                to taking T.J.S. Engineering College towards greater academic excellence and continued
-                growth.
-              </p>
-              <p className="tjs-dept-hod-sign">
-                <strong>Directors</strong>
-                <br />
-                <em>T.J.S. Engineering College</em>
-              </p>
-            </div>
+          <div className="tjs-trustee-message-card" style={{ marginTop: 32 }}>
+            <h3>Directors&apos; Message</h3>
+            <p>
+              At T.J.S. Engineering College, we believe that every student has the potential to achieve
+              excellence when provided with the right knowledge, guidance, and opportunities. Our
+              commitment is to build an academic environment that encourages students to learn, innovate,
+              explore, and grow with confidence.
+            </p>
+            <p>
+              We continuously strive to strengthen teaching and learning through modern technologies,
+              industry interaction, research, skill development, and experiential education. Along with
+              technical competence, we place equal importance on discipline, leadership, teamwork, ethical
+              values, and social responsibility.
+            </p>
+            <p>
+              Our endeavour is to prepare students to meet the demands of a rapidly evolving professional
+              world and to become capable individuals who can create meaningful impact in society.
+            </p>
+            <p>
+              With the dedicated efforts of our faculty, staff, students, and stakeholders, we look forward
+              to taking T.J.S. Engineering College towards greater academic excellence and continued
+              growth.
+            </p>
+            <p className="tjs-dept-hod-sign">
+              <strong>Directors</strong>
+              <br />
+              <em>T.J.S. Engineering College</em>
+            </p>
           </div>
         </section>
       </div>

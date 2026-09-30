@@ -52,7 +52,7 @@ export default function PeopleCarousel({ items, role }) {
               {item.photo ? <img src={item.photo} alt={item.name} /> : <span>Photo</span>}
             </div>
             <h4>{item.name}</h4>
-            <p className="tjs-dept-people-role">{role}</p>
+            <p className="tjs-dept-people-role">{item.role || role}</p>
           </div>
         ))}
       </div>

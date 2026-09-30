@@ -23,8 +23,8 @@ export default function ManagingTrustee() {
           <div className="tjs-trustee-grid">
             <div className="tjs-trustee-side">
               <div className="tjs-trustee-photo-card">
-                <div className="tjs-trustee-photo" aria-hidden="true">
-                  <span>Photo</span>
+                <div className="tjs-trustee-photo">
+                  <img src="/assets/images/directorphotos/CHAIRMAN-TJG.jpg" alt="Shri T. J. Govindarajan" />
                 </div>
               </div>
               <div className="tjs-trustee-name-card">

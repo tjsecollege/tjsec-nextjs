@@ -1043,7 +1043,41 @@ width: 510px;
 .tjs-trustee-cta i { margin-inline-start: 4px; }
 .tjs-trustee-cta:hover { opacity: 0.92; color: #fff; }
 .tjs-trustee-message-card { background: #fff; border: 1px solid var(--rs-border-primary); border-radius: 12px; padding: 30px; box-shadow: 0 8px 22px rgba(3, 3, 3, 0.05); }
+
+/* Static team-photo grid — large rectangular photos, no slider. */
+.tjs-team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 10px; }
+.tjs-team-card { display: flex; flex-direction: column; background: #fff; border-radius: 14px; overflow: hidden; border-bottom: 3px solid var(--rs-theme-blue); box-shadow: 0 10px 24px rgba(3, 3, 3, 0.08); text-align: center; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.tjs-team-card:hover { transform: translateY(-4px); box-shadow: 0 16px 30px rgba(3, 3, 3, 0.12); }
+.tjs-team-photo { width: 100%; overflow: hidden; background: var(--rs-bg-secondary); }
+.tjs-team-photo img { width: 100%; height: auto; display: block; }
+.tjs-team-photo:has(span) { flex: 1; display: flex; }
+.tjs-team-photo span { display: flex; align-items: center; justify-content: center; flex: 1; min-height: 220px; color: var(--rs-text-secondary); font-size: 13px; }
+.tjs-team-info { padding: 20px 16px 22px; }
+.tjs-team-info h4 { margin: 0 0 6px; font-size: 17px; font-weight: 700; color: var(--rs-theme-blue); letter-spacing: 0.2px; }
+.tjs-team-info .tjs-trustee-qualification { font-size: 12.5px; font-style: italic; color: var(--rs-text-secondary); margin-bottom: 8px !important; }
+.tjs-team-info p:last-child {
+    display: inline-flex; align-self: center; margin: 0; padding: 4px 14px; border-radius: 20px;
+    background: var(--rs-bg-secondary); color: var(--rs-title-primary); font-size: 11.5px; font-weight: 700;
+    letter-spacing: 0.6px; text-transform: uppercase;
+}
+@media (max-width: 767px) { .tjs-team-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 575px) { .tjs-team-grid { grid-template-columns: 1fr; } }
 .tjs-trustee-message-card h3 { color: var(--rs-theme-blue); font-size: 17px; font-weight: 700; margin-bottom: 14px; }
+
+.tjs-organogram-card { background: #fff; border: 1px solid var(--rs-border-primary); border-radius: 14px; padding: 30px; box-shadow: 0 10px 24px rgba(3, 3, 3, 0.08); text-align: center; }
+.tjs-organogram-card img { max-width: 100%; height: auto; }
+
+.tjs-lib-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 4px 0 10px; }
+.tjs-lib-stat {
+    background: #fff; border: 1px solid var(--rs-border-primary); border-radius: 14px; padding: 26px 18px;
+    text-align: center; box-shadow: 0 8px 20px rgba(3, 3, 3, 0.05); transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.tjs-lib-stat:hover { transform: translateY(-4px); box-shadow: 0 14px 28px rgba(3, 3, 3, 0.1); }
+.tjs-lib-stat i { font-size: 30px; color: var(--rs-theme-blue); margin-bottom: 10px; display: inline-block; }
+.tjs-lib-stat strong { display: block; font-size: 24px; font-weight: 800; color: var(--rs-title-primary); margin-bottom: 4px; }
+.tjs-lib-stat span { font-size: 13px; color: var(--rs-text-secondary); line-height: 1.4; }
+@media (max-width: 991px) { .tjs-lib-stats { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 575px) { .tjs-lib-stats { grid-template-columns: 1fr; } }
 .tjs-trustee-message-card p { color: var(--rs-text-primary); line-height: 1.75; margin-bottom: 16px; }
 .tjs-trustee-quote { background: var(--rs-theme-blue); color: #fff; border-radius: 10px; padding: 20px 24px; margin-top: 10px; }
 .tjs-trustee-quote p { color: #fff; font-style: italic; font-size: 15px; margin-bottom: 8px !important; }
