@@ -1,4 +1,4 @@
-export default function ManagingTrustee() {
+export default function Chairman() {
   return (
     <>
       <section
@@ -9,7 +9,7 @@ export default function ManagingTrustee() {
         <nav className="tjs-subpage-crumb">
           <a href="/">Home</a>
           <span>/</span>
-          <span>Managing Trustee</span>
+          <span>Chairman</span>
         </nav>
       </section>
 
@@ -17,7 +17,7 @@ export default function ManagingTrustee() {
         <section className="tjs-dept-section">
           <h2 className="tjs-subpage-title">
             <span className="tjs-subpage-title-bar"></span>
-            Managing Trustee
+            Chairman
           </h2>
 
           <div className="tjs-trustee-grid">
@@ -35,7 +35,7 @@ export default function ManagingTrustee() {
             </div>
 
             <div className="tjs-trustee-message-card">
-              <h3>Trustee&apos;s Message</h3>
+              <h3>Chairman&apos;s Message</h3>
               <p>
                 Education is the foundation for creating a progressive and responsible society. At T.J.S.
                 Engineering College, we are dedicated to providing our students with an enriching educational

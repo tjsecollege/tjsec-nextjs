@@ -733,12 +733,14 @@ export default function EEEDepartment() {
             { href: "#hod", label: "HOD's Desk" },
             { href: "#people", label: "Faculty & Staff" },
             { href: "#programmes", label: "Programmes Offered" },
+            { href: "#bos", label: "BOS" },
             { href: "#regulations", label: "Regulations & Curriculum" },
             { href: "#facilities", label: "Facilities & Labs" },
             { href: "#industry", label: "Industry Interface" },
             { href: "#events", label: "Events & Achievements" },
             { href: "#internships", label: "Internships & Placements" },
             { href: "#research", label: "Research & Publications" },
+            { href: "#symposium", label: "Symposium" },
           ]}
         />
 
@@ -975,6 +977,11 @@ export default function EEEDepartment() {
               </div>
             ))}
           </div>
+        </section>
+
+        <section id="bos" className="tjs-dept-section">
+          <h2>BOS</h2>
+          <p className="tjs-dept-pending">Content coming soon.</p>
         </section>
 
         <section id="regulations" className="tjs-dept-section">
@@ -1284,6 +1291,65 @@ export default function EEEDepartment() {
                 </div>
               </a>
             ))}
+          </div>
+        </section>
+
+        <section id="symposium" className="tjs-dept-section">
+          <h2>Symposium</h2>
+
+          <div className="tjs-dept-media-row">
+            <div className="tjs-dept-media-row-text">
+              <h3>Embedded System with IoT</h3>
+              <p>
+                The Department of Electrical and Electronics Engineering (EEE) organized a Value Added Course on
+                &ldquo;Embedded System with IoT&rdquo; in association with Pantech Solutions. The course was
+                conducted to provide students with practical exposure to embedded systems and Internet of Things
+                (IoT) technologies and to enhance their technical and application-oriented skills.
+              </p>
+
+              <div className="tjs-dept-card">
+                <h3>Course Details</h3>
+                <ul>
+                  <li>
+                    <strong>Department:</strong> Electrical and Electronics Engineering (EEE)
+                  </li>
+                  <li>
+                    <strong>Course:</strong> Embedded System with IoT
+                  </li>
+                  <li>
+                    <strong>Organized By:</strong> Department of Electrical and Electronics Engineering
+                  </li>
+                  <li>
+                    <strong>In Association With:</strong> Pantech Solutions
+                  </li>
+                  <li>
+                    <strong>Participants:</strong> II, III and IV Year EEE Students
+                  </li>
+                  <li>
+                    <strong>Date:</strong> 21.09.2026 to 26.09.2026
+                  </li>
+                  <li>
+                    <strong>Time:</strong> 9:00 AM to 3:15 PM
+                  </li>
+                  <li>
+                    <strong>Speakers/Trainers:</strong>
+                    <ul className="tjs-dept-person-list">
+                      <li>Mr. S. Sathish</li>
+                      <li>Mr. Y. Sandeep Kumar</li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="tjs-dept-media-row-img">
+              <DeptPhotoSlider
+                images={[
+                  { src: "/assets/images/eee/Symposium1.jpg", alt: "Embedded System with IoT symposium" },
+                  { src: "/assets/images/eee/Symposium2.jpg", alt: "Embedded System with IoT symposium" },
+                ]}
+              />
+            </div>
           </div>
         </section>
       </div>

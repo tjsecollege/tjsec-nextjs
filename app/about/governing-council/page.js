@@ -2,9 +2,9 @@ const MEMBERS = [
   { name: "Mr. T.J. Govindarajan", position: "Chairman", designation: "Chairman, TJS Group of Institutions" },
   { name: "Mr. T.J. Arumugam", position: "Member", designation: "Trustee, TJS Group of Institutions" },
   { name: "Mr. T.J. Desamuthu", position: "Member", designation: "Trustee, TJS Group of Institutions" },
-  { name: "Dr. A. Palani", position: "Member", designation: "Director, TJS Group of Institutions" },
+  { name: "A. Kabilan", position: "Member", designation: "Director, TJS Group of Institutions" },
   { name: "Dr. J. Prakash", position: "Member Secretary", designation: "Principal, T.J.S. Engineering College" },
-  { name: "Dr. E.K.T. Sivakumar", position: "Advisor", designation: "Professor" },
+  { name: "Dr. E. Sivakumar", position: "Advisor", designation: "Professor" },
   { name: "Mr. S. Elumalai", position: "Member", designation: "Administrative Officer, T.J.S. Engineering College" },
   { name: "Dr. Subramanin", position: "Member / Industrialist", designation: "Managing Director, Malathi Engineering Works" },
 ];

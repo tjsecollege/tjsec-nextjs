@@ -3,6 +3,21 @@
 import { useState } from "react";
 import DeptJumpNav from "../../departments/DeptJumpNav";
 
+const SOURCE_LINKS = {
+  "K-Hub": "http://k-hub.in/",
+  Delnet: "https://www.delnet.in/",
+};
+
+function SourceLabel({ text }) {
+  const url = SOURCE_LINKS[text];
+  if (!url) return text;
+  return (
+    <a href={url} target="_blank" rel="noopener">
+      {text}
+    </a>
+  );
+}
+
 const FACILITIES = [
   "Circulation / Lending Section",
   "Reference / Rare Books Section",
@@ -308,8 +323,8 @@ export default function Library() {
           <div className="tjs-pub-badges" style={{ marginBottom: 24 }}>
             <span className="tjs-pub-badge">British Council Library</span>
             <span className="tjs-pub-badge">Anna University Library</span>
-            <span className="tjs-pub-badge">DELNET</span>
-            <span className="tjs-pub-badge">K-Hub (Knowledge Hub)</span>
+            <a href="https://www.delnet.in/" target="_blank" rel="noopener" className="tjs-pub-badge">DELNET</a>
+            <a href="http://k-hub.in/" target="_blank" rel="noopener" className="tjs-pub-badge">K-Hub (Knowledge Hub)</a>
           </div>
 
           <div className="tjs-lib-stats">
@@ -392,8 +407,8 @@ export default function Library() {
           </div>
 
           <div className="tjs-pub-badges" style={{ marginTop: 20 }}>
-            <span className="tjs-pub-badge">Delnet Membership – Valid till 13th Feb 2027</span>
-            <span className="tjs-pub-badge">K-Hub (Infotrac) – Valid till 10th Oct 2026</span>
+            <a href="https://www.delnet.in/" target="_blank" rel="noopener" className="tjs-pub-badge">Delnet Membership – Valid till 13th Feb 2027</a>
+            <a href="http://k-hub.in/" target="_blank" rel="noopener" className="tjs-pub-badge">K-Hub (Infotrac) – Valid till 10th Oct 2026</a>
           </div>
         </section>
 
@@ -452,7 +467,7 @@ export default function Library() {
                 <tbody>
                   {ERESOURCES.map((r, i) => (
                     <tr key={i}>
-                      <td>{r.source}</td>
+                      <td><SourceLabel text={r.source} /></td>
                       <td>{r.category}</td>
                       <td>{r.count}</td>
                     </tr>

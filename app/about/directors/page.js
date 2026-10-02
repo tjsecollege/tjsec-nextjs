@@ -1,14 +1,9 @@
 const DIRECTORS = [
-  { name: "Mr. T.J. Govindarajan", role: "Chairman", photo: "/assets/images/directorphotos/CHAIRMAN-TJG.jpg" },
-  { name: "Mr. T.J. Arumugam", role: "Trustee", photo: "/assets/images/directorphotos/T.J.Arumugam.jpg" },
-  { name: "Mr. T.J. Desamuthu", role: "Trustee", photo: "/assets/images/directorphotos/T.J.Desamuthu.jpg" },
   { name: "Dr. A. Palani", qual: "B.D.S.,", role: "Director", photo: "/assets/images/directorphotos/Dr.A.Palani.jpg" },
   { name: "A. Kabilan", qual: "B.A., B.L., M.B.A.,", role: "Director", photo: "/assets/images/directorphotos/A.Kabilan.jpg" },
   { name: "A. Vijayakumar", qual: "M.E.,", role: "Director", photo: "/assets/images/directorphotos/A.Vijayakumar.jpg" },
   { name: "D. Dinesh", qual: "B.Com., L.L.B.,", role: "Director", photo: "/assets/images/directorphotos/D.Dinesh.jpg" },
   { name: "T.J.S.G. Tamilarasan", qual: "B.Com., M.B.A.,", role: "Director", photo: null },
-  { name: "Mr. S. Elumalai", role: "Administrative Officer", photo: "/assets/images/directorphotos/S.%20ELUMALAI.jpeg" },
-  { name: "Correspondent", role: "T.J.S. Engineering College", photo: "/assets/images/directorphotos/Correspondent.jpg" },
 ];
 
 export default function Directors() {
