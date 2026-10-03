@@ -1,4 +1,4 @@
-import DeptJumpNav from "../DeptJumpNav";
+import DeptMegaNav from "../DeptMegaNav";
 import PeopleCarousel from "../PeopleCarousel";
 import DeptPhotoSlider from "../DeptPhotoSlider";
 import EventAccordion from "../EventAccordion";
@@ -471,13 +471,16 @@ const ALUMNI_INTERACTIONS = [
   { date: "02-02-2026", title: "Mr. B. Udhayakumaran (Batch 2025)", desc: "Interacted with II year students." },
 ];
 
-const ACHIEVEMENTS = [
+const FACULTY_ACHIEVEMENTS = [
   {
     date: "31-01-2025",
     title: "Trainer Certification – Grade B",
     desc: "Mrs. Shunmuga Sankari M cleared the assessment as a Trainer (Trainer ID TR176420) for the Qualification Pack of Hydrogen Plant Technician (Installation, Commissioning and Maintenance), NSQF Level 4.",
     imgs: [{ src: "/assets/images/eee/image_20.png", alt: "Trainer Certification – Grade B, Shunmuga Sankari M" }],
   },
+];
+
+const CO_CURRICULAR = [
   {
     date: "28-02-2025",
     title: "Inventec Project Expo – 1st Prize",
@@ -506,6 +509,9 @@ const ACHIEVEMENTS = [
     desc: "III Year students went to St. Peter’s Engineering College.",
     imgs: [{ src: "/assets/images/eee/image_62.png", alt: "St. Peter's Ideathon certificate – Hinduja V" }],
   },
+];
+
+const EXTRA_CURRICULAR = [
   {
     date: "14-02-2025",
     title: "Blood Donation Camp",
@@ -693,6 +699,86 @@ const DISTINGUISHED_ALUMNI = [
   { name: "Thirukumaran P", role: "Senior Engineer, Alstom Transport India Private Limited Company" },
 ];
 
+const MENU = [
+  {
+    label: "About",
+    children: [
+      { href: "#about", label: "About us" },
+      { href: "#advisory", label: "Department Advisory Committee" },
+      { href: "#vision-mission", label: "Vision and Mission" },
+      { href: "#hod", label: "HOD's Desk" },
+      { href: "#magazine", label: "Magazine" },
+    ],
+  },
+  {
+    label: "People",
+    children: [
+      { href: "#faculty", label: "Faculty" },
+      { href: "#staff", label: "Staff" },
+    ],
+  },
+  {
+    label: "Academics",
+    children: [
+      { href: "#programmes", label: "Programme Offered" },
+      { href: "#bos", label: "BOS" },
+      { href: "#curriculum", label: "Curriculum & Syllabus" },
+    ],
+  },
+  {
+    label: "Industry Interface",
+    children: [
+      { href: "#mou", label: "MOU's" },
+      { href: "#consultancy", label: "Area of Consultancy" },
+      { href: "#industry-visits", label: "Industry Visits" },
+    ],
+  },
+  {
+    label: "Research",
+    children: [
+      { href: "#research", label: "Area of Research" },
+      { href: "#seed-money", label: "Seed Money for Research" },
+    ],
+  },
+  {
+    label: "Facilities",
+    children: [{ href: "#facilities", label: "Academic Laboratories" }],
+  },
+  {
+    label: "Events",
+    children: [
+      { href: "#conferences", label: "Conference" },
+      { href: "#fdp-workshop", label: "Guest Lecturer, FDP & Workshop" },
+      { href: "#value-added-course", label: "Value Added Course" },
+      { href: "#symposium", label: "Symposium" },
+    ],
+  },
+  {
+    label: "Placements",
+    children: [{ href: "#recruiters", label: "Major Recruiters" }],
+  },
+  {
+    label: "Achievements",
+    children: [
+      { href: "#faculty-achievements", label: "Faculty Achievements" },
+      { href: "#co-curricular", label: "Co-Curricular" },
+      { href: "#extra-curricular", label: "Extra-Curricular" },
+    ],
+  },
+  {
+    label: "Others",
+    children: [
+      { href: "#internships", label: "Internship" },
+      { href: "#students-achievements", label: "Students Achievements" },
+      { href: "#gallery", label: "Gallery" },
+      { href: "#alumni", label: "Alumni Interactions" },
+      { href: "#distinguished-alumni", label: "Distinguished Alumni" },
+      { href: "#entrepreneurship", label: "Entrepreneurship" },
+      { href: "#seminars", label: "Seminars & Activities" },
+    ],
+  },
+];
+
 function LinkList({ items }) {
   return (
     <div className="tjs-dept-link-list">
@@ -727,29 +813,10 @@ export default function EEEDepartment() {
       </section>
 
       <div className="tjs-dept-page">
-        <DeptJumpNav
-          items={[
-            { href: "#about", label: "About" },
-            { href: "#hod", label: "HOD's Desk" },
-            { href: "#people", label: "Faculty & Staff" },
-            { href: "#programmes", label: "Programmes Offered" },
-            { href: "#bos", label: "BOS" },
-            { href: "#regulations", label: "Regulations & Curriculum" },
-            { href: "#facilities", label: "Facilities & Labs" },
-            { href: "#industry", label: "Industry Interface" },
-            { href: "#events", label: "Events & Achievements" },
-            { href: "#internships", label: "Internships & Placements" },
-            { href: "#research", label: "Research & Publications" },
-            { href: "#symposium", label: "Symposium" },
-          ]}
-        />
+        <DeptMegaNav categories={MENU} />
 
         <section id="about" className="tjs-dept-section">
-          <h2>About the Department</h2>
-
-          <h3>Academic Toppers</h3>
-          <PeopleCarousel items={TOPPERS} role="Academic Topper" />
-
+          <h2>About us</h2>
           <p>
             The Department of Electrical and Electronics Engineering (EEE) was established in the year 2009 with the
             objective of imparting quality education and developing competent professionals in the field of
@@ -791,7 +858,15 @@ export default function EEEDepartment() {
             the department strives to prepare its graduates for successful careers in core electrical and
             electronics industries, emerging technology sectors, higher education, research, and entrepreneurship.
           </p>
+        </section>
 
+        <section id="advisory" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>Department Advisory Committee</h2>
+          <p className="tjs-dept-pending">Content coming soon.</p>
+        </section>
+
+        <section id="vision-mission" className="tjs-dept-section">
+          <h2>Vision and Mission</h2>
           <div className="tjs-dept-grid-2">
             <div className="tjs-dept-card">
               <h3>Vision</h3>
@@ -922,8 +997,13 @@ export default function EEEDepartment() {
           </div>
         </section>
 
-        <section id="people" className="tjs-dept-section">
-          <h2>Faculty &amp; Staff</h2>
+        <section id="magazine" className="tjs-dept-section">
+          <h2>Magazine</h2>
+          <p className="tjs-dept-pending">Content coming soon.</p>
+        </section>
+
+        <section id="faculty" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>Faculty</h2>
           <h3>Faculty (Staff Details for NBA, A.Y. 2026-27)</h3>
           <div className="tjs-dept-table-wrap">
             <table className="tjs-dept-table">
@@ -947,8 +1027,13 @@ export default function EEEDepartment() {
           </div>
         </section>
 
+        <section id="staff" className="tjs-dept-section">
+          <h2>Staff</h2>
+          <p className="tjs-dept-pending">Content coming soon.</p>
+        </section>
+
         <section id="programmes" className="tjs-dept-section tjs-dept-section-alt">
-          <h2>Programmes Offered</h2>
+          <h2>Programme Offered</h2>
           <div className="tjs-dept-tabs">
             <button type="button" className="tjs-dept-tab active">B.E – EEE</button>
           </div>
@@ -984,10 +1069,107 @@ export default function EEEDepartment() {
           <p className="tjs-dept-pending">Content coming soon.</p>
         </section>
 
-        <section id="regulations" className="tjs-dept-section">
-          <h2>Regulations &amp; Curriculum</h2>
+        <section id="curriculum" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>Curriculum &amp; Syllabus</h2>
           <LinkList items={REGULATIONS} />
           <p className="tjs-dept-pending">2026 regulation &amp; curriculum revision is in progress; documents will be added soon.</p>
+        </section>
+
+        <section id="mou" className="tjs-dept-section">
+          <h2>MOU&apos;s</h2>
+          <h3>Professional Societies</h3>
+          <p>Mr. Kamalkumar T – Membership in IAENG (International Association of Engineers).</p>
+
+          <h3>Centre of Excellence</h3>
+          <div className="tjs-dept-card">
+            <h4 style={{ marginTop: 0, color: "var(--rs-theme-blue)" }}>Prolific Systems &amp; Technologies Pvt Ltd</h4>
+            <p style={{ marginBottom: 0 }}>
+              No.151/34, 3rd Floor, Sri Ranga Complex, Mambalam High Road, T.Nagar, Chennai-17
+              <br />
+              Phone: 044 28144061 / 28144064
+            </p>
+          </div>
+
+          <h3>MoU</h3>
+          <p>
+            The Department of Electrical and Electronics Engineering actively collaborates with leading industries
+            to bridge the gap between academia and real-world applications. These MoUs enable internships,
+            consultancy, faculty development, and cutting-edge research.
+          </p>
+        </section>
+
+        <section id="consultancy" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>Area of Consultancy</h2>
+          <p className="tjs-dept-pending">Details will be updated soon.</p>
+        </section>
+
+        <section id="industry-visits" className="tjs-dept-section">
+          <h2>Industry Visits</h2>
+          <EventAccordion items={INDUSTRIAL_VISITS} />
+        </section>
+
+        <section id="research" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>Area of Research</h2>
+          <div className="tjs-dept-grid-3">
+            <div className="tjs-dept-card">
+              <h3>Books Chapters</h3>
+              <p style={{ marginBottom: 0 }}>4</p>
+            </div>
+            <div className="tjs-dept-card">
+              <h3>Supervisor &amp; Scholars</h3>
+              <p style={{ marginBottom: 0 }}>2 (Guided)</p>
+            </div>
+            <div className="tjs-dept-card">
+              <h3>Consultancies</h3>
+              <p style={{ marginBottom: 0 }}>4</p>
+            </div>
+          </div>
+
+          <h3>Patents Registered</h3>
+          <div className="tjs-dept-table-wrap">
+            <table className="tjs-dept-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Topic</th>
+                  <th>Published By</th>
+                </tr>
+              </thead>
+              <tbody>
+                {PATENTS.map((p) => (
+                  <tr key={p.topic}>
+                    <td>{p.date}</td>
+                    <td>{p.topic}</td>
+                    <td>{p.by}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Publications (19 Journals)</h3>
+          <div className="tjs-pub-list">
+            {PUBLICATIONS.map((p) => (
+              <a href={p.link} target="_blank" rel="noopener" className="tjs-pub-card" key={p.title}>
+                <div className="tjs-pub-icon">
+                  <i className="ri-file-text-line"></i>
+                </div>
+                <div className="tjs-pub-content">
+                  <h4 className="tjs-pub-title">
+                    {p.title} <i className="ri-external-link-line"></i>
+                  </h4>
+                  <p className="tjs-pub-meta">
+                    <strong>{p.by}</strong>
+                  </p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <section id="seed-money" className="tjs-dept-section">
+          <h2>Seed Money for Research</h2>
+          <p className="tjs-dept-pending">Content coming soon.</p>
         </section>
 
         <section id="facilities" className="tjs-dept-section tjs-dept-section-alt">
@@ -1048,43 +1230,28 @@ export default function EEEDepartment() {
           </div>
         </section>
 
-        <section id="industry" className="tjs-dept-section">
-          <h2>Industry Interface</h2>
-          <h3>Professional Societies</h3>
-          <p>Mr. Kamalkumar T – Membership in IAENG (International Association of Engineers).</p>
-
-          <h3>Centre of Excellence</h3>
-          <div className="tjs-dept-card">
-            <h4 style={{ marginTop: 0, color: "var(--rs-theme-blue)" }}>Prolific Systems &amp; Technologies Pvt Ltd</h4>
-            <p style={{ marginBottom: 0 }}>
-              No.151/34, 3rd Floor, Sri Ranga Complex, Mambalam High Road, T.Nagar, Chennai-17
-              <br />
-              Phone: 044 28144061 / 28144064
-            </p>
-          </div>
-
-          <h3>MoU</h3>
-          <p>
-            The Department of Electrical and Electronics Engineering actively collaborates with leading industries
-            to bridge the gap between academia and real-world applications. These MoUs enable internships,
-            consultancy, faculty development, and cutting-edge research.
-          </p>
-
-          <h3>Consultancy Works</h3>
-          <p className="tjs-dept-pending">Details will be updated soon.</p>
-
-          <h3>Industrial Visits</h3>
-          <EventAccordion items={INDUSTRIAL_VISITS} />
+        <section id="conferences" className="tjs-dept-section">
+          <h2>Conference</h2>
+          <EventSlider
+            items={CONFERENCES.map((c) => ({
+              title: c.title,
+              date: c.date,
+              category: "Conference",
+              img: c.imgs?.[0]?.src,
+              imgs: c.imgs?.map((i) => i.src),
+              desc: c.desc,
+            }))}
+          />
         </section>
 
-        <section id="events" className="tjs-dept-section tjs-dept-section-alt">
-          <h2>Events &amp; Achievements</h2>
+        <section id="fdp-workshop" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>Guest Lecturer, FDP &amp; Workshop</h2>
           <EventSlider
             items={[
               {
                 title: EVENTS_ORGANISED.title,
                 date: "02-02-2026 to 07-02-2026",
-                category: "Event Organised",
+                category: "FDP Organised",
                 img: EVENTS_ORGANISED.imgs[0]?.src,
                 imgs: EVENTS_ORGANISED.imgs.map((i) => i.src),
                 desc:
@@ -1092,13 +1259,13 @@ export default function EEEDepartment() {
                   "\n\n" +
                   EVENTS_ORGANISED.days.map((d) => `${d.date}: ${d.topic} — ${d.speaker}`).join("\n\n"),
               },
-              ...OTHER_DEPT_EVENTS.map((e) => ({
-                title: e.title,
-                date: e.date,
-                category: "Symposium",
-                img: e.imgs?.[0]?.src,
-                imgs: e.imgs?.map((i) => i.src),
-                desc: e.desc,
+              ...GUEST_LECTURES.map((g) => ({
+                title: g.title,
+                date: g.date,
+                category: "Guest Lecture",
+                img: g.imgs?.[0]?.src,
+                imgs: g.imgs?.map((i) => i.src),
+                desc: g.desc,
               })),
               ...FDPS_ATTENDED.map((f) => ({
                 title: f.title,
@@ -1108,14 +1275,6 @@ export default function EEEDepartment() {
                 imgs: f.imgs?.map((i) => i.src),
                 desc: f.org + "\n\nAttended by: " + f.by,
               })),
-              ...GUEST_LECTURES.map((g) => ({
-                title: g.title,
-                date: g.date,
-                category: "Guest Lecture",
-                img: g.imgs?.[0]?.src,
-                imgs: g.imgs?.map((i) => i.src),
-                desc: g.desc,
-              })),
               ...WORKSHOPS.map((w) => ({
                 title: w.title,
                 date: w.date,
@@ -1124,178 +1283,12 @@ export default function EEEDepartment() {
                 imgs: w.imgs?.map((i) => i.src),
                 desc: w.desc,
               })),
-              ...CONFERENCES.map((c) => ({
-                title: c.title,
-                date: c.date,
-                category: "Conference",
-                img: c.imgs?.[0]?.src,
-                imgs: c.imgs?.map((i) => i.src),
-                desc: c.desc,
-              })),
-              ...SEMINARS_EVENTS.map((s) => ({
-                title: s.title,
-                date: s.date,
-                category: "Seminar",
-                img: s.imgs?.[0]?.src,
-                imgs: s.imgs?.map((i) => i.src),
-                desc: s.desc,
-              })),
-              ...ALUMNI_INTERACTIONS.map((a) => ({
-                title: a.title,
-                date: a.date,
-                category: "Alumni Interaction",
-                img: a.imgs?.[0]?.src,
-                imgs: a.imgs?.map((i) => i.src),
-                desc: a.desc,
-              })),
-              ...ACHIEVEMENTS.map((a) => ({
-                title: a.title,
-                date: a.date,
-                category: "Achievement",
-                img: a.imgs?.[0]?.src,
-                imgs: a.imgs?.map((i) => i.src),
-                desc: a.desc,
-              })),
             ]}
           />
         </section>
 
-        <section id="internships" className="tjs-dept-section">
-          <h2>Internships &amp; Placements</h2>
-          <h3>Internships</h3>
-          <div className="tjs-dept-table-wrap">
-            <table className="tjs-dept-table">
-              <thead>
-                <tr>
-                  <th>Organisation</th>
-                  <th>Duration</th>
-                  <th>Students</th>
-                </tr>
-              </thead>
-              <tbody>
-                {INTERNSHIPS.map((row) => (
-                  <tr key={row.org}>
-                    <td>{row.org}</td>
-                    <td>{row.date}</td>
-                    <td>{row.who}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          {INTERNSHIPS.filter((row) => row.imgs).map((row) => (
-            <div className="tjs-dept-intern-photos" key={row.org}>
-              <h4 className="tjs-dept-intern-org">{row.org}</h4>
-              <div className="tjs-dept-event-imgs">
-                {row.imgs.map((img) => (
-                  <img key={img.src} src={img.src} alt={img.alt} className={img.wide ? "tjs-dept-event-img-wide" : ""} />
-                ))}
-              </div>
-            </div>
-          ))}
-
-          <h3>Placements – Major Recruiters</h3>
-          <div className="tjs-dept-photo-grid">
-            {RECRUITERS.map((r) => (
-              <img key={r.name} src={r.logo} alt={r.name} title={r.name} className="tjs-dept-logo-real" />
-            ))}
-          </div>
-
-          <h3>Entrepreneurship</h3>
-          <div className="tjs-dept-card">
-            <h4 style={{ marginTop: 0, color: "var(--rs-theme-blue)" }}>Mr. Shyam Sundar (2021 Batch)</h4>
-            <p style={{ marginBottom: 0 }}>
-              Managing Director, Sri Vinayaka Auto Tech &amp; TVS Okinawa Auto Tech
-              <br />
-              GNT Road, Sullurupeta, Nellore – 524121
-              <br />
-              Phone: 9941024469
-            </p>
-          </div>
-
-          <h3>Distinguished Alumni</h3>
-          <div className="tjs-dept-table-wrap">
-            <table className="tjs-dept-table">
-              <thead>
-                <tr>
-                  <th>Alumni Name</th>
-                  <th>Designation</th>
-                </tr>
-              </thead>
-              <tbody>
-                {DISTINGUISHED_ALUMNI.map((a) => (
-                  <tr key={a.name}>
-                    <td>{a.name}</td>
-                    <td>{a.role}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <section id="research" className="tjs-dept-section tjs-dept-section-alt">
-          <h2>Research &amp; Publications</h2>
-          <div className="tjs-dept-grid-3">
-            <div className="tjs-dept-card">
-              <h3>Books Chapters</h3>
-              <p style={{ marginBottom: 0 }}>4</p>
-            </div>
-            <div className="tjs-dept-card">
-              <h3>Supervisor &amp; Scholars</h3>
-              <p style={{ marginBottom: 0 }}>2 (Guided)</p>
-            </div>
-            <div className="tjs-dept-card">
-              <h3>Consultancies</h3>
-              <p style={{ marginBottom: 0 }}>4</p>
-            </div>
-          </div>
-
-          <h3>Patents Registered</h3>
-          <div className="tjs-dept-table-wrap">
-            <table className="tjs-dept-table">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Topic</th>
-                  <th>Published By</th>
-                </tr>
-              </thead>
-              <tbody>
-                {PATENTS.map((p) => (
-                  <tr key={p.topic}>
-                    <td>{p.date}</td>
-                    <td>{p.topic}</td>
-                    <td>{p.by}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <h3>Publications (19 Journals)</h3>
-          <div className="tjs-pub-list">
-            {PUBLICATIONS.map((p) => (
-              <a href={p.link} target="_blank" rel="noopener" className="tjs-pub-card" key={p.title}>
-                <div className="tjs-pub-icon">
-                  <i className="ri-file-text-line"></i>
-                </div>
-                <div className="tjs-pub-content">
-                  <h4 className="tjs-pub-title">
-                    {p.title} <i className="ri-external-link-line"></i>
-                  </h4>
-                  <p className="tjs-pub-meta">
-                    <strong>{p.by}</strong>
-                  </p>
-                </div>
-              </a>
-            ))}
-          </div>
-        </section>
-
-        <section id="symposium" className="tjs-dept-section">
-          <h2>Symposium</h2>
+        <section id="value-added-course" className="tjs-dept-section">
+          <h2>Value Added Course</h2>
 
           <div className="tjs-dept-media-row">
             <div className="tjs-dept-media-row-text">
@@ -1351,6 +1344,154 @@ export default function EEEDepartment() {
               />
             </div>
           </div>
+        </section>
+
+        <section id="symposium" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>Symposium</h2>
+          <EventAccordion items={OTHER_DEPT_EVENTS} />
+        </section>
+
+        <section id="recruiters" className="tjs-dept-section">
+          <h2>Major Recruiters</h2>
+          <div className="tjs-dept-photo-grid">
+            {RECRUITERS.map((r) => (
+              <img key={r.name} src={r.logo} alt={r.name} title={r.name} className="tjs-dept-logo-real" />
+            ))}
+          </div>
+        </section>
+
+        <section id="faculty-achievements" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>Faculty Achievements</h2>
+          <EventSlider
+            items={FACULTY_ACHIEVEMENTS.map((a) => ({
+              title: a.title,
+              date: a.date,
+              category: "Faculty Achievement",
+              img: a.imgs?.[0]?.src,
+              imgs: a.imgs?.map((i) => i.src),
+              desc: a.desc,
+            }))}
+          />
+        </section>
+
+        <section id="co-curricular" className="tjs-dept-section">
+          <h2>Co-Curricular</h2>
+          <EventSlider
+            items={CO_CURRICULAR.map((a) => ({
+              title: a.title,
+              date: a.date,
+              category: "Co-Curricular",
+              img: a.imgs?.[0]?.src,
+              imgs: a.imgs?.map((i) => i.src),
+              desc: a.desc,
+            }))}
+          />
+        </section>
+
+        <section id="extra-curricular" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>Extra-Curricular</h2>
+          <EventSlider
+            items={EXTRA_CURRICULAR.map((a) => ({
+              title: a.title,
+              date: a.date,
+              category: "Extra-Curricular",
+              img: a.imgs?.[0]?.src,
+              imgs: a.imgs?.map((i) => i.src),
+              desc: a.desc,
+            }))}
+          />
+        </section>
+
+        <section id="internships" className="tjs-dept-section">
+          <h2>Internship</h2>
+          <div className="tjs-dept-table-wrap">
+            <table className="tjs-dept-table">
+              <thead>
+                <tr>
+                  <th>Organisation</th>
+                  <th>Duration</th>
+                  <th>Students</th>
+                </tr>
+              </thead>
+              <tbody>
+                {INTERNSHIPS.map((row) => (
+                  <tr key={row.org}>
+                    <td>{row.org}</td>
+                    <td>{row.date}</td>
+                    <td>{row.who}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {INTERNSHIPS.filter((row) => row.imgs).map((row) => (
+            <div className="tjs-dept-intern-photos" key={row.org}>
+              <h4 className="tjs-dept-intern-org">{row.org}</h4>
+              <div className="tjs-dept-event-imgs">
+                {row.imgs.map((img) => (
+                  <img key={img.src} src={img.src} alt={img.alt} className={img.wide ? "tjs-dept-event-img-wide" : ""} />
+                ))}
+              </div>
+            </div>
+          ))}
+        </section>
+
+        <section id="students-achievements" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>Students Achievements</h2>
+          <h3>Academic Toppers</h3>
+          <PeopleCarousel items={TOPPERS} />
+        </section>
+
+        <section id="gallery" className="tjs-dept-section">
+          <h2>Gallery</h2>
+          <p className="tjs-dept-pending">Content coming soon.</p>
+        </section>
+
+        <section id="alumni" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>Alumni Interactions</h2>
+          <EventAccordion items={ALUMNI_INTERACTIONS} />
+        </section>
+
+        <section id="distinguished-alumni" className="tjs-dept-section">
+          <h2>Distinguished Alumni</h2>
+          <div className="tjs-dept-table-wrap">
+            <table className="tjs-dept-table">
+              <thead>
+                <tr>
+                  <th>Alumni Name</th>
+                  <th>Designation</th>
+                </tr>
+              </thead>
+              <tbody>
+                {DISTINGUISHED_ALUMNI.map((a) => (
+                  <tr key={a.name}>
+                    <td>{a.name}</td>
+                    <td>{a.role}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="entrepreneurship" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>Entrepreneurship</h2>
+          <div className="tjs-dept-card">
+            <h4 style={{ marginTop: 0, color: "var(--rs-theme-blue)" }}>Mr. Shyam Sundar (2021 Batch)</h4>
+            <p style={{ marginBottom: 0 }}>
+              Managing Director, Sri Vinayaka Auto Tech &amp; TVS Okinawa Auto Tech
+              <br />
+              GNT Road, Sullurupeta, Nellore – 524121
+              <br />
+              Phone: 9941024469
+            </p>
+          </div>
+        </section>
+
+        <section id="seminars" className="tjs-dept-section">
+          <h2>Seminars &amp; Activities</h2>
+          <EventAccordion items={SEMINARS_EVENTS} />
         </section>
       </div>
     </>

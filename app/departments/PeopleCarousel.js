@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 const AUTO_SCROLL_INTERVAL = 3000;
 
-export default function PeopleCarousel({ items, role }) {
+export default function PeopleCarousel({ items }) {
   const trackRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -95,12 +95,8 @@ export default function PeopleCarousel({ items, role }) {
           <div className="tjs-dept-people-card" key={item.name}>
             <div className="tjs-dept-people-photo">
               {item.photo ? <img src={item.photo} alt={item.name} /> : <span>Photo</span>}
-              <span className="tjs-dept-people-badge" aria-hidden="true">
-                <i className="ri-award-fill"></i>
-              </span>
             </div>
             <h4>{item.name}</h4>
-            <p className="tjs-dept-people-role">{item.role || role}</p>
           </div>
         ))}
       </div>

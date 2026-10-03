@@ -8,43 +8,43 @@ const NAAC_GRADE_SHEET = [
 ];
 
 const AQAR_DOCS = [
-  { year: "2018-2019", url: "https://tjsec.in/wp-content/uploads/2024/02/AQAR-REPORT-2018-19.pdf" },
-  { year: "2019-2020", url: "https://tjsec.in/wp-content/uploads/2022/03/AQAR-REPORT-2019-2020.pdf" },
-  { year: "2020-2021", url: "https://tjsec.in/wp-content/uploads/2023/04/2020-2021-AQAR.pdf" },
-  { year: "2021-2022", url: "https://tjsec.in/wp-content/uploads/2024/11/AQAR-2021-22.pdf" },
   { year: "2023-2024", url: "https://tjsec.in/wp-content/uploads/2025/03/AQAR-2023-24-REPORT.pdf" },
+  { year: "2021-2022", url: "https://tjsec.in/wp-content/uploads/2024/11/AQAR-2021-22.pdf" },
+  { year: "2020-2021", url: "https://tjsec.in/wp-content/uploads/2023/04/2020-2021-AQAR.pdf" },
+  { year: "2019-2020", url: "https://tjsec.in/wp-content/uploads/2022/03/AQAR-REPORT-2019-2020.pdf" },
+  { year: "2018-2019", url: "https://tjsec.in/wp-content/uploads/2024/02/AQAR-REPORT-2018-19.pdf" },
 ];
 
 const ANNUAL_REPORTS = [
-  { year: "2018-2019", url: "https://tjsec.in/wp-content/uploads/2024/11/2018-19-1.pdf" },
-  { year: "2019-2020", url: "https://tjsec.in/wp-content/uploads/2024/11/2019-20-1.pdf" },
-  { year: "2020-2021", url: "https://tjsec.in/wp-content/uploads/2024/11/2020-21-1.pdf" },
-  { year: "2021-2022", url: "https://tjsec.in/wp-content/uploads/2024/11/2021-22-1.pdf" },
-  { year: "2022-2023", url: "https://tjsec.in/wp-content/uploads/2024/11/2022-23-1.pdf" },
   { year: "2023-2024", url: "https://tjsec.in/wp-content/uploads/2025/01/Annual-Report-2023-24.pdf" },
+  { year: "2022-2023", url: "https://tjsec.in/wp-content/uploads/2024/11/2022-23-1.pdf" },
+  { year: "2021-2022", url: "https://tjsec.in/wp-content/uploads/2024/11/2021-22-1.pdf" },
+  { year: "2020-2021", url: "https://tjsec.in/wp-content/uploads/2024/11/2020-21-1.pdf" },
+  { year: "2019-2020", url: "https://tjsec.in/wp-content/uploads/2024/11/2019-20-1.pdf" },
+  { year: "2018-2019", url: "https://tjsec.in/wp-content/uploads/2024/11/2018-19-1.pdf" },
 ];
 
 const AISHE_DOCS = [
-  { year: "2020-2021", url: "http://tjsec.in/wp-content/uploads/2022/04/C-16619-Certificate.pdf" },
-  { year: "2021-2022", url: "https://tjsec.in/wp-content/uploads/2023/02/AISHE-2021-2022-CERTIFICATE.pdf" },
   { year: "2022-2023", url: "https://tjsec.in/wp-content/uploads/2024/03/AISHE-2023-certificateold.pdf" },
+  { year: "2021-2022", url: "https://tjsec.in/wp-content/uploads/2023/02/AISHE-2021-2022-CERTIFICATE.pdf" },
+  { year: "2020-2021", url: "http://tjsec.in/wp-content/uploads/2022/04/C-16619-Certificate.pdf" },
 ];
 
 const MINUTES_DOCS = [
-  { year: "2018-2019", url: "http://tjsec.in/wp-content/uploads/2024/10/IQAC-2018-2019.pdf" },
-  { year: "2019-2020", url: "https://tjsec.in/wp-content/uploads/2024/10/IQAC-2019-2020.pdf" },
-  { year: "2020-2021", url: "http://tjsec.in/wp-content/uploads/2024/10/IQAC-2020-2021.pdf" },
-  { year: "2021-2022", url: "https://tjsec.in/wp-content/uploads/2024/10/IQAC-2021-2022.pdf" },
-  { year: "2022-2023", url: "https://tjsec.in/wp-content/uploads/2024/10/IQAC-2022-2023.pdf" },
   { year: "2023-2024", url: "https://tjsec.in/wp-content/uploads/2025/01/IQAC-MINUTES-2023-24.pdf" },
+  { year: "2022-2023", url: "https://tjsec.in/wp-content/uploads/2024/10/IQAC-2022-2023.pdf" },
+  { year: "2021-2022", url: "https://tjsec.in/wp-content/uploads/2024/10/IQAC-2021-2022.pdf" },
+  { year: "2020-2021", url: "http://tjsec.in/wp-content/uploads/2024/10/IQAC-2020-2021.pdf" },
+  { year: "2019-2020", url: "https://tjsec.in/wp-content/uploads/2024/10/IQAC-2019-2020.pdf" },
+  { year: "2018-2019", url: "http://tjsec.in/wp-content/uploads/2024/10/IQAC-2018-2019.pdf" },
 ];
 
 const EXTERNAL_AUDIT_DOCS = [
-  { year: "2018-2019", url: "https://tjsec.in/wp-content/uploads/2024/11/2018-19.pdf" },
-  { year: "2019-2020", url: "https://tjsec.in/wp-content/uploads/2024/11/2019-20.pdf" },
-  { year: "2020-2021", url: "https://tjsec.in/wp-content/uploads/2024/11/2020-21.pdf" },
-  { year: "2021-2022", url: "https://tjsec.in/wp-content/uploads/2024/11/2021-22.pdf" },
   { year: "2022-2023", url: "https://tjsec.in/wp-content/uploads/2024/11/2022-23.pdf" },
+  { year: "2021-2022", url: "https://tjsec.in/wp-content/uploads/2024/11/2021-22.pdf" },
+  { year: "2020-2021", url: "https://tjsec.in/wp-content/uploads/2024/11/2020-21.pdf" },
+  { year: "2019-2020", url: "https://tjsec.in/wp-content/uploads/2024/11/2019-20.pdf" },
+  { year: "2018-2019", url: "https://tjsec.in/wp-content/uploads/2024/11/2018-19.pdf" },
 ];
 
 const FEEDBACK_FORMS = [

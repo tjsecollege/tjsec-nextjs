@@ -4,10 +4,10 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 const MOBILE_BREAKPOINT = 767;
 const GAP = 4;
-// Combined height of the sticky site header (46px) + this sticky jump-nav
-// bar (~56px) plus a little breathing room, so an anchor jump doesn't land
-// a section's own heading underneath those fixed bars.
-const SCROLL_OFFSET = 120;
+// Height of this sticky jump-nav bar (~56px) plus a little breathing room,
+// so an anchor jump doesn't land a section's own heading right underneath
+// it. The site header itself is no longer sticky, so it needs no offset.
+const SCROLL_OFFSET = 74;
 
 function scrollToSection(e, href) {
   // Let modifier/middle clicks behave normally (open in new tab, etc).

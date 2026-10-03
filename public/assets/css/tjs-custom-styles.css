@@ -1,3 +1,14 @@
+/* Disable the vendor template's "sticky header on scroll" clone site-wide —
+   #rs-sticky-header normally slides down and stays fixed once scrollTop>200
+   (see main.js); keep it permanently in its hidden baseline state instead so
+   the header simply scrolls away with the page like any other content. */
+.rs-sticky-header.active {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(-100%) !important;
+    pointer-events: none !important;
+}
+
 /* ===== Consolidated into index.html to survive the FTP-sync file-wipe issue ===== */
 /* ---- menu-clean.css ---- */
 .main-menu .submenu {
@@ -527,7 +538,7 @@ width: 510px;
     padding: 12px 10px;
     margin-bottom: 10px;
     position: sticky;
-    top: 46px;
+    top: 0;
     z-index: 1;
 }
 /* Only this inner row clips horizontally, never the <nav> itself: CSS
@@ -607,7 +618,46 @@ width: 510px;
     .tjs-dept-jump-tabs::-webkit-scrollbar { display: none; }
     .tjs-dept-jump a { flex: 0 0 auto; font-size: 12.5px; padding: 6px 14px; background: var(--rs-bg-secondary); }
 }
-.tjs-dept-section { padding: 50px 0; scroll-margin-top: 120px; }
+
+/* Two-level department quick-nav (DeptMegaNav) — full-width row of category
+   triggers, each opening a flyout panel of its real sub-section anchors.
+   Collapses to a vertical accordion under 768px, since a flyout doesn't fit
+   a narrow screen. */
+.tjs-dept-mega-nav { position: sticky; top: 0; z-index: 2; background: #fff; border-bottom: 1px solid var(--rs-border-primary); margin-bottom: 10px; }
+.tjs-dept-mega-list { display: flex; width: 100%; }
+.tjs-dept-mega-item { position: relative; flex: 1 1 0; border-inline-end: 1px solid var(--rs-border-primary); }
+.tjs-dept-mega-item:last-child { border-inline-end: none; }
+.tjs-dept-mega-trigger {
+    display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%;
+    border: none; background: none; padding: 15px 10px; font-size: 13.5px; font-weight: 700;
+    color: var(--rs-title-primary); cursor: pointer; white-space: nowrap;
+}
+.tjs-dept-mega-trigger i { font-size: 16px; color: var(--rs-text-secondary); transition: transform 0.2s ease; flex: 0 0 auto; }
+.tjs-dept-mega-trigger:hover { background: var(--rs-bg-secondary); }
+.tjs-dept-mega-item.open .tjs-dept-mega-trigger { background: var(--rs-theme-blue); color: #fff; }
+.tjs-dept-mega-item.open .tjs-dept-mega-trigger i { color: #fff; transform: rotate(180deg); }
+.tjs-dept-mega-dropdown {
+    position: absolute; top: 100%; inset-inline-start: 0; z-index: 5; min-width: 230px;
+    background: #fff; border: 1px solid var(--rs-border-primary); border-radius: 0 0 10px 10px;
+    box-shadow: 0 16px 36px rgba(3, 3, 3, 0.14); padding: 8px; display: flex; flex-direction: column; gap: 2px;
+}
+.tjs-dept-mega-item:nth-last-child(-n+2) .tjs-dept-mega-dropdown { inset-inline-start: auto; inset-inline-end: 0; border-radius: 0 0 0 10px; }
+.tjs-dept-mega-dropdown a { padding: 10px 14px; border-radius: 6px; font-size: 13.5px; font-weight: 500; color: var(--rs-text-primary); white-space: nowrap; }
+.tjs-dept-mega-dropdown a:hover { background: var(--rs-bg-secondary); color: var(--rs-theme-blue); }
+@media (max-width: 767px) {
+    .tjs-dept-mega-list { flex-direction: column; }
+    .tjs-dept-mega-item { border-inline-end: none; border-bottom: 1px solid var(--rs-border-primary); }
+    .tjs-dept-mega-item:last-child { border-bottom: none; }
+    .tjs-dept-mega-trigger { justify-content: space-between; padding: 14px 16px; }
+    .tjs-dept-mega-dropdown {
+        position: static; min-width: 0; border: none; border-radius: 0; box-shadow: none;
+        background: var(--rs-bg-secondary); padding: 6px 10px 10px 24px;
+    }
+    .tjs-dept-mega-item:nth-last-child(-n+2) .tjs-dept-mega-dropdown { inset-inline-end: auto; }
+    .tjs-dept-mega-dropdown a { white-space: normal; }
+}
+
+.tjs-dept-section { padding: 50px 0; scroll-margin-top: 74px; }
 .tjs-dept-section-alt { background: var(--rs-bg-secondary); margin: 0 0px; padding: 50px 20px; }
 .tjs-dept-section h2 { position: relative; color: var(--rs-theme-blue); font-size: 26px; font-weight: 700; margin-bottom: 28px; padding-bottom: 14px; }
 .tjs-dept-section h2::after { content: ""; position: absolute; left: 0; bottom: 0; width: 54px; height: 3px; background: var(--rs-theme-yellow); border-radius: 2px; }
@@ -682,13 +732,13 @@ width: 510px;
 .tjs-dept-people-card { background: #fff; border: 1px solid var(--rs-border-primary); border-radius: 12px; overflow: hidden; text-align: center; box-shadow: 0 8px 20px rgba(3, 3, 3, 0.05); }
 .tjs-dept-people-photo { background: #e3ecf9; padding: 26px 0 18px; }
 .tjs-dept-people-photo img { width: 92px; height: 92px; border-radius: 50%; object-fit: cover; border: 3px solid #fff; box-shadow: 0 4px 10px rgba(3, 3, 3, 0.12); }
-.tjs-dept-people-photo span:not(.tjs-dept-people-badge) { display: inline-flex; width: 92px; height: 92px; border-radius: 50%; background: #fff; align-items: center; justify-content: center; color: var(--rs-text-secondary); font-size: 12px; }
+.tjs-dept-people-photo span { display: inline-flex; width: 92px; height: 92px; border-radius: 50%; background: #fff; align-items: center; justify-content: center; color: var(--rs-text-secondary); font-size: 12px; }
 .tjs-dept-people-card h4 { margin: 16px 0 2px; color: var(--rs-theme-blue); font-size: 15px; font-weight: 700; }
 .tjs-dept-people-role { color: var(--rs-text-secondary); font-size: 13px; margin-bottom: 8px !important; }
 .tjs-dept-people-spec { font-size: 12.5px; color: var(--rs-title-primary); margin-bottom: 10px !important; padding: 0 12px; }
 .tjs-dept-people-email { display: block; font-size: 12.5px; color: var(--rs-theme-yellow); font-weight: 600; padding-bottom: 18px; }
 @media (max-width: 991px) { .tjs-dept-people-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 575px) { .tjs-dept-people-grid { grid-template-columns: 1fr; }.tjs-dept-page {    padding: 0 15px 40px;} .tjs-dept-jump { top: 70px; } }
+@media (max-width: 575px) { .tjs-dept-people-grid { grid-template-columns: 1fr; }.tjs-dept-page {    padding: 0 15px 40px;} .tjs-dept-jump { top: 0; } }
 .tjs-dept-tabs { display: inline-flex; gap: 6px; background: var(--rs-bg-secondary); border-radius: 30px; padding: 5px; margin-bottom: 24px; }
 .tjs-dept-tab { border: none; background: transparent; padding: 9px 20px; border-radius: 30px; font-size: 13.5px; font-weight: 600; cursor: pointer; color: var(--rs-title-primary); }
 .tjs-dept-tab.active { background: var(--rs-theme-blue); color: #fff; }
@@ -881,66 +931,43 @@ width: 510px;
     .tjs-people-carousel-track .tjs-dept-people-card { flex-basis: 85%; }
 }
 
-/* Premium treatment for Academic Toppers — this is the one slot every
-   department asked to stand out, so it gets its own gradient header,
-   award-ribbon badge and glow-on-hover instead of the plain faculty-grid
-   look (.tjs-dept-people-card is shared with the Faculty/Staff grids, so
-   all of this is scoped to cards rendered inside the carousel track). */
+/* Academic Toppers carousel card — full, uncropped student photo (not a
+   small circular avatar), so it gets its own rules instead of the plain
+   faculty-grid look (.tjs-dept-people-card is shared with the Faculty/Staff
+   grids, so all of this is scoped to cards rendered inside the carousel
+   track). */
 .tjs-people-carousel-track .tjs-dept-people-card {
     border: 1px solid var(--rs-border-primary);
-    border-radius: 16px;
+    border-radius: 14px;
+    overflow: hidden;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .tjs-people-carousel-track .tjs-dept-people-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 18px 34px rgba(236, 106, 64, 0.28);
+    box-shadow: 0 18px 34px rgba(3, 3, 3, 0.14);
 }
 .tjs-people-carousel-track .tjs-dept-people-photo {
-    position: relative;
-    background: linear-gradient(135deg, var(--rs-theme-blue), #3f4a9e);
-    padding: 32px 0 22px;
+    aspect-ratio: 1 / 1;
+    background: var(--rs-bg-secondary);
+    padding: 0;
 }
 .tjs-people-carousel-track .tjs-dept-people-photo img {
-    width: 102px;
-    height: 102px;
-    border: 4px solid var(--rs-theme-yellow);
-    box-shadow: 0 8px 18px rgba(3, 3, 3, 0.3);
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: none;
+    border-radius: 0;
+    object-fit: cover;
+    object-position: top;
+    box-shadow: none;
 }
-.tjs-people-carousel-track .tjs-dept-people-photo span:not(.tjs-dept-people-badge) {
-    width: 102px;
-    height: 102px;
-    border: 4px solid var(--rs-theme-yellow);
+.tjs-people-carousel-track .tjs-dept-people-photo span {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 0;
 }
-.tjs-dept-people-badge {
-    position: absolute;
-    left: 50%;
-    bottom: 10px;
-    transform: translateX(-50%);
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: var(--rs-theme-yellow);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 15px;
-    border: 2px solid #fff;
-    box-shadow: 0 4px 10px rgba(3, 3, 3, 0.25);
-}
-.tjs-people-carousel-track .tjs-dept-people-card h4 { font-size: 16px; margin-top: 18px; }
-.tjs-people-carousel-track .tjs-dept-people-role {
-    display: inline-flex;
-    margin: 0 0 16px !important;
-    padding: 3px 12px;
-    border-radius: 20px;
-    background: var(--rs-bg-secondary);
-    color: var(--rs-theme-blue);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-}
+.tjs-people-carousel-track .tjs-dept-people-card h4 { font-size: 16px; margin: 16px 0; }
 .tjs-slider-card-img-ph {
     width: 100%; height: 170px; background: var(--rs-bg-secondary); display: flex;
     align-items: center; justify-content: center; color: var(--rs-text-secondary); font-size: 13px;
