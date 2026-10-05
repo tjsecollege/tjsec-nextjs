@@ -34,18 +34,30 @@ function scrollToSection(e, href, after) {
  * under the clicked category; CSS alone switches it to a vertical accordion
  * on narrow viewports, since flyout panels don't suit a narrow screen. Only
  * one category is open at a time.
+ *
+ * On mobile the full 10-category accordion is collapsed behind a single
+ * toggle bar by default — showing all ten expanded rows above the fold
+ * before any real page content pushed the page content too far down and
+ * felt like a wall of navigation, not a quick-nav.
  */
 export default function DeptMegaNav({ categories }) {
   const [openIndex, setOpenIndex] = useState(-1);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const wrapRef = useRef(null);
 
   useEffect(() => {
-    if (openIndex === -1) return;
+    if (openIndex === -1 && !mobileOpen) return;
     function onPointerDown(e) {
-      if (wrapRef.current && !wrapRef.current.contains(e.target)) setOpenIndex(-1);
+      if (wrapRef.current && !wrapRef.current.contains(e.target)) {
+        setOpenIndex(-1);
+        setMobileOpen(false);
+      }
     }
     function onKey(e) {
-      if (e.key === "Escape") setOpenIndex(-1);
+      if (e.key === "Escape") {
+        setOpenIndex(-1);
+        setMobileOpen(false);
+      }
     }
     document.addEventListener("mousedown", onPointerDown);
     document.addEventListener("keydown", onKey);
@@ -53,11 +65,29 @@ export default function DeptMegaNav({ categories }) {
       document.removeEventListener("mousedown", onPointerDown);
       document.removeEventListener("keydown", onKey);
     };
-  }, [openIndex]);
+  }, [openIndex, mobileOpen]);
+
+  function goToChild(e, href) {
+    scrollToSection(e, href, () => {
+      setOpenIndex(-1);
+      setMobileOpen(false);
+    });
+  }
 
   return (
     <nav className="tjs-dept-mega-nav" ref={wrapRef}>
-      <div className="tjs-dept-mega-list">
+      <button
+        type="button"
+        className="tjs-dept-mega-toggle"
+        aria-expanded={mobileOpen}
+        onClick={() => setMobileOpen((v) => !v)}
+      >
+        <span>
+          <i className="ri-list-unordered"></i> Jump to Section
+        </span>
+        <i className="ri-arrow-down-s-line"></i>
+      </button>
+      <div className={"tjs-dept-mega-list" + (mobileOpen ? " mobile-open" : "")}>
         {categories.map((cat, i) => {
           const isOpen = openIndex === i;
           return (
@@ -74,11 +104,7 @@ export default function DeptMegaNav({ categories }) {
               {isOpen && (
                 <div className="tjs-dept-mega-dropdown">
                   {cat.children.map((child) => (
-                    <a
-                      key={child.href}
-                      href={child.href}
-                      onClick={(e) => scrollToSection(e, child.href, () => setOpenIndex(-1))}
-                    >
+                    <a key={child.href} href={child.href} onClick={(e) => goToChild(e, child.href)}>
                       {child.label}
                     </a>
                   ))}

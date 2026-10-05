@@ -12,11 +12,18 @@ const DOCS = [
   { year: "2020-21", file: "Mandatory-Disclosure-2020-2021-1.pdf" },
 ];
 
+const CATEGORIES = [
+  { id: "disclosure", label: "Public self disclosure/Mandatory disclosure" },
+  { id: "ugc", label: "UGC Undertaking Letter by HEI" },
+  { id: "rti", label: "Right to Information (RTI)" },
+];
+
 function docUrl(file) {
   return "/assets/pdf/mandatorydisclosure/" + encodeURIComponent(file);
 }
 
 export default function MandatoryDisclosure() {
+  const [activeCat, setActiveCat] = useState("disclosure");
   const [activeYear, setActiveYear] = useState(DOCS[0].year);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -32,6 +39,7 @@ export default function MandatoryDisclosure() {
   }
 
   useEffect(() => {
+    if (activeCat !== "disclosure") return;
     updateScrollState();
     const el = yearTabsRef.current;
     if (!el) return;
@@ -41,7 +49,7 @@ export default function MandatoryDisclosure() {
       el.removeEventListener("scroll", updateScrollState);
       window.removeEventListener("resize", updateScrollState);
     };
-  }, []);
+  }, [activeCat]);
 
   function scrollYearTabs(direction) {
     if (yearTabsRef.current) {
@@ -70,49 +78,88 @@ export default function MandatoryDisclosure() {
             Public Self Disclosure / Mandatory Disclosure
           </h2>
 
-          <div className="tjs-approvals-panel">
-            <div className="tjs-approvals-year-tabs-row">
-              <button
-                type="button"
-                className="tjs-approvals-year-nav"
-                aria-label="Scroll years left"
-                onClick={() => scrollYearTabs(-1)}
-                disabled={!canScrollLeft}
-              >
-                <i className="ri-arrow-left-s-line"></i>
-              </button>
-              <div className="tjs-approvals-year-tabs" ref={yearTabsRef}>
-                {DOCS.map((doc) => (
-                  <button
-                    key={doc.year}
-                    type="button"
-                    className={"tjs-approvals-year" + (activeYear === doc.year ? " active" : "")}
-                    onClick={() => setActiveYear(doc.year)}
-                  >
-                    {doc.year}
-                  </button>
-                ))}
-              </div>
-              <button
-                type="button"
-                className="tjs-approvals-year-nav"
-                aria-label="Scroll years right"
-                onClick={() => scrollYearTabs(1)}
-                disabled={!canScrollRight}
-              >
-                <i className="ri-arrow-right-s-line"></i>
-              </button>
-            </div>
+          <div className="tjs-approvals-layout">
+            <aside className="tjs-approvals-sidebar">
+              {CATEGORIES.map((cat) => (
+                <button
+                  key={cat.id}
+                  type="button"
+                  className={"tjs-approvals-cat" + (activeCat === cat.id ? " active" : "")}
+                  onClick={() => setActiveCat(cat.id)}
+                >
+                  {cat.label}
+                </button>
+              ))}
+            </aside>
 
-            {activeDoc && (
-              <div className="tjs-approvals-viewer">
-                <iframe
-                  key={activeDoc.file}
-                  src={docUrl(activeDoc.file)}
-                  title={"Mandatory Disclosure " + activeDoc.year}
-                />
-              </div>
-            )}
+            <div className="tjs-approvals-panel">
+              {activeCat === "disclosure" && (
+                <>
+                  <h3>Public self disclosure/Mandatory disclosure</h3>
+                  <div className="tjs-approvals-year-tabs-row">
+                    <button
+                      type="button"
+                      className="tjs-approvals-year-nav"
+                      aria-label="Scroll years left"
+                      onClick={() => scrollYearTabs(-1)}
+                      disabled={!canScrollLeft}
+                    >
+                      <i className="ri-arrow-left-s-line"></i>
+                    </button>
+                    <div className="tjs-approvals-year-tabs" ref={yearTabsRef}>
+                      {DOCS.map((doc) => (
+                        <button
+                          key={doc.year}
+                          type="button"
+                          className={"tjs-approvals-year" + (activeYear === doc.year ? " active" : "")}
+                          onClick={() => setActiveYear(doc.year)}
+                        >
+                          {doc.year}
+                        </button>
+                      ))}
+                    </div>
+                    <button
+                      type="button"
+                      className="tjs-approvals-year-nav"
+                      aria-label="Scroll years right"
+                      onClick={() => scrollYearTabs(1)}
+                      disabled={!canScrollRight}
+                    >
+                      <i className="ri-arrow-right-s-line"></i>
+                    </button>
+                  </div>
+
+                  {activeDoc && (
+                    <div className="tjs-approvals-viewer">
+                      <iframe
+                        key={activeDoc.file}
+                        src={docUrl(activeDoc.file)}
+                        title={"Mandatory Disclosure " + activeDoc.year}
+                      />
+                    </div>
+                  )}
+                </>
+              )}
+
+              {activeCat === "ugc" && (
+                <>
+                  <h3>UGC Undertaking Letter by HEI</h3>
+                  <p className="tjs-dept-pending">Documents will be added soon.</p>
+                </>
+              )}
+
+              {activeCat === "rti" && (
+                <>
+                  <h3>Right to Information (RTI)</h3>
+                  <div className="tjs-approvals-viewer">
+                    <iframe
+                      src="/assets/pdf/RTI-Statutory-Declaration-on-RTI-Act.pdf"
+                      title="Right to Information (RTI)"
+                    />
+                  </div>
+                </>
+              )}
+            </div>
           </div>
         </section>
       </div>

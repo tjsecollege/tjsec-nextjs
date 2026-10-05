@@ -260,8 +260,8 @@ const LIBRARY_COMMITTEE = [
   { name: "Dr. E Sivakumar", designation: "Professor – MECH", position: "Member" },
   { name: "Ms. J Agnes", designation: "Asst. Professor – CSE", position: "Member" },
   { name: "Ms. M Shunmuga Sankari", designation: "Associate Professor – EEE", position: "Member" },
-  { name: "Mr. R Murali", designation: "Assistant Professor – MBA", position: "Member" },
-  { name: "Dr. S Arjunan", designation: "Professor – PHY", position: "Member" },
+  { name: "Dr. N. Jayanthi", designation: "Assistant Professor – MBA", position: "Member" },
+  { name: "Dr. E. Sivakumar", designation: "Professor", position: "Member" },
 ];
 
 const TOTAL_TITLES = DEPT_WISE.reduce((s, d) => s + d.titles, 0);
