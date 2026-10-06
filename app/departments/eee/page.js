@@ -59,9 +59,42 @@ const PSOS = [
   },
 ];
 
+function bosDocUrl(file) {
+  return "/assets/images/eee/bos/" + encodeURIComponent(file);
+}
+
 const REGULATIONS = [
   { label: "B.E – EEE Regulations (2025)", href: "#" },
   { label: "B.E – EEE Regulations (2021)", href: "#" },
+];
+
+const BOS_DOCS = [
+  { label: "B.E – EEE Curriculum & Regulations (2025)", href: bosDocUrl("AU B.E. EEE 2025 .pdf") },
+  { label: "Anna University Academic Regulations 2025 (UG)", href: bosDocUrl("AU- REGULATIONS 2025.pdf") },
+  { label: "B.E – EEE Regulations (2021)", href: bosDocUrl("B.E. EEE R 2021.pdf") },
+  { label: "Anna University UG Regulations 2021", href: bosDocUrl("UG Regulation 2021.pdf") },
+];
+
+function mouDocUrl(file) {
+  return "/assets/images/eee/MOU/" + encodeURIComponent(file);
+}
+
+const MOU_DOCS = [
+  { label: "Prolific Systems & Technologies", href: mouDocUrl("PROLIFIC.pdf") },
+  { label: "Brayan", href: mouDocUrl("BRAYAN.pdf") },
+  { label: "FIIT (28.10.2025)", href: mouDocUrl("FIIT 28-10-2025.pdf") },
+  { label: "Majestic (22.09.2023)", href: mouDocUrl("MAJESTIC MOU 22.09.2023 SCAN COPY.pdf") },
+  { label: "NTLS", href: mouDocUrl("NTLS MoU SCANNED COPY.pdf") },
+  { label: "Retech (21.09.2023)", href: mouDocUrl("RETECH MOU 21.09.2023 SCAN COPY.pdf") },
+  { label: "V V Electro Systems", href: mouDocUrl("VV ELECTRO SYSTEMS (MOU).pdf") },
+  { label: "At least 5 MoUs with Industries (2025-2026)", href: mouDocUrl("ED 10. Atleast 5 MoUs with Industries 2025-2026.pdf") },
+];
+
+const CONSULTANCY = [
+  { label: "5 KW Roof Top Solar PV Implementation", href: "/assets/images/eee/consultancy/5-KW-Roof-Top-Solar-PV-Implementation.pdf" },
+  { label: "AI Based Automatic Irrigation System with Android Application", href: "/assets/images/eee/consultancy/AI-Based-Automatic-Irrigation-System-with-Android-Application.pdf" },
+  { label: "Automatic Fault Detection and Location of Transmission Lines using IoT", href: "/assets/images/eee/consultancy/Automatic-fault-Detection-and-Location-of-Transmission-Lines-using-IOT.pdf" },
+  { label: "Design and Fabrication of BLDC Motor Based Sewing Machine", href: "/assets/images/eee/consultancy/Design-and-Fabrication-of-BLDC-Motor-Based-Sewing-Machine.pdf" },
 ];
 
 const LABS = [
@@ -783,7 +816,7 @@ function LinkList({ items }) {
   return (
     <div className="tjs-dept-link-list">
       {items.map((item) => (
-        <a href={item.href} key={item.label}>
+        <a href={item.href} target="_blank" rel="noopener" key={item.label}>
           <span>{item.label}</span>
           <span className="tjs-dept-link-arrow">
             <ArrowIcon />
@@ -1066,13 +1099,16 @@ export default function EEEDepartment() {
 
         <section id="bos" className="tjs-dept-section">
           <h2>BOS</h2>
-          <p className="tjs-dept-pending">Content coming soon.</p>
+          <p>
+            The Board of Studies reviewed and approved the curriculum and regulations listed below for the
+            Department of Electrical and Electronics Engineering.
+          </p>
+          <LinkList items={BOS_DOCS} />
         </section>
 
         <section id="curriculum" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Curriculum &amp; Syllabus</h2>
           <LinkList items={REGULATIONS} />
-          <p className="tjs-dept-pending">2026 regulation &amp; curriculum revision is in progress; documents will be added soon.</p>
         </section>
 
         <section id="mou" className="tjs-dept-section">
@@ -1096,11 +1132,12 @@ export default function EEEDepartment() {
             to bridge the gap between academia and real-world applications. These MoUs enable internships,
             consultancy, faculty development, and cutting-edge research.
           </p>
+          <LinkList items={MOU_DOCS} />
         </section>
 
         <section id="consultancy" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Area of Consultancy</h2>
-          <p className="tjs-dept-pending">Details will be updated soon.</p>
+          <LinkList items={CONSULTANCY} />
         </section>
 
         <section id="industry-visits" className="tjs-dept-section">
