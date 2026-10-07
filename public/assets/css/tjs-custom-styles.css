@@ -947,7 +947,7 @@ width: 510px;
    pattern as the blog-card slider above, sized for .tjs-dept-people-card. */
 .tjs-people-carousel-wrap { position: relative; display: block; margin-bottom: 20px; }
 .tjs-people-carousel-wrap .tjs-slider-nav {
-    position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+    position: absolute; top: 50%; transform: translateY(-50%); z-index: 1;
     box-shadow: 0 8px 20px rgba(3, 3, 3, 0.18);
 }
 .tjs-people-carousel-wrap .tjs-slider-nav-prev { left: 10px; }
