@@ -679,12 +679,15 @@ width: 510px;
     .tjs-dept-mega-dropdown a { white-space: normal; }
 }
 
+.tjs-dept-toppers-top { padding: 30px 0 0; }
+.tjs-dept-toppers-top h3 { color: var(--rs-theme-blue); font-size: 18px; font-weight: 700; margin: 0 0 12px; text-align: center; }
 .tjs-dept-section { padding: 50px 0; scroll-margin-top: 74px; }
 .tjs-dept-section-alt { background: var(--rs-bg-secondary); margin: 0 0px; padding: 50px 20px; }
 .tjs-dept-section h2 { position: relative; color: var(--rs-theme-blue); font-size: 26px; font-weight: 700; margin-bottom: 28px; padding-bottom: 14px; }
 .tjs-dept-section h2::after { content: ""; position: absolute; left: 0; bottom: 0; width: 54px; height: 3px; background: var(--rs-theme-yellow); border-radius: 2px; }
 .tjs-dept-section h3 { color: var(--rs-theme-blue); font-size: 18px; font-weight: 700; margin: 26px 0 12px; }
 .tjs-dept-section h4 { color: var(--rs-text-primary); font-size: 16px; font-weight: 700; margin: 0px 0 12px; }
+.tjs-dept-lab-label { color: var(--rs-theme-blue); font-size: 14px; font-weight: 600; margin: 0 0 10px; }
 .tjs-dept-section p { color: var(--rs-text-primary); line-height: 1.7; margin-bottom: 14px; }
 .tjs-dept-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 20px 0; }
 .tjs-dept-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -906,7 +909,13 @@ width: 510px;
 }
 
 /* Blog-card style horizontal slider (Events & Achievements) */
-.tjs-slider-wrap { position: relative; display: flex; align-items: center; gap: 10px; margin-bottom: 24px; }
+.tjs-slider-wrap { position: relative; display: block; margin-bottom: 24px; }
+.tjs-slider-wrap .tjs-slider-nav {
+    position: absolute; top: 89px; transform: translateY(-50%); z-index: 2;
+    box-shadow: 0 8px 20px rgba(3, 3, 3, 0.18);
+}
+.tjs-slider-wrap .tjs-slider-nav-prev { left: 10px; }
+.tjs-slider-wrap .tjs-slider-nav-next { right: 10px; }
 .tjs-slider-track {
     display: flex; gap: 22px; overflow-x: auto; scroll-behavior: smooth; scrollbar-width: none;
     padding: 4px 4px 10px; min-width: 0; scroll-snap-type: x mandatory;
@@ -936,13 +945,22 @@ width: 510px;
 
 /* Circular-photo people carousel (Academic Toppers, etc.) — same nav-arrow
    pattern as the blog-card slider above, sized for .tjs-dept-people-card. */
-.tjs-people-carousel-wrap { position: relative; display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+.tjs-people-carousel-wrap { position: relative; display: block; margin-bottom: 20px; }
+.tjs-people-carousel-wrap .tjs-slider-nav {
+    position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+    box-shadow: 0 8px 20px rgba(3, 3, 3, 0.18);
+}
+.tjs-people-carousel-wrap .tjs-slider-nav-prev { left: 10px; }
+.tjs-people-carousel-wrap .tjs-slider-nav-next { right: 10px; }
 .tjs-people-carousel-track {
     display: flex; flex: 1 1 auto; gap: 20px; overflow-x: auto; scroll-behavior: smooth; scrollbar-width: none;
     padding: 4px 4px 10px; min-width: 0; scroll-snap-type: x mandatory;
 }
 .tjs-people-carousel-track::-webkit-scrollbar { display: none; }
-.tjs-people-carousel-track .tjs-dept-people-card { flex: 0 0 calc((100% - 60px) / 4); min-width: 0; scroll-snap-align: start; margin-bottom: 0; }
+.tjs-people-carousel-track .tjs-dept-people-card { flex: 0 0 calc((100% - 80px) / 5); min-width: 0; scroll-snap-align: start; margin-bottom: 0; }
+@media (max-width: 1199px) {
+    .tjs-people-carousel-track .tjs-dept-people-card { flex-basis: calc((100% - 60px) / 4); }
+}
 @media (max-width: 991px) {
     .tjs-people-carousel-track .tjs-dept-people-card { flex-basis: calc((100% - 40px) / 3); }
 }

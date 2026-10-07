@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 
+const AUTO_SCROLL_INTERVAL = 3000;
+
 function SimpleCard({ img, date, title, desc, onClick }) {
   return (
     <div className="tjs-slider-card" onClick={onClick} role="button" tabIndex={0}>
@@ -177,20 +179,64 @@ export default function EventSlider({ items }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items]);
 
+  function cardStep(el) {
+    const card = el.firstElementChild;
+    const gap = parseFloat(getComputedStyle(el).columnGap || getComputedStyle(el).gap || "0");
+    return card ? card.getBoundingClientRect().width + gap : 340;
+  }
+
   function scroll(direction) {
     const el = trackRef.current;
     if (!el) return;
-    const card = el.firstElementChild;
-    const gap = parseFloat(getComputedStyle(el).columnGap || getComputedStyle(el).gap || "0");
-    const step = card ? card.getBoundingClientRect().width + gap : 340;
-    el.scrollBy({ left: direction * step, behavior: "smooth" });
+    el.scrollBy({ left: direction * cardStep(el), behavior: "smooth" });
   }
+
+  // Auto-advance so the slider cycles on its own — pauses on hover/touch,
+  // and loops back to the start once it hits the end.
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el || items.length < 2) return;
+
+    let paused = false;
+
+    function tick() {
+      if (paused || activeIndex !== null) return;
+      const atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 4;
+      if (atEnd) {
+        el.scrollTo({ left: 0, behavior: "auto" });
+      } else {
+        el.scrollBy({ left: cardStep(el), behavior: "auto" });
+      }
+    }
+
+    function pause() {
+      paused = true;
+    }
+    function resume() {
+      paused = false;
+    }
+
+    const id = setInterval(tick, AUTO_SCROLL_INTERVAL);
+    el.addEventListener("mouseenter", pause);
+    el.addEventListener("mouseleave", resume);
+    el.addEventListener("touchstart", pause, { passive: true });
+    el.addEventListener("touchend", resume);
+
+    return () => {
+      clearInterval(id);
+      el.removeEventListener("mouseenter", pause);
+      el.removeEventListener("mouseleave", resume);
+      el.removeEventListener("touchstart", pause);
+      el.removeEventListener("touchend", resume);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items, activeIndex]);
 
   return (
     <div className="tjs-slider-wrap">
       <button
         type="button"
-        className="tjs-slider-nav"
+        className="tjs-slider-nav tjs-slider-nav-prev"
         aria-label="Scroll left"
         onClick={() => scroll(-1)}
         disabled={!canScrollLeft}
@@ -204,7 +250,7 @@ export default function EventSlider({ items }) {
       </div>
       <button
         type="button"
-        className="tjs-slider-nav"
+        className="tjs-slider-nav tjs-slider-nav-next"
         aria-label="Scroll right"
         onClick={() => scroll(1)}
         disabled={!canScrollRight}

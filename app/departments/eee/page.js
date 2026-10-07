@@ -75,6 +75,17 @@ const BOS_DOCS = [
   { label: "Anna University UG Regulations 2021", href: bosDocUrl("UG Regulation 2021.pdf") },
 ];
 
+function newsletterUrl(file) {
+  return "/assets/images/eee/NEWSLETTER/" + encodeURIComponent(file);
+}
+
+const NEWSLETTERS = [
+  { label: "2025-26 – Odd Semester", href: newsletterUrl("NEWSLETTER 2025-2026 ODD SEM.docx") },
+  { label: "2025-26 – Even Semester", href: newsletterUrl("NEWS LETTER 2025-2026 EVEN SEM.docx") },
+  { label: "2024-25 – Odd Semester", href: newsletterUrl("NEWS LETTER 2024-25 ODD SEM.docx") },
+  { label: "2024-25 – Even Semester", href: newsletterUrl("NEWS LETTER 2024-2025 EVEN SEM.docx") },
+];
+
 function mouDocUrl(file) {
   return "/assets/images/eee/MOU/" + encodeURIComponent(file);
 }
@@ -100,6 +111,7 @@ const CONSULTANCY = [
 const LABS = [
   {
     name: "1. Electrical Machines Lab",
+    label: "About the Laboratory",
     paragraphs: [
       "The Electrical Machines Laboratory of the Department of Electrical and Electronics Engineering is designed to provide students with hands-on experience in the operation, testing, performance evaluation, and analysis of electrical machines.",
       "The laboratory supports the practical learning of DC machines, transformers, induction motors, synchronous machines, and special electrical machines. Through systematic experiments, students develop an understanding of machine characteristics, losses, efficiency, speed control, torque characteristics, voltage regulation, and operating performance.",
@@ -112,6 +124,7 @@ const LABS = [
   },
   {
     name: "2. Power Electronics Lab",
+    label: "About the Laboratory",
     paragraphs: [
       "The Power Electronics Laboratory of the Department of Electrical and Electronics Engineering provides students with hands-on experience in the design, analysis, control and application of power electronic converters and semiconductor switching devices.",
       "The laboratory enables students to understand the practical operation of power semiconductor devices, controlled rectifiers, DC-DC converters, inverters, AC voltage controllers and cycloconverters. Students perform experiments to study output waveforms, triggering techniques, voltage and current control, efficiency and performance of power electronic circuits.",
@@ -120,22 +133,29 @@ const LABS = [
     imgs: [{ src: "/assets/images/eee/image_108.jpeg", alt: "Students at the Power Electronics Lab" }],
   },
   {
-    name: "3. Control and Instrumentation Laboratory",
-    paragraphs: [
-      "The Control and Instrumentation Laboratory of the Department of Electrical and Electronics Engineering provides students with practical knowledge in measurement, instrumentation, control systems, sensors, transducers and feedback control techniques.",
-      "The laboratory enables students to understand the behaviour of dynamic systems and to experimentally study open-loop and closed-loop control systems, time response, frequency response, stability, controllers and industrial measurement systems. Students also gain hands-on experience with sensors, transducers and electronic instrumentation used in engineering applications.",
-    ],
-    imgs: [{ src: "/assets/images/eee/image_95.jpeg", alt: "Control and Instrumentation Laboratory entrance" }],
-  },
-  {
-    name: "4. Power System Simulation Laboratory",
-    paragraphs: [
-      "The Power System Simulation Laboratory of the Department of Electrical and Electronics Engineering provides students with practical training in the modelling, analysis and simulation of electrical power systems using modern computational tools.",
-      "The laboratory enables students to simulate and analyze power-flow studies, fault analysis, transmission-line performance, load-frequency control, economic operation and stability of power systems. Students develop the ability to model electrical networks and interpret simulation results for planning, operation and control of modern power systems.",
-    ],
-    imgs: [
-      { src: "/assets/images/eee/image_96.jpeg", alt: "Power System Simulation Laboratory" },
-      { src: "/assets/images/eee/image_107.jpeg", alt: "Power System Simulation Laboratory computers" },
+    name: "3. Control and Instrumentation Lab and Power System Simulation Lab",
+    subLabs: [
+      {
+        name: "Control and Instrumentation Laboratory",
+        label: "About the Laboratory",
+        paragraphs: [
+          "The Control and Instrumentation Laboratory of the Department of Electrical and Electronics Engineering provides students with practical knowledge in measurement, instrumentation, control systems, sensors, transducers and feedback control techniques.",
+          "The laboratory enables students to understand the behaviour of dynamic systems and to experimentally study open-loop and closed-loop control systems, time response, frequency response, stability, controllers and industrial measurement systems. Students also gain hands-on experience with sensors, transducers and electronic instrumentation used in engineering applications.",
+        ],
+        imgs: [{ src: "/assets/images/eee/image_95.jpeg", alt: "Control and Instrumentation Laboratory entrance" }],
+      },
+      {
+        name: "Power System Simulation Laboratory",
+        label: "About the Laboratory",
+        paragraphs: [
+          "The Power System Simulation Laboratory of the Department of Electrical and Electronics Engineering provides students with practical training in the modelling, analysis and simulation of electrical power systems using modern computational tools.",
+          "The laboratory enables students to simulate and analyze power-flow studies, fault analysis, transmission-line performance, load-frequency control, economic operation and stability of power systems. Students develop the ability to model electrical networks and interpret simulation results for planning, operation and control of modern power systems.",
+        ],
+        imgs: [
+          { src: "/assets/images/eee/image_96.jpeg", alt: "Power System Simulation Laboratory" },
+          { src: "/assets/images/eee/image_107.jpeg", alt: "Power System Simulation Laboratory computers" },
+        ],
+      },
     ],
   },
 ];
@@ -208,7 +228,7 @@ const INDUSTRIAL_VISITS = [
     ],
   },
   {
-    date: "28-08-2026",
+    date: "24-08-2026",
     title: "Voltech Manufacturing Company, Chennai",
     desc: "EEE Department students.",
     imgs: [
@@ -542,6 +562,38 @@ const CO_CURRICULAR = [
     desc: "III Year students went to St. Peter’s Engineering College.",
     imgs: [{ src: "/assets/images/eee/image_62.png", alt: "St. Peter's Ideathon certificate – Hinduja V" }],
   },
+  {
+    date: "25-08-2025",
+    title: "TNSCST Project Expo",
+    desc:
+      "Guide-wise project teams presented at the TNSCST Project Expo:\n\n" +
+      "Mr. T. Kamalkumar, AP-EEE – Oviya R, Sanjay U, Samuel R\n\n" +
+      "Mr. S. Ganesh, AP-EEE – Nageshwari R, Logendheran R, Sanjay V\n\n" +
+      "Mr. S. Ganesh, AP-EEE – Karthick K, Sakthivel V\n\n" +
+      "Mrs. C. Anusha, AP-EEE – Kaviya Sri S, Santhosh M\n\n" +
+      "Mr. M. Arjunkumar, AP-EEE – Kalaiselvi P, Magesh N\n\n" +
+      "Mr. M. Arjunkumar, AP-EEE – Sandhiya A S, Suryaprasath T\n\n" +
+      "Mrs. M. Shunmuga Sankari, HOD-EEE – Hemaraj R, Jayasreen M, Vijay R",
+  },
+  {
+    date: "17-09-2025",
+    title: "Smart India Hackathon – 8 Teams",
+    desc:
+      "8 student teams participated in the Smart India Hackathon:\n\n" +
+      "Magnetrons (Leader: Kalaiselvi P) – Magesh N, Deepanjal M, Kamalesh T, Diwakar S, Dhanasekar L\n\n" +
+      "The Strives (Leader: Kaviya Sri S) – Santhosh M, Nethaji P, Vignesh M, Harish Raj S, Anandh R\n\n" +
+      "One Pieces (Leader: Oviya R) – Sanjay U, Samuel R, Perarasu K, Kalaivanan K S, Lokesh M\n\n" +
+      "Thunder Bolts (Leader: Hemaraj R) – Jayasreen M, Vijay R, Hinduja V, Madhavan N, Shyam E\n\n" +
+      "Tech Transformers (Leader: Sakthivel V) – Karthick K, Kamesh G, Vijayakumar V, Lingeshwaran N, Ezhilvani E\n\n" +
+      "Captain Volt (Leader: Gopiraj M) – Avinash K, Poornima K, Lavanya G, Sanjairaj E, Madhan J\n\n" +
+      "EEE Warriors (Leader: Nageshwari R) – Logendheran R, Sanjay V, Hariniya S, Hemavathi R\n\n" +
+      "Electro Titanz (Leader: Sandhiya A S) – Suryaprasath T, Aravind T, Angumuthu A, Archana D, Deenakumar D",
+  },
+  {
+    date: "12-09-2024 & 13-09-2024",
+    title: "TNSCST Project Proposal",
+    desc: "4 batches participated in the Smart India Hackathon (12-09-2024) and 5 batches participated under the Tamil Nadu State Council for Science and Technology (13-09-2024).",
+  },
 ];
 
 const EXTRA_CURRICULAR = [
@@ -624,103 +676,6 @@ const INTERNSHIPS = [
     org: "TANGEDCO, Pulicat",
     date: "26-12-2025 (15 days)",
     who: "II Year students: Sabari Manikandan K, Kishore B, Edwin Paul M, Karan M, Yokesh S, Jayaprakash D, Anandh R, Tharun D, Parthian P",
-  },
-];
-
-const PATENTS = [
-  { date: "18-10-2024", topic: "Optimizing EV Charging Station Operations Using IoT, Cloud Computing & Machine Learning for Eco-friendly Transportation", by: "Mrs. M. Shunmuga Sankari (HOD), Mr. T. Kamalkumar, Mr. M. Arjunkumar, Mr. S. Ganesh" },
-  { date: "2022-2023", topic: "Electric Power Distribution Employing Ensemble Machine Learning Based Cyber Physical System (202241006399)", by: "Dr. J. Prakash, Principal" },
-  { date: "2022-2023", topic: "CNN Based Blood Cancer Detection and Diagnosis Method (202241013641)", by: "M. Shunmuga Sankari" },
-  { date: "2022-2023", topic: "Realtime Agricultural Field Monitoring System Using IoT (202241027406)", by: "Ms. Shunmuga Sankari M, Mr. T. Kamalkumar, Mr. Prakash A" },
-  { date: "2022-2023", topic: "AI Based Smart Agriculture System Using Embedded IoT (202241072729)", by: "Ms. Shunmuga Sankari M, Mr. T. Kamalkumar" },
-  { date: "2025-2023", topic: "AI-Driven Deep Learning Model for Predictive Healthcare Diagnostics (202521025273)", by: "Mr. T. Kamalkumar" },
-];
-
-const PUBLICATIONS = [
-  {
-    title: "DABPR: A Large-Scale Internet of Things-Based Data Aggregation Back Pressure Routing for Disaster Management",
-    by: "Dr. J. Prakash",
-    link: "https://link.springer.com/article/10.1007/s11276-019-02122-3",
-  },
-  {
-    title: "Design of PSO-Fuzzy MPPT Controller for Photovoltaic Application",
-    by: "Dr. J. Prakash",
-    link: "https://doi.org/10.1007/978-81-322-2119-7_130",
-  },
-  {
-    title: "Cuckoo Search Assisted Fuzzy Logic Algorithm for Smart WSN Routing System",
-    by: "Dr. J. Prakash",
-    link: "https://doi.org/10.1504/IJAHUC.2022.123532",
-  },
-  {
-    title: "Design of Coordinated Control Scheme for Hybrid Resonant Boost Converter and Multi Level Inverter",
-    by: "Dr. J. Prakash",
-    link: "https://doi.org/10.17485/ijst/2016/v9i11/89389",
-  },
-  {
-    title: "Design of Soft Switching Interleaved Boost Converter for Photovoltaic Application",
-    by: "Dr. J. Prakash",
-    link: "https://www.researchgate.net/publication/282069245_Design_of_Soft_Switching_Interleaved_Boost_Converter_for_Photovoltaic_Application",
-  },
-  {
-    title: "MPPT in Partially Shaded PV System with the Use of WODE Technique",
-    by: "Dr. J. Prakash",
-    link: "https://www.researchgate.net/publication/297679592_Fuzzy_Logic_Controller_for_Partial_Shaded_Photovoltaic_Array_Fed_Modular_Multilevel_Converter",
-  },
-  {
-    title: "An Investigation of Various Actuation Mechanisms in Robot Arm",
-    by: "Dr. J. Prakash",
-    link: "https://doi.org/10.1177/0020294019866854",
-  },
-  {
-    title: "Design and Development of Solar Photovoltaic System Using Single-Phase MLI",
-    by: "Dr. J. Prakash",
-    link: "https://doi.org/10.1007/978-981-15-2256-7_58",
-  },
-  {
-    title: "Performance Analysis and Simulation of Five Level and Seven Level Single Phase Multilevel Inverters",
-    by: "Dr. J. Prakash",
-    link: "https://doi.org/10.1049/cp.2012.2227",
-  },
-  {
-    title: "Sinusoidal Output Voltage H-Bridge Multilevel Inverters",
-    by: "Dr. J. Prakash",
-    link: "https://doi.org/10.1049/cp.2012.2224",
-  },
-  {
-    title: "Reward-Based Residential Wireless Sensor Optimization Approach for Appliance Monitoring",
-    by: "Dr. J. Prakash",
-    link: "https://doi.org/10.1007/s00500-020-05525-z",
-  },
-  {
-    title: "Design of Polarization Splitter Using Elliptically Dual Core–Cladding Photonic Crystal Fiber",
-    by: "Dr. J. Prakash",
-    link: "https://doi.org/10.1016/j.rinp.2019.102279",
-  },
-  {
-    title: "A Novel Technique for Common Mode-Voltage Elimination and DC-Link Balancing in Three-Level Inverter",
-    by: "Dr. J. Prakash",
-    link: "https://www.praiseworthyprize.org/latest_issues/IREMOS-latest/IREMOS_vol_5_n_2.html",
-  },
-  {
-    title: "Retraction Note: Reward-Based Residential Wireless Sensor Optimization Approach for Appliance Monitoring",
-    by: "Dr. J. Prakash",
-    link: "https://doi.org/10.1007/s00500-024-10229-9",
-  },
-  {
-    title: "Topology and Performance Analysis of Cascadable Nine Level Inverter by Packed U-Cell Inverter and Using Multi-Mode Synchronized PWM Schemes",
-    by: "Dr. J. Prakash",
-    link: "https://eurekamag.com/research/105/008/105008685.php",
-  },
-  {
-    title: "Polymers Based Material as a Safety Suit for High Power Utilities Working",
-    by: "Dr. J. Prakash",
-    link: "https://www.researchgate.net/publication/350942260_Polymers_Based_Material_as_A_Safety_Suit_for_High_Power_Utilities_Working",
-  },
-  {
-    title: "Design and Development of Control Scheme for Solar PV System Using Single Phase Multilevel Inverter",
-    by: "Dr. J. Prakash",
-    link: "https://eurekamag.com/research/103/808/103808228.php",
   },
 ];
 
@@ -848,6 +803,11 @@ export default function EEEDepartment() {
       <div className="tjs-dept-page">
         <DeptMegaNav categories={MENU} />
 
+        <div className="tjs-dept-toppers-top">
+          <h3>Academic Toppers</h3>
+          <PeopleCarousel items={TOPPERS} />
+        </div>
+
         <section id="about" className="tjs-dept-section">
           <h2>About us</h2>
           <p>
@@ -895,7 +855,7 @@ export default function EEEDepartment() {
 
         <section id="advisory" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Department Advisory Committee</h2>
-          <p className="tjs-dept-pending">Content coming soon.</p>
+          <p className="tjs-dept-pending">Committee will be updated soon.</p>
         </section>
 
         <section id="vision-mission" className="tjs-dept-section">
@@ -1032,7 +992,7 @@ export default function EEEDepartment() {
 
         <section id="magazine" className="tjs-dept-section">
           <h2>Magazine</h2>
-          <p className="tjs-dept-pending">Content coming soon.</p>
+          <LinkList items={NEWSLETTERS} />
         </section>
 
         <section id="faculty" className="tjs-dept-section tjs-dept-section-alt">
@@ -1113,20 +1073,6 @@ export default function EEEDepartment() {
 
         <section id="mou" className="tjs-dept-section">
           <h2>MOU&apos;s</h2>
-          <h3>Professional Societies</h3>
-          <p>Mr. Kamalkumar T – Membership in IAENG (International Association of Engineers).</p>
-
-          <h3>Centre of Excellence</h3>
-          <div className="tjs-dept-card">
-            <h4 style={{ marginTop: 0, color: "var(--rs-theme-blue)" }}>Prolific Systems &amp; Technologies Pvt Ltd</h4>
-            <p style={{ marginBottom: 0 }}>
-              No.151/34, 3rd Floor, Sri Ranga Complex, Mambalam High Road, T.Nagar, Chennai-17
-              <br />
-              Phone: 044 28144061 / 28144064
-            </p>
-          </div>
-
-          <h3>MoU</h3>
           <p>
             The Department of Electrical and Electronics Engineering actively collaborates with leading industries
             to bridge the gap between academia and real-world applications. These MoUs enable internships,
@@ -1147,61 +1093,7 @@ export default function EEEDepartment() {
 
         <section id="research" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Area of Research</h2>
-          <div className="tjs-dept-grid-3">
-            <div className="tjs-dept-card">
-              <h3>Books Chapters</h3>
-              <p style={{ marginBottom: 0 }}>4</p>
-            </div>
-            <div className="tjs-dept-card">
-              <h3>Supervisor &amp; Scholars</h3>
-              <p style={{ marginBottom: 0 }}>2 (Guided)</p>
-            </div>
-            <div className="tjs-dept-card">
-              <h3>Consultancies</h3>
-              <p style={{ marginBottom: 0 }}>4</p>
-            </div>
-          </div>
-
-          <h3>Patents Registered</h3>
-          <div className="tjs-dept-table-wrap">
-            <table className="tjs-dept-table">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Topic</th>
-                  <th>Published By</th>
-                </tr>
-              </thead>
-              <tbody>
-                {PATENTS.map((p) => (
-                  <tr key={p.topic}>
-                    <td>{p.date}</td>
-                    <td>{p.topic}</td>
-                    <td>{p.by}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <h3>Publications (19 Journals)</h3>
-          <div className="tjs-pub-list">
-            {PUBLICATIONS.map((p) => (
-              <a href={p.link} target="_blank" rel="noopener" className="tjs-pub-card" key={p.title}>
-                <div className="tjs-pub-icon">
-                  <i className="ri-file-text-line"></i>
-                </div>
-                <div className="tjs-pub-content">
-                  <h4 className="tjs-pub-title">
-                    {p.title} <i className="ri-external-link-line"></i>
-                  </h4>
-                  <p className="tjs-pub-meta">
-                    <strong>{p.by}</strong>
-                  </p>
-                </div>
-              </a>
-            ))}
-          </div>
+          <p className="tjs-dept-pending">Detail will be shared.</p>
         </section>
 
         <section id="seed-money" className="tjs-dept-section">
@@ -1210,61 +1102,46 @@ export default function EEEDepartment() {
         </section>
 
         <section id="facilities" className="tjs-dept-section tjs-dept-section-alt">
-          <h2>Facilities &amp; Laboratories</h2>
+          <h2>Laboratory Facilities</h2>
 
-          <h3>Department Library</h3>
-          <div className="tjs-dept-media-row">
-            <div className="tjs-dept-media-row-text">
-              <p>
-                The Department Library of the Department of Electrical and Electronics Engineering (EEE) serves as a
-                valuable academic resource centre that supports teaching, learning, research, and professional
-                development. The library provides access to a wide range of textbooks, reference books, journals, and
-                learning resources related to Electrical and Electronics Engineering.
-              </p>
-              <p>
-                The library is designed to enhance students&apos; technical knowledge, encourage self-learning, and
-                support faculty members in their academic and research activities. It provides a conducive environment
-                for reading, knowledge sharing, and continuous learning.
-              </p>
-              <p>
-                The Department Library is committed to promoting academic excellence, encouraging lifelong learning,
-                and supporting the overall growth of students and faculty members in the field of Electrical and
-                Electronics Engineering.
-              </p>
-            </div>
-            <div className="tjs-dept-media-row-img">
-              <DeptPhotoSlider
-                images={[
-                  { src: "/assets/images/eee/image_106.jpeg", alt: "Students reading in the Department Library" },
-                  { src: "/assets/images/eee/image_112.jpeg", alt: "Department Library book cabinets" },
-                ]}
-              />
-            </div>
-          </div>
-
+          <h3>Laboratories</h3>
           {LABS.map((lab) => (
             <div key={lab.name}>
               <h3>{lab.name}</h3>
-              <div className="tjs-dept-media-row">
-                <div className="tjs-dept-media-row-text">
-                  {lab.paragraphs.map((para, i) => (
-                    <p key={i}>{para}</p>
-                  ))}
-                </div>
-                <div className="tjs-dept-media-row-img">
-                  <DeptPhotoSlider images={lab.imgs} />
-                </div>
-              </div>
+              {lab.subLabs ? (
+                lab.subLabs.map((sub) => (
+                  <div key={sub.name}>
+                    <h4>{sub.name}</h4>
+                    <p className="tjs-dept-lab-label">{sub.label}</p>
+                    <div className="tjs-dept-media-row">
+                      <div className="tjs-dept-media-row-text">
+                        {sub.paragraphs.map((para, i) => (
+                          <p key={i}>{para}</p>
+                        ))}
+                      </div>
+                      <div className="tjs-dept-media-row-img">
+                        <DeptPhotoSlider images={sub.imgs} />
+                      </div>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <>
+                  <p className="tjs-dept-lab-label">{lab.label}</p>
+                  <div className="tjs-dept-media-row">
+                    <div className="tjs-dept-media-row-text">
+                      {lab.paragraphs.map((para, i) => (
+                        <p key={i}>{para}</p>
+                      ))}
+                    </div>
+                    <div className="tjs-dept-media-row-img">
+                      <DeptPhotoSlider images={lab.imgs} />
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           ))}
-
-          <h3>Innovative Teaching &amp; Learning Practices</h3>
-          <ul className="tjs-dept-bullets">
-            <li>Smart classroom – Interactive digital teaching using smart boards, projectors and multimedia.</li>
-          </ul>
-          <div className="tjs-dept-photo-grid">
-            <img src="/assets/images/eee/image_94.jpeg" alt="Smart classroom session" className="tjs-dept-photo-real" />
-          </div>
         </section>
 
         <section id="conferences" className="tjs-dept-section">
@@ -1476,8 +1353,7 @@ export default function EEEDepartment() {
 
         <section id="students-achievements" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Students Achievements</h2>
-          <h3>Academic Toppers</h3>
-          <PeopleCarousel items={TOPPERS} />
+          <p className="tjs-dept-pending">Content coming soon.</p>
         </section>
 
         <section id="gallery" className="tjs-dept-section">

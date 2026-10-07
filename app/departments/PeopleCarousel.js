@@ -51,9 +51,9 @@ export default function PeopleCarousel({ items }) {
       if (paused) return;
       const atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 4;
       if (atEnd) {
-        el.scrollTo({ left: 0, behavior: "smooth" });
+        el.scrollTo({ left: 0, behavior: "auto" });
       } else {
-        el.scrollBy({ left: cardStep(el), behavior: "smooth" });
+        el.scrollBy({ left: cardStep(el), behavior: "auto" });
       }
     }
 
