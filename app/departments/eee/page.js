@@ -1,8 +1,10 @@
 import DeptMegaNav from "../DeptMegaNav";
 import PeopleCarousel from "../PeopleCarousel";
 import DeptPhotoSlider from "../DeptPhotoSlider";
-import EventAccordion from "../EventAccordion";
 import EventSlider from "../EventSlider";
+import MouTabsViewer from "../MouTabsViewer";
+import YearGroupedVisits from "../YearGroupedVisits";
+import LabAccordion from "../LabAccordion";
 
 const ArrowIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -63,16 +65,11 @@ function bosDocUrl(file) {
   return "/assets/images/eee/bos/" + encodeURIComponent(file);
 }
 
-const REGULATIONS = [
-  { label: "B.E – EEE Regulations (2025)", href: "#" },
-  { label: "B.E – EEE Regulations (2021)", href: "#" },
-];
-
 const BOS_DOCS = [
-  { label: "B.E – EEE Curriculum & Regulations (2025)", href: bosDocUrl("AU B.E. EEE 2025 .pdf") },
   { label: "Anna University Academic Regulations 2025 (UG)", href: bosDocUrl("AU- REGULATIONS 2025.pdf") },
-  { label: "B.E – EEE Regulations (2021)", href: bosDocUrl("B.E. EEE R 2021.pdf") },
+  { label: "B.E – EEE Curriculum & Regulations (2025)", href: bosDocUrl("AU B.E. EEE 2025 .pdf") },
   { label: "Anna University UG Regulations 2021", href: bosDocUrl("UG Regulation 2021.pdf") },
+  { label: "B.E – EEE Regulations (2021)", href: bosDocUrl("B.E. EEE R 2021.pdf") },
 ];
 
 function newsletterUrl(file) {
@@ -91,14 +88,14 @@ function mouDocUrl(file) {
 }
 
 const MOU_DOCS = [
-  { label: "Prolific Systems & Technologies", href: mouDocUrl("PROLIFIC.pdf") },
-  { label: "Brayan", href: mouDocUrl("BRAYAN.pdf") },
-  { label: "FIIT (28.10.2025)", href: mouDocUrl("FIIT 28-10-2025.pdf") },
-  { label: "Majestic (22.09.2023)", href: mouDocUrl("MAJESTIC MOU 22.09.2023 SCAN COPY.pdf") },
-  { label: "NTLS", href: mouDocUrl("NTLS MoU SCANNED COPY.pdf") },
-  { label: "Retech (21.09.2023)", href: mouDocUrl("RETECH MOU 21.09.2023 SCAN COPY.pdf") },
-  { label: "V V Electro Systems", href: mouDocUrl("VV ELECTRO SYSTEMS (MOU).pdf") },
   { label: "At least 5 MoUs with Industries (2025-2026)", href: mouDocUrl("ED 10. Atleast 5 MoUs with Industries 2025-2026.pdf") },
+  { label: "FIIT (28.10.2025)", href: mouDocUrl("FIIT 28-10-2025.pdf") },
+  { label: "NTLS (30.07.2025)", href: mouDocUrl("NTLS MoU SCANNED COPY.pdf") },
+  { label: "V V Electro Systems (22.01.2025)", href: mouDocUrl("VV ELECTRO SYSTEMS (MOU).pdf") },
+  { label: "Majestic (22.09.2023)", href: mouDocUrl("MAJESTIC MOU 22.09.2023 SCAN COPY.pdf") },
+  { label: "Retech (21.09.2023)", href: mouDocUrl("RETECH MOU 21.09.2023 SCAN COPY.pdf") },
+  { label: "Prolific Systems & Technologies (05.01.2023)", href: mouDocUrl("PROLIFIC.pdf") },
+  { label: "Brayan (22.11.2018)", href: mouDocUrl("BRAYAN.pdf") },
 ];
 
 const CONSULTANCY = [
@@ -477,6 +474,7 @@ const EVENTS_ORGANISED = {
   desc: "Organised by the Department of Electrical and Electronics Engineering, 02-02-2026 to 07-02-2026 (online mode).",
   imgs: [
     { src: "/assets/images/eee/image_6.jpeg", alt: "Day 1 – Dr. J. Prakash on Advanced Techniques in Solar Photovoltaic Systems" },
+    { src: "/assets/images/eee/image_5.jpeg", alt: "Day 2 – Dr. J. Balamurugan on Power to the People – Smart Grid" },
     { src: "/assets/images/eee/image_8.jpeg", alt: "Day 3 – Dr. Amos Edinakaran on ANSYS Maxwell and Induction Motor Design" },
     { src: "/assets/images/eee/image_3.jpeg", alt: "Day 4 – Dr. Mohamed Abbas S on Internet of Things and its Applications" },
     { src: "/assets/images/eee/image_2.jpeg", alt: "Day 5 – Dr. P. Selvaraj on Renewable Energy, Smart Grids and Vehicle-to-Grid Integration" },
@@ -497,7 +495,6 @@ const OTHER_DEPT_EVENTS = [
     date: "28-10-2025",
     title: "Symposium – GNISTA 2K25",
     desc: "16th National Level Technical Symposium organised by the Association of Electrical and Electronics Engineering, chief guest Dr. V. S. Sriraja Balaguru (Assistant Executive Engineer, IT, TNEB).",
-    imgs: [{ src: "/assets/images/eee/image_5.jpeg", alt: "Symposium – GNISTA 2K25", wide: true }],
   },
 ];
 
@@ -739,6 +736,7 @@ const MENU = [
       { href: "#fdp-workshop", label: "Guest Lecturer, FDP & Workshop" },
       { href: "#value-added-course", label: "Value Added Course" },
       { href: "#symposium", label: "Symposium" },
+      { href: "#seminars", label: "Seminars & Activities" },
     ],
   },
   {
@@ -762,7 +760,6 @@ const MENU = [
       { href: "#alumni", label: "Alumni Interactions" },
       { href: "#distinguished-alumni", label: "Distinguished Alumni" },
       { href: "#entrepreneurship", label: "Entrepreneurship" },
-      { href: "#seminars", label: "Seminars & Activities" },
     ],
   },
 ];
@@ -882,8 +879,8 @@ export default function EEEDepartment() {
         <section id="hod" className="tjs-dept-section tjs-dept-section-alt">
           <h2>HOD&apos;s Desk</h2>
           <div className="tjs-dept-hod">
-            <div className="tjs-dept-hod-photo" aria-hidden="true">
-              Photo
+            <div className="tjs-dept-hod-photo">
+              <img src="/assets/images/eee/hod.jpg" alt="Mrs. M. Shunmuga Sankari, Head of Department" />
             </div>
             <div className="tjs-dept-hod-message">
               <h3>Welcome to the Department of Electrical and Electronics Engineering</h3>
@@ -1059,16 +1056,12 @@ export default function EEEDepartment() {
 
         <section id="bos" className="tjs-dept-section">
           <h2>BOS</h2>
-          <p>
-            The Board of Studies reviewed and approved the curriculum and regulations listed below for the
-            Department of Electrical and Electronics Engineering.
-          </p>
-          <LinkList items={BOS_DOCS} />
+          <p className="tjs-dept-pending">Content coming soon.</p>
         </section>
 
         <section id="curriculum" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Curriculum &amp; Syllabus</h2>
-          <LinkList items={REGULATIONS} />
+          <LinkList items={BOS_DOCS} />
         </section>
 
         <section id="mou" className="tjs-dept-section">
@@ -1078,7 +1071,7 @@ export default function EEEDepartment() {
             to bridge the gap between academia and real-world applications. These MoUs enable internships,
             consultancy, faculty development, and cutting-edge research.
           </p>
-          <LinkList items={MOU_DOCS} />
+          <MouTabsViewer items={MOU_DOCS} />
         </section>
 
         <section id="consultancy" className="tjs-dept-section tjs-dept-section-alt">
@@ -1088,7 +1081,7 @@ export default function EEEDepartment() {
 
         <section id="industry-visits" className="tjs-dept-section">
           <h2>Industry Visits</h2>
-          <EventAccordion items={INDUSTRIAL_VISITS} />
+          <YearGroupedVisits items={INDUSTRIAL_VISITS} title="Industry Visits" />
         </section>
 
         <section id="research" className="tjs-dept-section tjs-dept-section-alt">
@@ -1104,44 +1097,7 @@ export default function EEEDepartment() {
         <section id="facilities" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Laboratory Facilities</h2>
 
-          <h3>Laboratories</h3>
-          {LABS.map((lab) => (
-            <div key={lab.name}>
-              <h3>{lab.name}</h3>
-              {lab.subLabs ? (
-                lab.subLabs.map((sub) => (
-                  <div key={sub.name}>
-                    <h4>{sub.name}</h4>
-                    <p className="tjs-dept-lab-label">{sub.label}</p>
-                    <div className="tjs-dept-media-row">
-                      <div className="tjs-dept-media-row-text">
-                        {sub.paragraphs.map((para, i) => (
-                          <p key={i}>{para}</p>
-                        ))}
-                      </div>
-                      <div className="tjs-dept-media-row-img">
-                        <DeptPhotoSlider images={sub.imgs} />
-                      </div>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <>
-                  <p className="tjs-dept-lab-label">{lab.label}</p>
-                  <div className="tjs-dept-media-row">
-                    <div className="tjs-dept-media-row-text">
-                      {lab.paragraphs.map((para, i) => (
-                        <p key={i}>{para}</p>
-                      ))}
-                    </div>
-                    <div className="tjs-dept-media-row-img">
-                      <DeptPhotoSlider images={lab.imgs} />
-                    </div>
-                  </div>
-                </>
-              )}
-            </div>
-          ))}
+          <LabAccordion items={LABS} />
         </section>
 
         <section id="conferences" className="tjs-dept-section">
@@ -1262,10 +1218,15 @@ export default function EEEDepartment() {
 
         <section id="symposium" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Symposium</h2>
-          <EventAccordion items={OTHER_DEPT_EVENTS} />
+          <YearGroupedVisits items={OTHER_DEPT_EVENTS} title="Symposium" />
         </section>
 
-        <section id="recruiters" className="tjs-dept-section">
+        <section id="seminars" className="tjs-dept-section">
+          <h2>Seminars &amp; Activities</h2>
+          <YearGroupedVisits items={SEMINARS_EVENTS} title="Seminars & Activities" />
+        </section>
+
+        <section id="recruiters" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Major Recruiters</h2>
           <div className="tjs-dept-photo-grid">
             {RECRUITERS.map((r) => (
@@ -1274,7 +1235,7 @@ export default function EEEDepartment() {
           </div>
         </section>
 
-        <section id="faculty-achievements" className="tjs-dept-section tjs-dept-section-alt">
+        <section id="faculty-achievements" className="tjs-dept-section">
           <h2>Faculty Achievements</h2>
           <EventSlider
             items={FACULTY_ACHIEVEMENTS.map((a) => ({
@@ -1288,7 +1249,7 @@ export default function EEEDepartment() {
           />
         </section>
 
-        <section id="co-curricular" className="tjs-dept-section">
+        <section id="co-curricular" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Co-Curricular</h2>
           <EventSlider
             items={CO_CURRICULAR.map((a) => ({
@@ -1302,7 +1263,7 @@ export default function EEEDepartment() {
           />
         </section>
 
-        <section id="extra-curricular" className="tjs-dept-section tjs-dept-section-alt">
+        <section id="extra-curricular" className="tjs-dept-section">
           <h2>Extra-Curricular</h2>
           <EventSlider
             items={EXTRA_CURRICULAR.map((a) => ({
@@ -1316,7 +1277,7 @@ export default function EEEDepartment() {
           />
         </section>
 
-        <section id="internships" className="tjs-dept-section">
+        <section id="internships" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Internship</h2>
           <div className="tjs-dept-table-wrap">
             <table className="tjs-dept-table">
@@ -1351,22 +1312,22 @@ export default function EEEDepartment() {
           ))}
         </section>
 
-        <section id="students-achievements" className="tjs-dept-section tjs-dept-section-alt">
+        <section id="students-achievements" className="tjs-dept-section">
           <h2>Students Achievements</h2>
           <p className="tjs-dept-pending">Content coming soon.</p>
         </section>
 
-        <section id="gallery" className="tjs-dept-section">
+        <section id="gallery" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Gallery</h2>
           <p className="tjs-dept-pending">Content coming soon.</p>
         </section>
 
-        <section id="alumni" className="tjs-dept-section tjs-dept-section-alt">
+        <section id="alumni" className="tjs-dept-section">
           <h2>Alumni Interactions</h2>
-          <EventAccordion items={ALUMNI_INTERACTIONS} />
+          <YearGroupedVisits items={ALUMNI_INTERACTIONS} title="Alumni Interactions" />
         </section>
 
-        <section id="distinguished-alumni" className="tjs-dept-section">
+        <section id="distinguished-alumni" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Distinguished Alumni</h2>
           <div className="tjs-dept-table-wrap">
             <table className="tjs-dept-table">
@@ -1388,7 +1349,7 @@ export default function EEEDepartment() {
           </div>
         </section>
 
-        <section id="entrepreneurship" className="tjs-dept-section tjs-dept-section-alt">
+        <section id="entrepreneurship" className="tjs-dept-section">
           <h2>Entrepreneurship</h2>
           <div className="tjs-dept-card">
             <h4 style={{ marginTop: 0, color: "var(--rs-theme-blue)" }}>Mr. Shyam Sundar (2021 Batch)</h4>
@@ -1402,10 +1363,6 @@ export default function EEEDepartment() {
           </div>
         </section>
 
-        <section id="seminars" className="tjs-dept-section">
-          <h2>Seminars &amp; Activities</h2>
-          <EventAccordion items={SEMINARS_EVENTS} />
-        </section>
       </div>
     </>
   );

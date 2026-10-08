@@ -1,18 +1,15 @@
-const ArrowIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-    <line x1="5" y1="12" x2="19" y2="12"></line>
-    <polyline points="12 5 19 12 12 19"></polyline>
-  </svg>
-);
-
 const FORMS = [
-  { label: "Industry Visit (IV) Form", file: "IVform.docx" },
-  { label: "Industry Visit Form – TJSEC", file: "IV-TJSEC.docx" },
-  { label: "Industry Visit Form – Template", file: "IV-Template.docx" },
-  { label: "Long Term Internship Form", file: "TJSEC-Long Term Internship-Form.docx" },
-  { label: "Internship Form (Short)", file: "Internship-Form-short.docx" },
-  { label: "Placement Form", file: "Placement.docx" },
-  { label: "Skill Development Training & Campus Placement Willingness Form 2026", file: "TJSEC-Skill Development Training & Campus Placement Willingness Form 2026.docx" },
+  { label: "Industry Visit (IV) Form", desc: "Form to be filled before an industry visit.", file: "IVform.docx" },
+  { label: "Industry Visit Form – TJSEC", desc: "TJSEC-specific industry visit form.", file: "IV-TJSEC.docx" },
+  { label: "Industry Visit Form – Template", desc: "Blank template for industry visit requests.", file: "IV-Template.docx" },
+  { label: "Long Term Internship Form", desc: "Form for long-term internship registration.", file: "TJSEC-Long Term Internship-Form.docx" },
+  { label: "Internship Form (Short)", desc: "Form for short-term internship registration.", file: "Internship-Form-short.docx" },
+  { label: "Placement Form", desc: "Form for placement registration.", file: "Placement.docx" },
+  {
+    label: "Skill Development Training & Campus Placement Willingness Form 2026",
+    desc: "Willingness form for skill development training and campus placement.",
+    file: "TJSEC-Skill Development Training & Campus Placement Willingness Form 2026.docx",
+  },
 ];
 
 function docUrl(file) {
@@ -41,15 +38,58 @@ export default function IVForms() {
             Industry Visit (IV) Forms
           </h2>
 
-          <div className="tjs-dept-link-list">
+          <div className="tjs-dept-grid-3" style={{ marginBottom: 32 }}>
+            <div className="tjs-dept-card tjs-iv-step">
+              <span className="tjs-iv-step-icon">
+                <i className="ri-download-2-line"></i>
+              </span>
+              <div>
+                <p className="tjs-iv-step-title">Step 1</p>
+                <p className="tjs-iv-step-desc">Download the required forms</p>
+              </div>
+            </div>
+            <div className="tjs-dept-card tjs-iv-step">
+              <span className="tjs-iv-step-icon">
+                <i className="ri-edit-2-line"></i>
+              </span>
+              <div>
+                <p className="tjs-iv-step-title">Step 2</p>
+                <p className="tjs-iv-step-desc">Fill and get necessary approvals</p>
+              </div>
+            </div>
+            <div className="tjs-dept-card tjs-iv-step">
+              <span className="tjs-iv-step-icon">
+                <i className="ri-send-plane-2-line"></i>
+              </span>
+              <div>
+                <p className="tjs-iv-step-title">Step 3</p>
+                <p className="tjs-iv-step-desc">Submit to your department</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="tjs-iv-grid">
             {FORMS.map((f) => (
-              <a href={docUrl(f.file)} target="_blank" rel="noopener" key={f.file}>
-                <span>{f.label}</span>
-                <span className="tjs-dept-link-arrow">
-                  <ArrowIcon />
-                </span>
+              <a href={docUrl(f.file)} target="_blank" rel="noopener" className="tjs-iv-card" key={f.file}>
+                <div className="tjs-iv-card-head">
+                  <h4>{f.label}</h4>
+                  <i className="ri-download-2-line"></i>
+                </div>
+                <p>{f.desc}</p>
               </a>
             ))}
+          </div>
+
+          <div className="tjs-iv-instructions">
+            <h4>
+              <i className="ri-error-warning-line"></i> Important Instructions
+            </h4>
+            <ul>
+              <li>Fill in all details clearly</li>
+              <li>Do not leave any field blank</li>
+              <li>Obtain all required signatures before submission</li>
+              <li>Submit before the deadline specified by your department</li>
+            </ul>
           </div>
         </section>
       </div>
