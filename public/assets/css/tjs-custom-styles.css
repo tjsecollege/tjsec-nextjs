@@ -887,7 +887,7 @@ width: 510px;
     border: 1px solid var(--rs-border-primary); flex: 0 0 auto;
 }
 .tjs-dept-logo-real {
-    width: 160px; height: 90px; border-radius: 8px; background: #fff; object-fit: contain;
+    width: 160px; height: 120px; border-radius: 8px; background: #fff; object-fit: contain;
     border: 1px solid var(--rs-border-primary); flex: 0 0 auto; padding: 10px;
 }
 
