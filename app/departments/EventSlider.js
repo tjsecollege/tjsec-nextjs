@@ -7,11 +7,7 @@ const AUTO_SCROLL_INTERVAL = 3000;
 function SimpleCard({ img, date, title, desc, onClick }) {
   return (
     <div className="tjs-slider-card" onClick={onClick} role="button" tabIndex={0}>
-      {img ? (
-        <img src={img} alt={title} className="tjs-slider-card-img" />
-      ) : (
-        <div className="tjs-slider-card-img-ph">Photo</div>
-      )}
+      {img ? <img src={img} alt={title} className="tjs-slider-card-img" /> : <div className="tjs-slider-card-img-spacer" aria-hidden="true" />}
       <div className="tjs-slider-card-body">
         {date && (
           <div className="tjs-slider-card-meta">
@@ -32,10 +28,14 @@ function SimpleCard({ img, date, title, desc, onClick }) {
 
 function EventModal({ item, onClose }) {
   const [imgIndex, setImgIndex] = useState(0);
+  const [zoomed, setZoomed] = useState(false);
 
   useEffect(() => {
     function onKey(e) {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        if (zoomed) setZoomed(false);
+        else onClose();
+      }
     }
     document.addEventListener("keydown", onKey);
     const prevOverflow = document.body.style.overflow;
@@ -59,7 +59,7 @@ function EventModal({ item, onClose }) {
       document.removeEventListener("touchmove", stopBubble, { capture: true });
       window.tjsLenis?.start();
     };
-  }, [onClose]);
+  }, [onClose, zoomed]);
 
   const hasMeta = item.category || item.date;
   const imgs = item.imgs && item.imgs.length > 0 ? item.imgs : item.img ? [item.img] : [];
@@ -73,7 +73,20 @@ function EventModal({ item, onClose }) {
         <div className="tjs-modal-scroll">
           {imgs.length > 0 ? (
             <div className="tjs-modal-img-wrap">
-              <img src={imgs[imgIndex]} alt={item.title} className="tjs-modal-img" />
+              <img
+                src={imgs[imgIndex]}
+                alt={item.title}
+                className="tjs-modal-img tjs-modal-img-zoomable"
+                onClick={() => setZoomed(true)}
+              />
+              <button
+                type="button"
+                className="tjs-modal-zoom-btn"
+                aria-label="Zoom image"
+                onClick={() => setZoomed(true)}
+              >
+                <i className="ri-zoom-in-line"></i>
+              </button>
               {imgs.length > 1 && (
                 <>
                   <button
@@ -149,6 +162,60 @@ function EventModal({ item, onClose }) {
         </div>
         </div>
       </div>
+
+      {zoomed && (
+        <div
+          className="tjs-modal-zoom-overlay"
+          onClick={(e) => {
+            e.stopPropagation();
+            setZoomed(false);
+          }}
+        >
+          <button
+            type="button"
+            className="tjs-modal-close"
+            aria-label="Close zoomed image"
+            onClick={(e) => {
+              e.stopPropagation();
+              setZoomed(false);
+            }}
+          >
+            <i className="ri-close-line"></i>
+          </button>
+          {imgs.length > 1 && (
+            <>
+              <button
+                type="button"
+                className="tjs-modal-img-nav tjs-modal-img-prev"
+                aria-label="Previous photo"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setImgIndex((i) => (i - 1 + imgs.length) % imgs.length);
+                }}
+              >
+                <i className="ri-arrow-left-s-line"></i>
+              </button>
+              <button
+                type="button"
+                className="tjs-modal-img-nav tjs-modal-img-next"
+                aria-label="Next photo"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setImgIndex((i) => (i + 1) % imgs.length);
+                }}
+              >
+                <i className="ri-arrow-right-s-line"></i>
+              </button>
+            </>
+          )}
+          <img
+            src={imgs[imgIndex]}
+            alt={item.title}
+            className="tjs-modal-zoom-img"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </div>
   );
 }

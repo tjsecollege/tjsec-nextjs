@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import DeptPhotoSlider from "./DeptPhotoSlider";
 
 function parseYear(date) {
@@ -51,7 +51,17 @@ export default function YearGroupedVisits({ items, title = "Events" }) {
               <div className="tjs-dept-media-row-text">
                 {item.date && <span className="tjs-dept-event-date">{item.date}</span>}
                 <h4 className="tjs-ivy-title">{item.title}</h4>
-                {item.desc && <p>{item.desc}</p>}
+                {item.desc &&
+                  item.desc.split("\n\n").map((para, i) => (
+                    <p key={i}>
+                      {para.split("\n").map((line, j, arr) => (
+                        <Fragment key={j}>
+                          {line}
+                          {j < arr.length - 1 && <br />}
+                        </Fragment>
+                      ))}
+                    </p>
+                  ))}
                 {item.people && item.people.length > 0 && (
                   <ul className="tjs-dept-person-list">
                     {item.people.map((p) => (

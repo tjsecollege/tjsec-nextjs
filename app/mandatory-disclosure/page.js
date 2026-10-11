@@ -144,7 +144,12 @@ export default function MandatoryDisclosure() {
               {activeCat === "ugc" && (
                 <>
                   <h3>UGC Undertaking Letter by HEI</h3>
-                  <p className="tjs-dept-pending">Documents will be added soon.</p>
+                  <div className="tjs-approvals-viewer">
+                    <iframe
+                      src="/assets/pdf/UGC-HEI.pdf"
+                      title="UGC Undertaking Letter by HEI"
+                    />
+                  </div>
                 </>
               )}
 

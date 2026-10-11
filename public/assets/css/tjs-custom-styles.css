@@ -200,7 +200,8 @@ width: 510px;
 /* ---- approved-logos.css ---- */
 .rs-approved-logos { padding: 40px 0 60px; background: #f6f4ee; }
 .rs-approved-logos .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 26px; }
-.rs-approved-card { position: relative; z-index: 0; display: flex; align-items: center; gap: 12px; width: 220px; padding: 14px 16px; border-radius: 10px; background: var(--card-bg); box-shadow: 0 10px 20px rgba(3, 3, 3, 0.14); }
+.rs-approved-card { position: relative; z-index: 0; display: flex; align-items: center; gap: 12px; width: 220px; padding: 14px 16px; border-radius: 10px; background: var(--card-bg); box-shadow: 0 10px 20px rgba(3, 3, 3, 0.14); text-decoration: none; transition: transform 0.2s ease; }
+a.rs-approved-card:hover { transform: translateY(-3px); }
 .rs-approved-card::before { content: ""; position: absolute; left: -8px; bottom: -8px; width: 36px; height: 36px; background: var(--card-accent); border-radius: 6px; transform: rotate(20deg); z-index: -1; }
 .rs-approved-card-badge { flex: 0 0 auto; width: 58px; height: 58px; background: #ffffff; border-radius: 8px; display: flex; align-items: center; justify-content: center; padding: 6px; box-sizing: border-box; }
 .rs-approved-card-logo { width: 100%; aspect-ratio: var(--ratio); background-image: url('/assets/images/approvedogo.png'); background-repeat: no-repeat; background-size: var(--sx) 100%; background-position: var(--px) 0%; }
@@ -916,7 +917,7 @@ width: 510px;
 /* Blog-card style horizontal slider (Events & Achievements) */
 .tjs-slider-wrap { position: relative; display: block; margin-bottom: 24px; }
 .tjs-slider-wrap .tjs-slider-nav {
-    position: absolute; top: 89px; transform: translateY(-50%); z-index: 2;
+    position: absolute; top: 89px; transform: translateY(-50%); z-index: 1;
     box-shadow: 0 8px 20px rgba(3, 3, 3, 0.18);
 }
 .tjs-slider-wrap .tjs-slider-nav-prev { left: 10px; }
@@ -930,6 +931,7 @@ width: 510px;
     flex: 0 0 calc((100% - 44px) / 3); min-width: 0; background: #fff; border-radius: 16px; overflow: hidden;
     border: 1px solid var(--rs-border-primary); scroll-snap-align: start;
     cursor: pointer; transition: transform 0.2s ease;
+    display: flex; flex-direction: column;
 }
 .tjs-slider-card:hover { transform: translateY(-4px); }
 .tjs-slider-nav {
@@ -947,6 +949,7 @@ width: 510px;
     .tjs-slider-card { flex-basis: 100%; }
 }
 .tjs-slider-card-img { width: 100%; height: 170px; object-fit: cover; display: block; }
+.tjs-slider-card-img-spacer { width: 100%; height: 170px; flex: 0 0 auto; }
 
 /* Circular-photo people carousel (Academic Toppers, etc.) — same nav-arrow
    pattern as the blog-card slider above, sized for .tjs-dept-people-card. */
@@ -1013,11 +1016,7 @@ width: 510px;
     border-radius: 0;
 }
 .tjs-people-carousel-track .tjs-dept-people-card h4 { font-size: 16px; margin: 16px 0; }
-.tjs-slider-card-img-ph {
-    width: 100%; height: 170px; background: var(--rs-bg-secondary); display: flex;
-    align-items: center; justify-content: center; color: var(--rs-text-secondary); font-size: 13px;
-}
-.tjs-slider-card-body { padding: 18px 20px 22px; }
+.tjs-slider-card-body { padding: 18px 20px 22px; display: flex; flex-direction: column; flex: 1 1 auto; }
 .tjs-slider-card-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; font-size: 12.5px; color: var(--rs-text-secondary); margin-bottom: 12px; }
 .tjs-slider-card-meta span { display: inline-flex; align-items: center; gap: 5px; }
 .tjs-slider-card-meta i { color: var(--rs-theme-yellow); font-size: 14px; }
@@ -1028,7 +1027,7 @@ width: 510px;
 }
 .tjs-slider-card-readmore {
     display: inline-flex; align-items: center; gap: 6px; border: none; background: none; padding: 0;
-    font-size: 13px; font-weight: 700; color: var(--rs-theme-blue); cursor: pointer;
+    font-size: 13px; font-weight: 700; color: var(--rs-theme-blue); cursor: pointer; margin-top: auto;
 }
 .tjs-slider-card-readmore i { font-size: 15px; transition: transform 0.2s ease; }
 .tjs-slider-card:hover .tjs-slider-card-readmore i { transform: translateX(3px); }
@@ -1060,6 +1059,20 @@ width: 510px;
 .tjs-modal-close:hover { background: var(--rs-theme-blue); color: #fff; transform: rotate(90deg); }
 .tjs-modal-img-wrap { position: relative; }
 .tjs-modal-img { width: 100%; max-height: 340px; object-fit: cover; display: block; border-radius: 20px 20px 0 0; }
+.tjs-modal-img-zoomable { cursor: zoom-in; }
+.tjs-modal-zoom-btn {
+    position: absolute; top: 18px; right: 66px; width: 40px; height: 40px; border-radius: 50%;
+    border: none; background: rgba(255, 255, 255, 0.92); color: var(--rs-title-primary); font-size: 19px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; z-index: 2; box-shadow: 0 4px 14px rgba(3, 3, 3, 0.2);
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+.tjs-modal-zoom-btn:hover { background: var(--rs-theme-blue); color: #fff; transform: scale(1.08); }
+.tjs-modal-zoom-overlay {
+    position: fixed; inset: 0; background: rgba(5, 5, 8, 0.94); z-index: 10000;
+    display: flex; align-items: center; justify-content: center; padding: 24px; cursor: zoom-out;
+    animation: tjs-modal-fade-in 0.15s ease;
+}
+.tjs-modal-zoom-img { max-width: 95vw; max-height: 95vh; object-fit: contain; display: block; cursor: default; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); border-radius: 6px; }
 .tjs-modal-img-nav {
     position: absolute;
     top: 45%;
@@ -1349,8 +1362,8 @@ p.tjs-iv-step-desc { color: var(--rs-text-primary); font-size: 13px; margin: 0; 
    list of image+writeup entries instead of a single embedded PDF. */
 .tjs-ivy-panel { min-width: 0; border: 1px solid var(--rs-border-primary); border-radius: 14px; padding: 28px; background: #fff; }
 .tjs-ivy-panel h3 { color: var(--rs-theme-blue); font-size: 20px; font-weight: 700; margin: 0 0 20px; }
-.tjs-ivy-panel .tjs-dept-media-row { align-items: center; margin-bottom: 0; }
-.tjs-ivy-panel .tjs-dept-media-row-img { position: static; top: auto; flex: 0 0 36%; }
+.tjs-ivy-panel .tjs-dept-media-row { align-items: flex-start; margin-bottom: 0; }
+.tjs-ivy-panel .tjs-dept-media-row-img { position: sticky; top: 90px; flex: 0 0 36%; }
 .tjs-ivy-title { margin: 2px 0 10px; }
 hr.tjs-ivy-divider { border: none; border-top: 1px solid var(--rs-border-primary); height: 0; background: none; margin: 24px 0; }
 @media (max-width: 767px) {
