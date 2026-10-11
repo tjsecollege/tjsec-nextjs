@@ -32,7 +32,7 @@ const FACULTY = [
   { name: "Vutuchuru Vasantha M", qual: "M.Tech", role: "Assistant Professor", email: "vasantha@tjsec.in" },
 ];
 
-const NON_TEACHING = [{ name: "Bharathi", designation: "Lab Demonstrator" }];
+const NON_TEACHING = [{ name: "V. Bharathi", designation: "IT Lab Instructor", photo: "/assets/images/eee/V-BHARATHI.jpg" }];
 
 const PEOS = [
   "Effectuating success in careers by exploring with the design, digital and computational analysis of engineering systems, experimentation and testing, smart manufacturing, technical services, and research.",
@@ -670,25 +670,16 @@ export default function ITDepartment() {
 
         <section id="staff" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Non-Teaching</h2>
-          <div className="tjs-dept-table-wrap">
-            <table className="tjs-dept-table">
-              <thead>
-                <tr>
-                  <th>S.No</th>
-                  <th>Name</th>
-                  <th>Designation</th>
-                </tr>
-              </thead>
-              <tbody>
-                {NON_TEACHING.map((s, i) => (
-                  <tr key={s.name}>
-                    <td>{i + 1}</td>
-                    <td>{s.name}</td>
-                    <td>{s.designation}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="tjs-dept-people-grid">
+            {NON_TEACHING.map((s) => (
+              <div className="tjs-dept-people-card" key={s.name}>
+                <div className="tjs-dept-people-photo">
+                  {s.photo ? <img src={s.photo} alt={s.name} /> : <span>Photo</span>}
+                </div>
+                <h4>{s.name}</h4>
+                <p className="tjs-dept-people-role">{s.designation}</p>
+              </div>
+            ))}
           </div>
         </section>
 

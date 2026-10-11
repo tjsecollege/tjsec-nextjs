@@ -33,7 +33,7 @@ const FACULTY = [
 ];
 
 const NON_TEACHING = [
-  { name: "Mr. K. Shanmugaraj", designation: "Lab Instructor" },
+  { name: "Mr. K. Shanmugaraj", designation: "Lab Instructor", photo: "/assets/images/eee/SHANMUGA-RAJ.jpg" },
 ];
 
 const POS = [
@@ -551,6 +551,33 @@ const EVENTS_ORGANISED = {
 };
 
 const OTHER_DEPT_EVENTS = [
+  {
+    date: "01-10-2026",
+    title: "Symposium – GNISTA 2K26",
+    desc: "We are pleased to announce that the Department of Electrical and Electronics Engineering hosted GNISTA - 2K26.\nDate: 1st October 2026\nVenue: 2nd Floor Seminar Hall\n\nDistinguished Guest Speaker\n\nWe were honored to welcome Mr. M. Anburajan, Joint General Manager (PS&OHE) at Chennai Metro Rail Limited (CMRL), as our chief guest.\nMr. Anburajan is a distinguished Electrical and Electronics Engineering professional with extensive expertise in large-scale power infrastructure. He holds a Bachelor of Engineering (B.E.) in Electrical and Electronics Engineering. In his current role at CMRL, he spearheads the critical operations of Power Supply and Overhead Equipment (PS&OHE), managing the vital electrical power systems that keep the Chennai Metro running efficiently.\nThe event provided our students and faculty with valuable industry insights into modern transit systems and heavy electrical infrastructure engineering.",
+    imgs: [
+      { src: "/assets/images/eee/GNISTA-2K26/image_1.jpeg", alt: "Lamp-lighting at the GNISTA 2K26 inauguration" },
+      { src: "/assets/images/eee/GNISTA-2K26/image_2.jpeg", alt: "Chief guest Mr. M. Anburajan lighting the ceremonial lamp" },
+      { src: "/assets/images/eee/GNISTA-2K26/image_3.jpeg", alt: "Dignitaries on stage at the GNISTA 2K26 inauguration" },
+      { src: "/assets/images/eee/GNISTA-2K26/image_4.jpeg", alt: "Chief guest Mr. M. Anburajan being honoured with a shawl" },
+      { src: "/assets/images/eee/GNISTA-2K26/image_5.jpeg", alt: "Chief guest Mr. M. Anburajan arriving on campus" },
+      { src: "/assets/images/eee/GNISTA-2K26/image_6.jpeg", alt: "Traditional welcome for the chief guest at the entrance" },
+      { src: "/assets/images/eee/GNISTA-2K26/image_7.jpeg", alt: "Faculty welcoming the chief guest near the seminar hall" },
+      { src: "/assets/images/eee/GNISTA-2K26/image_8.jpeg", alt: "Student representatives lighting the ceremonial lamp" },
+      { src: "/assets/images/eee/GNISTA-2K26/image_9.jpeg", alt: "Lamp-lighting by a faculty member at the inauguration" },
+      { src: "/assets/images/eee/GNISTA-2K26/image_10.jpeg", alt: "Lamp-lighting by a faculty member, another angle" },
+      { src: "/assets/images/eee/GNISTA-2K26/image_11.jpeg", alt: "Chief guest Mr. M. Anburajan lighting the lamp, close view" },
+      { src: "/assets/images/eee/GNISTA-2K26/image_12.jpeg", alt: "Close-up of the GNISTA EEE nameplate with dignitaries seated" },
+      { src: "/assets/images/eee/GNISTA-2K26/image_13.jpeg", alt: "Dignitaries on stage beside the GNISTA EEE nameplate" },
+      { src: "/assets/images/eee/GNISTA-2K26/image_14.jpeg", alt: "Chief guest and dignitaries being welcomed on stage" },
+      { src: "/assets/images/eee/GNISTA-2K26/image_15.jpeg", alt: "Chief guest Mr. M. Anburajan addressing the gathering" },
+      { src: "/assets/images/eee/GNISTA-2K26/image_16.jpeg", alt: "Guest speaker addressing the audience" },
+      { src: "/assets/images/eee/GNISTA-2K26/image_17.jpeg", alt: "Student presentation during the symposium" },
+      { src: "/assets/images/eee/GNISTA-2K26/image_18.jpeg", alt: "Confetti moment during the GNISTA 2K26 inauguration" },
+      { src: "/assets/images/eee/GNISTA-2K26/image_19.jpeg", alt: "Students receiving a certificate of appreciation" },
+      { src: "/assets/images/eee/GNISTA-2K26/image_20.jpeg", alt: "Memento for GNISTA 2K26 with the chief guest signing the register" },
+    ],
+  },
   {
     date: "28-10-2025",
     title: "Symposium – GNISTA 2K25",
@@ -1078,25 +1105,16 @@ export default function EEEDepartment() {
 
         <section id="staff" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Non-Teaching</h2>
-          <div className="tjs-dept-table-wrap">
-            <table className="tjs-dept-table">
-              <thead>
-                <tr>
-                  <th>S.No</th>
-                  <th>Name</th>
-                  <th>Designation</th>
-                </tr>
-              </thead>
-              <tbody>
-                {NON_TEACHING.map((s, i) => (
-                  <tr key={s.name}>
-                    <td>{i + 1}</td>
-                    <td>{s.name}</td>
-                    <td>{s.designation}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="tjs-dept-people-grid">
+            {NON_TEACHING.map((s) => (
+              <div className="tjs-dept-people-card" key={s.name}>
+                <div className="tjs-dept-people-photo">
+                  {s.photo ? <img src={s.photo} alt={s.name} /> : <span>Photo</span>}
+                </div>
+                <h4>{s.name}</h4>
+                <p className="tjs-dept-people-role">{s.designation}</p>
+              </div>
+            ))}
           </div>
         </section>
 

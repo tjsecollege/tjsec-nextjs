@@ -860,6 +860,7 @@ a.rs-approved-card:hover { transform: translateY(-3px); }
 .tjs-dept-photo-slider-nav:hover { background: var(--rs-theme-blue); color: #fff; }
 .tjs-dept-photo-slider-prev { left: 12px; }
 .tjs-dept-photo-slider-next { right: 12px; }
+.tjs-dept-photo-slider-frame .tjs-modal-zoom-btn { top: 12px; right: 12px; }
 .tjs-dept-photo-slider-dots { display: flex; justify-content: center; gap: 8px; margin-top: 14px; }
 .tjs-dept-photo-slider-dot {
     width: 8px;

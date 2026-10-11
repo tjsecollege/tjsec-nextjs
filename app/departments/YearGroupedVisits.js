@@ -1,11 +1,68 @@
 "use client";
 
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import DeptPhotoSlider from "./DeptPhotoSlider";
 
 function parseYear(date) {
   const match = /(\d{4})(?!.*\d{4})/.exec(date || "");
   return match ? match[1] : "Other";
+}
+
+// Lets a single (non-slider) photo open the same full-screen zoom overlay
+// used elsewhere, so the zoom popup works regardless of photo count.
+function ZoomableImage({ src, alt }) {
+  const [zoomed, setZoomed] = useState(false);
+
+  useEffect(() => {
+    if (!zoomed) return;
+    function onKey(e) {
+      if (e.key === "Escape") setZoomed(false);
+    }
+    document.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.tjsLenis?.stop();
+    function stopBubble(e) {
+      e.stopPropagation();
+    }
+    document.addEventListener("wheel", stopBubble, { capture: true, passive: true });
+    document.addEventListener("touchmove", stopBubble, { capture: true, passive: true });
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+      document.removeEventListener("wheel", stopBubble, { capture: true });
+      document.removeEventListener("touchmove", stopBubble, { capture: true });
+      window.tjsLenis?.start();
+    };
+  }, [zoomed]);
+
+  return (
+    <>
+      <img src={src} alt={alt} className="tjs-modal-img-zoomable" onClick={() => setZoomed(true)} />
+      {zoomed && (
+        <div
+          className="tjs-modal-zoom-overlay"
+          onClick={(e) => {
+            e.stopPropagation();
+            setZoomed(false);
+          }}
+        >
+          <button
+            type="button"
+            className="tjs-modal-close"
+            aria-label="Close zoomed image"
+            onClick={(e) => {
+              e.stopPropagation();
+              setZoomed(false);
+            }}
+          >
+            <i className="ri-close-line"></i>
+          </button>
+          <img src={src} alt={alt} className="tjs-modal-zoom-img" onClick={(e) => e.stopPropagation()} />
+        </div>
+      )}
+    </>
+  );
 }
 
 /**
@@ -45,7 +102,7 @@ export default function YearGroupedVisits({ items, title = "Events" }) {
                 {item.imgs && item.imgs.length > 1 ? (
                   <DeptPhotoSlider images={item.imgs} />
                 ) : item.imgs && item.imgs.length === 1 ? (
-                  <img src={item.imgs[0].src} alt={item.imgs[0].alt} />
+                  <ZoomableImage src={item.imgs[0].src} alt={item.imgs[0].alt} />
                 ) : null}
               </div>
               <div className="tjs-dept-media-row-text">
