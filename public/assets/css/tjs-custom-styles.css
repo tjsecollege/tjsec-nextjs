@@ -812,14 +812,13 @@ a.rs-approved-card:hover { transform: translateY(-3px); }
    Curriculum page) — needs to read clearly as a sub-level under the h2,
    so it gets its own accent tick and uppercase treatment rather than
    reusing .tjs-dept-lab-label (which is a quieter inline label elsewhere). */
-.tjs-dept-group-label {
+p.tjs-dept-group-label {
     display: flex; align-items: center; gap: 10px;
-    color: var(--rs-theme-blue); font-size: 15px; font-weight: 700;
+    color: var(--rs-theme-yellow); font-size: 15px; font-weight: 700;
     text-transform: uppercase; letter-spacing: 0.5px;
     margin: 34px 0 14px;
 }
 .tjs-dept-group-label:first-child { margin-top: 0; }
-.tjs-dept-group-label::before { content: ""; width: 22px; height: 3px; background: var(--rs-theme-yellow); border-radius: 2px; flex: 0 0 auto; }
 
 
 /* Text + photo side-by-side (photo on the right), used where a facility's
