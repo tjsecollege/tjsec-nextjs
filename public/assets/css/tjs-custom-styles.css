@@ -689,7 +689,7 @@ a.rs-approved-card:hover { transform: translateY(-3px); }
 .tjs-dept-section h3 { color: var(--rs-theme-blue); font-size: 18px; font-weight: 700; margin: 26px 0 12px; }
 .tjs-dept-section h4 { color: var(--rs-text-primary); font-size: 16px; font-weight: 700; margin: 0px 0 12px; }
 .tjs-dept-lab-label { color: var(--rs-theme-blue); font-size: 14px; font-weight: 600; margin: 0 0 10px; }
-.tjs-dept-section p { color: var(--rs-theme-yellow); line-height: 1.7; margin-bottom: 14px; }
+.tjs-dept-section p { color: var(--rs-text-primary); line-height: 1.7; margin-bottom: 14px; }
 .tjs-dept-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 20px 0; }
 .tjs-dept-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .tjs-dept-card { background: #fff; border: 1px solid var(--rs-border-primary); border-radius: 12px; padding: 24px; box-shadow: 0 8px 22px rgba(3, 3, 3, 0.05); }
@@ -819,6 +819,7 @@ a.rs-approved-card:hover { transform: translateY(-3px); }
     margin: 34px 0 14px;
 }
 .tjs-dept-group-label:first-child { margin-top: 0; }
+.tjs-dept-group-label::before { content: ""; width: 22px; height: 3px; background: var(--rs-theme-yellow); border-radius: 2px; flex: 0 0 auto; }
 
 
 /* Text + photo side-by-side (photo on the right), used where a facility's
