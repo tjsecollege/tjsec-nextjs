@@ -148,7 +148,6 @@ function mouDocUrl(file) {
 }
 
 const MOU_DOCS = [
-  { label: "At least 5 MoUs with Industries (2025-2026)", href: mouDocUrl("ED 10. Atleast 5 MoUs with Industries 2025-2026.pdf") },
   { label: "FIIT (28.10.2025)", href: mouDocUrl("FIIT 28-10-2025.pdf") },
   { label: "NTLS (30.07.2025)", href: mouDocUrl("NTLS MoU SCANNED COPY.pdf") },
   { label: "V V Electro Systems (22.01.2025)", href: mouDocUrl("VV ELECTRO SYSTEMS (MOU).pdf") },
@@ -160,6 +159,9 @@ const MOU_DOCS = [
 
 const CONSULTANCY = [
   { label: "5 KW Roof Top Solar PV Implementation", href: "/assets/images/eee/consultancy/5-KW-Roof-Top-Solar-PV-Implementation.pdf" },
+];
+
+const STUDENT_PROJECTS = [
   { label: "AI Based Automatic Irrigation System with Android Application", href: "/assets/images/eee/consultancy/AI-Based-Automatic-Irrigation-System-with-Android-Application.pdf" },
   { label: "Automatic Fault Detection and Location of Transmission Lines using IoT", href: "/assets/images/eee/consultancy/Automatic-fault-Detection-and-Location-of-Transmission-Lines-using-IOT.pdf" },
   { label: "Design and Fabrication of BLDC Motor Based Sewing Machine", href: "/assets/images/eee/consultancy/Design-and-Fabrication-of-BLDC-Motor-Based-Sewing-Machine.pdf" },
@@ -808,7 +810,6 @@ const MENU = [
   {
     label: "Research",
     children: [
-      { href: "#research", label: "Area of Research" },
       { href: "#publication", label: "Publication" },
       { href: "#patent", label: "Patent" },
       { href: "#books-chapters", label: "Books & Chapters" },
@@ -816,7 +817,7 @@ const MENU = [
   },
   {
     label: "Facilities",
-    children: [{ href: "#facilities", label: "Academic Laboratories" }],
+    children: [{ href: "#facilities", label: "Department Laboratories" }],
   },
   {
     label: "Events",
@@ -831,8 +832,8 @@ const MENU = [
   {
     label: "Placements",
     children: [
-      { href: "#placed-students", label: "Placed Students" },
       { href: "#recruiters", label: "Major Recruiters" },
+      { href: "#placed-students", label: "Placed Students" },
     ],
   },
   {
@@ -1246,33 +1247,28 @@ export default function EEEDepartment() {
           ))}
         </section>
 
-        <section id="research" className="tjs-dept-section tjs-dept-section-alt">
-          <h2>Area of Research</h2>
-          <p className="tjs-dept-pending">Detail will be shared.</p>
-        </section>
-
-        <section id="publication" className="tjs-dept-section">
+        <section id="publication" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Publication</h2>
           <p className="tjs-dept-pending">Content coming soon.</p>
         </section>
 
-        <section id="patent" className="tjs-dept-section tjs-dept-section-alt">
+        <section id="patent" className="tjs-dept-section">
           <h2>Patent</h2>
           <p className="tjs-dept-pending">Content coming soon.</p>
         </section>
 
-        <section id="books-chapters" className="tjs-dept-section">
+        <section id="books-chapters" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Books &amp; Chapters</h2>
           <p className="tjs-dept-pending">Content coming soon.</p>
         </section>
 
-        <section id="facilities" className="tjs-dept-section tjs-dept-section-alt">
-          <h2>Laboratory Facilities</h2>
+        <section id="facilities" className="tjs-dept-section">
+          <h2>Department Laboratories</h2>
 
           <LabAccordion items={LABS} />
         </section>
 
-        <section id="conferences" className="tjs-dept-section">
+        <section id="conferences" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Conference</h2>
           <EventSlider
             items={CONFERENCES.map((c) => ({
@@ -1286,7 +1282,7 @@ export default function EEEDepartment() {
           />
         </section>
 
-        <section id="fdp-workshop" className="tjs-dept-section tjs-dept-section-alt">
+        <section id="fdp-workshop" className="tjs-dept-section">
           <h2>Guest Lecturer, FDP &amp; Workshop</h2>
           <EventSlider
             items={[
@@ -1329,7 +1325,7 @@ export default function EEEDepartment() {
           />
         </section>
 
-        <section id="value-added-course" className="tjs-dept-section">
+        <section id="value-added-course" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Value Added Course</h2>
 
           <div className="tjs-dept-media-row">
@@ -1388,19 +1384,14 @@ export default function EEEDepartment() {
           </div>
         </section>
 
-        <section id="symposium" className="tjs-dept-section tjs-dept-section-alt">
+        <section id="symposium" className="tjs-dept-section">
           <h2>Symposium</h2>
           <YearGroupedVisits items={OTHER_DEPT_EVENTS} title="Symposium" />
         </section>
 
-        <section id="seminars" className="tjs-dept-section">
+        <section id="seminars" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Seminars &amp; Activities</h2>
           <YearGroupedVisits items={SEMINARS_EVENTS} title="Seminars & Activities" />
-        </section>
-
-        <section id="placed-students" className="tjs-dept-section tjs-dept-section-alt">
-          <h2>Placed Students</h2>
-          <p className="tjs-dept-pending">Content coming soon.</p>
         </section>
 
         <section id="recruiters" className="tjs-dept-section">
@@ -1412,7 +1403,12 @@ export default function EEEDepartment() {
           </div>
         </section>
 
-        <section id="faculty-achievements" className="tjs-dept-section tjs-dept-section-alt">
+        <section id="placed-students" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>Placed Students</h2>
+          <p className="tjs-dept-pending">Content coming soon.</p>
+        </section>
+
+        <section id="faculty-achievements" className="tjs-dept-section">
           <h2>Faculty Achievements</h2>
           <EventSlider
             items={FACULTY_ACHIEVEMENTS.map((a) => ({
@@ -1426,12 +1422,12 @@ export default function EEEDepartment() {
           />
         </section>
 
-        <section id="students-achievements" className="tjs-dept-section">
+        <section id="students-achievements" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Students Achievements</h2>
-          <p className="tjs-dept-pending">Content coming soon.</p>
+          <LinkList items={STUDENT_PROJECTS} />
         </section>
 
-        <section id="co-curricular" className="tjs-dept-section tjs-dept-section-alt">
+        <section id="co-curricular" className="tjs-dept-section">
           <h2>Co-Curricular</h2>
           <EventSlider
             items={CO_CURRICULAR.map((a) => ({
@@ -1445,7 +1441,7 @@ export default function EEEDepartment() {
           />
         </section>
 
-        <section id="extra-curricular" className="tjs-dept-section">
+        <section id="extra-curricular" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Extra-Curricular</h2>
           <EventSlider
             items={EXTRA_CURRICULAR.map((a) => ({
@@ -1459,17 +1455,17 @@ export default function EEEDepartment() {
           />
         </section>
 
-        <section id="gallery" className="tjs-dept-section tjs-dept-section-alt">
+        <section id="gallery" className="tjs-dept-section">
           <h2>Gallery</h2>
           <p className="tjs-dept-pending">Content coming soon.</p>
         </section>
 
-        <section id="alumni" className="tjs-dept-section">
+        <section id="alumni" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Alumni Interactions</h2>
           <YearGroupedVisits items={ALUMNI_INTERACTIONS} title="Alumni Interactions" />
         </section>
 
-        <section id="distinguished-alumni" className="tjs-dept-section tjs-dept-section-alt">
+        <section id="distinguished-alumni" className="tjs-dept-section">
           <h2>Distinguished Alumni</h2>
           <div className="tjs-dept-table-wrap">
             <table className="tjs-dept-table">
@@ -1491,7 +1487,7 @@ export default function EEEDepartment() {
           </div>
         </section>
 
-        <section id="entrepreneurship" className="tjs-dept-section">
+        <section id="entrepreneurship" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Entrepreneurship</h2>
           <div className="tjs-dept-card">
             <h4 style={{ marginTop: 0, color: "var(--rs-theme-blue)" }}>Mr. Shyam Sundar (2021 Batch)</h4>

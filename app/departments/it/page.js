@@ -403,7 +403,6 @@ const MENU = [
   {
     label: "Research",
     children: [
-      { href: "#research", label: "Area of Research" },
       { href: "#publication", label: "Publication" },
       { href: "#patent", label: "Patent" },
       { href: "#books-chapters", label: "Books & Chapters" },
@@ -411,7 +410,7 @@ const MENU = [
   },
   {
     label: "Facilities",
-    children: [{ href: "#facilities", label: "Academic Laboratories" }],
+    children: [{ href: "#facilities", label: "Department Laboratories" }],
   },
   {
     label: "Events",
@@ -426,8 +425,8 @@ const MENU = [
   {
     label: "Placements",
     children: [
-      { href: "#placed-students", label: "Placed Students" },
       { href: "#recruiters", label: "Major Recruiters" },
+      { href: "#placed-students", label: "Placed Students" },
     ],
   },
   {
@@ -763,12 +762,7 @@ export default function ITDepartment() {
           </div>
         </section>
 
-        <section id="research" className="tjs-dept-section tjs-dept-section-alt">
-          <h2>Area of Research</h2>
-          <p className="tjs-dept-pending">Detail will be shared.</p>
-        </section>
-
-        <section id="publication" className="tjs-dept-section">
+        <section id="publication" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Publication</h2>
           <div className="tjs-dept-table-wrap">
             <table className="tjs-dept-table">
@@ -878,18 +872,18 @@ export default function ITDepartment() {
           </div>
         </section>
 
-        <section id="patent" className="tjs-dept-section tjs-dept-section-alt">
+        <section id="patent" className="tjs-dept-section">
           <h2>Patent</h2>
           <p className="tjs-dept-pending">Content coming soon.</p>
         </section>
 
-        <section id="books-chapters" className="tjs-dept-section">
+        <section id="books-chapters" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Books &amp; Chapters</h2>
           <p className="tjs-dept-pending">Content coming soon.</p>
         </section>
 
-        <section id="facilities" className="tjs-dept-section tjs-dept-section-alt">
-          <h2>Academic Laboratories</h2>
+        <section id="facilities" className="tjs-dept-section">
+          <h2>Department Laboratories</h2>
           <LabAccordion items={LABS} />
 
           <h3>Department Library</h3>
@@ -918,12 +912,12 @@ export default function ITDepartment() {
           </div>
         </section>
 
-        <section id="conferences" className="tjs-dept-section">
+        <section id="conferences" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Conference</h2>
           <p className="tjs-dept-pending">Content coming soon.</p>
         </section>
 
-        <section id="fdp-workshop" className="tjs-dept-section tjs-dept-section-alt">
+        <section id="fdp-workshop" className="tjs-dept-section">
           <h2>Guest Lecturer, FDP &amp; Workshop</h2>
           <EventSlider
             items={FDP_WORKSHOP_ITEMS.map((e) => ({
@@ -937,24 +931,19 @@ export default function ITDepartment() {
           />
         </section>
 
-        <section id="value-added-course" className="tjs-dept-section">
+        <section id="value-added-course" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Value Added Course</h2>
           <p className="tjs-dept-pending">Content coming soon.</p>
         </section>
 
-        <section id="symposium" className="tjs-dept-section tjs-dept-section-alt">
+        <section id="symposium" className="tjs-dept-section">
           <h2>Symposium</h2>
           <YearGroupedVisits items={SYMPOSIUM_EVENTS} title="Symposium" />
         </section>
 
-        <section id="seminars" className="tjs-dept-section">
+        <section id="seminars" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Seminars &amp; Activities</h2>
           <YearGroupedVisits items={SEMINARS_EVENTS} title="Seminars & Activities" />
-        </section>
-
-        <section id="placed-students" className="tjs-dept-section tjs-dept-section-alt">
-          <h2>Placed Students</h2>
-          <p className="tjs-dept-pending">Content coming soon.</p>
         </section>
 
         <section id="recruiters" className="tjs-dept-section">
@@ -966,7 +955,12 @@ export default function ITDepartment() {
           </div>
         </section>
 
-        <section id="faculty-achievements" className="tjs-dept-section tjs-dept-section-alt">
+        <section id="placed-students" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>Placed Students</h2>
+          <p className="tjs-dept-pending">Content coming soon.</p>
+        </section>
+
+        <section id="faculty-achievements" className="tjs-dept-section">
           <h2>Faculty Achievements</h2>
           <EventSlider
             items={FACULTY_ACHIEVEMENTS.map((a) => ({
@@ -980,7 +974,7 @@ export default function ITDepartment() {
           />
         </section>
 
-        <section id="students-achievements" className="tjs-dept-section">
+        <section id="students-achievements" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Students Achievements</h2>
           <EventSlider
             items={STUDENTS_ACHIEVEMENTS.map((a) => ({
@@ -994,7 +988,7 @@ export default function ITDepartment() {
           />
         </section>
 
-        <section id="co-curricular" className="tjs-dept-section tjs-dept-section-alt">
+        <section id="co-curricular" className="tjs-dept-section">
           <h2>Co-Curricular</h2>
           <EventSlider
             items={SIH_TEAMS.map((t) => ({
@@ -1009,27 +1003,27 @@ export default function ITDepartment() {
           />
         </section>
 
-        <section id="extra-curricular" className="tjs-dept-section">
+        <section id="extra-curricular" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Extra-Curricular</h2>
           <p className="tjs-dept-pending">Content coming soon.</p>
         </section>
 
-        <section id="gallery" className="tjs-dept-section tjs-dept-section-alt">
+        <section id="gallery" className="tjs-dept-section">
           <h2>Gallery</h2>
           <p className="tjs-dept-pending">Content coming soon.</p>
         </section>
 
-        <section id="alumni" className="tjs-dept-section">
+        <section id="alumni" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Alumni Interactions</h2>
           <p className="tjs-dept-pending">Content coming soon.</p>
         </section>
 
-        <section id="distinguished-alumni" className="tjs-dept-section tjs-dept-section-alt">
+        <section id="distinguished-alumni" className="tjs-dept-section">
           <h2>Distinguished Alumni</h2>
           <p className="tjs-dept-pending">Content coming soon.</p>
         </section>
 
-        <section id="entrepreneurship" className="tjs-dept-section">
+        <section id="entrepreneurship" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Entrepreneurship</h2>
           <p className="tjs-dept-pending">Content coming soon.</p>
         </section>

@@ -689,7 +689,7 @@ a.rs-approved-card:hover { transform: translateY(-3px); }
 .tjs-dept-section h3 { color: var(--rs-theme-blue); font-size: 18px; font-weight: 700; margin: 26px 0 12px; }
 .tjs-dept-section h4 { color: var(--rs-text-primary); font-size: 16px; font-weight: 700; margin: 0px 0 12px; }
 .tjs-dept-lab-label { color: var(--rs-theme-blue); font-size: 14px; font-weight: 600; margin: 0 0 10px; }
-.tjs-dept-section p { color: var(--rs-text-primary); line-height: 1.7; margin-bottom: 14px; }
+.tjs-dept-section p { color: var(--rs-theme-yellow); line-height: 1.7; margin-bottom: 14px; }
 .tjs-dept-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 20px 0; }
 .tjs-dept-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .tjs-dept-card { background: #fff; border: 1px solid var(--rs-border-primary); border-radius: 12px; padding: 24px; box-shadow: 0 8px 22px rgba(3, 3, 3, 0.05); }
@@ -807,6 +807,19 @@ a.rs-approved-card:hover { transform: translateY(-3px); }
 .tjs-dept-link-arrow { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: var(--rs-bg-secondary); color: var(--rs-theme-blue); font-weight: 400; flex: 0 0 auto; transition: background-color 0.2s ease; }
 .tjs-dept-link-list a:hover .tjs-dept-link-arrow { background: var(--rs-theme-blue); color: #fff; }
 .tjs-dept-bullets { color: var(--rs-text-primary); line-height: 1.8; padding-inline-start: 20px;     margin-bottom: 8px;}
+
+/* Group label used above a batch of download cards (e.g. Regulations &
+   Curriculum page) — needs to read clearly as a sub-level under the h2,
+   so it gets its own accent tick and uppercase treatment rather than
+   reusing .tjs-dept-lab-label (which is a quieter inline label elsewhere). */
+.tjs-dept-group-label {
+    display: flex; align-items: center; gap: 10px;
+    color: var(--rs-theme-blue); font-size: 15px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    margin: 34px 0 14px;
+}
+.tjs-dept-group-label:first-child { margin-top: 0; }
+
 
 /* Text + photo side-by-side (photo on the right), used where a facility's
    photo previously sat full-width above its description. */

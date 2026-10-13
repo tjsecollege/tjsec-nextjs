@@ -35,6 +35,160 @@ const POSH_OBJECTIVES = [
   "Encouraging a culture where prevention, awareness, and responsible conduct are given priority.",
 ];
 
+const COMMITTEE_MEMBERS = {
+  antiragging: [
+    { name: "Dr. J. Prakash", designation: "Principal", position: "Chairperson" },
+    { name: "Mr. Ganesh", designation: "Gummidipoondi", position: "Representative" },
+    { name: "Mr. Balaji", designation: "Tahsildar", position: "Enforcement" },
+    { name: "Mr. A. Kabilan", designation: "Foundation", position: "NGO" },
+    { name: "Mr. Vadivelan M", designation: "Lab Instructor", position: "Parent Representative" },
+    { name: "Ms. Suriya L", designation: "Office Assistant", position: "Parent Representative" },
+    { name: "Mr. M. Vidhuran Kumar", designation: "Assistant Professor", position: "Representative" },
+    { name: "Mr. K. Richard", designation: "Assistant Professor", position: "Faculty Representative" },
+    { name: "Ms. M. Rekha", designation: "Assistant Professor", position: "Faculty Representative" },
+    { name: "Mr. P. Prabhu", designation: "Librarian", position: "Non-Teaching Staff" },
+    { name: "Mr. V. P. Govindharajulu", designation: "Dinathanthi / Malai Malar", position: "Local Media Representative" },
+    { name: "Mohamme", designation: "AI&ML - Student", position: "Student Representative" },
+    { name: "Ms. Samyuktha M R", designation: "CSE - Student", position: "Student Representative" },
+    { name: "Ms. Bhavani R", designation: "AI&DS - Student", position: "Student Representative" },
+    { name: "Mr. Akash V", designation: "EEE - Student", position: "Student Representative" },
+    { name: "Ms. Lakshanya C S", designation: "Mech - Student", position: "Student Representative" },
+  ],
+  icc: [
+    { name: "Ms. M. Shunmuga Sankari", designation: "Assistant Professor (SG)", position: "Presiding Officer" },
+    { name: "Ms. P. Usha", designation: "Assistant Professor", position: "Volunteer - Abinayam" },
+    { name: "Ms. J. Agnes", designation: "Assistant Professor", position: "Faculty Representative" },
+    { name: "Mr. A. Kabilan", designation: "Foundation", position: "NGO" },
+    { name: "Ms. R. Durga Devi", designation: "Lab Demonstrator", position: "Non-Teaching Staff" },
+    { name: "Mr. R. Magesh", designation: "Lab Instructor", position: "Non-Teaching Staff" },
+    { name: "Ms. Kaviya Dharshini M", designation: "EEE - Student", position: "Student Representative" },
+    { name: "Mr. Rithik Kumar U", designation: "CSE - Student", position: "Student Representative" },
+    { name: "Ms. Abigail M", designation: "ECE - Student", position: "Student Representative" },
+  ],
+  scst: [
+    { name: "Dr. J. Prakash", designation: "Principal", position: "Chairman" },
+    { name: "Dr. S. VelMurugan", designation: "Professor", position: "Liaison Officer" },
+    { name: "Dr. E. Sivakumar", designation: "Professor", position: "Representative" },
+    { name: "Dr. M. Vijayaragavan", designation: "Associate Professor", position: "Faculty Representative" },
+    { name: "Dr. J. P. Poornima", designation: "Assistant Professor", position: "Secretary" },
+    { name: "Ms. P. Pavithra", designation: "Assistant Professor", position: "Faculty Representative" },
+    { name: "Mr. Murali Krishna S", designation: "Mech - Student", position: "Student Representative" },
+    { name: "Ms. Keerthana B", designation: "IT - Student", position: "Student Representative" },
+    { name: "Mr. Jagadish M", designation: "AI&DS - Student", position: "Student Representative" },
+    { name: "Ms. Vijeesha P", designation: "EEE - Student", position: "Student Representative" },
+    { name: "Mr. Ashwin A", designation: "ECE - Student", position: "Student Representative" },
+  ],
+  grievance: [
+    { name: "Dr. P. Venkata Mohan Reddy", designation: "Professor", position: "Chairperson" },
+    { name: "Dr. M. Sathya Priya", designation: "Associate Professor", position: "Representative" },
+    { name: "Dr. R. Senthil Kumar", designation: "Associate Professor", position: "Representative" },
+    { name: "Ms. Jayavani R", designation: "Assistant Professor", position: "Faculty Representative" },
+    { name: "Ms. V. Pavithra", designation: "Assistant Professor", position: "Faculty Representative" },
+    { name: "Mr. S. RamKumar", designation: "Lab Instructor", position: "Non-Teaching Staff" },
+    { name: "Ms. Charumathi K", designation: "EEE - Student", position: "Student Representative" },
+    { name: "Mr. Kiranraj N C", designation: "Mech - Student", position: "Student Representative" },
+    { name: "Mr. M. Gandhidhasan", designation: "IT - Student", position: "Sports Excellence" },
+  ],
+  discipline: [
+    { name: "Dr. J. Prakash", designation: "Principal", position: "Chairman" },
+    { name: "Dr. S. VelMurugan", designation: "Professor", position: "Faculty Representative" },
+    { name: "Dr. E. Sivakumar", designation: "Professor", position: "Faculty Representative" },
+    { name: "Dr. P. Subramanian", designation: "Associate Professor", position: "Faculty Representative" },
+    { name: "Ms. M. Shunmuga Sankari", designation: "Assistant Professor (SG)", position: "Faculty Representative" },
+    { name: "Mr. P. Senthil", designation: "Assistant Professor", position: "Faculty Representative" },
+    { name: "Dr. P. Venkata Mohan Reddy", designation: "Professor", position: "Faculty Representative" },
+    { name: "Dr. C. Shalini", designation: "Assistant Professor", position: "Faculty Representative" },
+    { name: "Dr. N. Jayanthi", designation: "Assistant Professor", position: "Faculty Representative" },
+    { name: "Dr. S. Satheesh", designation: "Assistant Professor", position: "Faculty Representative" },
+    { name: "Ms. K. E. Mohana Priya", designation: "Admin. Assistant", position: "Office Representative" },
+    { name: "Mr. E. Rajesh", designation: "Physical Education Director", position: "Faculty Representative" },
+    { name: "Mr. W. Wasim", designation: "Education", position: "Faculty Representative" },
+  ],
+  "flying-squad": [
+    { name: "Dr. J. Prakash", designation: "Principal", position: "Head" },
+    { name: "Dr. P. Venkata Mohan Reddy", designation: "Professor", position: "Faculty Representative" },
+    { name: "Dr. S. VelMurugan", designation: "Professor", position: "Faculty Representative" },
+    { name: "Ms. M. Shunmuga Sankari", designation: "Assistant Professor (SG)", position: "Faculty Representative" },
+    { name: "Mr. M. Vinoth Kumar", designation: "Assistant Professor", position: "Faculty Representative" },
+    { name: "Dr. S. Satheesh", designation: "Assistant Professor", position: "Faculty Representative" },
+    { name: "Dr. K. R. Vivek", designation: "Assistant Professor", position: "Faculty Representative" },
+    { name: "Ms. V. Pavithra", designation: "Assistant Professor", position: "Faculty Representative" },
+    { name: "Dr. C. Shalini", designation: "Assistant Professor", position: "Faculty Representative" },
+    { name: "Dr. S. Anitha", designation: "Assistant Professor", position: "Faculty Representative" },
+    { name: "Ms. P. Pavithra", designation: "Assistant Professor", position: "Faculty Representative" },
+    { name: "Ms. G. Gomathi", designation: "Assistant Professor", position: "Faculty Representative" },
+    { name: "Ms. R. Durga Devi", designation: "Lab Demonstrator", position: "Non-Teaching Staff" },
+    { name: "Ms. D. JayaPriya", designation: "Lab Demonstrator", position: "Non-Teaching Staff" },
+    { name: "Mr. R. Magesh", designation: "Lab Instructor", position: "Non-Teaching Staff" },
+    { name: "Mr. S. Dilli", designation: "Lab Instructor", position: "Non-Teaching Staff" },
+    { name: "Mr. E. Rajesh", designation: "Physical Education Director", position: "Faculty Representative" },
+    { name: "Mr. W. Wasim", designation: "Education", position: "Faculty Representative" },
+  ],
+  "women-empowerment": [
+    { name: "Dr. J. Prakash", designation: "Principal", position: "Head" },
+    { name: "Dr. C. Shalini", designation: "Assistant Professor", position: "Convenor" },
+    { name: "Mr. A. Kabilan", designation: "Foundation", position: "NGO" },
+    { name: "Ms. R. Jayavani", designation: "Assistant Professor", position: "Secretary" },
+    { name: "Ms. P. Usha", designation: "Assistant Professor", position: "Volunteer - Abinayam" },
+    { name: "Ms. Sarifa A", designation: "Assistant Professor", position: "Faculty Representative" },
+    { name: "Ms. C. Anusha", designation: "Assistant Professor", position: "Faculty Representative" },
+    { name: "Ms. G. Gomathi", designation: "Assistant Professor", position: "Faculty Representative" },
+    { name: "Ms. R. Padmini", designation: "Assistant Professor", position: "Faculty Representative" },
+    { name: "Ms. D. JayaPriya", designation: "Lab Demonstrator", position: "Non-Teaching Staff" },
+    { name: "Ms. Mokshitha L", designation: "CSE - Student", position: "Student Representative" },
+    { name: "Ms. Monika S", designation: "IT - Student", position: "Student Representative" },
+    { name: "Ms. Mohana Priya B", designation: "AI&DS - Student", position: "Student Representative" },
+    { name: "Ms. Sakthi Priya U", designation: "ECE - Student", position: "Student Representative" },
+  ],
+  "student-council": [
+    { name: "Dr. J. Prakash", designation: "Principal", position: "Chairperson" },
+    { name: "Dr. S. Satheesh", designation: "Assistant Professor", position: "Faculty Advisor" },
+    { name: "Dr. S. Anitha", designation: "Assistant Professor", position: "Secretary" },
+    { name: "Ms. M. Santhya", designation: "Assistant Professor", position: "Treasurer" },
+    { name: "Ms. D. Priya", designation: "Assistant Professor", position: "Cultural Coordinator" },
+    { name: "Dr. R. Senthil Kumar", designation: "Associate Professor", position: "Alumni Relations" },
+    { name: "Ms. V. Geetha", designation: "Assistant Professor", position: "Welfare" },
+    { name: "Mr. E. Rajesh", designation: "Physical Education Director", position: "Relations" },
+    { name: "Ms. N. Anu", designation: "Assistant Professor", position: "Equality, Diversity and Inclusion" },
+    { name: "Dr. M. Sathya Priya", designation: "Associate Professor", position: "Academic Affairs" },
+    { name: "Mr. Harish Srinivas D", designation: "Student Representative", position: "Secretary - Boy" },
+    { name: "Ms. H. Monika", designation: "Student Representative", position: "Secretary - Girl" },
+  ],
+  finance: [
+    { name: "Dr. J. Prakash", designation: "Principal", position: "Chairman" },
+    { name: "Dr. P. Subramanian", designation: "Associate Professor", position: "Governing Body Nominee" },
+    { name: "Dr. R. Senthil Kumar", designation: "Associate Professor", position: "Senior Faculty Member" },
+    { name: "Mr. S. Elumalai", designation: "Administrative Officer", position: "Finance Officer" },
+  ],
+};
+
+function MembersTable({ members }) {
+  return (
+    <div className="tjs-dept-table-wrap">
+      <table className="tjs-dept-table">
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Position</th>
+          </tr>
+        </thead>
+        <tbody>
+          {members.map((m, i) => (
+            <tr key={m.name + i}>
+              <td>{i + 1}</td>
+              <td>{m.name}</td>
+              <td>{m.designation}</td>
+              <td>{m.position}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 export default function Committees() {
   const [open, setOpen] = useState("icc");
 
@@ -166,8 +320,11 @@ export default function Committees() {
                         <p>
                           <strong>Prevention is the first step towards building a safe, inclusive, and dignified campus for everyone.</strong>
                         </p>
-                        <p className="tjs-dept-pending">Committee members will be added soon.</p>
+                        <h4>Committee Members</h4>
+                        <MembersTable members={COMMITTEE_MEMBERS.icc} />
                       </>
+                    ) : COMMITTEE_MEMBERS[c.id] ? (
+                      <MembersTable members={COMMITTEE_MEMBERS[c.id]} />
                     ) : (
                       <p className="tjs-dept-pending">Committee members will be added soon.</p>
                     )}
