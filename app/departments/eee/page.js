@@ -719,6 +719,135 @@ const RECRUITERS = [
   { name: "Sakura", logo: "/assets/images/eee/image_52.jpeg" },
 ];
 
+const PLACED_STUDENTS = [
+  {
+    company: "NISSI (CORE)",
+    date: "11-07-2025",
+    name: "Sakthivel V",
+    email: "sakthivel1132005@gmail.com",
+    phone: "9566235656",
+    ctc: "3.6 LPA",
+    photo: "/assets/images/eee/Placed_Student/image_7.jpeg",
+  },
+  {
+    company: "Haitian Plastics Machinery India Pvt Ltd (CORE)",
+    date: "11-12-2025",
+    name: "Sakthivel V",
+    email: "sakthivel1132005@gmail.com",
+    phone: "9566235656",
+    ctc: "2.4 LPA",
+    photo: "/assets/images/eee/Placed_Student/image_7.jpeg",
+  },
+  {
+    company: "WIPRO Infrastructure Engineering",
+    date: "30-12-2025",
+    name: "V. Sakthivel",
+    email: "sakthivel1132005@gmail.com",
+    phone: "9566235656",
+    ctc: "2.4 LPA (4 LPA after one year)",
+    photo: "/assets/images/eee/Placed_Student/image_7.jpeg",
+  },
+  {
+    company: "WIPRO Infrastructure Engineering",
+    date: "30-12-2025",
+    name: "S. Kaviyasri",
+    email: "kaviyasrikami@gmail.com",
+    phone: "7810095518",
+    ctc: "2.4 LPA (4 LPA after one year)",
+    photo: "/assets/images/eee/Placed_Student/image_8.jpeg",
+  },
+  {
+    company: "WIPRO Infrastructure Engineering",
+    date: "30-12-2025",
+    name: "Gopi Raj M",
+    email: "mgopiraj2004@gmail.com",
+    phone: "9952884983",
+    ctc: "2.4 LPA (4 LPA after one year)",
+    photo: "/assets/images/eee/Placed_Student/image_1.jpeg",
+  },
+  {
+    company: "Sakura Autoparks",
+    date: "19-12-2025",
+    name: "Gopi Raj M",
+    email: "mgopiraj2004@gmail.com",
+    phone: "9952884983",
+    ctc: "2.18 LPA to 2.58 LPA",
+    photo: "/assets/images/eee/Placed_Student/image_1.jpeg",
+  },
+  {
+    company: "WIPRO Infrastructure Engineering",
+    date: "30-12-2025",
+    name: "Surya Prakash T",
+    email: "thomassurya777@gmail.com",
+    phone: "9500021951",
+    ctc: "2.4 LPA (4 LPA after one year)",
+    photo: "/assets/images/eee/Placed_Student/image_4.png",
+  },
+  {
+    company: "Thinksynq",
+    date: "04-01-2026",
+    name: "Nageshwari",
+    email: "nagilogi32@gmail.com",
+    phone: "8760836068",
+    ctc: "2 LPA",
+    photo: "/assets/images/eee/Placed_Student/image_9.png",
+  },
+  {
+    company: "Caplin Steriles",
+    date: "27-03-2026",
+    name: "Nageshwari",
+    email: "nagilogi32@gmail.com",
+    phone: "8760836068",
+    ctc: "2.4 LPA",
+    photo: "/assets/images/eee/Placed_Student/image_9.png",
+  },
+  {
+    company: "Emerald Tyres",
+    date: "04-09-2026",
+    name: "Nageshwari",
+    email: "nagilogi32@gmail.com",
+    phone: "8760836068",
+    ctc: "2.4 LPA to 2.9 LPA",
+    photo: "/assets/images/eee/Placed_Student/image_9.png",
+  },
+  {
+    company: "Thinksynq",
+    date: "04-01-2026",
+    name: "Kalaiselvi P",
+    email: "kalaiselvimanjula2004@gmail.com",
+    phone: "9080111708",
+    ctc: "2 LPA",
+    photo: "/assets/images/eee/Placed_Student/image_5.png",
+  },
+  {
+    company: "Emerald Tyres",
+    date: "04-09-2026",
+    name: "Kalaiselvi P",
+    email: "kalaiselvimanjula2004@gmail.com",
+    phone: "9080111708",
+    ctc: "2.4 LPA to 2.9 LPA",
+    photo: "/assets/images/eee/Placed_Student/image_5.png",
+  },
+  {
+    company: "Thinksynq",
+    date: "04-01-2026",
+    name: "Sandhiya A S",
+    email: "Sandhiyaas50@gmail.com",
+    phone: "8015889173",
+    ctc: "2 LPA",
+    photo: "/assets/images/eee/Placed_Student/image_3.jpeg",
+  },
+  {
+    company: "Caplin Steriles",
+    date: "27-03-2026",
+    name: "Santhosh M",
+    email: null,
+    phone: null,
+    ctc: "2.4 LPA",
+    photo: "/assets/images/eee/Placed_Student/image_2.jpeg",
+  },
+];
+
 const INTERNSHIPS = [
   { org: "Prolific Systems & Technologies Pvt. Ltd.", date: "27-01-2025 to 10-02-2025", who: "II Year students (21 nos.)" },
   {
@@ -1405,7 +1534,15 @@ export default function EEEDepartment() {
 
         <section id="placed-students" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Placed Students</h2>
-          <p className="tjs-dept-pending">Content coming soon.</p>
+          <PeopleCarousel
+            items={PLACED_STUDENTS.map((s) => ({
+              name: s.name,
+              photo: s.photo,
+              role: s.company,
+              spec: s.date + " · " + s.ctc,
+              email: s.email,
+            }))}
+          />
         </section>
 
         <section id="faculty-achievements" className="tjs-dept-section">

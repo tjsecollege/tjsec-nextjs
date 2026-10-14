@@ -91,12 +91,19 @@ export default function PeopleCarousel({ items }) {
         <i className="ri-arrow-left-s-line"></i>
       </button>
       <div className="tjs-people-carousel-track" ref={trackRef}>
-        {items.map((item) => (
-          <div className="tjs-dept-people-card" key={item.name}>
+        {items.map((item, i) => (
+          <div className="tjs-dept-people-card" key={(item.name || "") + i}>
             <div className="tjs-dept-people-photo">
               {item.photo ? <img src={item.photo} alt={item.name} /> : <span>Photo</span>}
             </div>
             <h4>{item.name}</h4>
+            {item.role && <p className="tjs-dept-people-role">{item.role}</p>}
+            {item.spec && <p className="tjs-dept-people-spec">{item.spec}</p>}
+            {item.email && (
+              <a href={"mailto:" + item.email} className="tjs-dept-people-email">
+                {item.email}
+              </a>
+            )}
           </div>
         ))}
       </div>
