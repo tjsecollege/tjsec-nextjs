@@ -119,7 +119,7 @@ const CATEGORIES = [
   { id: "faq", label: "FAQ" },
   { id: "downloads", label: "Downloads" },
   { id: "syllabi", label: "Syllabi" },
-  { id: "statistics", label: "Statistics" },
+  { id: "statistics", label: "Placed Students" },
   { id: "recruiters", label: "Our Recruiters" },
   { id: "higher-education", label: "Higher Education" },
   { id: "testimonials", label: "Testimonials" },
@@ -347,7 +347,7 @@ export default function Placements() {
 
               {activeCat === "statistics" && (
                 <>
-                  <h3>Statistics</h3>
+                  <h3>Placed Students</h3>
                   <Pending />
                 </>
               )}

@@ -18,9 +18,17 @@ function docUrl(file) {
   return "/assets/images/it/" + encodeURIComponent(file);
 }
 
+function regDocUrl(file) {
+  return "/assets/images/Regulations-and-Curriculam/" + file.split("/").map(encodeURIComponent).join("/");
+}
+
 const REGULATION_DOCS = [
   { label: "IT 2026 Curriculum and Syllabus (UG)", href: docUrl("IT 2026 CURRICULUM AND SYLLABUS UG.docx") },
   { label: "IT 2026 Regulations (UG)", href: docUrl("IT 2026 REGULATIONS UG.docx") },
+  { label: "IT 2025 Curriculum (UG)", href: regDocUrl("IT/curriculam/2025.pdf") },
+  { label: "IT 2025 Regulations (UG)", href: regDocUrl("IT/Regulations/AU- REGULATIONS 2025.pdf") },
+  { label: "IT 2021 Curriculum (UG)", href: regDocUrl("IT/curriculam/B.Tech.IT-2021.pdf") },
+  { label: "IT 2021 Regulations (UG)", href: regDocUrl("IT/Regulations/UG Regulation 2021.pdf") },
 ];
 
 const FACULTY = [
@@ -254,16 +262,10 @@ const FACULTY_ACHIEVEMENTS = [
     imgs: [{ src: img("image_60.png"), alt: "Wipro TalentNext certificate – Anu N" }],
   },
   {
-    date: "2026",
-    title: "R. Antony Juliet – Wipro TalentNext Certification (Database Solutions Expert)",
-    desc: "Ms. R. Antony Juliet cleared the TalentNext certification assessment and is recognized as a mentor for project-based learning (PBL) in Database Solutions Expert under the Wipro Digital Skills Readiness Program.",
-    imgs: [{ src: img("image_56.png"), alt: "Wipro TalentNext certificate – R Antony Juliet" }],
-  },
-  {
-    date: "28-08-2026",
-    title: "Dr. C. Shalini – Wipro TalentNext Certification (Data Science with Python)",
-    desc: "Dr. C. Shalini cleared the TalentNext certification assessment and is recognized as a mentor for project-based learning (PBL) in Data Science with Python under the Wipro Digital Skills Readiness Program.",
-    imgs: [{ src: img("image_53.png"), alt: "Wipro TalentNext certificate – Dr C Shalini" }],
+    date: "02-01-2026",
+    title: "Godwin Joseph Paul S – Microsoft Certified: Azure Administrator Associate",
+    desc: "Mr. Godwin Joseph Paul S earned the Microsoft Certified: Azure Administrator Associate certification (Credential ID 82DAF8AE54537385, Certification Number 4F606B-FCNDC0), valid till 3rd January 2027.",
+    imgs: [{ src: "/assets/images/it/Joseph_Paul_S.jpg", alt: "Microsoft Certified: Azure Administrator Associate – Godwin Joseph Paul S" }],
   },
   {
     date: "Jan – Apr 2026",
@@ -764,60 +766,6 @@ export default function ITDepartment() {
 
         <section id="publication" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Publication</h2>
-          <div className="tjs-dept-table-wrap">
-            <table className="tjs-dept-table">
-              <thead>
-                <tr>
-                  <th>S.No</th>
-                  <th>Year</th>
-                  <th>Topic / Research Paper Title</th>
-                  <th>Publication / Journal</th>
-                  <th>Impact Factor</th>
-                  <th>Citations</th>
-                </tr>
-              </thead>
-              <tbody>
-                {[
-                  {
-                    title: "Advanced hybrid attention-based deep learning network with heuristic algorithm for adaptive CT and PET image fusion in lung cancer detection",
-                    by: "Shalini Chowdary",
-                    year: "2024",
-                    journal: "Medical Engineering & Physics",
-                    impactFactor: "2.5",
-                    citations: "52",
-                    link: "https://scholar.google.com/scholar?oi=bibs&cluster=18051348610961890072&btnI=1&hl=en",
-                  },
-                  {
-                    title: "An Improved Archimedes Optimization-aided Multi-scale Deep Learning Segmentation with dilated ensemble CNN classification for detecting lung cancer using CT images",
-                    by: "Shalini Chowdary",
-                    year: "2025",
-                    journal: "Network: Computation in Neural Systems",
-                    impactFactor: "7.5",
-                    citations: "5*",
-                    link: "https://scholar.google.com/scholar?oi=bibs&cluster=7814968460803286478&btnI=1&hl=en",
-                  },
-                  {
-                    title: "Exploitation of Spectrum White Spaces by Using Energy Based Primary Transmitter Detection Approach for Cognitive Radio Networks",
-                    by: "Shalini Chowdary",
-                    year: "2025",
-                    journal: "Power Energy and Secure Smart Technologies",
-                    impactFactor: null,
-                    citations: null,
-                    link: "https://scholar.google.com/scholar?oi=bibs&cluster=1278709396236894687&btnI=1&hl=en",
-                  },
-                ].map((p, i) => (
-                  <tr key={p.title}>
-                    <td>{i + 1}</td>
-                    <td>{p.year}</td>
-                    <td>{p.title}</td>
-                    <td>{p.journal}</td>
-                    <td>{p.impactFactor || "—"}</td>
-                    <td>{p.citations || "—"}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
 
           <div className="tjs-pub-list">
             {[

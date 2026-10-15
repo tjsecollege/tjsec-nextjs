@@ -147,19 +147,19 @@ export default function RegulationsAndCurriculum() {
             Curriculum &amp; Syllabi
           </h2>
 
-          <p className="tjs-dept-group-label">Undergraduate &ndash; 2026 Regulation</p>
+          <p className="tjs-dept-group-label">Undergraduate &ndash; 2026 Curriculum &amp; Syllabi</p>
           <LinkList items={UG_CURRICULUM_2026} />
 
-          <p className="tjs-dept-group-label">Undergraduate &ndash; 2025 Regulation</p>
+          <p className="tjs-dept-group-label">Undergraduate &ndash; 2025 Curriculum &amp; Syllabi</p>
           <LinkList items={UG_CURRICULUM_2025} />
 
-          <p className="tjs-dept-group-label">Undergraduate &ndash; 2021 Regulation</p>
+          <p className="tjs-dept-group-label">Undergraduate &ndash; 2021 Curriculum &amp; Syllabi</p>
           <LinkList items={UG_CURRICULUM_2021} />
 
-          <p className="tjs-dept-group-label">Postgraduate &ndash; 2026 Regulation</p>
+          <p className="tjs-dept-group-label">Postgraduate &ndash; 2026 Curriculum &amp; Syllabi</p>
           <LinkList items={PG_CURRICULUM_2026} />
 
-          <p className="tjs-dept-group-label">Postgraduate &ndash; 2025 Regulation</p>
+          <p className="tjs-dept-group-label">Postgraduate &ndash; 2025 Curriculum &amp; Syllabi</p>
           <LinkList items={PG_CURRICULUM_2025} />
         </section>
       </div>

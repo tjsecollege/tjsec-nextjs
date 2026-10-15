@@ -721,24 +721,6 @@ const RECRUITERS = [
 
 const PLACED_STUDENTS = [
   {
-    company: "NISSI (CORE)",
-    date: "11-07-2025",
-    name: "Sakthivel V",
-    email: "sakthivel1132005@gmail.com",
-    phone: "9566235656",
-    ctc: "3.6 LPA",
-    photo: "/assets/images/eee/Placed_Student/image_7.jpeg",
-  },
-  {
-    company: "Haitian Plastics Machinery India Pvt Ltd (CORE)",
-    date: "11-12-2025",
-    name: "Sakthivel V",
-    email: "sakthivel1132005@gmail.com",
-    phone: "9566235656",
-    ctc: "2.4 LPA",
-    photo: "/assets/images/eee/Placed_Student/image_7.jpeg",
-  },
-  {
     company: "WIPRO Infrastructure Engineering",
     date: "30-12-2025",
     name: "V. Sakthivel",
@@ -766,15 +748,6 @@ const PLACED_STUDENTS = [
     photo: "/assets/images/eee/Placed_Student/image_1.jpeg",
   },
   {
-    company: "Sakura Autoparks",
-    date: "19-12-2025",
-    name: "Gopi Raj M",
-    email: "mgopiraj2004@gmail.com",
-    phone: "9952884983",
-    ctc: "2.18 LPA to 2.58 LPA",
-    photo: "/assets/images/eee/Placed_Student/image_1.jpeg",
-  },
-  {
     company: "WIPRO Infrastructure Engineering",
     date: "30-12-2025",
     name: "Surya Prakash T",
@@ -784,24 +757,6 @@ const PLACED_STUDENTS = [
     photo: "/assets/images/eee/Placed_Student/image_4.png",
   },
   {
-    company: "Thinksynq",
-    date: "04-01-2026",
-    name: "Nageshwari",
-    email: "nagilogi32@gmail.com",
-    phone: "8760836068",
-    ctc: "2 LPA",
-    photo: "/assets/images/eee/Placed_Student/image_9.png",
-  },
-  {
-    company: "Caplin Steriles",
-    date: "27-03-2026",
-    name: "Nageshwari",
-    email: "nagilogi32@gmail.com",
-    phone: "8760836068",
-    ctc: "2.4 LPA",
-    photo: "/assets/images/eee/Placed_Student/image_9.png",
-  },
-  {
     company: "Emerald Tyres",
     date: "04-09-2026",
     name: "Nageshwari",
@@ -809,15 +764,6 @@ const PLACED_STUDENTS = [
     phone: "8760836068",
     ctc: "2.4 LPA to 2.9 LPA",
     photo: "/assets/images/eee/Placed_Student/image_9.png",
-  },
-  {
-    company: "Thinksynq",
-    date: "04-01-2026",
-    name: "Kalaiselvi P",
-    email: "kalaiselvimanjula2004@gmail.com",
-    phone: "9080111708",
-    ctc: "2 LPA",
-    photo: "/assets/images/eee/Placed_Student/image_5.png",
   },
   {
     company: "Emerald Tyres",
@@ -1540,7 +1486,6 @@ export default function EEEDepartment() {
               photo: s.photo,
               role: s.company,
               spec: s.date + " · " + s.ctc,
-              email: s.email,
             }))}
           />
         </section>
