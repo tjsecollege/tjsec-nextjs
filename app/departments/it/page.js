@@ -32,12 +32,12 @@ const REGULATION_DOCS = [
 ];
 
 const FACULTY = [
-  { name: "J. Agnes", qual: "B.Tech (IT), M.E (CSE), (Ph.D)", role: "Assistant Professor", email: "agnes@tjsec.in" },
-  { name: "Godwinjosep Paul S", qual: "B.E., M.E (CSE)", role: "Assistant Professor", email: "joseph@tjsec.in" },
-  { name: "N. Anu", qual: "B.Tech (IT), M.E (CSE)", role: "Assistant Professor", email: "anu@tjsec.in" },
-  { name: "R. Antony Juliet", qual: "B.Tech (IT), M.E (CSE), (Ph.D)", role: "Assistant Professor", email: "antonyjuliet@tjsec.in" },
-  { name: "Priyanka M", qual: "M.E", role: "Assistant Professor", email: "priyanka@tjsec.in" },
-  { name: "Vutuchuru Vasantha M", qual: "M.Tech", role: "Assistant Professor", email: "vasantha@tjsec.in" },
+  { name: "Agnes J", degree: "M.E.", designation: "Assistant Professor", auFin: "2614071984", aicteId: "1-11054732021", photo: null },
+  { name: "Anu N", degree: "M.E.", designation: "Assistant Professor", auFin: "2649011996", aicteId: "1-10566026331", photo: null },
+  { name: "Antony Juliet", degree: "Ph.D.", designation: "Assistant Professor", auFin: "2635751998", aicteId: "1-11516547061", photo: null },
+  { name: "Godwin Joseph Paul S", degree: "M.E.", designation: "Assistant Professor", auFin: "2683221987", aicteId: "1-2909950263", photo: null },
+  { name: "Prianka M", degree: "M.E.", designation: "Assistant Professor", auFin: "2656581995", aicteId: "1-47692318315", photo: null },
+  { name: "Vutchuru Vasantha", degree: "M.Tech.", designation: "Assistant Professor", auFin: "2675561989", aicteId: "1-3553424446", photo: null },
 ];
 
 const NON_TEACHING = [{ name: "V. Bharathi", designation: "IT Lab Instructor", photo: "/assets/images/eee/V-BHARATHI.jpg" }];
@@ -643,29 +643,21 @@ export default function ITDepartment() {
 
         <section id="faculty" className="tjs-dept-section">
           <h2>Faculty</h2>
-          <div className="tjs-dept-table-wrap">
-            <table className="tjs-dept-table">
-              <thead>
-                <tr>
-                  <th>S.No</th>
-                  <th>Staff Name</th>
-                  <th>Qualification</th>
-                  <th>Designation</th>
-                  <th>Email</th>
-                </tr>
-              </thead>
-              <tbody>
-                {FACULTY.map((f, i) => (
-                  <tr key={f.name}>
-                    <td>{i + 1}</td>
-                    <td>{f.name}</td>
-                    <td>{f.qual}</td>
-                    <td>{f.role}</td>
-                    <td>{f.email ? <a href={"mailto:" + f.email}>{f.email}</a> : null}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="tjs-dept-people-grid-full">
+            {FACULTY.map((f) => (
+              <div className="tjs-dept-people-card" key={f.name}>
+                <div className="tjs-dept-people-photo">
+                  {f.photo ? <img src={f.photo} alt={f.name} /> : <span>Photo</span>}
+                </div>
+                <h4>{f.name}</h4>
+                <p className="tjs-dept-people-role">{f.designation}</p>
+                <p className="tjs-dept-people-spec">
+                  AICTE ID: {f.aicteId || "—"}
+                  <br />
+                  AU-FIN: {f.auFin || "—"}
+                </p>
+              </div>
+            ))}
           </div>
         </section>
 

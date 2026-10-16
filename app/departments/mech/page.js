@@ -1,14 +1,32 @@
-import DeptJumpNav from "../DeptJumpNav";
+import DeptMegaNav from "../DeptMegaNav";
+import PeopleCarousel from "../PeopleCarousel";
+import MouTabsViewer from "../MouTabsViewer";
+import YearGroupedVisits from "../YearGroupedVisits";
+
+const ArrowIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="5" y1="12" x2="19" y2="12"></line>
+    <polyline points="12 5 19 12 12 19"></polyline>
+  </svg>
+);
+
+function regDocUrl(file) {
+  return "/assets/images/Regulations-and-Curriculam/" + file.split("/").map(encodeURIComponent).join("/");
+}
+
+const TOPPERS = [];
+
+function auImg(n) {
+  return "/assets/images/Anna_University_Faculty_Images/image_" + n + "." + ([22].includes(n) ? "jpeg" : "png");
+}
 
 const FACULTY = [
-  { name: "Dr. E. Sivakumar", qual: "Ph.D", joined: "22.08.2022", role: "Professor" },
-  { name: "Dr. V. Valasamuthiram", qual: "Ph.D.", joined: "03.10.2022", role: "Professor" },
-  { name: "Mr. R. Radhakrishnan", qual: "M.E", joined: "01.08.2015", role: "Assistant Professor" },
-  { name: "Mr. M. Prakash", qual: "M.E", joined: "01.07.2016", role: "Assistant Professor" },
-  { name: "Mr. S. Sathya Moorthi", qual: "M.E", joined: "01.07.2016", role: "Assistant Professor" },
-  { name: "Mr. M. Vinoth Kumar", qual: "M.E", joined: "10.08.2016", role: "Assistant Professor" },
-  { name: "Mr. R. Sathish Kumar", qual: "M.E.", joined: "01.07.2016", role: "Assistant Professor" },
-  { name: "Mr. S. Dhilip Kumar", qual: "M.E", joined: "01.08.2015", role: "Assistant Professor" },
+  { name: "Dr. Sivakumar E", degree: "Ph.D", designation: "Professor", auFin: "2692531978", aicteId: "1-3539280910", photo: auImg(70) },
+  { name: "Mr. Radhakrishnan R", degree: "M.E", designation: "Assistant Professor", auFin: "2684121980", aicteId: "1-2918093421", photo: auImg(22) },
+  { name: "Mr. Sathyamoorthi S", degree: "M.E", designation: "Assistant Professor", auFin: "2671211992", aicteId: "1-2191144207", photo: auImg(71) },
+  { name: "Mr. Prakash M", degree: "M.E", designation: "Assistant Professor", auFin: "2655111991", aicteId: "1-3360918628", photo: auImg(72) },
+  { name: "Mr. Sathish Kumar R", degree: "M.E.", designation: "Assistant Professor", auFin: "2673031992", aicteId: "1-3194544502", photo: auImg(73) },
+  { name: "Mr. Vinothkumar M", degree: "M.E", designation: "Assistant Professor", auFin: "2692711990", aicteId: "1-3180185689", photo: auImg(42) },
 ];
 
 const SUPPORTING_STAFF = [
@@ -25,12 +43,6 @@ const PEOS = [
   "To create world class mechanical engineers capable of practice engineering ethically with a solid vision to become great leaders in academia, industries and society.",
 ];
 
-const PSOS = [
-  "Apply the knowledge gained in Mechanical Engineering for design and development and manufacture of engineering systems.",
-  "Apply the knowledge acquired to investigate research-oriented problems in mechanical engineering with due consideration for environmental and social impacts.",
-  "Use the engineering analysis and data management tools for effective management of multidisciplinary projects.",
-];
-
 const POS = [
   { title: "PO1: Engineering Knowledge", text: "Apply the knowledge of mathematics, natural science, computing, and engineering fundamentals and an engineering specialisation to the solution of complex engineering problems." },
   { title: "PO2: Problem Analysis", text: "Identify, formulate, and analyse complex engineering problems, reaching substantiated conclusions with consideration for the holistic nature of the problem." },
@@ -45,17 +57,163 @@ const POS = [
   { title: "PO11: Life-Long Learning", text: "Recognise the need for, and have the preparation and ability for, independent and life-long learning, adaptability to new and emerging technologies, and critical thinking in the broadest context of technological change." },
 ];
 
-const LABS = [
-  "Engineering Practices Laboratory",
-  "Computer Aided Machine Drawing Laboratory",
-  "Manufacturing Technology Laboratory",
-  "Strength of Materials and Fluid Machinery Laboratory",
-  "Thermal Engineering Laboratory",
-  "Metrology and Dynamics Laboratory",
-  "CAD/CAM Laboratory",
-  "Heat Transfer Laboratory",
-  "Mechatronics and IoT Laboratory",
+const PSOS = [
+  "Apply the knowledge gained in Mechanical Engineering for design and development and manufacture of engineering systems.",
+  "Apply the knowledge acquired to investigate research-oriented problems in mechanical engineering with due consideration for environmental and social impacts.",
+  "Use the engineering analysis and data management tools for effective management of multidisciplinary projects.",
 ];
+
+const BOS_DOCS = [
+  { label: "Mechanical Engineering 2026 Curriculum & Regulations (UG)", href: regDocUrl("Regulation-2026/TJSEC 2026 REGULATIONS - CURRICULUM - UG - MECH.pdf") },
+  { label: "Mechanical Engineering 2025 Curriculum (UG)", href: regDocUrl("MECH/curriculam/B.E. Mechanical Engineering-2025.pdf") },
+  { label: "Mechanical Engineering 2025 Regulations (UG)", href: regDocUrl("MECH/Regulations/AU- REGULATIONS 2025.pdf") },
+  { label: "Mechanical Engineering 2021 Curriculum (UG)", href: regDocUrl("MECH/curriculam/B.E. Mech-2021.pdf") },
+  { label: "Mechanical Engineering 2021 Regulations (UG)", href: regDocUrl("MECH/Regulations/UG Regulation 2021.pdf") },
+];
+
+const BOS_MEMBERS = [];
+const NEWSLETTERS = [];
+const MOU_DOCS = [];
+const CONSULTANCY = [];
+const STUDENT_PROJECTS = [];
+
+const LABS = [
+  { name: "Engineering Practices Laboratory", label: "About the Laboratory", desc: "" },
+  { name: "Computer Aided Machine Drawing Laboratory", label: "About the Laboratory", desc: "" },
+  { name: "Manufacturing Technology Laboratory", label: "About the Laboratory", desc: "" },
+  { name: "Strength of Materials and Fluid Machinery Laboratory", label: "About the Laboratory", desc: "" },
+  { name: "Thermal Engineering Laboratory", label: "About the Laboratory", desc: "" },
+  { name: "Metrology and Dynamics Laboratory", label: "About the Laboratory", desc: "" },
+  { name: "CAD/CAM Laboratory", label: "About the Laboratory", desc: "" },
+  { name: "Heat Transfer Laboratory", label: "About the Laboratory", desc: "" },
+  { name: "Mechatronics and IoT Laboratory", label: "About the Laboratory", desc: "" },
+];
+
+const INDUSTRIAL_VISITS = [];
+const INTERNSHIPS = [];
+const CONFERENCES = [];
+const GUEST_LECTURES = [];
+const FDPS_ATTENDED = [];
+const WORKSHOPS = [];
+const OTHER_DEPT_EVENTS = [];
+const SEMINARS_EVENTS = [];
+const RECRUITERS = [];
+const PLACED_STUDENTS = [];
+const FACULTY_ACHIEVEMENTS = [];
+const CO_CURRICULAR = [];
+const EXTRA_CURRICULAR = [];
+const ALUMNI_INTERACTIONS = [];
+const DISTINGUISHED_ALUMNI = [];
+
+const MENU = [
+  {
+    label: "About",
+    children: [
+      { href: "#about", label: "About us" },
+      { href: "#vision-mission", label: "Vision and Mission" },
+      { href: "#hod", label: "HOD's Desk" },
+      { href: "#magazine", label: "Magazine" },
+    ],
+  },
+  {
+    label: "People",
+    children: [
+      { href: "#faculty", label: "Faculty" },
+      { href: "#staff", label: "Non-Teaching" },
+    ],
+  },
+  {
+    label: "Academics",
+    children: [
+      { href: "#programmes", label: "Programme Offered" },
+      { href: "#bos", label: "BOS" },
+      { href: "#curriculum", label: "Curriculum & Syllabi" },
+    ],
+  },
+  {
+    label: "Industry Interface",
+    children: [
+      { href: "#mou", label: "MOU's" },
+      { href: "#consultancy", label: "Area of Consultancy" },
+      { href: "#industry-visits", label: "Industry Visits" },
+      { href: "#internships", label: "Internship" },
+    ],
+  },
+  {
+    label: "Research",
+    children: [
+      { href: "#publication", label: "Publication" },
+      { href: "#patent", label: "Patent" },
+      { href: "#books-chapters", label: "Books & Chapters" },
+    ],
+  },
+  {
+    label: "Facilities",
+    children: [{ href: "#facilities", label: "Department Laboratories" }],
+  },
+  {
+    label: "Events",
+    children: [
+      { href: "#conferences", label: "Conference" },
+      { href: "#fdp-workshop", label: "Guest Lecturer, FDP & Workshop" },
+      { href: "#value-added-course", label: "Value Added Course" },
+      { href: "#symposium", label: "Symposium" },
+      { href: "#seminars", label: "Seminars & Activities" },
+    ],
+  },
+  {
+    label: "Placements",
+    children: [
+      { href: "#recruiters", label: "Major Recruiters" },
+      { href: "#placed-students", label: "Placed Students" },
+    ],
+  },
+  {
+    label: "Achievements",
+    children: [
+      { href: "#faculty-achievements", label: "Faculty Achievements" },
+      { href: "#students-achievements", label: "Students Achievements" },
+      { href: "#co-curricular", label: "Co-Curricular" },
+      { href: "#extra-curricular", label: "Extra-Curricular" },
+    ],
+  },
+  {
+    label: "Others",
+    children: [
+      { href: "#gallery", label: "Gallery" },
+      { href: "#alumni", label: "Alumni Interactions" },
+      { href: "#distinguished-alumni", label: "Distinguished Alumni" },
+      { href: "#entrepreneurship", label: "Entrepreneurship" },
+    ],
+  },
+];
+
+function LinkList({ items }) {
+  if (!items.length) return <p className="tjs-dept-pending">Content coming soon.</p>;
+  return (
+    <div className="tjs-dept-link-list">
+      {items.map((item) => (
+        <a href={item.href} target="_blank" rel="noopener" key={item.label}>
+          <span>{item.label}</span>
+          <span className="tjs-dept-link-arrow">
+            <ArrowIcon />
+          </span>
+        </a>
+      ))}
+    </div>
+  );
+}
+
+function eventSliderItems(items, category) {
+  return items.map((e) => ({
+    title: e.title,
+    date: e.date,
+    category,
+    img: e.imgs?.[0]?.src,
+    imgs: e.imgs?.map((i) => i.src),
+    desc: e.desc,
+  }));
+}
 
 export default function MechanicalDepartment() {
   return (
@@ -76,18 +234,17 @@ export default function MechanicalDepartment() {
       </section>
 
       <div className="tjs-dept-page">
-        <DeptJumpNav
-          items={[
-            { href: "#about", label: "About" },
-            { href: "#people", label: "Faculty & Staff" },
-            { href: "#programmes", label: "Programmes Offered" },
-            { href: "#facilities", label: "Facilities & Laboratories" },
-            { href: "#library", label: "Library" },
-          ]}
-        />
+        <DeptMegaNav categories={MENU} />
+
+        {TOPPERS.length > 0 && (
+          <div className="tjs-dept-toppers-top">
+            <h3>Academic Toppers</h3>
+            <PeopleCarousel items={TOPPERS} />
+          </div>
+        )}
 
         <section id="about" className="tjs-dept-section">
-          <h2>About the Department</h2>
+          <h2>About us</h2>
           <p>
             The Department of Mechanical Engineering was established in the year 2009. The department offers a
             four year under graduate degree program in Mechanical Engineering with an annual intake of 120
@@ -103,11 +260,14 @@ export default function MechanicalDepartment() {
             consistently producing proficient students both in knowledge and character, with state-of-art
             laboratories to meet the demands of practical knowledge in present industrial applications.
           </p>
+        </section>
 
+        <section id="vision-mission" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>Vision and Mission</h2>
           <div className="tjs-dept-grid-2">
             <div className="tjs-dept-card">
               <h3>Vision</h3>
-              <p style={{ marginBottom: 0 }}>
+              <p>
                 To provide quality education and focus on students to promote innovation leading to responsible
                 engineers who will be able to meet the emerging needs of the society.
               </p>
@@ -123,38 +283,38 @@ export default function MechanicalDepartment() {
           </div>
         </section>
 
-        <section id="people" className="tjs-dept-section tjs-dept-section-alt">
-          <h2>Faculty &amp; Staff</h2>
-          <h3>Faculty</h3>
-          <div className="tjs-dept-table-wrap">
-            <table className="tjs-dept-table">
-              <thead>
-                <tr>
-                  <th>S.No</th>
-                  <th>Name</th>
-                  <th>Qualification</th>
-                  <th>Date of Joining</th>
-                  <th>Designation</th>
-                </tr>
-              </thead>
-              <tbody>
-                {FACULTY.map((f, i) => (
-                  <tr key={f.name}>
-                    <td>{i + 1}</td>
-                    <td>{f.name}</td>
-                    <td>{f.qual}</td>
-                    <td>{f.joined}</td>
-                    <td>{f.role}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        <section id="hod" className="tjs-dept-section">
+          <h2>HOD&apos;s Desk</h2>
+          <p className="tjs-dept-pending">Content coming soon.</p>
+        </section>
+
+        <section id="magazine" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>Magazine</h2>
+          <LinkList items={NEWSLETTERS} />
+        </section>
+
+        <section id="faculty" className="tjs-dept-section">
+          <h2>Faculty</h2>
+          <div className="tjs-dept-people-grid-full">
+            {FACULTY.map((f) => (
+              <div className="tjs-dept-people-card" key={f.name}>
+                <div className="tjs-dept-people-photo">
+                  {f.photo ? <img src={f.photo} alt={f.name} /> : <span>Photo</span>}
+                </div>
+                <h4>{f.name}</h4>
+                <p className="tjs-dept-people-role">{f.designation}</p>
+                <p className="tjs-dept-people-spec">
+                  AICTE ID: {f.aicteId || "—"}
+                  <br />
+                  AU-FIN: {f.auFin || "—"}
+                </p>
+              </div>
+            ))}
           </div>
+        </section>
 
-          <h3>Visiting Faculty</h3>
-          <p className="tjs-dept-pending">Nil.</p>
-
-          <h3>Supporting Staff</h3>
+        <section id="staff" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>Non-Teaching</h2>
           <div className="tjs-dept-table-wrap">
             <table className="tjs-dept-table">
               <thead>
@@ -182,9 +342,9 @@ export default function MechanicalDepartment() {
         </section>
 
         <section id="programmes" className="tjs-dept-section">
-          <h2>Programmes Offered</h2>
+          <h2>Programme Offered</h2>
           <div className="tjs-dept-tabs">
-            <button type="button" className="tjs-dept-tab active">B.E – Mechanical Engineering</button>
+            <button type="button" className="tjs-dept-tab active">B.E &ndash; Mechanical Engineering</button>
           </div>
 
           <h3>Program Educational Objectives (PEOs)</h3>
@@ -212,41 +372,153 @@ export default function MechanicalDepartment() {
           </div>
         </section>
 
-        <section id="facilities" className="tjs-dept-section tjs-dept-section-alt">
-          <h2>Facilities &amp; Laboratories</h2>
+        <section id="bos" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>BOS</h2>
+          <h3>Board of Studies Composition</h3>
+          <p className="tjs-dept-pending">Content coming soon.</p>
+        </section>
+
+        <section id="curriculum" className="tjs-dept-section">
+          <h2>Curriculum &amp; Syllabi</h2>
+          <LinkList items={BOS_DOCS} />
+        </section>
+
+        <section id="mou" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>MOU&apos;s</h2>
+          {MOU_DOCS.length > 0 ? <MouTabsViewer items={MOU_DOCS} /> : <p className="tjs-dept-pending">Content coming soon.</p>}
+        </section>
+
+        <section id="consultancy" className="tjs-dept-section">
+          <h2>Area of Consultancy</h2>
+          <LinkList items={CONSULTANCY} />
+        </section>
+
+        <section id="industry-visits" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>Industry Visits</h2>
+          {INDUSTRIAL_VISITS.length > 0 ? (
+            <YearGroupedVisits items={INDUSTRIAL_VISITS} title="Industry Visits" />
+          ) : (
+            <p className="tjs-dept-pending">Content coming soon.</p>
+          )}
+        </section>
+
+        <section id="internships" className="tjs-dept-section">
+          <h2>Internship</h2>
+          <p className="tjs-dept-pending">Content coming soon.</p>
+        </section>
+
+        <section id="publication" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>Publication</h2>
+          <p className="tjs-dept-pending">Content coming soon.</p>
+        </section>
+
+        <section id="patent" className="tjs-dept-section">
+          <h2>Patent</h2>
+          <p className="tjs-dept-pending">Content coming soon.</p>
+        </section>
+
+        <section id="books-chapters" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>Books &amp; Chapters</h2>
+          <p className="tjs-dept-pending">Content coming soon.</p>
+        </section>
+
+        <section id="facilities" className="tjs-dept-section">
+          <h2>Department Laboratories</h2>
           <p>
             The department maintains state-of-art laboratories to meet the demands of practical knowledge for
             present industrial applications:
           </p>
           <ul className="tjs-dept-bullets">
             {LABS.map((lab) => (
-              <li key={lab}>{lab}</li>
+              <li key={lab.name}>{lab.name}</li>
             ))}
           </ul>
-          <div className="tjs-dept-photo-grid">
-            {LABS.map((lab) => (
-              <div className="tjs-dept-photo-box" key={lab}>Photo</div>
-            ))}
-          </div>
 
           <h3>Maker Space Laboratory</h3>
           <p>A dedicated hands-on facility where students work directly on machines to build and prototype ideas.</p>
-          <div className="tjs-dept-photo-grid">
-            <div className="tjs-dept-photo-box">Photo</div>
-          </div>
-        </section>
 
-        <section id="library" className="tjs-dept-section">
-          <h2>Department Library</h2>
+          <h3>Department Library</h3>
           <div className="tjs-dept-grid-3">
             <div className="tjs-dept-card">
               <h3>Total Books</h3>
               <p style={{ marginBottom: 0 }}>577</p>
             </div>
           </div>
-          <div className="tjs-dept-photo-grid">
-            <div className="tjs-dept-photo-box">Photo</div>
-          </div>
+        </section>
+
+        <section id="conferences" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>Conference</h2>
+          <p className="tjs-dept-pending">Content coming soon.</p>
+        </section>
+
+        <section id="fdp-workshop" className="tjs-dept-section">
+          <h2>Guest Lecturer, FDP &amp; Workshop</h2>
+          <p className="tjs-dept-pending">Content coming soon.</p>
+        </section>
+
+        <section id="value-added-course" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>Value Added Course</h2>
+          <p className="tjs-dept-pending">Content coming soon.</p>
+        </section>
+
+        <section id="symposium" className="tjs-dept-section">
+          <h2>Symposium</h2>
+          <p className="tjs-dept-pending">Content coming soon.</p>
+        </section>
+
+        <section id="seminars" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>Seminars &amp; Activities</h2>
+          <p className="tjs-dept-pending">Content coming soon.</p>
+        </section>
+
+        <section id="recruiters" className="tjs-dept-section">
+          <h2>Major Recruiters</h2>
+          <p className="tjs-dept-pending">Content coming soon.</p>
+        </section>
+
+        <section id="placed-students" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>Placed Students</h2>
+          <p className="tjs-dept-pending">Content coming soon.</p>
+        </section>
+
+        <section id="faculty-achievements" className="tjs-dept-section">
+          <h2>Faculty Achievements</h2>
+          <p className="tjs-dept-pending">Content coming soon.</p>
+        </section>
+
+        <section id="students-achievements" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>Students Achievements</h2>
+          <LinkList items={STUDENT_PROJECTS} />
+        </section>
+
+        <section id="co-curricular" className="tjs-dept-section">
+          <h2>Co-Curricular</h2>
+          <p className="tjs-dept-pending">Content coming soon.</p>
+        </section>
+
+        <section id="extra-curricular" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>Extra-Curricular</h2>
+          <p className="tjs-dept-pending">Content coming soon.</p>
+        </section>
+
+        <section id="gallery" className="tjs-dept-section">
+          <h2>Gallery</h2>
+          <p className="tjs-dept-pending">Content coming soon.</p>
+        </section>
+
+        <section id="alumni" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>Alumni Interactions</h2>
+          <p className="tjs-dept-pending">Content coming soon.</p>
+        </section>
+
+        <section id="distinguished-alumni" className="tjs-dept-section">
+          <h2>Distinguished Alumni</h2>
+          <p className="tjs-dept-pending">Content coming soon.</p>
+        </section>
+
+        <section id="entrepreneurship" className="tjs-dept-section tjs-dept-section-alt">
+          <h2>Entrepreneurship</h2>
+          <p className="tjs-dept-pending">Content coming soon.</p>
         </section>
       </div>
     </>

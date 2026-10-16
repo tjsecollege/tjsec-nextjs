@@ -21,10 +21,12 @@ function img(n) {
 const TOPPERS = [];
 
 const FACULTY = [
-  { name: "Dr. N. Jayanthi", degree: "Ph.D." },
-  { name: "Mrs. Sangeetha", degree: "MBA" },
-  { name: "Ms. Gomathi", degree: "MBA" },
-  { name: "Mr. Richard", degree: "MBA" },
+  { name: "Dr. N. Jayanthi", degree: "Ph.D.", designation: "Associate Professor", auFin: "2698081983", aicteId: "1-44067573906", photo: null },
+  { name: "Gomathi G", degree: "MBA", designation: "Assistant Professor", auFin: "2610181999", aicteId: "1-11318453711", photo: null },
+  { name: "Murali R", degree: "MBA", designation: "Assistant Professor", auFin: "2675771984", aicteId: "1-3867371300", photo: null },
+  { name: "Sai Sangeetha S", degree: "MBA", designation: "Assistant Professor", auFin: "2619991984", aicteId: "1-7489594147", photo: null },
+  { name: "Richard K", degree: "MBA", designation: "Assistant Professor", auFin: "2649031988", aicteId: "1-46653507657", photo: null },
+  { name: "Kanagalakshmi S", degree: "MBA", designation: null, auFin: "2733581990", aicteId: "1-47948631989", photo: null },
 ];
 
 const NON_TEACHING = [];
@@ -621,25 +623,21 @@ export default function MBADepartment() {
 
         <section id="faculty" className="tjs-dept-section">
           <h2>Faculty</h2>
-          <div className="tjs-dept-table-wrap">
-            <table className="tjs-dept-table">
-              <thead>
-                <tr>
-                  <th>S.No</th>
-                  <th>Name of the Faculty</th>
-                  <th>Highest Degree</th>
-                </tr>
-              </thead>
-              <tbody>
-                {FACULTY.map((f, i) => (
-                  <tr key={f.name}>
-                    <td>{i + 1}</td>
-                    <td>{f.name}</td>
-                    <td>{f.degree}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="tjs-dept-people-grid-full">
+            {FACULTY.map((f) => (
+              <div className="tjs-dept-people-card" key={f.name}>
+                <div className="tjs-dept-people-photo">
+                  {f.photo ? <img src={f.photo} alt={f.name} /> : <span>Photo</span>}
+                </div>
+                <h4>{f.name}</h4>
+                {f.designation && <p className="tjs-dept-people-role">{f.designation}</p>}
+                <p className="tjs-dept-people-spec">
+                  AICTE ID: {f.aicteId || "—"}
+                  <br />
+                  AU-FIN: {f.auFin || "—"}
+                </p>
+              </div>
+            ))}
           </div>
         </section>
 

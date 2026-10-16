@@ -1001,7 +1001,8 @@ p.tjs-dept-group-label {
    faculty-grid look (.tjs-dept-people-card is shared with the Faculty/Staff
    grids, so all of this is scoped to cards rendered inside the carousel
    track). */
-.tjs-people-carousel-track .tjs-dept-people-card {
+.tjs-people-carousel-track .tjs-dept-people-card,
+.tjs-dept-people-grid-full .tjs-dept-people-card {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -1011,7 +1012,8 @@ p.tjs-dept-group-label {
     box-shadow: 0 10px 28px rgba(20, 25, 60, 0.12);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.tjs-people-carousel-track .tjs-dept-people-card::before {
+.tjs-people-carousel-track .tjs-dept-people-card::before,
+.tjs-dept-people-grid-full .tjs-dept-people-card::before {
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0;
@@ -1019,17 +1021,20 @@ p.tjs-dept-group-label {
     background: linear-gradient(90deg, var(--rs-theme-yellow), var(--rs-theme-blue));
     z-index: 1;
 }
-.tjs-people-carousel-track .tjs-dept-people-card:hover {
+.tjs-people-carousel-track .tjs-dept-people-card:hover,
+.tjs-dept-people-grid-full .tjs-dept-people-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 24px 44px rgba(20, 25, 60, 0.2);
 }
-.tjs-people-carousel-track .tjs-dept-people-photo {
+.tjs-people-carousel-track .tjs-dept-people-photo,
+.tjs-dept-people-grid-full .tjs-dept-people-photo {
     aspect-ratio: 4 / 5;
     background: var(--rs-bg-secondary);
     padding: 0;
     overflow: hidden;
 }
-.tjs-people-carousel-track .tjs-dept-people-photo img {
+.tjs-people-carousel-track .tjs-dept-people-photo img,
+.tjs-dept-people-grid-full .tjs-dept-people-photo img {
     width: 100%;
     height: 100%;
     display: block;
@@ -1040,17 +1045,21 @@ p.tjs-dept-group-label {
     box-shadow: none;
     transition: transform 0.4s ease;
 }
-.tjs-people-carousel-track .tjs-dept-people-card:hover .tjs-dept-people-photo img {
-    transform: scale(1.07);
+.tjs-people-carousel-track .tjs-dept-people-card:hover .tjs-dept-people-photo img,
+.tjs-dept-people-grid-full .tjs-dept-people-card:hover .tjs-dept-people-photo img {
+    transform: scale(1);
 }
-.tjs-people-carousel-track .tjs-dept-people-photo span {
+.tjs-people-carousel-track .tjs-dept-people-photo span,
+.tjs-dept-people-grid-full .tjs-dept-people-photo span {
     width: 100%;
     height: 100%;
     border: none;
     border-radius: 0;
 }
-.tjs-people-carousel-track .tjs-dept-people-card h4 { font-size: 17px; margin: 18px 0 8px; }
-.tjs-people-carousel-track .tjs-dept-people-role {
+.tjs-people-carousel-track .tjs-dept-people-card h4,
+.tjs-dept-people-grid-full .tjs-dept-people-card h4 { font-size: 17px; margin: 18px 15px 8px; }
+.tjs-people-carousel-track .tjs-dept-people-role,
+.tjs-dept-people-grid-full .tjs-dept-people-role {
     display: inline-block;
     max-width: calc(100% - 32px);
     background: var(--rs-bg-secondary);
@@ -1067,6 +1076,19 @@ p.tjs-dept-group-label {
     padding: 0 16px;
     margin-top: auto !important;
     margin-bottom: 20px !important;
+}
+.tjs-dept-people-grid-full .tjs-dept-people-spec {
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--rs-text-primary);
+    padding: 0 16px;
+    margin-top: 5px !important;
+    margin-bottom: 20px !important;
+}
+.tjs-dept-people-grid-full {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
 }
 .tjs-slider-card-body { padding: 18px 20px 22px; display: flex; flex-direction: column; flex: 1 1 auto; }
 .tjs-slider-card-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; font-size: 12.5px; color: var(--rs-text-secondary); margin-bottom: 12px; }

@@ -8,7 +8,7 @@ const PROGRAMMES = {
   "B.E": [
     { name: "Computer Science and Engineering", duration: "4 Years", intake: 120, href: "/departments/cse" },
     { name: "Computer Science and Engineering (AI & ML)", duration: "4 Years", intake: 60 },
-    { name: "Electrical and Communication Engineering", duration: "4 Years", intake: 60 },
+    { name: "Electronics and Communication Engineering", duration: "4 Years", intake: 60 },
     { name: "Electrical and Electronics Engineering", duration: "4 Years", intake: 60, href: "/departments/eee" },
     { name: "Mechanical Engineering", duration: "4 Years", intake: 30, href: "/departments/mech" },
   ],

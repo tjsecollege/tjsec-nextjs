@@ -23,13 +23,16 @@ const TOPPERS = [
   { name: "Hemavathi R", photo: "/assets/images/eee/image_98.jpeg" },
 ];
 
+function auImg(n) {
+  return "/assets/images/Anna_University_Faculty_Images/image_" + n + ".jpeg";
+}
+
 const FACULTY = [
-  { name: "Dr. J. Prakash", degree: "Ph.D" },
-  { name: "Mrs. Shunmuga Sankari M", degree: "M.E" },
-  { name: "Mr. Kamalkumar T", degree: "M.E" },
-  { name: "Mr. Ganesh S", degree: "M.E" },
-  { name: "Mrs. C. Anusha", degree: "M.E" },
-  { name: "V. Geetha", degree: "M.E" },
+  { name: "Dr. J. Prakash", degree: "Ph.D", designation: "Principal", auFin: "2699271981", aicteId: "1-7940203861", photo: auImg(55) },
+  { name: "Mrs. Shunmuga Sankari M", degree: "M.E", designation: "Assistant Professor", auFin: "2652131980", aicteId: "1-450386242", photo: auImg(82) },
+  { name: "Mr. Kamal Kumar T", degree: "M.E", designation: "Assistant Professor", auFin: "2671351986", aicteId: "1-1504171419", photo: auImg(76) },
+  { name: "Mr. Ganesh S", degree: "M.E", designation: "Assistant Professor", auFin: "2635271984", aicteId: "1-513528208", photo: auImg(81) },
+  { name: "Mrs. Anusha C", degree: "M.E", designation: "Assistant Professor", auFin: "2690681995", aicteId: "1-44717174353", photo: auImg(74) },
 ];
 
 const NON_TEACHING = [
@@ -1156,26 +1159,21 @@ export default function EEEDepartment() {
 
         <section id="faculty" className="tjs-dept-section">
           <h2>Faculty</h2>
-          <h3>Faculty (Staff Details for NBA, A.Y. 2026-27)</h3>
-          <div className="tjs-dept-table-wrap">
-            <table className="tjs-dept-table">
-              <thead>
-                <tr>
-                  <th>S.No</th>
-                  <th>Name of the Faculty</th>
-                  <th>Highest Degree</th>
-                </tr>
-              </thead>
-              <tbody>
-                {FACULTY.map((f, i) => (
-                  <tr key={f.name}>
-                    <td>{i + 1}</td>
-                    <td>{f.name}</td>
-                    <td>{f.degree}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="tjs-dept-people-grid-full">
+            {FACULTY.map((f) => (
+              <div className="tjs-dept-people-card" key={f.name}>
+                <div className="tjs-dept-people-photo">
+                  {f.photo ? <img src={f.photo} alt={f.name} /> : <span>Photo</span>}
+                </div>
+                <h4>{f.name}</h4>
+                <p className="tjs-dept-people-role">{f.designation}</p>
+                <p className="tjs-dept-people-spec">
+                  AICTE ID: {f.aicteId || "—"}
+                  <br />
+                  AU-FIN: {f.auFin || "—"}
+                </p>
+              </div>
+            ))}
           </div>
         </section>
 

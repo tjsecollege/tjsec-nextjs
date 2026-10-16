@@ -17,28 +17,29 @@ function img(file) {
   return "/assets/images/cse/" + file;
 }
 
+function auImg(n) {
+  const ext = [27, 3].includes(n) ? "png" : [20].includes(n) ? "jpg" : [19].includes(n) ? "JPG" : "jpeg";
+  return "/assets/images/Anna_University_Faculty_Images/image_" + n + "." + ext;
+}
+
 const TOPPERS = [];
 
 const FACULTY = [
-  { name: "Dr. K. Venkatraman", degree: "Ph.D." },
-  { name: "Dr. S. Srigowthem", degree: "Ph.D." },
-  { name: "Mr. A. Shanmugasundaram", degree: "M.E." },
-  { name: "Mr. G. Aravind", degree: "M.E." },
-  { name: "Mr. V. Dhinakaran", degree: "M.E." },
-  { name: "Mr. T. R. Harikrishnan", degree: "M.E." },
-  { name: "Mr. V. Jaikumar", degree: "M.E." },
-  { name: "Mr. V. Natarajan", degree: "M.E." },
-  { name: "Ms. V. Pavithra", degree: "M.E." },
-  { name: "Mr. R. Prashanth", degree: "M.E." },
-  { name: "Ms. J. B. Saraswathi", degree: "M.E." },
-  { name: "Ms. A. Sarifa", degree: "M.E." },
-  { name: "Ms. J. Sasikala", degree: "M.E." },
-  { name: "Mr. P. S. Sathish", degree: "M.E." },
-  { name: "Mr. K. Thyagarajan", degree: "M.E." },
-  { name: "Ms. R. Uma", degree: "M.E." },
-  { name: "Ms. P. Abirami", degree: "M.E." },
-  { name: "Ms. M. Ramya", degree: "M.E." },
-  { name: "Ms. J. Varhsini", degree: "M.E." },
+  { name: "Mr. Shanmugasundaram M", degree: "M.E.", designation: "Associate Professor", auFin: "2630351966", aicteId: "1-9316211161", photo: auImg(75) },
+  { name: "Mr. Aravind G", degree: "M.E.", designation: "Assistant Professor", auFin: "2666061991", aicteId: "1-11046098781", photo: auImg(23) },
+  { name: "Mr. Dhinakaran V", degree: "M.E.", designation: "Assistant Professor", auFin: "2691311985", aicteId: "1-2191116597", photo: auImg(19) },
+  { name: "Mr. Harikrishnan T R", degree: "M.E.", designation: "Assistant Professor", auFin: "2626991993", aicteId: "1-44718951584", photo: auImg(62) },
+  { name: "Mr. Jaikumar", degree: "M.E.", designation: "Assistant Professor", auFin: "2697361996", aicteId: "1-43915662341", photo: auImg(20) },
+  { name: "Mr. Natarajan V", degree: "M.E.", designation: "Assistant Professor", auFin: "2638241989", aicteId: "1-43395308205", photo: auImg(21) },
+  { name: "Ms. Pavithra V", degree: "M.E.", designation: "Assistant Professor", auFin: "2684031998", aicteId: "1-11054474111", photo: auImg(66) },
+  { name: "Mr. Prashanth R", degree: "M.E.", designation: "Assistant Professor", auFin: "2616661994", aicteId: "1-44724229754", photo: auImg(60) },
+  { name: "Mrs. Saraswathi J B", degree: "M.E.", designation: "Assistant Professor", auFin: "2665751993", aicteId: "1-43960524581", photo: auImg(27) },
+  { name: "Mrs. Sarifa A", degree: "M.E.", designation: "Assistant Professor", auFin: "2676181996", aicteId: "1-45304353182", photo: auImg(85) },
+  { name: "Mrs. Sasikala J", degree: "M.E.", designation: "Assistant Professor", auFin: "2663831999", aicteId: "1-45827425882", photo: auImg(1) },
+  { name: "Mr. Satheesh P S", degree: "M.E.", designation: "Assistant Professor", auFin: "2630461989", aicteId: "1-4667116247", photo: auImg(61) },
+  { name: "Mr. Thyagarajan K", degree: "M.E.", designation: "Assistant Professor", auFin: "2618681998", aicteId: "1-43757785457", photo: auImg(54) },
+  { name: "Mrs. Uma R", degree: "M.E.", designation: "Assistant Professor", auFin: "2667151985", aicteId: "1-757178750", photo: auImg(3) },
+  { name: "Mrs. Abirami P", degree: "M.E.", designation: "Assistant Professor", auFin: "2685611985", aicteId: "1-9511932153", photo: auImg(50) },
 ];
 
 const NON_TEACHING = [];
@@ -89,8 +90,6 @@ const BOS_DOCS = [
   { label: "Anna University Regulations 2021 (UG)", href: regDocUrl("CSE/Regulations/Undergraduate Programme - Academic Regulations 2021 -AIDS.pdf") },
   { label: "B.E. CSE Curriculum and Regulations (2025)", href: regDocUrl("CSE/curriculam/BE CSE-2025.pdf") },
   { label: "B.E. CSE Curriculum and Regulations (2021)", href: regDocUrl("CSE/curriculam/B.E.CSE-2021.pdf") },
-  { label: "Anna University PG Regulations (2025)", href: regDocUrl("PG Regulations 2025-CSE And VLSI-Regulations.pdf") },
-  { label: "M.E. CSE Curriculum and Regulations (2025)", href: regDocUrl("PG-CSE-Curriculam.pdf") },
 ];
 
 const BOS_MEMBERS = [
@@ -717,27 +716,22 @@ export default function CSEDepartment() {
 
         <section id="faculty" className="tjs-dept-section">
           <h2>Faculty</h2>
-          <h3>Faculty (Staff Details for NBA, A.Y. 2026-27)</h3>
           {FACULTY.length > 0 ? (
-            <div className="tjs-dept-table-wrap">
-              <table className="tjs-dept-table">
-                <thead>
-                  <tr>
-                    <th>S.No</th>
-                    <th>Name of the Faculty</th>
-                    <th>Highest Degree</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {FACULTY.map((f, i) => (
-                    <tr key={f.name}>
-                      <td>{i + 1}</td>
-                      <td>{f.name}</td>
-                      <td>{f.degree}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <div className="tjs-dept-people-grid-full">
+              {FACULTY.map((f) => (
+                <div className="tjs-dept-people-card" key={f.name}>
+                  <div className="tjs-dept-people-photo">
+                    {f.photo ? <img src={f.photo} alt={f.name} /> : <span>Photo</span>}
+                  </div>
+                  <h4>{f.name}</h4>
+                  <p className="tjs-dept-people-role">{f.designation}</p>
+                  <p className="tjs-dept-people-spec">
+                    AICTE ID: {f.aicteId || "—"}
+                    <br />
+                    AU-FIN: {f.auFin || "—"}
+                  </p>
+                </div>
+              ))}
             </div>
           ) : (
             <p className="tjs-dept-pending">Content coming soon.</p>
@@ -767,7 +761,6 @@ export default function CSEDepartment() {
           <h2>Programme Offered</h2>
           <div className="tjs-dept-tabs">
             <button type="button" className="tjs-dept-tab active">B.E – CSE</button>
-            <button type="button" className="tjs-dept-tab">M.E – CSE</button>
           </div>
 
           <h3>Program Educational Objectives (PEOs)</h3>
