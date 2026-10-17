@@ -14,13 +14,17 @@ function regDocUrl(file) {
   return "/assets/images/Regulations-and-Curriculam/" + file.split("/").map(encodeURIComponent).join("/");
 }
 
+function auImg(n) {
+  return "/assets/images/Anna_University_Faculty_Images/image_" + n + "." + ([12].includes(n) ? "jpg" : "jpeg");
+}
+
 const TOPPERS = [];
 
 const FACULTY = [
-  { name: "Dr. Venkatraman K", degree: "Ph.D.", designation: "Associate Professor", auFin: "2659751988", aicteId: "1-43852645305", photo: null },
-  { name: "Dr. Srigowthem S", degree: "Ph.D.", designation: "Associate Professor", auFin: "2692331990", aicteId: "1-3739343136", photo: null },
-  { name: "Ramya M", degree: "M.E.", designation: "Assistant Professor", auFin: "2691911988", aicteId: "1-45828286472", photo: null },
-  { name: "Varshini J", degree: "M.E.", designation: "Assistant Professor", auFin: "2675871999", aicteId: "1-44715186804", photo: null },
+  { name: "Dr. Venkatraman K", degree: "Ph.D.", designation: "Associate Professor", auFin: "2659751988", aicteId: "1-43852645305", photo: auImg(53) },
+  { name: "Dr. Srigowthem S", degree: "Ph.D.", designation: "Associate Professor", auFin: "2692331990", aicteId: "1-3739343136", photo: auImg(67) },
+  { name: "Mrs. Ramya M", degree: "M.E.", designation: "Assistant Professor", auFin: "2691911988", aicteId: "1-45828286472", photo: auImg(28) },
+  { name: "Mrs. Varshini J", degree: "M.E.", designation: "Assistant Professor", auFin: "2675871999", aicteId: "1-44715186804", photo: auImg(12) },
 ];
 
 const NON_TEACHING = [];

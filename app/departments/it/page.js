@@ -31,13 +31,17 @@ const REGULATION_DOCS = [
   { label: "IT 2021 Regulations (UG)", href: regDocUrl("IT/Regulations/UG Regulation 2021.pdf") },
 ];
 
+function auImg(n) {
+  return "/assets/images/Anna_University_Faculty_Images/image_" + n + "." + ([29, 31].includes(n) ? "png" : "jpeg");
+}
+
 const FACULTY = [
-  { name: "Agnes J", degree: "M.E.", designation: "Assistant Professor", auFin: "2614071984", aicteId: "1-11054732021", photo: null },
-  { name: "Anu N", degree: "M.E.", designation: "Assistant Professor", auFin: "2649011996", aicteId: "1-10566026331", photo: null },
-  { name: "Antony Juliet", degree: "Ph.D.", designation: "Assistant Professor", auFin: "2635751998", aicteId: "1-11516547061", photo: null },
-  { name: "Godwin Joseph Paul S", degree: "M.E.", designation: "Assistant Professor", auFin: "2683221987", aicteId: "1-2909950263", photo: null },
-  { name: "Prianka M", degree: "M.E.", designation: "Assistant Professor", auFin: "2656581995", aicteId: "1-47692318315", photo: null },
-  { name: "Vutchuru Vasantha", degree: "M.Tech.", designation: "Assistant Professor", auFin: "2675561989", aicteId: "1-3553424446", photo: null },
+  { name: "Mrs. Agnes J", degree: "M.E.", designation: "Assistant Professor", auFin: "2614071984", aicteId: "1-11054732021", photo: auImg(7) },
+  { name: "Mrs. Anu N", degree: "M.E.", designation: "Assistant Professor", auFin: "2649011996", aicteId: "1-10566026331", photo: auImg(8) },
+  { name: "Mrs. Antony Juliet", degree: "Ph.D.", designation: "Assistant Professor", auFin: "2635751998", aicteId: "1-11516547061", photo: auImg(46) },
+  { name: "Mr. Godwin Joseph Paul S", degree: "M.E.", designation: "Assistant Professor", auFin: "2683221987", aicteId: "1-2909950263", photo: auImg(29) },
+  { name: "Mrs. Prianka M", degree: "M.E.", designation: "Assistant Professor", auFin: "2656581995", aicteId: "1-47692318315", photo: auImg(31) },
+  { name: "Mrs. Vutchuru Vasantha", degree: "M.Tech.", designation: "Assistant Professor", auFin: "2675561989", aicteId: "1-3553424446", photo: auImg(9) },
 ];
 
 const NON_TEACHING = [{ name: "V. Bharathi", designation: "IT Lab Instructor", photo: "/assets/images/eee/V-BHARATHI.jpg" }];

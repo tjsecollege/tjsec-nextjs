@@ -14,11 +14,15 @@ function regDocUrl(file) {
   return "/assets/images/Regulations-and-Curriculam/" + file.split("/").map(encodeURIComponent).join("/");
 }
 
+function auImg(n) {
+  return "/assets/images/Anna_University_Faculty_Images/image_" + n + "." + ([52].includes(n) ? "png" : "jpeg");
+}
+
 const TOPPERS = [];
 const FACULTY = [
-  { name: "Vishnu V", degree: "M.E.", designation: "Assistant Professor", auFin: "2777962002", aicteId: "1-47948632007", photo: null },
-  { name: "Karunakaran K", degree: "M.E.", designation: "Assistant Professor", auFin: "2733151988", aicteId: "1-43385611360", photo: null },
-  { name: "Suriyakala M", degree: "M.E.", designation: "Assistant Professor", auFin: "2647181999", aicteId: "1-43878236456", photo: null },
+  { name: "Mr. Vishnu V", degree: "M.E.", designation: "Assistant Professor", auFin: "2777962002", aicteId: "1-47948632007", photo: auImg(52) },
+  { name: "Mr. Karunakaran K", degree: "M.E.", designation: "Assistant Professor", auFin: "2733151988", aicteId: "1-43385611360", photo: auImg(43) },
+  { name: "Mrs. Suriyakala M", degree: "M.E.", designation: "Assistant Professor", auFin: "2647181999", aicteId: "1-43878236456", photo: auImg(44) },
 ];
 const NON_TEACHING = [];
 const PEOS = [];

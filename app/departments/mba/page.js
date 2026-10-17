@@ -18,15 +18,19 @@ function img(n) {
   return "/assets/images/mba/image_" + n + "." + (JPEG_IMAGES.has(n) ? "jpeg" : "png");
 }
 
+function auImg(n) {
+  return "/assets/images/Anna_University_Faculty_Images/image_" + n + ".jpeg";
+}
+
 const TOPPERS = [];
 
 const FACULTY = [
-  { name: "Dr. N. Jayanthi", degree: "Ph.D.", designation: "Associate Professor", auFin: "2698081983", aicteId: "1-44067573906", photo: null },
-  { name: "Gomathi G", degree: "MBA", designation: "Assistant Professor", auFin: "2610181999", aicteId: "1-11318453711", photo: null },
-  { name: "Murali R", degree: "MBA", designation: "Assistant Professor", auFin: "2675771984", aicteId: "1-3867371300", photo: null },
-  { name: "Sai Sangeetha S", degree: "MBA", designation: "Assistant Professor", auFin: "2619991984", aicteId: "1-7489594147", photo: null },
-  { name: "Richard K", degree: "MBA", designation: "Assistant Professor", auFin: "2649031988", aicteId: "1-46653507657", photo: null },
-  { name: "Kanagalakshmi S", degree: "MBA", designation: null, auFin: "2733581990", aicteId: "1-47948631989", photo: null },
+  { name: "Dr. N. Jayanthi", degree: "Ph.D.", designation: "Associate Professor", auFin: "2698081983", aicteId: "1-44067573906", photo: auImg(68) },
+  { name: "Ms. Gomathi G", degree: "MBA", designation: "Assistant Professor", auFin: "2610181999", aicteId: "1-11318453711", photo: auImg(69) },
+  { name: "Mr. Murali R", degree: "MBA", designation: "Assistant Professor", auFin: "2675771984", aicteId: "1-3867371300", photo: auImg(15) },
+  { name: "Mrs. Sai Sangeetha S", degree: "MBA", designation: "Assistant Professor", auFin: "2619991984", aicteId: "1-7489594147", photo: auImg(47) },
+  { name: "Mr. Richard K", degree: "MBA", designation: "Assistant Professor", auFin: "2649031988", aicteId: "1-46653507657", photo: auImg(48) },
+  { name: "Mrs. Kanagalakshmi S", degree: "MBA", designation: null, auFin: "2733581990", aicteId: "1-47948631989", photo: auImg(49) },
 ];
 
 const NON_TEACHING = [];
