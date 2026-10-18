@@ -44,7 +44,7 @@ const FACULTY = [
   { name: "Mrs. Vutchuru Vasantha", degree: "M.Tech.", designation: "Assistant Professor", auFin: "2675561989", aicteId: "1-3553424446", photo: auImg(9) },
 ];
 
-const NON_TEACHING = [{ name: "V. Bharathi", designation: "IT Lab Instructor", photo: "/assets/images/eee/V-BHARATHI.jpg" }];
+const NON_TEACHING = [{ name: "V. Bharathi", designation: "IT Lab Instructor", photo: "/assets/images/it/V-BHARATHI.jpg" }];
 
 const PEOS = [
   "Effectuating success in careers by exploring with the design, digital and computational analysis of engineering systems, experimentation and testing, smart manufacturing, technical services, and research.",
