@@ -544,35 +544,37 @@ export default function DepartmentPage({ dept }) {
         <section id="publication" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Publication</h2>
           {publications.length ? (
-            <div className="tjs-dept-table-wrap">
-              <table className="tjs-dept-table">
-                <thead>
-                  <tr>
-                    <th>Title</th>
-                    <th>Authors</th>
-                    <th>Published in</th>
-                    <th>Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {publications.map((p, i) => (
-                    <tr key={p.title + i}>
-                      <td>
-                        {p.link ? (
-                          <a href={p.link} target="_blank" rel="noopener">
-                            {p.title}
-                          </a>
-                        ) : (
-                          p.title
-                        )}
-                      </td>
-                      <td>{p.authors}</td>
-                      <td>{joinNonEmpty([p.published_in, p.type === "conference" ? "Conference" : "Journal"], " · ")}</td>
-                      <td>{formatDate(p.date)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <div className="tjs-pub-list">
+              {publications.map((p, i) => {
+                const Card = p.link ? "a" : "div";
+                const linkProps = p.link ? { href: p.link, target: "_blank", rel: "noopener" } : {};
+                const source = joinNonEmpty([p.published_in, p.year], ", ");
+                return (
+                  <Card className="tjs-pub-card" key={p.title + i} {...linkProps}>
+                    <div className="tjs-pub-icon">
+                      <i className="ri-file-text-line"></i>
+                    </div>
+                    <div className="tjs-pub-content">
+                      <h4 className="tjs-pub-title">
+                        {p.title.trim()} {p.link && <i className="ri-external-link-line"></i>}
+                      </h4>
+                      {(p.authors || source) && (
+                        <p className="tjs-pub-meta">
+                          {p.authors && <strong>{p.authors}</strong>}
+                          {p.authors && source && <> &middot; </>}
+                          {source}
+                        </p>
+                      )}
+                      {(p.impact_factor || p.citations) && (
+                        <div className="tjs-pub-badges">
+                          {p.impact_factor && <span className="tjs-pub-badge">Impact Factor {p.impact_factor}</span>}
+                          {p.citations && <span className="tjs-pub-badge tjs-pub-badge-alt">Citation {p.citations}</span>}
+                        </div>
+                      )}
+                    </div>
+                  </Card>
+                );
+              })}
             </div>
           ) : (
             PENDING

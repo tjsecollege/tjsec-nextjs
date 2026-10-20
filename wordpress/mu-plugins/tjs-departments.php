@@ -247,8 +247,7 @@ function tjs_department_fields() {
     ];
     $when_fdp = function ($value) {
         return ['conditional_logic' => [[['field' => '@type', 'operator' => '==', 'value' => $value]]]];
-    };
-    return [
+    };    return [
         tjs_heading('How to edit this page', 'Pick a section from the menu on the left. Use the <strong>+ Add</strong> buttons to add new entries, drag the ☰ handle to re-order, and the <strong>–</strong> button to remove. Click the blue <strong>Update</strong> button (top right) to save. Sections left empty show “Content coming soon” on the website.'),
 
         // ---------------- Banner ----------------
@@ -363,11 +362,12 @@ function tjs_department_fields() {
         tjs_heading('Publication', 'Menu: Research → Publication'),
         tjs_repeater('publications', 'Publications', '+ Add Publication', [
             tjs_text('title', 'Paper title', ['required' => 1]),
-            tjs_text('authors', 'Authors', tjs_half()),
-            tjs_text('published_in', 'Journal / Conference name', tjs_half()),
-            tjs_select('type', 'Type', ['journal' => 'Journal', 'conference' => 'Conference'], tjs_third()),
-            tjs_date('date', 'Published date', tjs_third()),
-            tjs_f('url', 'link', 'Link (optional)', tjs_third()),
+            tjs_text('authors', 'Authors', array_merge(tjs_half(), ['placeholder' => 'e.g. Shalini Chowdary'])),
+            tjs_text('published_in', 'Journal / Conference name', array_merge(tjs_half(), ['placeholder' => 'e.g. Medical Engineering & Physics', 'instructions' => 'Name only — type the year in the Year box.'])),
+            tjs_f('number', 'year', 'Year', array_merge(tjs_third(), ['placeholder' => 'e.g. 2024', 'min' => 1950, 'max' => 2100, 'step' => 1])),
+            tjs_text('impact_factor', 'Impact Factor (optional)', array_merge(tjs_third(), ['placeholder' => 'e.g. 2.5'])),
+            tjs_text('citations', 'Citations (optional)', array_merge(tjs_third(), ['placeholder' => 'e.g. 52'])),
+            tjs_f('url', 'link', 'Link to the paper (optional)', ['placeholder' => 'https://…', 'instructions' => 'Google Scholar / journal page. The card opens this link when clicked.']),
         ]),
         tjs_heading('Patent', 'Menu: Research → Patent'),
         tjs_repeater('patents', 'Patents', '+ Add Patent', [
@@ -402,7 +402,6 @@ function tjs_department_fields() {
                 tjs_gallery(),
             ], ['instructions' => 'Use this only when one room has two labs, e.g. "Control & Instrumentation Lab and Power System Simulation Lab".']),
         ]),
-
         // ---------------- Events ----------------
         tjs_tab('Events'),
         tjs_heading('Conference', 'Menu: Events → Conference'),
