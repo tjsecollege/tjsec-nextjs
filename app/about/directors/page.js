@@ -3,7 +3,7 @@ const DIRECTORS = [
   { name: "A. Kabilan", qual: "B.A., B.L., M.B.A.,", role: "Director", photo: "/assets/images/directorphotos/A.Kabilan.jpg" },
   { name: "A. Vijayakumar", qual: "M.E.,", role: "Director", photo: "/assets/images/directorphotos/A.Vijayakumar.jpg" },
   { name: "D. Dinesh", qual: "B.Com., L.L.B.,", role: "Director", photo: "/assets/images/directorphotos/D.Dinesh.jpg" },
-  { name: "T.J.S.G. Tamilarasan", qual: "B.Com., M.B.A.,", role: "Director", photo: null },
+  { name: "Manoj", qual: "B.Com., M.B.A.,", role: "Director", photo: "/assets/images/directorphotos/Manoj.jpg" },
 ];
 
 export default function Directors() {

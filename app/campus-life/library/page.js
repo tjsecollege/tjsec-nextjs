@@ -3,6 +3,10 @@
 import { useState } from "react";
 import DeptJumpNav from "../../departments/DeptJumpNav";
 
+function libImg(file) {
+  return "/assets/images/library/" + file;
+}
+
 const SOURCE_LINKS = {
   "K-Hub": "http://k-hub.in/",
   Delnet: "https://www.delnet.in/",
@@ -354,6 +358,11 @@ export default function Library() {
             <strong>Library Management Software:</strong> LIBMAN – Library Management System with
             MPOAC (Mastersoft), Cloud Based, Fully Automated since 2023.
           </p>
+
+          <div className="tjs-lib-photo-grid">
+            <img src={libImg("lib_1.jpg")} alt="Students reading in the library" />
+            <img src={libImg("lib_4.jpg")} alt="Students and faculty at the New Arrivals reading table" />
+          </div>
         </section>
 
         <section id="facilities" className="tjs-dept-section tjs-dept-section-alt">
@@ -414,6 +423,12 @@ export default function Library() {
 
         <section id="deptwise" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Details of Library Books, Journals &amp; CD&apos;s</h2>
+
+          <div className="tjs-lib-photo-grid">
+            <img src={libImg("lib_2.jpg")} alt="Department-wise book shelves – Civil and Mechanical Engineering" />
+            <img src={libImg("lib_3.jpg")} alt="Department-wise book shelves – EEE, ECE, CSE and AI&DS" />
+          </div>
+
           <div className="tjs-dept-table-wrap">
             <table className="tjs-dept-table">
               <thead>

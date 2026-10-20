@@ -1452,3 +1452,22 @@ hr.tjs-ivy-divider { border: none; border-top: 1px solid var(--rs-border-primary
 .tjs-iqac-contact-card a { color: var(--rs-theme-blue); font-weight: 600; }
 @media (max-width: 480px) { .tjs-iqac-contact-card { flex-direction: column; text-align: center; } }
 .tjs-iqac-diagram { display: block; max-width: 720px; width: 100%; height: auto; margin: 20px auto; }
+
+/* ---- library-photos.css ---- */
+.tjs-lib-photo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+}
+.tjs-lib-photo-grid img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(3, 3, 3, 0.1);
+}
+@media (max-width: 767px) {
+    .tjs-lib-photo-grid { grid-template-columns: 1fr; }
+    .tjs-lib-photo-grid img { height: 220px; }
+}
