@@ -484,7 +484,7 @@ export default function DepartmentPage({ dept }) {
 
         <section id="mou" className="tjs-dept-section tjs-dept-section-alt">
           <h2>MOU&apos;s</h2>
-          {dept.mou_intro && <p>{dept.mou_intro}</p>}
+          {dept.mou_intro && <Html html={dept.mou_intro} />}
           {mous.length ? <MouTabsViewer items={mous} /> : !dept.mou_intro && PENDING}
         </section>
 

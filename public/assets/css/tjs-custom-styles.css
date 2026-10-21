@@ -452,7 +452,7 @@ a.rs-approved-card:hover { transform: translateY(-3px); }
 }
 
 /* ---- footer-redesign.css ---- */
-.tjs-footer { background: var(--rs-theme-blue); padding: 60px 0 0; }
+.tjs-footer { background: var(--rs-theme-blue); padding: 60px 0 65px; }
 /* The events ticker is fixed to the viewport bottom and otherwise covers
    the last bit of page content (the copyright line) once fully scrolled. */
 .tjs-footer-bottom { padding-bottom: 60px; }
@@ -478,8 +478,18 @@ a.rs-approved-card:hover { transform: translateY(-3px); }
 .tjs-social-linkedin { background: #0a66c2; }
 .tjs-social-twitter { background: #000; }
 .tjs-social-youtube { background: #ff0000; }
-.tjs-footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.15); padding: 18px 0; }
+.tjs-footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 18px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+}
 .tjs-footer-bottom p { margin: 0; color: rgba(255, 255, 255, 0.6); font-size: 13px; }
+.tjs-footer-credit { display: inline-flex; align-items: center; gap: 6px; }
+.tjs-footer-credit img { height: 18px; width: auto; display: inline-block; }
 @media (max-width: 767px) { .tjs-footer-columns { gap: 30px; } }
 
 /* ---- header-utility.css ---- */

@@ -336,7 +336,7 @@ function tjs_department_fields() {
         // ---------------- Industry Interface ----------------
         tjs_tab('Industry Interface'),
         tjs_heading("MOU's", "Menu: Industry Interface → MOU's"),
-        tjs_textarea('mou_intro', 'Introduction text', ['rows' => 3]),
+        tjs_editor('mou_intro', 'Introduction text'),
         tjs_repeater('mous', 'MoUs', '+ Add MoU', [
             tjs_text('company', 'Company / organisation', array_merge(tjs_half(), ['required' => 1])),
             tjs_date('signed_date', 'Date signed', tjs_half()),
