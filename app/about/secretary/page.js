@@ -23,8 +23,8 @@ export default function Secretary() {
           <div className="tjs-trustee-grid">
             <div className="tjs-trustee-side">
               <div className="tjs-trustee-photo-card">
-                <div className="tjs-trustee-photo" aria-hidden="true">
-                  <span>Photo</span>
+                <div className="tjs-trustee-photo">
+                  <img src="/assets/images/Secretary.jpg" alt="Secretary" />
                 </div>
               </div>
               <div className="tjs-trustee-name-card">

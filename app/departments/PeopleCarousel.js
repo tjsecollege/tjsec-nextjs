@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 const AUTO_SCROLL_INTERVAL = 3000;
 
-export default function PeopleCarousel({ items }) {
+export default function PeopleCarousel({ items, className = "" }) {
   const trackRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -80,7 +80,7 @@ export default function PeopleCarousel({ items }) {
   }, [items]);
 
   return (
-    <div className="tjs-people-carousel-wrap">
+    <div className={`tjs-people-carousel-wrap ${className}`.trim()}>
       <button
         type="button"
         className="tjs-slider-nav tjs-slider-nav-prev"

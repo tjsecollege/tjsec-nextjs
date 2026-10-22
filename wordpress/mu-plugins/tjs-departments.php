@@ -223,6 +223,17 @@ function tjs_assign_keys(array $fields, $prefix) {
                 $fields[$i]['collapsed'] = $f['key'] . '_' . $f['collapsed'];
             }
         }
+        // Flexible content: each layout gets its own key and keyed sub fields.
+        if (!empty($f['layouts'])) {
+            $layouts = [];
+            foreach ($f['layouts'] as $layout) {
+                $prefix_l = substr($f['key'], 6) . '_' . $layout['name'];
+                $layout['key'] = 'layout_' . $prefix_l;
+                $layout['sub_fields'] = tjs_assign_keys($layout['sub_fields'], $prefix_l);
+                $layouts[$layout['key']] = $layout;
+            }
+            $fields[$i]['layouts'] = $layouts;
+        }
         if (!empty($f['conditional_logic'])) {
             foreach ($f['conditional_logic'] as $g => $rules) {
                 foreach ($rules as $r => $rule) {
@@ -255,7 +266,7 @@ function tjs_department_fields() {
         tjs_heading('Top Banner', 'The large banner at the top of the department page. The page heading is the department name typed in the title box above.'),
         tjs_text('hero_label', 'Small label above the heading', ['default_value' => 'Department']),
         tjs_textarea('hero_description', 'Short introduction under the heading', ['rows' => 3]),
-        tjs_image('hero_image', 'Banner photo', ['preview_size' => 'medium']),
+        tjs_gallery('hero_images', 'Banner photos', ['preview_size' => 'medium', 'instructions' => 'Upload one or more photos. With two or more, the banner becomes a slider; drag photos to change their order.']),
         tjs_heading('Academic Toppers', 'Photo slider shown just below the department menu.'),
         tjs_repeater('toppers', 'Academic Toppers', '+ Add Topper', [
             tjs_text('name', 'Student name', tjs_half()),

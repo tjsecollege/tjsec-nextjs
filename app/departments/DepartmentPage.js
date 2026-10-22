@@ -6,6 +6,7 @@ import MouTabsViewer from "./MouTabsViewer";
 import YearGroupedVisits from "./YearGroupedVisits";
 import LabAccordion from "./LabAccordion";
 import ProgrammeTabs from "./ProgrammeTabs";
+import DeptHeroSlider from "./DeptHeroSlider";
 
 const ArrowIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -13,6 +14,9 @@ const ArrowIcon = () => (
     <polyline points="12 5 19 12 12 19"></polyline>
   </svg>
 );
+
+// Area of Consultancy is hidden for these departments only (per request).
+const HIDE_CONSULTANCY = ["cse", "it", "aids", "aiml"];
 
 const MENU = [
   {
@@ -234,8 +238,22 @@ function Html({ html }) {
 // ---- Page ----
 
 export default function DepartmentPage({ dept }) {
+  const showConsultancy = !HIDE_CONSULTANCY.includes(dept.slug);
+  const menu = showConsultancy
+    ? MENU
+    : MENU.map((section) =>
+        section.label === "Industry Interface"
+          ? { ...section, children: section.children.filter((c) => c.href !== "#consultancy") }
+          : section
+      );
+  const heroImages = photos(dept.hero_images, `${dept.title} at T.J.S Engineering College`);
   const toppers = list(dept.toppers).map((t) => ({ name: t.name, photo: t.photo?.url, role: t.details }));
-  const faculty = list(dept.faculty);
+  const faculty = list(dept.faculty).map((f) => ({
+    name: f.name,
+    photo: f.photo?.url,
+    role: joinNonEmpty([f.designation, f.qualification], ", "),
+    spec: joinNonEmpty([f.aicte_id && `AICTE ID: ${f.aicte_id}`, f.au_fin && `AU-FIN: ${f.au_fin}`], "\n"),
+  }));
   const nonTeaching = list(dept.non_teaching);
   const mission = list(dept.mission).filter((m) => m.point);
 
@@ -304,15 +322,15 @@ export default function DepartmentPage({ dept }) {
           <h1>{dept.title}</h1>
           {dept.hero_description && <p>{dept.hero_description}</p>}
         </div>
-        {dept.hero_image?.url && (
+        {heroImages.length > 0 && (
           <div className="tjs-dept-hero-image">
-            <img src={dept.hero_image.url} alt={dept.hero_image.alt || `${dept.title} at T.J.S Engineering College`} />
+            <DeptHeroSlider images={heroImages} />
           </div>
         )}
       </section>
 
       <div className="tjs-dept-page">
-        <DeptMegaNav categories={MENU} />
+        <DeptMegaNav categories={menu} />
 
         {toppers.length > 0 && (
           <div className="tjs-dept-toppers-top">
@@ -380,26 +398,7 @@ export default function DepartmentPage({ dept }) {
 
         <section id="faculty" className="tjs-dept-section">
           <h2>Faculty</h2>
-          {faculty.length ? (
-            <div className="tjs-dept-people-grid-full">
-              {faculty.map((f, i) => (
-                <div className="tjs-dept-people-card" key={f.name + i}>
-                  <div className="tjs-dept-people-photo">
-                    {f.photo?.url ? <img src={f.photo.url} alt={f.photo.alt || f.name} /> : <span>Photo</span>}
-                  </div>
-                  <h4>{f.name}</h4>
-                  <p className="tjs-dept-people-role">{joinNonEmpty([f.designation, f.qualification], ", ")}</p>
-                  <p className="tjs-dept-people-spec">
-                    AICTE ID: {f.aicte_id || "—"}
-                    <br />
-                    AU-FIN: {f.au_fin || "—"}
-                  </p>
-                </div>
-              ))}
-            </div>
-          ) : (
-            PENDING
-          )}
+          {faculty.length ? <PeopleCarousel items={faculty} className="tjs-people-carousel-faculty" /> : PENDING}
         </section>
 
         <section id="staff" className="tjs-dept-section tjs-dept-section-alt">
@@ -488,10 +487,12 @@ export default function DepartmentPage({ dept }) {
           {mous.length ? <MouTabsViewer items={mous} /> : !dept.mou_intro && PENDING}
         </section>
 
-        <section id="consultancy" className="tjs-dept-section">
-          <h2>Area of Consultancy</h2>
-          <LinkList items={docLinks(dept.consultancy)} />
-        </section>
+        {showConsultancy && (
+          <section id="consultancy" className="tjs-dept-section">
+            <h2>Area of Consultancy</h2>
+            <LinkList items={docLinks(dept.consultancy)} />
+          </section>
+        )}
 
         <section id="industry-visits" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Industry Visits</h2>

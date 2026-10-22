@@ -40,7 +40,6 @@ const BOS_DOCS = [
 const BOS_MEMBERS = [];
 const NEWSLETTERS = [];
 const MOU_DOCS = [];
-const CONSULTANCY = [];
 const STUDENT_PROJECTS = [];
 const LABS = [];
 const INDUSTRIAL_VISITS = [];
@@ -75,7 +74,6 @@ const MENU = [
     label: "Industry Interface",
     children: [
       { href: "#mou", label: "MOU's" },
-      { href: "#consultancy", label: "Area of Consultancy" },
       { href: "#industry-visits", label: "Industry Visits" },
       { href: "#internships", label: "Internship" },
     ],
@@ -308,11 +306,6 @@ export default function AIMLDepartment() {
         <section id="mou" className="tjs-dept-section tjs-dept-section-alt">
           <h2>MOU&apos;s</h2>
           {MOU_DOCS.length > 0 ? <MouTabsViewer items={MOU_DOCS} /> : <p className="tjs-dept-pending">Content coming soon.</p>}
-        </section>
-
-        <section id="consultancy" className="tjs-dept-section">
-          <h2>Area of Consultancy</h2>
-          <LinkList items={CONSULTANCY} />
         </section>
 
         <section id="industry-visits" className="tjs-dept-section tjs-dept-section-alt">
