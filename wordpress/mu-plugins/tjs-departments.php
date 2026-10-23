@@ -180,7 +180,7 @@ function tjs_event_repeater($name, $label, $button, $extra_sub = [], $extra = []
         $lead_sub,
         [
             tjs_text('title', 'Title', ['required' => 1]),
-            tjs_date('start_date', 'Date', array_merge(tjs_half(), ['required' => 1, 'instructions' => 'Used to group entries by year on the website.'])),
+            tjs_date('start_date', 'Date', array_merge(tjs_half(), ['instructions' => 'Optional. Used to group entries by year on the website.'])),
             tjs_date('end_date', 'End date (only if more than one day)', tjs_half()),
             tjs_textarea('description', 'Description', ['instructions' => 'Leave an empty line between paragraphs.']),
         ],
@@ -488,14 +488,7 @@ function tjs_department_fields() {
             tjs_image('photo', 'Photo (optional)'),
         ]),
         tjs_heading('Entrepreneurship', 'Menu: Others → Entrepreneurship'),
-        tjs_repeater('entrepreneurs', 'Entrepreneurs', '+ Add Entrepreneur', [
-            tjs_text('name', 'Name', array_merge(tjs_half(), ['required' => 1])),
-            tjs_text('batch', 'Batch', array_merge(tjs_half(), ['placeholder' => 'e.g. 2021 Batch'])),
-            tjs_text('designation', 'Designation & company', ['placeholder' => 'e.g. Managing Director, Sri Vinayaka Auto Tech']),
-            tjs_textarea('address', 'Address', array_merge(tjs_half(), ['rows' => 2])),
-            tjs_text('phone', 'Phone (optional)', tjs_half()),
-            tjs_image('photo', 'Photo (optional)'),
-        ]),
+        tjs_event_repeater('entrepreneurs', 'Entrepreneurs', '+ Add Entrepreneur'),
     ];
 }
 

@@ -312,7 +312,6 @@ export default function DepartmentPage({ dept }) {
   }));
   const gallery = photos(dept.gallery, `${dept.title} gallery`);
   const distinguished = list(dept.distinguished_alumni);
-  const entrepreneurs = list(dept.entrepreneurs);
 
   return (
     <>
@@ -829,24 +828,7 @@ export default function DepartmentPage({ dept }) {
 
         <section id="entrepreneurship" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Entrepreneurship</h2>
-          {entrepreneurs.length
-            ? entrepreneurs.map((e, i) => {
-                const details = [e.designation, ...lines(e.address), e.phone && `Phone: ${e.phone}`].filter(Boolean);
-                return (
-                  <div className="tjs-dept-card" key={e.name + i} style={i > 0 ? { marginTop: 16 } : undefined}>
-                    <h4 style={{ marginTop: 0, color: "var(--rs-theme-blue)" }}>{e.batch ? `${e.name} (${e.batch})` : e.name}</h4>
-                    <p style={{ marginBottom: 0 }}>
-                      {details.map((d, j) => (
-                        <span key={j}>
-                          {j > 0 && <br />}
-                          {d}
-                        </span>
-                      ))}
-                    </p>
-                  </div>
-                );
-              })
-            : PENDING}
+          <Slider rows={dept.entrepreneurs} category="Entrepreneurship" />
         </section>
       </div>
     </>
