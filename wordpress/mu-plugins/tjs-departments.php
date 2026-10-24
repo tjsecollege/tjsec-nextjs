@@ -197,6 +197,26 @@ function tjs_people_subrepeater($name, $label, $button, $role_label = 'Role / De
     ], ['layout' => 'table']);
 }
 
+// Shared with the Science & Humanities pages (tjs-sh-departments.php).
+function tjs_faculty_repeater() {
+    return tjs_repeater('faculty', 'Faculty Members', '+ Add Faculty Member', [
+        tjs_text('name', 'Name', array_merge(tjs_half(), ['required' => 1, 'placeholder' => 'e.g. Mr. Ganesh S'])),
+        tjs_text('designation', 'Designation', array_merge(tjs_half(), ['placeholder' => 'e.g. Assistant Professor'])),
+        tjs_text('qualification', 'Qualification', array_merge(tjs_third(), ['placeholder' => 'e.g. M.E / Ph.D'])),
+        tjs_text('aicte_id', 'AICTE ID', tjs_third()),
+        tjs_text('au_fin', 'AU-FIN (Anna University ID)', tjs_third()),
+        tjs_image('photo', 'Photo'),
+    ]);
+}
+
+function tjs_non_teaching_repeater() {
+    return tjs_repeater('non_teaching', 'Non-Teaching Staff', '+ Add Staff Member', [
+        tjs_text('name', 'Name', array_merge(tjs_half(), ['required' => 1])),
+        tjs_text('designation', 'Designation', array_merge(tjs_half(), ['placeholder' => 'e.g. Lab Instructor'])),
+        tjs_image('photo', 'Photo'),
+    ]);
+}
+
 function tjs_doc_repeater($name, $label, $button) {
     return tjs_repeater($name, $label, $button, [
         tjs_text('title', 'Title', ['required' => 1]),
@@ -296,20 +316,9 @@ function tjs_department_fields() {
         // ---------------- People ----------------
         tjs_tab('People'),
         tjs_heading('Faculty', 'Menu: People → Faculty'),
-        tjs_repeater('faculty', 'Faculty Members', '+ Add Faculty Member', [
-            tjs_text('name', 'Name', array_merge(tjs_half(), ['required' => 1, 'placeholder' => 'e.g. Mr. Ganesh S'])),
-            tjs_text('designation', 'Designation', array_merge(tjs_half(), ['placeholder' => 'e.g. Assistant Professor'])),
-            tjs_text('qualification', 'Qualification', array_merge(tjs_third(), ['placeholder' => 'e.g. M.E / Ph.D'])),
-            tjs_text('aicte_id', 'AICTE ID', tjs_third()),
-            tjs_text('au_fin', 'AU-FIN (Anna University ID)', tjs_third()),
-            tjs_image('photo', 'Photo'),
-        ]),
+        tjs_faculty_repeater(),
         tjs_heading('Non-Teaching Staff', 'Menu: People → Non-Teaching'),
-        tjs_repeater('non_teaching', 'Non-Teaching Staff', '+ Add Staff Member', [
-            tjs_text('name', 'Name', array_merge(tjs_half(), ['required' => 1])),
-            tjs_text('designation', 'Designation', array_merge(tjs_half(), ['placeholder' => 'e.g. Lab Instructor'])),
-            tjs_image('photo', 'Photo'),
-        ]),
+        tjs_non_teaching_repeater(),
 
         // ---------------- Academics ----------------
         tjs_tab('Academics'),
