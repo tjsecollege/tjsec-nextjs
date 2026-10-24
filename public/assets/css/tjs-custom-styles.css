@@ -1100,6 +1100,7 @@ p.tjs-dept-group-label {
     padding: 0 16px;
     margin-top: 5px !important;
     margin-bottom: 20px !important;
+    white-space: pre-line;
 }
 .tjs-dept-people-grid-full {
     display: grid;
