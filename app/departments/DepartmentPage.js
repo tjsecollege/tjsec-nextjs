@@ -232,7 +232,7 @@ function YearList({ rows, title }) {
 }
 
 function Html({ html }) {
-  return <div dangerouslySetInnerHTML={{ __html: html }} />;
+  return <div className="tjs-dept-richtext" dangerouslySetInnerHTML={{ __html: html }} />;
 }
 
 // ---- Page ----

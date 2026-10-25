@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 const AUTO_SCROLL_INTERVAL = 3000;
 
@@ -40,6 +41,11 @@ function EventModal({ item, onClose }) {
     document.addEventListener("keydown", onKey);
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    // The floating admissions CTA and chatbot are fixed-position widgets that
+    // can render above this modal despite its higher z-index (Chrome
+    // compositing quirk with their own transform/transition layers), so hide
+    // them outright instead of relying on stacking order.
+    document.body.classList.add("tjs-zoom-open");
     window.tjsLenis?.stop();
     // Belt-and-braces: Lenis listens for wheel/touchmove on window in the
     // bubble phase. Stopping propagation during the capture phase (which
@@ -55,6 +61,7 @@ function EventModal({ item, onClose }) {
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = prevOverflow;
+      document.body.classList.remove("tjs-zoom-open");
       document.removeEventListener("wheel", stopBubble, { capture: true });
       document.removeEventListener("touchmove", stopBubble, { capture: true });
       window.tjsLenis?.start();
@@ -64,7 +71,9 @@ function EventModal({ item, onClose }) {
   const hasMeta = item.category || item.date;
   const imgs = item.imgs && item.imgs.length > 0 ? item.imgs : item.img ? [item.img] : [];
 
-  return (
+  if (typeof document === "undefined") return null;
+
+  return createPortal(
     <div className="tjs-modal-overlay" onClick={onClose}>
       <div className="tjs-modal" onClick={(e) => e.stopPropagation()}>
         <button type="button" className="tjs-modal-close" aria-label="Close" onClick={onClose}>
@@ -216,7 +225,8 @@ function EventModal({ item, onClose }) {
           />
         </div>
       )}
-    </div>
+    </div>,
+    document.body
   );
 }
 

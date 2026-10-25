@@ -106,6 +106,11 @@ width: 510px;
 
 /* ---- chatbot.css ---- */
 .tjs-chatbot { position: fixed; right: 20px; bottom: 20px; z-index: 9999; font-family: var(--rs-ff-body); }
+/* A fullscreen photo zoom/lightbox can render above these fixed widgets
+   despite its higher z-index (Chrome compositing quirk with their own
+   transform/transition layers), so hide them outright while one is open. */
+body.tjs-zoom-open .tjs-chatbot,
+body.tjs-zoom-open .rs-fixed-admissions-btn { display: none !important; }
 .tjs-chatbot-toggle {
     position: relative; width: 62px; height: 62px; border-radius: 50%; border: none; cursor: pointer;
     background: var(--rs-theme-blue); box-shadow: 0 10px 25px rgba(0, 62, 116, 0.35);
@@ -820,6 +825,8 @@ a.rs-approved-card:hover { transform: translateY(-3px); }
 .tjs-dept-link-arrow { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: var(--rs-bg-secondary); color: var(--rs-theme-blue); font-weight: 400; flex: 0 0 auto; transition: background-color 0.2s ease; }
 .tjs-dept-link-list a:hover .tjs-dept-link-arrow { background: var(--rs-theme-blue); color: #fff; }
 .tjs-dept-bullets { color: var(--rs-text-primary); line-height: 1.8; padding-inline-start: 20px;     margin-bottom: 8px;}
+.tjs-dept-richtext a { color: #2072eb; font-weight: 600; }
+.tjs-dept-richtext a:hover { text-decoration: underline; }
 
 /* Group label used above a batch of download cards (e.g. Regulations &
    Curriculum page) — needs to read clearly as a sub-level under the h2,

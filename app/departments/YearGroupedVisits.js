@@ -1,6 +1,7 @@
 "use client";
 
 import { Fragment, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import DeptPhotoSlider from "./DeptPhotoSlider";
 
 function parseYear(date) {
@@ -21,6 +22,11 @@ function ZoomableImage({ src, alt }) {
     document.addEventListener("keydown", onKey);
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    // The floating admissions CTA and chatbot are fixed-position widgets that
+    // can render above this overlay despite its higher z-index (Chrome
+    // compositing quirk with their own transform/transition layers), so hide
+    // them outright instead of relying on stacking order.
+    document.body.classList.add("tjs-zoom-open");
     window.tjsLenis?.stop();
     function stopBubble(e) {
       e.stopPropagation();
@@ -30,6 +36,7 @@ function ZoomableImage({ src, alt }) {
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = prevOverflow;
+      document.body.classList.remove("tjs-zoom-open");
       document.removeEventListener("wheel", stopBubble, { capture: true });
       document.removeEventListener("touchmove", stopBubble, { capture: true });
       window.tjsLenis?.start();
@@ -39,28 +46,31 @@ function ZoomableImage({ src, alt }) {
   return (
     <>
       <img src={src} alt={alt} className="tjs-modal-img-zoomable" onClick={() => setZoomed(true)} />
-      {zoomed && (
-        <div
-          className="tjs-modal-zoom-overlay"
-          onClick={(e) => {
-            e.stopPropagation();
-            setZoomed(false);
-          }}
-        >
-          <button
-            type="button"
-            className="tjs-modal-close"
-            aria-label="Close zoomed image"
+      {zoomed &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <div
+            className="tjs-modal-zoom-overlay"
             onClick={(e) => {
               e.stopPropagation();
               setZoomed(false);
             }}
           >
-            <i className="ri-close-line"></i>
-          </button>
-          <img src={src} alt={alt} className="tjs-modal-zoom-img" onClick={(e) => e.stopPropagation()} />
-        </div>
-      )}
+            <button
+              type="button"
+              className="tjs-modal-close"
+              aria-label="Close zoomed image"
+              onClick={(e) => {
+                e.stopPropagation();
+                setZoomed(false);
+              }}
+            >
+              <i className="ri-close-line"></i>
+            </button>
+            <img src={src} alt={alt} className="tjs-modal-zoom-img" onClick={(e) => e.stopPropagation()} />
+          </div>,
+          document.body
+        )}
     </>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 const AUTO_SCROLL_INTERVAL = 3000;
 
@@ -53,6 +54,11 @@ export default function DeptPhotoSlider({ images }) {
     document.addEventListener("keydown", onKey);
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    // The floating admissions CTA and chatbot are fixed-position widgets that
+    // can render above this overlay despite its higher z-index (Chrome
+    // compositing quirk with their own transform/transition layers), so hide
+    // them outright instead of relying on stacking order.
+    document.body.classList.add("tjs-zoom-open");
     window.tjsLenis?.stop();
     function stopBubble(e) {
       e.stopPropagation();
@@ -62,6 +68,7 @@ export default function DeptPhotoSlider({ images }) {
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = prevOverflow;
+      document.body.classList.remove("tjs-zoom-open");
       document.removeEventListener("wheel", stopBubble, { capture: true });
       document.removeEventListener("touchmove", stopBubble, { capture: true });
       window.tjsLenis?.start();
@@ -107,59 +114,62 @@ export default function DeptPhotoSlider({ images }) {
         </div>
       )}
 
-      {zoomed && (
-        <div
-          className="tjs-modal-zoom-overlay"
-          onClick={(e) => {
-            e.stopPropagation();
-            setZoomed(false);
-          }}
-        >
-          <button
-            type="button"
-            className="tjs-modal-close"
-            aria-label="Close zoomed image"
+      {zoomed &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <div
+            className="tjs-modal-zoom-overlay"
             onClick={(e) => {
               e.stopPropagation();
               setZoomed(false);
             }}
           >
-            <i className="ri-close-line"></i>
-          </button>
-          {images.length > 1 && (
-            <>
-              <button
-                type="button"
-                className="tjs-modal-img-nav tjs-modal-img-prev"
-                aria-label="Previous photo"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  go(-1);
-                }}
-              >
-                <i className="ri-arrow-left-s-line"></i>
-              </button>
-              <button
-                type="button"
-                className="tjs-modal-img-nav tjs-modal-img-next"
-                aria-label="Next photo"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  go(1);
-                }}
-              >
-                <i className="ri-arrow-right-s-line"></i>
-              </button>
-            </>
-          )}
-          <img
-            src={images[index].src}
-            alt={images[index].alt}
-            className="tjs-modal-zoom-img"
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>
-      )}
+            <button
+              type="button"
+              className="tjs-modal-close"
+              aria-label="Close zoomed image"
+              onClick={(e) => {
+                e.stopPropagation();
+                setZoomed(false);
+              }}
+            >
+              <i className="ri-close-line"></i>
+            </button>
+            {images.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  className="tjs-modal-img-nav tjs-modal-img-prev"
+                  aria-label="Previous photo"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    go(-1);
+                  }}
+                >
+                  <i className="ri-arrow-left-s-line"></i>
+                </button>
+                <button
+                  type="button"
+                  className="tjs-modal-img-nav tjs-modal-img-next"
+                  aria-label="Next photo"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    go(1);
+                  }}
+                >
+                  <i className="ri-arrow-right-s-line"></i>
+                </button>
+              </>
+            )}
+            <img
+              src={images[index].src}
+              alt={images[index].alt}
+              className="tjs-modal-zoom-img"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>,
+          document.body
+        )}
     </div>
   );
 }
