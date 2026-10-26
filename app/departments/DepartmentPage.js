@@ -7,6 +7,7 @@ import YearGroupedVisits from "./YearGroupedVisits";
 import LabAccordion from "./LabAccordion";
 import ProgrammeTabs from "./ProgrammeTabs";
 import DeptHeroSlider from "./DeptHeroSlider";
+import ZoomableImage from "./ZoomableImage";
 
 const ArrowIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -530,7 +531,7 @@ export default function DepartmentPage({ dept }) {
                     <h4 className="tjs-dept-intern-org">{row.organisation}</h4>
                     <div className="tjs-dept-event-imgs">
                       {photos(row.photos, row.organisation).map((img) => (
-                        <img key={img.src} src={img.src} alt={img.alt} />
+                        <ZoomableImage key={img.src} src={img.src} alt={img.alt} />
                       ))}
                     </div>
                   </div>
