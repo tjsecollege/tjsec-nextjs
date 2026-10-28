@@ -300,6 +300,7 @@ export default function Library() {
             { href: "#journals", label: "Journals" },
             { href: "#rules", label: "Library Rules" },
             { href: "#committee", label: "Committee" },
+            { href: "#contact", label: "Contact" },
           ]}
         />
 
@@ -626,6 +627,31 @@ export default function Library() {
               </tbody>
             </table>
           </div>
+        </section>
+
+        <section id="contact" className="tjs-dept-section">
+          <h2>Contact</h2>
+          <p>
+            <strong>Mr. P. Prabhu</strong>
+            <br />
+            Librarian
+            <br />
+            <a href="tel:+919894151106">9894151106</a>
+          </p>
+          <p>
+            <strong>T.J.S Engineering College</strong>
+            <br />
+            T.J.S Nagar, Peruvoyal, Kavarapettai,
+            <br />
+            Near Redhills, Gummidipoondi Taluk,
+            <br />
+            Thiruvallur Dist &ndash; 601206
+          </p>
+          <p>
+            <strong>Phone:</strong> <a href="tel:+914427967602">044-27967602 / 604 / 605</a>
+            <br />
+            <strong>Email:</strong> <a href="mailto:admission@tjsec.in">admission@tjsec.in</a>
+          </p>
         </section>
       </div>
     </>
