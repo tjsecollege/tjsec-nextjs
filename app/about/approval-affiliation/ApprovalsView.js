@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import YearPdfTabs from "../../components/YearPdfTabs";
 
 function list(value) {
   return Array.isArray(value) ? value : [];
@@ -10,43 +11,12 @@ function list(value) {
 // categories: [{ label, title, documents: [{ tab, document: { url } }] }]
 export default function ApprovalsView({ pageTitle, categories }) {
   const [activeCat, setActiveCat] = useState(0);
-  const [activeDoc, setActiveDoc] = useState(0);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(false);
-  const yearTabsRef = useRef(null);
 
   const category = categories[activeCat];
-  const docs = list(category?.documents).filter((d) => d.document?.url);
-  const doc = docs[activeDoc];
+  const docs = list(category?.documents)
+    .filter((d) => d.document?.url)
+    .map((d) => ({ tab: d.tab, url: d.document.url }));
   const title = category ? category.title || category.label : "";
-
-  function updateScrollState() {
-    const el = yearTabsRef.current;
-    if (!el) return;
-    setCanScrollLeft(el.scrollLeft > 1);
-    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 1);
-  }
-
-  useEffect(() => {
-    updateScrollState();
-    const el = yearTabsRef.current;
-    if (!el) return;
-    el.addEventListener("scroll", updateScrollState);
-    window.addEventListener("resize", updateScrollState);
-    return () => {
-      el.removeEventListener("scroll", updateScrollState);
-      window.removeEventListener("resize", updateScrollState);
-    };
-  }, [activeCat]);
-
-  function selectCategory(i) {
-    setActiveCat(i);
-    setActiveDoc(0);
-  }
-
-  function scrollYearTabs(direction) {
-    yearTabsRef.current?.scrollBy({ left: direction * 240, behavior: "smooth" });
-  }
 
   return (
     <>
@@ -74,7 +44,7 @@ export default function ApprovalsView({ pageTitle, categories }) {
                     key={cat.label + i}
                     type="button"
                     className={"tjs-approvals-cat" + (activeCat === i ? " active" : "")}
-                    onClick={() => selectCategory(i)}
+                    onClick={() => setActiveCat(i)}
                   >
                     {cat.label}
                   </button>
@@ -83,52 +53,9 @@ export default function ApprovalsView({ pageTitle, categories }) {
 
               <div className="tjs-approvals-panel">
                 <h3>{title}</h3>
-
                 {docs.length > 0 ? (
-                  <>
-                    <div className="tjs-approvals-year-tabs-row">
-                      {docs.length > 1 && (
-                        <button
-                          type="button"
-                          className="tjs-approvals-year-nav"
-                          aria-label="Scroll years left"
-                          onClick={() => scrollYearTabs(-1)}
-                          disabled={!canScrollLeft}
-                        >
-                          <i className="ri-arrow-left-s-line"></i>
-                        </button>
-                      )}
-                      <div className="tjs-approvals-year-tabs" ref={yearTabsRef}>
-                        {docs.map((d, i) => (
-                          <button
-                            key={d.tab + i}
-                            type="button"
-                            className={"tjs-approvals-year" + (activeDoc === i ? " active" : "")}
-                            onClick={() => setActiveDoc(i)}
-                          >
-                            {d.tab}
-                          </button>
-                        ))}
-                      </div>
-                      {docs.length > 1 && (
-                        <button
-                          type="button"
-                          className="tjs-approvals-year-nav"
-                          aria-label="Scroll years right"
-                          onClick={() => scrollYearTabs(1)}
-                          disabled={!canScrollRight}
-                        >
-                          <i className="ri-arrow-right-s-line"></i>
-                        </button>
-                      )}
-                    </div>
-
-                    {doc && (
-                      <div className="tjs-approvals-viewer">
-                        <iframe key={doc.document.url} src={doc.document.url} title={`${title} ${doc.tab}`} />
-                      </div>
-                    )}
-                  </>
+                  // key: switching category starts again at its first (newest) year
+                  <YearPdfTabs key={activeCat} docs={docs} title={title} />
                 ) : (
                   <p className="tjs-dept-pending">Documents will be added soon.</p>
                 )}

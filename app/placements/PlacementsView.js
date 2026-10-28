@@ -1,13 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
+import YearPdfTabs from "../components/YearPdfTabs";
 
 function formUrl(file) {
   return "/assets/images/iv_form/" + encodeURIComponent(file);
-}
-
-function recruiterLogo(file) {
-  return "/assets/images/recruiters/" + file;
 }
 
 function infographic(file) {
@@ -95,23 +93,6 @@ const DOWNLOAD_FORMS = [
   { label: "Short Duration Internship Form", desc: "Form for short-term internship registration.", file: "Internship-Form-short.docx" },
 ];
 
-const RECRUITER_FILES = [
-  "apptivo.jpg", "aspire.jpg", "delphi-tvs.jpg", "dikit.jpg", "face.jpg", "foxconn.jpg",
-  "glow_logic.png", "grantley_edu.png", "hasmec.jpg", "ilm.jpg", "justdial.png", "kgis.jpg",
-  "muthoot.jpg", "nice_education.jpg", "relaince.jpg", "sals.jpg", "tcs.jpg", "technohook.png",
-];
-
-function recruiterName(file) {
-  const base = file.replace(/\.[^.]+$/, "");
-  return base
-    .replace(/[-_]+/g, " ")
-    .split(" ")
-    .map((w) => (w.length <= 3 ? w.toUpperCase() : w.charAt(0).toUpperCase() + w.slice(1)))
-    .join(" ");
-}
-
-const RECRUITER_LOGOS = RECRUITER_FILES.map((file) => ({ name: recruiterName(file), logo: recruiterLogo(file) }));
-
 const CATEGORIES = [
   { id: "vision", label: "Vision and Mission" },
   { id: "what-we-do", label: "What We Do" },
@@ -132,9 +113,13 @@ function Pending() {
   return <p className="tjs-dept-pending">Content coming soon.</p>;
 }
 
-export default function Placements() {
+// From WordPress (WP Admin → Placements):
+//   placedStudents: year-wise PDFs, [{ tab, url }]
+//   recruiterGroups: recruiter logo tabs, [{ tab, logos: [{ url, name }] }]
+export default function PlacementsView({ placedStudents = [], recruiterGroups = [] }) {
   const [activeCat, setActiveCat] = useState("vision");
-  const [recruiterTab, setRecruiterTab] = useState("major");
+  const [recruiterTab, setRecruiterTab] = useState(0);
+  const recruiterGroup = recruiterGroups[recruiterTab];
   const [openFaq, setOpenFaq] = useState(0);
 
   return (
@@ -145,7 +130,7 @@ export default function Placements() {
       >
         <h1>Placements</h1>
         <nav className="tjs-subpage-crumb">
-          <a href="/">Home</a>
+          <Link href="/">Home</Link>
           <span>/</span>
           <span>Placements</span>
         </nav>
@@ -348,36 +333,34 @@ export default function Placements() {
               {activeCat === "statistics" && (
                 <>
                   <h3>Placed Students</h3>
-                  <Pending />
+                  {placedStudents.length ? <YearPdfTabs docs={placedStudents} title="Placed Students" /> : <Pending />}
                 </>
               )}
 
               {activeCat === "recruiters" && (
                 <>
                   <h3>Our Recruiters</h3>
-                  <div className="tjs-approvals-year-tabs-row" style={{ border: "none", paddingBottom: 0 }}>
-                    <div className="tjs-approvals-year-tabs" style={{ overflow: "visible", flex: "0 0 auto" }}>
-                      <button
-                        type="button"
-                        className={"tjs-approvals-year" + (recruiterTab === "major" ? " active" : "")}
-                        onClick={() => setRecruiterTab("major")}
-                      >
-                        Major Recruiters
-                      </button>
-                      <button
-                        type="button"
-                        className={"tjs-approvals-year" + (recruiterTab === "ay2526" ? " active" : "")}
-                        onClick={() => setRecruiterTab("ay2526")}
-                      >
-                        Recruiters (AY 2025-26)
-                      </button>
+                  {recruiterGroups.length > 1 && (
+                    <div className="tjs-approvals-year-tabs-row" style={{ border: "none", paddingBottom: 0 }}>
+                      <div className="tjs-approvals-year-tabs" style={{ overflow: "visible", flex: "0 0 auto", flexWrap: "wrap" }}>
+                        {recruiterGroups.map((g, i) => (
+                          <button
+                            key={g.tab + i}
+                            type="button"
+                            className={"tjs-approvals-year" + (recruiterTab === i ? " active" : "")}
+                            onClick={() => setRecruiterTab(i)}
+                          >
+                            {g.tab}
+                          </button>
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
 
-                  {recruiterTab === "major" ? (
+                  {recruiterGroup?.logos.length ? (
                     <div className="tjs-dept-photo-grid" style={{ marginTop: 20 }}>
-                      {RECRUITER_LOGOS.map((r) => (
-                        <img key={r.logo} src={r.logo} alt={r.name} title={r.name} className="tjs-dept-logo-real" />
+                      {recruiterGroup.logos.map((r) => (
+                        <img key={r.url} src={r.url} alt={r.name} title={r.name} className="tjs-dept-logo-real" />
                       ))}
                     </div>
                   ) : (

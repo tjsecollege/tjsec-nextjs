@@ -99,7 +99,7 @@ function tjs_textarea($name, $label, $extra = []) {
 }
 
 function tjs_editor($name, $label, $extra = []) {
-    return tjs_f('wysiwyg', $name, $label, array_merge(['tabs' => 'visual', 'toolbar' => 'full', 'media_upload' => 0], $extra));
+    return tjs_f('wysiwyg', $name, $label, array_merge(['tabs' => 'visual', 'toolbar' => 'full', 'media_upload' => 1], $extra));
 }
 
 function tjs_image($name, $label, $extra = []) {

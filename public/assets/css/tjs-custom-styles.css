@@ -1394,6 +1394,36 @@ p.tjs-iv-step-desc { color: var(--rs-text-primary); font-size: 13px; margin: 0; 
 .tjs-lab-accordion .tjs-committee-toggle.active { background: var(--rs-theme-blue); color: #fff; }
 .tjs-lab-accordion .tjs-committee-toggle.active i { color: #fff; }
 
+/* Scholarship accordion — every toggle stays dark navy (not just the active
+   one), with a red accent bar, matching the reference design. */
+.tjs-scholarship-accordion .tjs-committee-item { border: none; border-radius: 6px; }
+.tjs-scholarship-accordion .tjs-committee-toggle,
+.tjs-scholarship-accordion .tjs-committee-toggle.active {
+    background: var(--rs-theme-blue);
+    color: #fff;
+    border-inline-start: 4px solid var(--rs-theme-red-two);
+    font-size: 14px;
+}
+.tjs-scholarship-accordion .tjs-committee-toggle i,
+.tjs-scholarship-accordion .tjs-committee-toggle.active i { color: #fff; }
+.tjs-scholarship-accordion .tjs-committee-toggle.active i { transform: rotate(180deg); }
+
+.tjs-scholarship-cta { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 28px; }
+.tjs-scholarship-cta-btn {
+    display: inline-flex; align-items: center; gap: 10px; padding: 12px 22px; border-radius: 8px;
+    color: #fff; font-weight: 600; font-size: 14.5px;
+}
+.tjs-scholarship-cta-blue { background: #2072eb; }
+.tjs-scholarship-cta-blue:hover,.tjs-scholarship-link-guidelines:hover, .tjs-scholarship-link-faq:hover{color:#fff}
+.tjs-scholarship-cta-yellow { background: var(--rs-theme-yellow); }
+
+.tjs-scholarship-link-btn {
+    display: inline-flex; align-items: center; gap: 8px; padding: 9px 18px; border-radius: 6px;
+    color: #fff; font-weight: 600; font-size: 13.5px; margin-inline-end: 10px; margin-bottom: 10px;
+}
+.tjs-scholarship-link-guidelines { background: var(--rs-theme-green-two); }
+.tjs-scholarship-link-faq { background: var(--rs-theme-light-cyan); }
+
 /* Offcanvas "Follow Us" reuses the footer's colored social icons — icons
    only, laid out in a row (overriding the template's bare circular-anchor
    style and the footer's own vertical icon+label stack). */
@@ -1512,3 +1542,31 @@ hr.tjs-ivy-divider { border: none; border-top: 1px solid var(--rs-border-primary
 .tjs-dept-hero-slider .tjs-dept-photo-slider-dots { position: absolute; left: 0; right: 0; bottom: 16px; margin: 0; z-index: 2; }
 .tjs-dept-hero-slider .tjs-dept-photo-slider-dot { background: rgba(255, 255, 255, 0.6); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); }
 .tjs-dept-hero-slider .tjs-dept-photo-slider-dot.active { background: #fff; }
+
+/* Images inserted with "Add Media" in WordPress text editors (department About/HOD/MoU,
+   S&H Objectives, NAAC text sections, Alumni About/Contact). */
+.tjs-dept-page img[class*="wp-image-"] { max-width: 100%; height: auto; border-radius: 8px; }
+.tjs-dept-page .wp-caption { max-width: 100%; margin: 0 0 16px; }
+.tjs-dept-page .wp-caption img { display: block; }
+.tjs-dept-page .wp-caption-text { font-size: 13px; color: var(--rs-text-primary); text-align: center; margin-top: 6px; }
+.tjs-dept-page .alignleft { float: left; margin: 4px 20px 12px 0; }
+.tjs-dept-page .alignright { float: right; margin: 4px 0 12px 20px; }
+.tjs-dept-page .aligncenter { display: block; margin-left: auto; margin-right: auto; }
+.tjs-dept-page .tjs-dept-richtext::after,
+.tjs-dept-page .tjs-committee-body::after { content: ""; display: block; clear: both; }
+@media (max-width: 767px) {
+    .tjs-dept-page .alignleft,
+    .tjs-dept-page .alignright { float: none; display: block; margin: 12px auto; }
+}
+
+/* Document rows (Students Club): click the name to view, round button to download */
+.tjs-doc-list { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+.tjs-doc-item { display: flex; align-items: center; gap: 12px; background: #fff; border: 1px solid var(--rs-border-primary); border-radius: 8px; padding: 10px 14px 10px 18px; transition: border-color 0.2s ease; }
+.tjs-doc-item:hover { border-color: var(--rs-theme-blue); }
+.tjs-doc-view { flex: 1; display: flex; align-items: center; gap: 12px; font-weight: 600; color: var(--rs-text-primary); min-width: 0; }
+.tjs-doc-view:hover { color: var(--rs-theme-blue); }
+.tjs-doc-view i { font-size: 22px; color: #2b579a; flex: 0 0 auto; }
+.tjs-doc-view .ri-file-pdf-2-line { color: #d93025; }
+.tjs-doc-view .ri-file-ppt-2-line { color: #c43e1c; }
+.tjs-doc-view .ri-file-excel-2-line { color: #1d6f42; }
+.tjs-doc-item .tjs-dept-link-arrow:hover { background: var(--rs-theme-blue); color: #fff; }
