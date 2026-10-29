@@ -108,13 +108,17 @@ function tjs_naac_fields() {
                     tjs_editor('content', 'Content'),
                 ]),
 
-                tjs_naac_layout('dated_list', 'Grouped list with dates (e.g. Capacity Building)', [
+                tjs_naac_layout('dated_list', 'Programs grouped with photos & dates (e.g. Capacity Building)', [
+                    tjs_textarea('intro', 'Intro text (optional)', ['rows' => 3]),
                     tjs_repeater('groups', 'Groups', '+ Add Group', [
                         tjs_text('heading', 'Group heading', ['required' => 1, 'placeholder' => 'e.g. Soft Skills']),
-                        tjs_repeater('items', 'Items', '+ Add Item', [
-                            tjs_text('title', 'Title', ['wrapper' => ['width' => '70']]),
-                            tjs_date('date', 'Date', ['wrapper' => ['width' => '30']]),
-                        ], ['layout' => 'table']),
+                        tjs_textarea('description', 'Group description (optional)', ['rows' => 3]),
+                        tjs_repeater('items', 'Programs', '+ Add Program', [
+                            tjs_text('title', 'Program', ['wrapper' => ['width' => '30'], 'placeholder' => 'e.g. Training on “Interview Skills”']),
+                            tjs_textarea('resource_person', 'Resource person (optional)', ['rows' => 2, 'wrapper' => ['width' => '30'], 'placeholder' => 'e.g. Mr. M. Vigneshwaran, Soft Skills Trainer, Southerland Global Services']),
+                            tjs_date('date', 'Date', ['wrapper' => ['width' => '15']]),
+                            tjs_image('photo', 'Photo (optional)', ['wrapper' => ['width' => '25']]),
+                        ], ['layout' => 'table', 'instructions' => 'With a photo, the program shows as a photo card with the resource person and date; without, as a simple "Program – date" line.']),
                     ], ['collapsed' => 'heading']),
                 ]),
 
@@ -175,11 +179,22 @@ add_action('rest_api_init', function () {
                 return current_user_can('manage_options');
             },
             'callback' => function (WP_REST_Request $request) {
-                $body = $request->get_json_params();
+                $body = (array) $request->get_json_params();
                 foreach (['page_title', 'sections'] as $name) {
-                    if (array_key_exists($name, (array) $body)) {
+                    if (array_key_exists($name, $body)) {
                         update_field('field_tjsn_' . $name, $body[$name], TJS_NAAC_ID);
                     }
+                }
+                // Replace one section, re-saving the others from their raw stored
+                // values (attachment IDs, Ymd dates) so nothing else changes.
+                if (isset($body['replace_section']['index'], $body['replace_section']['section'])) {
+                    $index = (int) $body['replace_section']['index'];
+                    $raw = get_field('sections', TJS_NAAC_ID, false) ?: [];
+                    if (!isset($raw[$index])) {
+                        return new WP_Error('tjs_bad_index', 'No section at that index.', ['status' => 400]);
+                    }
+                    $raw[$index] = $body['replace_section']['section'];
+                    update_field('field_tjsn_sections', array_values($raw), TJS_NAAC_ID);
                 }
                 return ['saved' => true];
             },

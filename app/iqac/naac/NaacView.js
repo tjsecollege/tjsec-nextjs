@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import ZoomableImage from "../../departments/ZoomableImage";
 
 // Uploaded file wins; otherwise the pasted link.
 function docUrl(item) {
@@ -143,19 +144,46 @@ function SectionBody({ section, title }) {
     case "dated_list":
       return (
         <div className="tjs-committee-body">
-          {list(section.groups).map((group, i) => (
-            <div key={i} style={{ marginBottom: 24 }}>
-              <h4>{group.heading}</h4>
-              <ul>
-                {list(group.items).map((item, j) => (
-                  <li key={j}>
-                    {item.title}
-                    {item.date && <> &ndash; {formatDate(item.date)}</>}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {section.intro && <p>{section.intro}</p>}
+          {list(section.groups).map((group, i) => {
+            const items = list(group.items);
+            const withPhoto = items.filter((item) => item.photo?.url);
+            const withoutPhoto = items.filter((item) => !item.photo?.url);
+            return (
+              <div key={i} style={{ marginBottom: 28 }}>
+                <h4>{group.heading}</h4>
+                {group.description && <p>{group.description}</p>}
+                {withPhoto.length > 0 && (
+                  <div className="tjs-program-grid">
+                    {withPhoto.map((item, j) => (
+                      <div className="tjs-program-card" key={j}>
+                        <ZoomableImage src={item.photo.url} alt={item.photo.alt || item.title} />
+                        <div className="tjs-program-caption">
+                          {item.resource_person && <p className="tjs-program-person">{item.resource_person}</p>}
+                          <p className="tjs-program-title">{item.title}</p>
+                          {item.date && (
+                            <p className="tjs-program-date">
+                              <i className="ri-calendar-2-line"></i> {formatDate(item.date)}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {withoutPhoto.length > 0 && (
+                  <ul>
+                    {withoutPhoto.map((item, j) => (
+                      <li key={j}>
+                        {item.title}
+                        {item.date && <> &ndash; {formatDate(item.date)}</>}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            );
+          })}
         </div>
       );
     case "link_groups":
