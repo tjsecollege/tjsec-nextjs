@@ -32,6 +32,17 @@ add_action('acf/init', function () {
     ]);
 });
 
+// Academic years for the document dropdown, newest first: next year's
+// (e.g. "2027-28") down to 2015-16, so the list never needs editing.
+function tjs_students_club_years() {
+    $years = ['' => '— Select year —'];
+    for ($y = (int) date('Y') + 1; $y >= 2015; $y--) {
+        $label = $y . '-' . substr((string) ($y + 1), 2);
+        $years[$label] = $label;
+    }
+    return $years;
+}
+
 function tjs_students_club_fields() {
     return [
         tjs_heading('How to edit this page', 'Each <strong>club</strong> is one tab in the left-hand menu of the Students Club page. Inside a club, use <strong>+ Add Document</strong> for every Word / PDF file. Drag the ☰ handle to re-order clubs or documents, and the <strong>–</strong> button to remove. Click <strong>Save Students Club Page</strong> when done.'),
@@ -41,12 +52,18 @@ function tjs_students_club_fields() {
             tjs_text('title', 'Heading (optional)', ['placeholder' => 'e.g. Cultural Club – Events & Activities', 'instructions' => 'Leave empty to use the club name.', 'wrapper' => ['width' => '60']]),
             tjs_editor('description', 'About the club (optional)'),
             tjs_repeater('documents', 'Documents', '+ Add Document', [
-                tjs_text('title', 'Document name', ['required' => 1, 'placeholder' => 'e.g. Onam Celebration 28.08.2026', 'wrapper' => ['width' => '40']]),
+                tjs_text('title', 'Document name', ['required' => 1, 'placeholder' => 'e.g. Onam Celebration 28.08.2026', 'wrapper' => ['width' => '35']]),
+                tjs_select('year', 'Academic year', tjs_students_club_years(), [
+                    'default_value' => '',
+                    'allow_null' => 1,
+                    'instructions' => 'Documents are grouped by year on the website.',
+                    'wrapper' => ['width' => '20'],
+                ]),
                 tjs_file('file', 'File', [
                     'required' => 1,
                     'mime_types' => 'doc, docx, pdf, ppt, pptx, xls, xlsx',
                     'instructions' => 'Word, PDF, PowerPoint or Excel file.',
-                    'wrapper' => ['width' => '60'],
+                    'wrapper' => ['width' => '45'],
                 ]),
             ], ['layout' => 'table']),
         ], ['collapsed' => 'name']),
@@ -70,14 +87,41 @@ add_action('acf/include_fields', function () {
 
 add_action('rest_api_init', function () {
     register_rest_route('tjs/v1', '/students-club', [
-        'methods' => 'GET',
-        'permission_callback' => '__return_true',
-        'callback' => function () {
-            return [
-                'page_title' => get_field('page_title', TJS_STUDENTS_CLUB_ID) ?: '',
-                'clubs' => get_field('clubs', TJS_STUDENTS_CLUB_ID) ?: [],
-            ];
-        },
+        [
+            'methods' => 'GET',
+            'permission_callback' => '__return_true',
+            'callback' => function () {
+                return [
+                    'page_title' => get_field('page_title', TJS_STUDENTS_CLUB_ID) ?: '',
+                    'clubs' => get_field('clubs', TJS_STUDENTS_CLUB_ID) ?: [],
+                ];
+            },
+        ],
+        [
+            // Admins only: set the academic year on existing documents,
+            // { "set_years": [{ "club": 0, "doc": 2, "year": "2025-26" }] }.
+            // Everything else is re-saved from its raw stored values.
+            'methods' => 'POST',
+            'permission_callback' => function () {
+                return current_user_can('manage_options');
+            },
+            'callback' => function (WP_REST_Request $request) {
+                $body = (array) $request->get_json_params();
+                $raw = get_field('clubs', TJS_STUDENTS_CLUB_ID, false) ?: [];
+                $docs_key = 'field_tjssc_clubs_documents';
+                $year_key = 'field_tjssc_clubs_documents_year';
+                foreach ((array) ($body['set_years'] ?? []) as $set) {
+                    $c = (int) ($set['club'] ?? -1);
+                    $d = (int) ($set['doc'] ?? -1);
+                    if (!isset($raw[$c][$docs_key][$d])) {
+                        return new WP_Error('tjs_bad_index', "No document {$d} in club {$c}.", ['status' => 400]);
+                    }
+                    $raw[$c][$docs_key][$d][$year_key] = (string) ($set['year'] ?? '');
+                }
+                update_field('field_tjssc_clubs', $raw, TJS_STUDENTS_CLUB_ID);
+                return ['saved' => true];
+            },
+        ],
     ]);
 });
 

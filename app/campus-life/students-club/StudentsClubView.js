@@ -24,7 +24,75 @@ function fileIcon(url) {
   return "ri-file-text-line";
 }
 
-// clubs: [{ name, title, description, documents: [{ title, url }] }]
+function DocList({ docs }) {
+  return (
+    <div className="tjs-doc-list">
+      {docs.map((d, i) => (
+        <div className="tjs-doc-item" key={d.url + i}>
+          <a className="tjs-doc-view" href={viewUrl(d.url)} target="_blank" rel="noopener">
+            <i className={fileIcon(d.url)}></i>
+            <span>{d.title}</span>
+          </a>
+          <a className="tjs-dept-link-arrow" href={d.url} download aria-label={`Download ${d.title}`} title="Download">
+            <i className="ri-download-2-line"></i>
+          </a>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// Groups documents by academic year, newest first; documents without a
+// year go into a final "Other documents" group.
+function groupByYear(docs) {
+  const map = new Map();
+  for (const d of docs) {
+    const key = d.year || "";
+    if (!map.has(key)) map.set(key, []);
+    map.get(key).push(d);
+  }
+  return [...map.entries()]
+    .sort(([a], [b]) => (a === "" ? 1 : b === "" ? -1 : b.localeCompare(a)))
+    .map(([year, items]) => ({ year, label: year || "Other documents", items }));
+}
+
+// One collapsible panel per year; the newest is open. If no document has a
+// year, it's just the plain list.
+function YearAccordion({ docs }) {
+  const groups = groupByYear(docs);
+  const [open, setOpen] = useState(0);
+  if (groups.length === 1 && groups[0].year === "") return <DocList docs={docs} />;
+  return (
+    <div className="tjs-committee-list" style={{ marginTop: 12 }}>
+      {groups.map((g, i) => (
+        <div className="tjs-committee-item" key={g.label}>
+          <button
+            type="button"
+            className={"tjs-committee-toggle" + (open === i ? " active" : "")}
+            onClick={() => setOpen(open === i ? -1 : i)}
+            aria-expanded={open === i}
+          >
+            <span>
+              {g.label}
+              <span className="tjs-doc-year-count">
+                {" "}
+                · {g.items.length} {g.items.length === 1 ? "document" : "documents"}
+              </span>
+            </span>
+            <i className="ri-arrow-down-s-line"></i>
+          </button>
+          {open === i && (
+            <div className="tjs-committee-body" style={{ paddingTop: 4 }}>
+              <DocList docs={g.items} />
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// clubs: [{ name, title, description, documents: [{ title, url, year }] }]
 export default function StudentsClubView({ pageTitle, clubs }) {
   const [active, setActive] = useState(0);
   const club = clubs[active];
@@ -69,19 +137,8 @@ export default function StudentsClubView({ pageTitle, clubs }) {
                 )}
 
                 {club.documents.length ? (
-                  <div className="tjs-doc-list">
-                    {club.documents.map((d, i) => (
-                      <div className="tjs-doc-item" key={d.url + i}>
-                        <a className="tjs-doc-view" href={viewUrl(d.url)} target="_blank" rel="noopener">
-                          <i className={fileIcon(d.url)}></i>
-                          <span>{d.title}</span>
-                        </a>
-                        <a className="tjs-dept-link-arrow" href={d.url} download aria-label={`Download ${d.title}`} title="Download">
-                          <i className="ri-download-2-line"></i>
-                        </a>
-                      </div>
-                    ))}
-                  </div>
+                  // key: switching club re-opens that club's newest year
+                  <YearAccordion key={active} docs={club.documents} />
                 ) : (
                   !club.description && <p className="tjs-dept-pending">Documents will be added soon.</p>
                 )}
