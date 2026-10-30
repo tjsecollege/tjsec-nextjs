@@ -1581,3 +1581,14 @@ hr.tjs-ivy-divider { border: none; border-top: 1px solid var(--rs-border-primary
 .tjs-program-title { font-weight: 700; color: var(--rs-title-primary); }
 .tjs-program-date { font-size: 13px; color: var(--rs-theme-yellow); font-weight: 600; margin-bottom: 0 !important; }
 .tjs-doc-year-count { font-weight: 500; font-size: 13px; color: var(--rs-text-secondary); }
+
+/* Sports and Fitness: event category buttons and videos */
+.tjs-sports-cats { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.tjs-sports-cat { border: 1px solid var(--rs-border-primary); background: #fff; border-radius: 30px; padding: 8px 18px; font-size: 14px; font-weight: 600; color: var(--rs-title-primary); cursor: pointer; transition: all 0.2s ease; }
+.tjs-sports-cat:hover { border-color: var(--rs-theme-yellow); color: var(--rs-theme-yellow); }
+.tjs-sports-cat.active { background: var(--rs-theme-yellow); border-color: var(--rs-theme-yellow); color: #fff; }
+.tjs-sports-videos-title { margin-top: 28px; }
+.tjs-sports-videos { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+.tjs-sports-video { margin: 0; }
+.tjs-sports-video iframe, .tjs-sports-video video { width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 10px; background: #000; display: block; }
+.tjs-sports-video figcaption { margin-top: 8px; font-weight: 600; color: var(--rs-title-primary); }

@@ -217,6 +217,18 @@ function tjs_non_teaching_repeater() {
     ]);
 }
 
+// Academic years for dropdowns (Students Club, Sports & Fitness…), newest
+// first: next year's (e.g. "2027-28") down to 2015-16, so the list grows by
+// itself every year and never needs editing.
+function tjs_academic_years() {
+    $years = ['' => '— Select year —'];
+    for ($y = (int) date('Y') + 1; $y >= 2015; $y--) {
+        $label = $y . '-' . substr((string) ($y + 1), 2);
+        $years[$label] = $label;
+    }
+    return $years;
+}
+
 function tjs_doc_repeater($name, $label, $button) {
     return tjs_repeater($name, $label, $button, [
         tjs_text('title', 'Title', ['required' => 1]),

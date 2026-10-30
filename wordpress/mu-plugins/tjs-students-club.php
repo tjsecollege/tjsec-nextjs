@@ -32,17 +32,6 @@ add_action('acf/init', function () {
     ]);
 });
 
-// Academic years for the document dropdown, newest first: next year's
-// (e.g. "2027-28") down to 2015-16, so the list never needs editing.
-function tjs_students_club_years() {
-    $years = ['' => '— Select year —'];
-    for ($y = (int) date('Y') + 1; $y >= 2015; $y--) {
-        $label = $y . '-' . substr((string) ($y + 1), 2);
-        $years[$label] = $label;
-    }
-    return $years;
-}
-
 function tjs_students_club_fields() {
     return [
         tjs_heading('How to edit this page', 'Each <strong>club</strong> is one tab in the left-hand menu of the Students Club page. Inside a club, use <strong>+ Add Document</strong> for every Word / PDF file. Drag the ☰ handle to re-order clubs or documents, and the <strong>–</strong> button to remove. Click <strong>Save Students Club Page</strong> when done.'),
@@ -53,7 +42,7 @@ function tjs_students_club_fields() {
             tjs_editor('description', 'About the club (optional)'),
             tjs_repeater('documents', 'Documents', '+ Add Document', [
                 tjs_text('title', 'Document name', ['required' => 1, 'placeholder' => 'e.g. Onam Celebration 28.08.2026', 'wrapper' => ['width' => '35']]),
-                tjs_select('year', 'Academic year', tjs_students_club_years(), [
+                tjs_select('year', 'Academic year', tjs_academic_years(), [
                     'default_value' => '',
                     'allow_null' => 1,
                     'instructions' => 'Documents are grouped by year on the website.',
