@@ -284,6 +284,12 @@ export default function DepartmentPage({ dept }) {
   const internships = list(dept.internships);
   const publications = list(dept.publications);
   const patents = list(dept.patents);
+  // Grouped by academic year, newest first (admin order kept within a year);
+  // patents without a year come last.
+  const patentGroups = [...new Set(patents.map((p) => p.year || ""))]
+    .sort((a, b) => (a === "" ? 1 : b === "" ? -1 : b.localeCompare(a)))
+    .map((year) => ({ year, items: patents.filter((p) => (p.year || "") === year) }));
+  const patentHasStatus = patents.some((p) => p.status);
   const books = list(dept.books);
 
   const labs = list(dept.labs).map((lab, i) => {
@@ -589,31 +595,33 @@ export default function DepartmentPage({ dept }) {
               <table className="tjs-dept-table">
                 <thead>
                   <tr>
-                    <th>Title</th>
-                    <th>Inventors</th>
-                    <th>Application / Patent No.</th>
-                    <th>Status</th>
-                    <th>Date</th>
+                    <th>Academic Year</th>
+                    <th>Name of the Faculty</th>
+                    <th>Title of Patent</th>
+                    <th>Application Number</th>
+                    {patentHasStatus && <th>Status</th>}
                   </tr>
                 </thead>
                 <tbody>
-                  {patents.map((p, i) => (
-                    <tr key={p.title + i}>
-                      <td>
-                        {p.document?.url ? (
-                          <a href={p.document.url} target="_blank" rel="noopener">
-                            {p.title}
-                          </a>
-                        ) : (
-                          p.title
-                        )}
-                      </td>
-                      <td>{p.inventors}</td>
-                      <td>{p.application_number}</td>
-                      <td style={{ textTransform: "capitalize" }}>{p.status}</td>
-                      <td>{formatDate(p.date)}</td>
-                    </tr>
-                  ))}
+                  {patentGroups.map((g) =>
+                    g.items.map((p, i) => (
+                      <tr key={g.year + i}>
+                        {i === 0 && <td rowSpan={g.items.length}>{g.year || "—"}</td>}
+                        <td>{p.inventors}</td>
+                        <td>
+                          {p.document?.url ? (
+                            <a href={p.document.url} target="_blank" rel="noopener">
+                              {p.title}
+                            </a>
+                          ) : (
+                            p.title
+                          )}
+                        </td>
+                        <td>{p.application_number}</td>
+                        {patentHasStatus && <td style={{ textTransform: "capitalize" }}>{p.status}</td>}
+                      </tr>
+                    ))
+                  )}
                 </tbody>
               </table>
             </div>
@@ -629,17 +637,16 @@ export default function DepartmentPage({ dept }) {
               <table className="tjs-dept-table">
                 <thead>
                   <tr>
+                    <th>Year</th>
                     <th>Title</th>
-                    <th>Type</th>
-                    <th>Authors</th>
+                    <th>Author</th>
                     <th>Publisher</th>
-                    <th>ISBN</th>
-                    <th>Date</th>
                   </tr>
                 </thead>
                 <tbody>
                   {books.map((b, i) => (
                     <tr key={b.title + i}>
+                      <td>{b.year}</td>
                       <td>
                         {b.link ? (
                           <a href={b.link} target="_blank" rel="noopener">
@@ -648,12 +655,11 @@ export default function DepartmentPage({ dept }) {
                         ) : (
                           b.title
                         )}
+                        {b.type === "chapter" && <span className="tjs-book-tag">Book Chapter</span>}
+                        {b.isbn && <span className="tjs-book-isbn">ISBN: {b.isbn}</span>}
                       </td>
-                      <td>{b.type === "chapter" ? "Book Chapter" : "Book"}</td>
-                      <td>{b.authors}</td>
+                      <td style={{ whiteSpace: "pre-line" }}>{b.authors}</td>
                       <td>{b.publisher}</td>
-                      <td>{b.isbn}</td>
-                      <td>{formatDate(b.date)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -693,7 +699,7 @@ export default function DepartmentPage({ dept }) {
                 const trainers = lines(c.trainers);
                 const images = photos(c.photos, c.title);
                 return (
-                  <div className="tjs-dept-media-row" key={c.title + i}>
+                  <div className="tjs-dept-media-row tjs-vac-row" key={c.title + i}>
                     <div className="tjs-dept-media-row-text">
                       <h3>{c.title}</h3>
                       {paragraphs(c.description).map((p, j) => (

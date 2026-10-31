@@ -699,8 +699,11 @@
         const lenis = new Lenis({
             smoothWheel: true,
             wheelMultiplier: 1.2,
-            duration: 1.8,
-            lerp: 0.05,
+            // 0.1 is Lenis default. The template had 0.05, which took so long
+            // to settle that dragging the scrollbar fought the still-running
+            // animation and felt like the page was buffering. (duration is
+            // ignored when lerp is set, so it is not passed.)
+            lerp: 0.1,
         });
         // Exposed so other scripts (e.g. a modal that needs to freeze
         // background scrolling) can pause/resume this Lenis instance —

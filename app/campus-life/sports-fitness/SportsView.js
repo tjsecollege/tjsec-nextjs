@@ -62,10 +62,16 @@ function EventCategories({ categories }) {
           ))}
         </div>
       )}
+      {category.description && (
+        <div
+          className="tjs-dept-richtext tjs-sports-cat-desc"
+          dangerouslySetInnerHTML={{ __html: category.description }}
+        />
+      )}
       {category.docs.length ? (
         <YearPdfTabs key={active} docs={category.docs} title={category.name} />
       ) : (
-        <Pending text="Documents will be added soon." />
+        !category.description && <Pending text="Documents will be added soon." />
       )}
     </>
   );

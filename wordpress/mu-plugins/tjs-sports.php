@@ -71,7 +71,8 @@ function tjs_sports_fields() {
         tjs_tab('Sports Events'),
         tjs_heading('Sports Events', 'Sidebar: Sports Events. Add one category per kind of event (Annual Sports Day, Intra-tournaments, Invitation-tournaments…); inside each, one file per academic year.'),
         tjs_repeater('event_categories', 'Event categories', '+ Add Category', [
-            tjs_text('name', 'Category name', ['required' => 1, 'placeholder' => 'e.g. Annual Sports Day']),
+            tjs_text('name', 'Category name', ['required' => 1, 'placeholder' => 'e.g. Annual Sports']),
+            tjs_editor('description', 'Description (optional)', ['instructions' => 'Shown above the year-wise documents.']),
             tjs_sports_year_docs('documents', 'Year-wise documents', '+ Add Year'),
         ], ['collapsed' => 'name']),
 

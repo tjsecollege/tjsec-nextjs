@@ -1592,3 +1592,38 @@ hr.tjs-ivy-divider { border: none; border-top: 1px solid var(--rs-border-primary
 .tjs-sports-video { margin: 0; }
 .tjs-sports-video iframe, .tjs-sports-video video { width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 10px; background: #000; display: block; }
 .tjs-sports-video figcaption { margin-top: 8px; font-weight: 600; color: var(--rs-title-primary); }
+
+/* Medical Centre: facility cards with icons, numbered objectives */
+.tjs-medical-heading { margin: 34px 0 16px; }
+.tjs-medical-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }
+.tjs-medical-card { display: flex; gap: 14px; align-items: flex-start; background: #fff; border: 1px solid var(--rs-border-primary); border-radius: 12px; padding: 18px; box-shadow: 0 6px 18px rgba(3, 3, 3, 0.05); transition: border-color 0.2s ease, transform 0.2s ease; }
+.tjs-medical-card:hover { border-color: var(--rs-theme-blue); transform: translateY(-2px); }
+.tjs-medical-card h4 { margin: 2px 0 6px; font-size: 16px; color: var(--rs-title-primary); }
+.tjs-medical-card p { margin: 0; font-size: 14px; line-height: 1.6; color: var(--rs-text-primary); }
+.tjs-medical-icon { flex: 0 0 auto; width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: rgba(41, 47, 106, 0.08); color: var(--rs-theme-blue); font-size: 24px; }
+.tjs-medical-objectives { list-style: none; padding: 0 !important; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+.tjs-medical-objectives li { display: flex; gap: 14px; align-items: center; background: var(--rs-bg-secondary); border-radius: 10px; padding: 12px 16px; color: var(--rs-text-primary); }
+.tjs-medical-num { flex: 0 0 auto; width: 32px; height: 32px; border-radius: 50%; background: var(--rs-theme-yellow); color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+
+/* Lenis smooth scroll: bootstrap sets :root { scroll-behavior: smooth }, which
+   makes the browser smooth every scroll Lenis already smooths (double
+   smoothing / laggy scrollbar drag). Lenis's recommended rule turns it off. */
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+/* Sports Events category description: tournament list as trophy cards */
+.tjs-sports-cat-desc ul { list-style: none; padding: 0 !important; margin: 4px 0 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.tjs-sports-cat-desc li { display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid var(--rs-border-primary); border-radius: 10px; padding: 12px 14px; font-weight: 600; color: var(--rs-title-primary); }
+.tjs-sports-cat-desc li::before { content: "\f22f"; /* ri-trophy-line */ font-family: "remixicon"; font-weight: 400; font-size: 20px; color: var(--rs-theme-yellow); flex: 0 0 auto; }
+
+/* Department Books & Chapters table */
+.tjs-book-isbn { display: block; margin-top: 4px; font-size: 13px; color: var(--rs-text-secondary); }
+.tjs-book-tag { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 20px; font-size: 11px; font-weight: 700; background: var(--rs-bg-secondary); color: var(--rs-theme-blue); vertical-align: middle; }
+
+/* Value Added Course rows: title starts level with the photo, and each
+   course is separated by space and a divider so photos don't run into the
+   next course. */
+.tjs-vac-row { margin-bottom: 0; padding: 32px 0; border-top: 1px solid var(--rs-border-primary); }
+.tjs-vac-row:first-of-type { border-top: 0; padding-top: 0; }
+.tjs-vac-row:last-child { padding-bottom: 0; }
+.tjs-vac-row .tjs-dept-media-row-text > h3:first-child { margin-top: 0; }
+.tjs-vac-row .tjs-dept-card { margin-top: 16px; }
