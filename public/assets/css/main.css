@@ -25983,7 +25983,9 @@ html.lenis body {
     pointer-events: none;
 }
 
-.rs-banner-video-bg::after {
+/* Specific enough to beat ".rs-banner-one .rs-banner-bg-thumb::after" (the dark
+   gradient overlay), so the home-page video banner has no overlay. */
+.rs-banner-one .rs-banner-bg-thumb.rs-banner-video-bg::after {
     content: none;
 }
 

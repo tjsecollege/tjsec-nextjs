@@ -48,7 +48,7 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="/assets/css/vendor/odometer.min.css" />
         <link rel="stylesheet" href="/assets/css/vendor/spacing.css" />
         <link rel="stylesheet" href="/assets/css/vendor/remixicon.css" />
-        <link rel="stylesheet" href="/assets/css/main.css?=29" />
+        <link rel="stylesheet" href="/assets/css/main.css?=30" />
         {/* Consolidated page-specific overrides (was an inline <style> block in the original file) */}
         <link rel="stylesheet" href="/assets/css/tjs-custom-styles.css?=188" />
       </head>
