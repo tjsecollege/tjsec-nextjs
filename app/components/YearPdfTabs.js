@@ -13,8 +13,9 @@ function viewerUrl(url) {
 // Year tabs (scrollable, with ‹ › arrows) above an embedded document viewer.
 // Used by Approval & Affiliations, Placements → Placed Students and
 // Sports and Fitness. docs: [{ tab: "2026-27", url: "https://…pdf" }] — the
-// first one opens by default.
-export default function YearPdfTabs({ docs, title }) {
+// first one opens by default. hideSingleTab: with only one document, show
+// just the viewer (no lone tab button) — used by CategoryDocsView.
+export default function YearPdfTabs({ docs, title, hideSingleTab = false }) {
   const [active, setActive] = useState(0);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -44,44 +45,48 @@ export default function YearPdfTabs({ docs, title }) {
     tabsRef.current?.scrollBy({ left: direction * 240, behavior: "smooth" });
   }
 
+  const showTabs = !(hideSingleTab && docs.length === 1);
+
   return (
     <>
-      <div className="tjs-approvals-year-tabs-row">
-        {docs.length > 1 && (
-          <button
-            type="button"
-            className="tjs-approvals-year-nav"
-            aria-label="Scroll years left"
-            onClick={() => scrollTabs(-1)}
-            disabled={!canScrollLeft}
-          >
-            <i className="ri-arrow-left-s-line"></i>
-          </button>
-        )}
-        <div className="tjs-approvals-year-tabs" ref={tabsRef}>
-          {docs.map((d, i) => (
+      {showTabs && (
+        <div className="tjs-approvals-year-tabs-row">
+          {docs.length > 1 && (
             <button
-              key={d.tab + i}
               type="button"
-              className={"tjs-approvals-year" + (active === i ? " active" : "")}
-              onClick={() => setActive(i)}
+              className="tjs-approvals-year-nav"
+              aria-label="Scroll years left"
+              onClick={() => scrollTabs(-1)}
+              disabled={!canScrollLeft}
             >
-              {d.tab}
+              <i className="ri-arrow-left-s-line"></i>
             </button>
-          ))}
+          )}
+          <div className="tjs-approvals-year-tabs" ref={tabsRef}>
+            {docs.map((d, i) => (
+              <button
+                key={d.tab + i}
+                type="button"
+                className={"tjs-approvals-year" + (active === i ? " active" : "")}
+                onClick={() => setActive(i)}
+              >
+                {d.tab}
+              </button>
+            ))}
+          </div>
+          {docs.length > 1 && (
+            <button
+              type="button"
+              className="tjs-approvals-year-nav"
+              aria-label="Scroll years right"
+              onClick={() => scrollTabs(1)}
+              disabled={!canScrollRight}
+            >
+              <i className="ri-arrow-right-s-line"></i>
+            </button>
+          )}
         </div>
-        {docs.length > 1 && (
-          <button
-            type="button"
-            className="tjs-approvals-year-nav"
-            aria-label="Scroll years right"
-            onClick={() => scrollTabs(1)}
-            disabled={!canScrollRight}
-          >
-            <i className="ri-arrow-right-s-line"></i>
-          </button>
-        )}
-      </div>
+      )}
 
       {doc && (
         <div className="tjs-approvals-viewer">

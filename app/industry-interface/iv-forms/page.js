@@ -1,33 +1,19 @@
-const FORMS = [
-  { label: "Industry Visit (IV) Form", desc: "Form to be filled before an industry visit.", file: "IVform.docx" },
-  { label: "Industry Visit Form – TJSEC", desc: "TJSEC-specific industry visit form.", file: "IV-TJSEC.docx" },
-  { label: "Industry Visit Form – Template", desc: "Blank template for industry visit requests.", file: "IV-Template.docx" },
-  { label: "Long Term Internship Form", desc: "Form for long-term internship registration.", file: "TJSEC-Long Term Internship-Form.docx" },
-  { label: "Internship Form (Short)", desc: "Form for short-term internship registration.", file: "Internship-Form-short.docx" },
-  { label: "Placement Form", desc: "Form for placement registration.", file: "Placement.docx" },
-  {
-    label: "Skill Development Training & Campus Placement Willingness Form 2026",
-    desc: "Willingness form for skill development training and campus placement.",
-    file: "TJSEC-Skill Development Training & Campus Placement Willingness Form 2026.docx",
-  },
-];
+import Link from "next/link";
+import { getIvForms } from "@/lib/wordpress";
 
-function docUrl(file) {
-  return "/assets/images/iv_form/" + encodeURIComponent(file);
-}
+// Content is managed in WordPress: admin.tjsec.ac.in → IV Forms
+export default async function IVForms() {
+  const iv = await getIvForms();
+  const title = iv.pageTitle || "Industry Visit (IV) Forms";
 
-export default function IVForms() {
   return (
     <>
-      <section
-        className="tjs-subpage-banner"
-        style={{ backgroundImage: "url(/assets/images/about_bg.jpg)" }}
-      >
+      <section className="tjs-subpage-banner" style={{ backgroundImage: "url(/assets/images/about_bg.jpg)" }}>
         <h1>Industry Interface</h1>
         <nav className="tjs-subpage-crumb">
-          <a href="/">Home</a>
+          <Link href="/">Home</Link>
           <span>/</span>
-          <span>Industry Visit (IV) Forms</span>
+          <span>{title}</span>
         </nav>
       </section>
 
@@ -35,62 +21,53 @@ export default function IVForms() {
         <section className="tjs-dept-section">
           <h2 className="tjs-subpage-title">
             <span className="tjs-subpage-title-bar"></span>
-            Industry Visit (IV) Forms
+            {title}
           </h2>
 
-          <div className="tjs-dept-grid-3" style={{ marginBottom: 32 }}>
-            <div className="tjs-dept-card tjs-iv-step">
-              <span className="tjs-iv-step-icon">
-                <i className="ri-download-2-line"></i>
-              </span>
-              <div>
-                <p className="tjs-iv-step-title">Step 1</p>
-                <p className="tjs-iv-step-desc">Download the required forms</p>
-              </div>
-            </div>
-            <div className="tjs-dept-card tjs-iv-step">
-              <span className="tjs-iv-step-icon">
-                <i className="ri-edit-2-line"></i>
-              </span>
-              <div>
-                <p className="tjs-iv-step-title">Step 2</p>
-                <p className="tjs-iv-step-desc">Fill and get necessary approvals</p>
-              </div>
-            </div>
-            <div className="tjs-dept-card tjs-iv-step">
-              <span className="tjs-iv-step-icon">
-                <i className="ri-send-plane-2-line"></i>
-              </span>
-              <div>
-                <p className="tjs-iv-step-title">Step 3</p>
-                <p className="tjs-iv-step-desc">Submit to your department</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="tjs-iv-grid">
-            {FORMS.map((f) => (
-              <a href={docUrl(f.file)} target="_blank" rel="noopener" className="tjs-iv-card" key={f.file}>
-                <div className="tjs-iv-card-head">
-                  <h4>{f.label}</h4>
-                  <i className="ri-download-2-line"></i>
+          {iv.steps.length > 0 && (
+            <div className="tjs-dept-grid-3" style={{ marginBottom: 32 }}>
+              {iv.steps.map((s, i) => (
+                <div className="tjs-dept-card tjs-iv-step" key={s.title + i}>
+                  <span className="tjs-iv-step-icon">
+                    <i className={s.icon}></i>
+                  </span>
+                  <div>
+                    <p className="tjs-iv-step-title">{s.title}</p>
+                    {s.description && <p className="tjs-iv-step-desc">{s.description}</p>}
+                  </div>
                 </div>
-                <p>{f.desc}</p>
-              </a>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
 
-          <div className="tjs-iv-instructions">
-            <h4>
-              <i className="ri-error-warning-line"></i> Important Instructions
-            </h4>
-            <ul>
-              <li>Fill in all details clearly</li>
-              <li>Do not leave any field blank</li>
-              <li>Obtain all required signatures before submission</li>
-              <li>Submit before the deadline specified by your department</li>
-            </ul>
-          </div>
+          {iv.forms.length ? (
+            <div className="tjs-iv-grid">
+              {iv.forms.map((f, i) => (
+                <a href={f.url} target="_blank" rel="noopener" className="tjs-iv-card" key={f.url + i}>
+                  <div className="tjs-iv-card-head">
+                    <h4>{f.title}</h4>
+                    <i className="ri-download-2-line"></i>
+                  </div>
+                  {f.description && <p>{f.description}</p>}
+                </a>
+              ))}
+            </div>
+          ) : (
+            <p className="tjs-dept-pending">Forms will be added soon.</p>
+          )}
+
+          {iv.instructions.length > 0 && (
+            <div className="tjs-iv-instructions">
+              <h4>
+                <i className="ri-error-warning-line"></i> {iv.instructionsTitle || "Important Instructions"}
+              </h4>
+              <ul>
+                {iv.instructions.map((text, i) => (
+                  <li key={i}>{text}</li>
+                ))}
+              </ul>
+            </div>
+          )}
         </section>
       </div>
     </>

@@ -1,83 +1,8 @@
-"use client";
+import Link from "next/link";
+import { Fragment } from "react";
+import { getRegulations } from "@/lib/wordpress";
 
-function docUrl(path) {
-  return "/assets/images/Regulations-and-Curriculam/" + path.split("/").map(encodeURIComponent).join("/");
-}
-
-const UG_REGULATIONS_2026 = [
-  { label: "B.E. / B.Tech. Regulations (2026)", href: docUrl("Regulation-2026/TJSEC 2026 UG REGULATIONS.pdf") },
-];
-
-const PG_REGULATIONS_2026 = [
-  { label: "M.E. / MBA Regulations (2026)", href: docUrl("Regulation-2026/TJSEC 2026 PG REGULATIONS.pdf") },
-];
-
-const UG_CURRICULUM_2026 = [
-  { label: "B.Tech. Artificial Intelligence and Data Science", href: docUrl("Regulation-2026/TJSEC 2026 REGULATIONS - CURRICULUM - UG - AI&DS.pdf") },
-  { label: "B.E. CSE (Artificial Intelligence and Machine Learning)", href: docUrl("Regulation-2026/TJSEC 2026 REGULATIONS - CURRICULUM - UG - CSE (AIML).pdf") },
-  { label: "B.E. Computer Science and Engineering", href: docUrl("Regulation-2026/TJSEC 2026 REGULATIONS - CURRICULUM - UG - CSE.pdf") },
-  { label: "B.E. Electronics and Communication Engineering", href: docUrl("Regulation-2026/TJSEC 2026 REGULATIONS - CURRICULUM - UG - ECE.pdf") },
-  { label: "B.E. Electrical and Electronics Engineering", href: docUrl("Regulation-2026/TJSEC 2026 REGULATIONS - CURRICULUM - UG - EEE.pdf") },
-  { label: "B.Tech. Information Technology", href: docUrl("Regulation-2026/TJSEC 2026 REGULATIONS - CURRICULUM - UG - IT.pdf") },
-  { label: "B.E. Mechanical Engineering", href: docUrl("Regulation-2026/TJSEC 2026 REGULATIONS - CURRICULUM - UG - MECH.pdf") },
-];
-
-const PG_CURRICULUM_2026 = [
-  { label: "M.E. Computer Science and Engineering", href: docUrl("Regulation-2026/TJSEC 2026 REGULATIONS - CURRICULUM - PG - CSE.pdf") },
-  { label: "M.E. VLSI Design", href: docUrl("Regulation-2026/TJSEC 2026 REGULATIONS - CURRICULUM - PG - VLSI DESIGN.pdf") },
-  { label: "MBA", href: docUrl("Regulation-2026/TJSEC 2026 REGULATIONS - CURRICULUM - PG - MBA.pdf") },
-];
-
-const UG_REGULATIONS_2025 = [
-  { label: "B.Tech. Artificial Intelligence and Data Science", href: docUrl("AIDS/Regulations/ACADEMIC REGULATIONS 2025-AIDS.pdf") },
-  { label: "B.E. CSE (Artificial Intelligence and Machine Learning)", href: docUrl("AIML/Regulations/ACADEMIC REGULATIONS 2025-AIDS.pdf") },
-  { label: "B.E. Computer Science and Engineering", href: docUrl("CSE/Regulations/ACADEMIC REGULATIONS 2025-AIDS.pdf") },
-  { label: "B.E. Electronics and Communication Engineering", href: docUrl("ECE/Regulations/ACADEMIC REGULATIONS 2025-AIDS.pdf") },
-  { label: "B.E. Electrical and Electronics Engineering", href: docUrl("EEE/Regulations/AU- REGULATIONS 2025.pdf") },
-  { label: "B.Tech. Information Technology", href: docUrl("IT/Regulations/AU- REGULATIONS 2025.pdf") },
-  { label: "B.E. Mechanical Engineering", href: docUrl("MECH/Regulations/AU- REGULATIONS 2025.pdf") },
-];
-
-const UG_REGULATIONS_2021 = [
-  { label: "B.Tech. Artificial Intelligence and Data Science", href: docUrl("AIDS/Regulations/Undergraduate Programme - Academic Regulations 2021 -AIDS.pdf") },
-  { label: "B.E. CSE (Artificial Intelligence and Machine Learning)", href: docUrl("AIML/Regulations/Undergraduate Programme - Academic Regulations 2021 -AIDS.pdf") },
-  { label: "B.E. Computer Science and Engineering", href: docUrl("CSE/Regulations/Undergraduate Programme - Academic Regulations 2021 -AIDS.pdf") },
-  { label: "B.E. Electronics and Communication Engineering", href: docUrl("ECE/Regulations/Undergraduate Programme - Academic Regulations 2021 -AIDS.pdf") },
-  { label: "B.E. Electrical and Electronics Engineering", href: docUrl("EEE/Regulations/UG Regulation 2021.pdf") },
-  { label: "B.Tech. Information Technology", href: docUrl("IT/Regulations/UG Regulation 2021.pdf") },
-  { label: "B.E. Mechanical Engineering", href: docUrl("MECH/Regulations/UG Regulation 2021.pdf") },
-];
-
-const PG_REGULATIONS_2025 = [
-  { label: "M.E. Regulations 2025 (Computer Science & Engineering / VLSI Design)", href: docUrl("PG Regulations 2025-CSE And VLSI-Regulations.pdf") },
-  { label: "MBA Regulations", href: docUrl("MBA-Regulations.pdf") },
-];
-
-const UG_CURRICULUM_2025 = [
-  { label: "B.Tech. Artificial Intelligence and Data Science", href: docUrl("AIDS/curriculam/B.Tech. AI and DS 2025.pdf") },
-  { label: "B.E. CSE (Artificial Intelligence and Machine Learning)", href: docUrl("AIML/curriculam/B.E. CSE (AI & ML)-2025.pdf") },
-  { label: "B.E. Computer Science and Engineering", href: docUrl("CSE/curriculam/BE CSE-2025.pdf") },
-  { label: "B.E. Electronics and Communication Engineering", href: docUrl("ECE/curriculam/B.E ECE-2025.pdf") },
-  { label: "B.E. Electrical and Electronics Engineering", href: docUrl("EEE/curriculam/AU B.E. EEE 2025.pdf") },
-  { label: "B.Tech. Information Technology", href: docUrl("IT/curriculam/2025.pdf") },
-  { label: "B.E. Mechanical Engineering", href: docUrl("MECH/curriculam/B.E. Mechanical Engineering-2025.pdf") },
-];
-
-const UG_CURRICULUM_2021 = [
-  { label: "B.Tech. Artificial Intelligence and Data Science", href: docUrl("AIDS/curriculam/B.Tech.AIDS-2021.pdf") },
-  { label: "B.E. CSE (Artificial Intelligence and Machine Learning)", href: docUrl("AIML/curriculam/B.E-AIML-2021.pdf") },
-  { label: "B.E. Computer Science and Engineering", href: docUrl("CSE/curriculam/B.E.CSE-2021.pdf") },
-  { label: "B.E. Electronics and Communication Engineering", href: docUrl("ECE/curriculam/B.E.ECE-2021.pdf") },
-  { label: "B.E. Electrical and Electronics Engineering", href: docUrl("EEE/curriculam/B.E. EEE-2021.pdf") },
-  { label: "B.Tech. Information Technology", href: docUrl("IT/curriculam/B.Tech.IT-2021.pdf") },
-  { label: "B.E. Mechanical Engineering", href: docUrl("MECH/curriculam/B.E. Mech-2021.pdf") },
-];
-
-const PG_CURRICULUM_2025 = [
-  { label: "M.E. Computer Science and Engineering", href: docUrl("PG-CSE-Curriculam.pdf") },
-  { label: "M.E. VLSI Design", href: docUrl("PG-VLSI&DESIGN-Curriculam.pdf") },
-  { label: "MBA", href: docUrl("M.B.A-Curriculam.pdf") },
-];
+// Content is managed in WordPress: admin.tjsec.ac.in → Regulations
 
 function ArrowIcon() {
   return (
@@ -91,8 +16,8 @@ function ArrowIcon() {
 function LinkList({ items }) {
   return (
     <div className="tjs-dept-link-list">
-      {items.map((item) => (
-        <a href={item.href} target="_blank" rel="noopener" key={item.label}>
+      {items.map((item, i) => (
+        <a href={item.url} target="_blank" rel="noopener" key={item.label + i}>
           <span>{item.label}</span>
           <span className="tjs-dept-link-arrow">
             <ArrowIcon />
@@ -103,65 +28,41 @@ function LinkList({ items }) {
   );
 }
 
-export default function RegulationsAndCurriculum() {
+export default async function RegulationsAndCurriculum() {
+  const { sections } = await getRegulations();
+
   return (
     <>
-      <section
-        className="tjs-subpage-banner"
-        style={{ backgroundImage: "url(/assets/images/about_bg.jpg)" }}
-      >
+      <section className="tjs-subpage-banner" style={{ backgroundImage: "url(/assets/images/about_bg.jpg)" }}>
         <h1>Academics</h1>
         <nav className="tjs-subpage-crumb">
-          <a href="/">Home</a>
+          <Link href="/">Home</Link>
           <span>/</span>
           <span>Regulations and Curriculum</span>
         </nav>
       </section>
 
       <div className="tjs-dept-page">
-        <section className="tjs-dept-section">
-          <h2 className="tjs-subpage-title">
-            <span className="tjs-subpage-title-bar"></span>
-            Regulations
-          </h2>
+        {sections.map((section, i) => (
+          <section className={"tjs-dept-section" + (i % 2 ? " tjs-dept-section-alt" : "")} key={section.title + i}>
+            <h2 className="tjs-subpage-title">
+              <span className="tjs-subpage-title-bar"></span>
+              {section.title}
+            </h2>
 
-          <p className="tjs-dept-group-label">UG Regulations 2026</p>
-          <LinkList items={UG_REGULATIONS_2026} />
-
-          <p className="tjs-dept-group-label">UG Regulations 2025</p>
-          <LinkList items={UG_REGULATIONS_2025} />
-
-          <p className="tjs-dept-group-label">UG Regulations 2021</p>
-          <LinkList items={UG_REGULATIONS_2021} />
-
-          <p className="tjs-dept-group-label">PG Regulations 2026</p>
-          <LinkList items={PG_REGULATIONS_2026} />
-
-          <p className="tjs-dept-group-label">PG Regulations 2025</p>
-          <LinkList items={PG_REGULATIONS_2025} />
-        </section>
-
-        <section className="tjs-dept-section tjs-dept-section-alt">
-          <h2 className="tjs-subpage-title">
-            <span className="tjs-subpage-title-bar"></span>
-            Curriculum &amp; Syllabi
-          </h2>
-
-          <p className="tjs-dept-group-label">Undergraduate &ndash; 2026 Curriculum &amp; Syllabi</p>
-          <LinkList items={UG_CURRICULUM_2026} />
-
-          <p className="tjs-dept-group-label">Undergraduate &ndash; 2025 Curriculum &amp; Syllabi</p>
-          <LinkList items={UG_CURRICULUM_2025} />
-
-          <p className="tjs-dept-group-label">Undergraduate &ndash; 2021 Curriculum &amp; Syllabi</p>
-          <LinkList items={UG_CURRICULUM_2021} />
-
-          <p className="tjs-dept-group-label">Postgraduate &ndash; 2026 Curriculum &amp; Syllabi</p>
-          <LinkList items={PG_CURRICULUM_2026} />
-
-          <p className="tjs-dept-group-label">Postgraduate &ndash; 2025 Curriculum &amp; Syllabi</p>
-          <LinkList items={PG_CURRICULUM_2025} />
-        </section>
+            {section.groups.length ? (
+              // Fragment (not a wrapper div) so each heading keeps its top margin.
+              section.groups.map((group, j) => (
+                <Fragment key={group.heading + j}>
+                  <p className="tjs-dept-group-label">{group.heading}</p>
+                  <LinkList items={group.documents} />
+                </Fragment>
+              ))
+            ) : (
+              <p className="tjs-dept-pending">Documents will be added soon.</p>
+            )}
+          </section>
+        ))}
       </div>
     </>
   );
