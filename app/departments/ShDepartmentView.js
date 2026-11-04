@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { ZoomableGrid } from "../components/AlbumGallery";
 
 const CATEGORIES = [
   { id: "objectives", label: "Objectives" },
@@ -104,11 +105,7 @@ export default function ShDepartmentView({ dept }) {
                 <div className="tjs-committee-body">
                   <h4>Gallery</h4>
                   {gallery.length ? (
-                    <div className="tjs-dept-event-imgs">
-                      {gallery.map((img) => (
-                        <img key={img.url} src={img.url} alt={img.alt || `${dept.title} gallery`} />
-                      ))}
-                    </div>
+                    <ZoomableGrid photos={gallery} fallbackAlt={`${dept.title} gallery`} />
                   ) : (
                     PENDING
                   )}

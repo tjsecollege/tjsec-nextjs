@@ -954,6 +954,10 @@ p.tjs-dept-group-label {
 @media (max-width: 575px) {
     .tjs-dept-event-imgs img { width: 100%; height: auto; max-width: 100%; }
 }
+/* Zoomable photo galleries (Sports, Alumni, Science & Humanities): columns
+   stretch to fill the panel instead of leaving a gap on the right. */
+.tjs-dept-event-imgs.tjs-photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.tjs-dept-event-imgs.tjs-photo-grid img { width: 100%; height: auto; aspect-ratio: 16 / 11; }
 
 /* Blog-card style horizontal slider (Events & Achievements) */
 .tjs-slider-wrap { position: relative; display: block; margin-bottom: 24px; }
@@ -1634,3 +1638,32 @@ hr.tjs-ivy-divider { border: none; border-top: 1px solid var(--rs-border-primary
 .tjs-vac-row:last-child { padding-bottom: 0; }
 .tjs-vac-row .tjs-dept-media-row-text > h3:first-child { margin-top: 0; }
 .tjs-vac-row .tjs-dept-card { margin-top: 16px; }
+
+/* IQAC → Capacity Building and Skill Enhancement: program groups as photo cards */
+.tjs-cb-intro { margin: 0; font-size: 16px; line-height: 1.8; color: var(--rs-text-primary); }
+.tjs-cb-group { margin-top: 48px; }
+.tjs-cb-group-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-bottom: 14px; margin-bottom: 16px; border-bottom: 1px solid var(--rs-border-primary); }
+.tjs-cb-group-head h3 { margin: 0; padding-left: 14px; border-left: 4px solid var(--rs-theme-yellow); font-size: 24px; line-height: 1.25; color: var(--rs-theme-blue); }
+.tjs-cb-count { flex: 0 0 auto; padding: 5px 14px; border-radius: 30px; background: rgba(44, 51, 112, 0.08); color: var(--rs-theme-blue); font-size: 13px; font-weight: 600; }
+.tjs-cb-group-desc { margin: 0 0 24px; line-height: 1.8; color: var(--rs-text-primary); }
+.tjs-cb-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.tjs-cb-card { display: flex; flex-direction: column; background: #fff; border: 1px solid var(--rs-border-primary); border-radius: 12px; overflow: hidden; box-shadow: 0 6px 18px rgba(3, 3, 3, 0.05); transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease; }
+.tjs-cb-card:hover { border-color: var(--rs-theme-blue); transform: translateY(-3px); box-shadow: 0 12px 28px rgba(3, 3, 3, 0.09); }
+.tjs-cb-photo { position: relative; aspect-ratio: 2 / 1; overflow: hidden; background: #1f2450; }
+.tjs-cb-photo::before { content: ""; position: absolute; inset: -24px; background: var(--cb-photo) center / cover no-repeat; filter: blur(18px) brightness(0.75); }
+.tjs-cb-photo img { position: relative; display: block; width: 100%; height: 100%; object-fit: contain; }
+.tjs-cb-zoom { position: absolute; right: 10px; bottom: 10px; width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.92); color: var(--rs-theme-blue); font-size: 18px; opacity: 0; transition: opacity 0.2s ease; pointer-events: none; }
+.tjs-cb-card:hover .tjs-cb-zoom { opacity: 1; }
+.tjs-cb-photo-empty { display: flex; align-items: center; justify-content: center; background: rgba(44, 51, 112, 0.06); color: var(--rs-theme-blue); font-size: 42px; }
+.tjs-cb-photo-empty::before { content: none; }
+.tjs-cb-body { flex: 1 1 auto; display: flex; flex-direction: column; gap: 10px; padding: 18px 20px 20px; }
+.tjs-cb-title { margin: 0; font-size: 17px; line-height: 1.45; font-weight: 700; color: var(--rs-title-primary); }
+.tjs-cb-person { display: flex; align-items: flex-start; gap: 8px; margin: 0; font-size: 14px; line-height: 1.6; color: #4a4a4a; white-space: pre-line; }
+.tjs-cb-person i { flex: 0 0 auto; margin-top: 1px; color: var(--rs-theme-blue); font-size: 16px; }
+.tjs-cb-date { display: flex; align-items: center; gap: 8px; margin: auto 0 0; padding-top: 12px; border-top: 1px dashed var(--rs-border-primary); font-size: 14px; font-weight: 600; color: var(--rs-theme-yellow); }
+@media (max-width: 991px) { .tjs-cb-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 575px) {
+  .tjs-cb-group { margin-top: 36px; }
+  .tjs-cb-group-head h3 { font-size: 20px; }
+  .tjs-cb-grid { grid-template-columns: 1fr; gap: 18px; }
+}

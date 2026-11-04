@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
-// Shared by the Alumni and Sports and Fitness galleries.
+// Shared by the Alumni and Sports and Fitness galleries; ZoomableGrid also by
+// the Science & Humanities department galleries.
 // albums: [{ title, photos: [{ url, alt }] }]
 
 function list(value) {
@@ -79,7 +80,7 @@ export function ZoomableGrid({ photos, fallbackAlt }) {
 
   return (
     <>
-      <div className="tjs-dept-event-imgs">
+      <div className="tjs-dept-event-imgs tjs-photo-grid">
         {photos.map((img, i) => (
           <img
             key={img.url}

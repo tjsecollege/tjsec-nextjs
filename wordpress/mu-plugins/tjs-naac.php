@@ -108,7 +108,7 @@ function tjs_naac_fields() {
                     tjs_editor('content', 'Content'),
                 ]),
 
-                tjs_naac_layout('dated_list', 'Programs grouped with photos & dates (e.g. Capacity Building)', [
+                tjs_naac_layout('dated_list', 'Programs grouped with photos & dates', [
                     tjs_textarea('intro', 'Intro text (optional)', ['rows' => 3]),
                     tjs_repeater('groups', 'Groups', '+ Add Group', [
                         tjs_text('heading', 'Group heading', ['required' => 1, 'placeholder' => 'e.g. Soft Skills']),
@@ -195,6 +195,18 @@ add_action('rest_api_init', function () {
                     }
                     $raw[$index] = $body['replace_section']['section'];
                     update_field('field_tjsn_sections', array_values($raw), TJS_NAAC_ID);
+                }
+                // Remove one section, the same way. Its sidebar name must match too,
+                // so a stale index can't delete the wrong section.
+                if (isset($body['remove_section']['index'], $body['remove_section']['menu_label'])) {
+                    $index = (int) $body['remove_section']['index'];
+                    $sections = get_field('sections', TJS_NAAC_ID) ?: [];
+                    if (($sections[$index]['menu_label'] ?? null) !== $body['remove_section']['menu_label']) {
+                        return new WP_Error('tjs_bad_section', 'No section with that name at that index.', ['status' => 400]);
+                    }
+                    $raw = get_field('sections', TJS_NAAC_ID, false) ?: [];
+                    array_splice($raw, $index, 1);
+                    update_field('field_tjsn_sections', $raw, TJS_NAAC_ID);
                 }
                 return ['saved' => true];
             },
