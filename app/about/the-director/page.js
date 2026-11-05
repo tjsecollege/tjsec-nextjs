@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function TheDirector() {
   return (
     <>
@@ -7,7 +9,7 @@ export default function TheDirector() {
       >
         <h1>About</h1>
         <nav className="tjs-subpage-crumb">
-          <a href="/">Home</a>
+          <Link href="/">Home</Link>
           <span>/</span>
           <span>The Director</span>
         </nav>
@@ -28,7 +30,7 @@ export default function TheDirector() {
                 </div>
               </div>
               <div className="tjs-trustee-name-card">
-                <h3>Shri. A. Kabilan BA, BL.,</h3>
+                <h3>Shri. A. Kabilan B.A., B.L., M.B.A.,</h3>
                 <p className="tjs-trustee-role">Director</p>
                 <p className="tjs-trustee-org">T.J.S. Engineering College, Chennai</p>
               </div>

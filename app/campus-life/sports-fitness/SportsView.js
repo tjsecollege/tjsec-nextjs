@@ -174,7 +174,7 @@ export default function SportsView({ sports, initialSection = "overview" }) {
               {activeCat === "committee" && (
                 <>
                   {sports.committeeIntro && <p>{sports.committeeIntro}</p>}
-                  {sports.committee.length ? (
+                  {sports.committee.length > 0 && (
                     <div className="tjs-dept-people-grid-full">
                       {sports.committee.map((m, i) => (
                         <div className="tjs-dept-people-card" key={m.name + i}>
@@ -187,9 +187,42 @@ export default function SportsView({ sports, initialSection = "overview" }) {
                         </div>
                       ))}
                     </div>
-                  ) : (
-                    <Pending />
                   )}
+                  {sports.committeeGroups.length > 0 && (
+                    <div className="tjs-sports-committee">
+                      {sports.committeeGroups.map((g, i) => (
+                        <div className="tjs-sports-committee-group" key={g.heading + i}>
+                          <h4>
+                            {g.heading}
+                            <span>
+                              {g.members.length} {g.members.length === 1 ? "Member" : "Members"}
+                            </span>
+                          </h4>
+                          <div className="tjs-dept-table-wrap">
+                            <table className="tjs-dept-table">
+                              <thead>
+                                <tr>
+                                  <th>S.No.</th>
+                                  <th>Name</th>
+                                  <th>Branch</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {g.members.map((m, j) => (
+                                  <tr key={m.name + j}>
+                                    <td>{j + 1}</td>
+                                    <td>{m.name}</td>
+                                    <td>{m.branch}</td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  {!sports.committee.length && !sports.committeeGroups.length && <Pending />}
                 </>
               )}
             </div>

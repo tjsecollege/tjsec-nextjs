@@ -1,6 +1,7 @@
+import Link from "next/link";
+
 const DIRECTORS = [
   { name: "Dr. A. Palani", qual: "B.D.S.,", role: "Director", photo: "/assets/images/directorphotos/Dr.A.Palani.jpg" },
-  { name: "A. Kabilan", qual: "B.A., B.L., M.B.A.,", role: "Director", photo: "/assets/images/directorphotos/A.Kabilan.jpg" },
   { name: "A. Vijayakumar", qual: "M.E.,", role: "Director", photo: "/assets/images/directorphotos/A.Vijayakumar.jpg" },
   { name: "D. Dinesh", qual: "B.Com., L.L.B.,", role: "Director", photo: "/assets/images/directorphotos/D.Dinesh.jpg" },
   { name: "Manoj", qual: "B.Com., M.B.A.,", role: "Director", photo: "/assets/images/directorphotos/Manoj.jpg" },
@@ -15,7 +16,7 @@ export default function Directors() {
       >
         <h1>About</h1>
         <nav className="tjs-subpage-crumb">
-          <a href="/">Home</a>
+          <Link href="/">Home</Link>
           <span>/</span>
           <span>Directors</span>
         </nav>

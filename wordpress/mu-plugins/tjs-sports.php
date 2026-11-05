@@ -96,7 +96,14 @@ function tjs_sports_fields() {
         tjs_tab('Sports Committee'),
         tjs_heading('Sports Committee', 'Sidebar: Sports Committee — physical education staff, coordinators and committee members.'),
         tjs_textarea('committee_intro', 'Intro text (optional)', ['rows' => 2]),
-        tjs_repeater('committee', 'Members', '+ Add Member', [
+        tjs_repeater('committee_groups', 'Student committee', '+ Add Group', [
+            tjs_text('heading', 'Group heading', ['required' => 1, 'placeholder' => 'e.g. Boys']),
+            tjs_repeater('members', 'Students', '+ Add Student', [
+                tjs_text('name', 'Name', ['required' => 1, 'wrapper' => ['width' => '65']]),
+                tjs_text('branch', 'Branch', ['placeholder' => 'e.g. CSE', 'wrapper' => ['width' => '35']]),
+            ], ['layout' => 'table']),
+        ], ['collapsed' => 'heading', 'instructions' => 'Each group (e.g. Boys, Girls) is shown as its own table: S.No · Name · Branch.']),
+        tjs_repeater('committee', 'Staff / coordinators (optional)', '+ Add Member', [
             tjs_text('name', 'Name', array_merge(tjs_half(), ['required' => 1])),
             tjs_text('role', 'Role in committee', array_merge(tjs_half(), ['placeholder' => 'e.g. Physical Director / Coordinator'])),
             tjs_text('designation', 'Designation & department (optional)', ['placeholder' => 'e.g. Assistant Professor, Dept. of EEE']),

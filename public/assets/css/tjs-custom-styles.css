@@ -104,13 +104,34 @@ width: 510px;
 }
 }
 
+/* ---- fixed home button ---- */
+.tjs-fixed-home-btn {
+    position: fixed;
+    bottom: 20px;
+    inset-inline-start: 20px;
+    z-index: 998;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--rs-theme-yellow);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 8px 16px rgba(3, 4, 28, 0.3);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.tjs-fixed-home-btn:hover { background: var(--rs-theme-yellow); color: #fff; transform: translateY(-3px); }
+
 /* ---- chatbot.css ---- */
 .tjs-chatbot { position: fixed; right: 20px; bottom: 20px; z-index: 9999; font-family: var(--rs-ff-body); }
 /* A fullscreen photo zoom/lightbox can render above these fixed widgets
    despite its higher z-index (Chrome compositing quirk with their own
    transform/transition layers), so hide them outright while one is open. */
 body.tjs-zoom-open .tjs-chatbot,
-body.tjs-zoom-open .rs-fixed-admissions-btn { display: none !important; }
+body.tjs-zoom-open .rs-fixed-admissions-btn,
+body.tjs-zoom-open .tjs-fixed-home-btn { display: none !important; }
 .tjs-chatbot-toggle {
     position: relative; width: 62px; height: 62px; border-radius: 50%; border: none; cursor: pointer;
     background: var(--rs-theme-blue); box-shadow: 0 10px 25px rgba(0, 62, 116, 0.35);
@@ -698,7 +719,7 @@ a.rs-approved-card:hover { transform: translateY(-3px); }
 .tjs-dept-toppers-top { padding: 30px 0 0; }
 .tjs-dept-toppers-top h3 { color: var(--rs-theme-blue); font-size: 18px; font-weight: 700; margin: 0 0 12px; text-align: center; }
 .tjs-dept-section { padding: 50px 0; scroll-margin-top: 74px; }
-.tjs-dept-section-alt { background: var(--rs-bg-secondary); margin: 0 0px; padding: 50px 20px; }
+.tjs-dept-section-alt {margin: 0 0px; }
 .tjs-dept-section h2 { position: relative; color: var(--rs-theme-blue); font-size: 26px; font-weight: 700; margin-bottom: 28px; padding-bottom: 14px; }
 .tjs-dept-section h2::after { content: ""; position: absolute; left: 0; bottom: 0; width: 54px; height: 3px; background: var(--rs-theme-yellow); border-radius: 2px; }
 .tjs-dept-section h3 { color: var(--rs-theme-blue); font-size: 18px; font-weight: 700; margin: 26px 0 12px; }
@@ -1667,3 +1688,44 @@ hr.tjs-ivy-divider { border: none; border-top: 1px solid var(--rs-border-primary
   .tjs-cb-group-head h3 { font-size: 20px; }
   .tjs-cb-grid { grid-template-columns: 1fr; gap: 18px; }
 }
+
+/* About → Governing Council: member cards with round photos */
+.tjs-gc-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.tjs-gc-card { display: flex; flex-direction: column; align-items: center; text-align: center; background: #fff; border: 1px solid var(--rs-border-primary); border-bottom: 3px solid var(--rs-theme-blue); border-radius: 14px; padding: 28px 18px 24px; box-shadow: 0 10px 24px rgba(3, 3, 3, 0.06); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.tjs-gc-card:hover { transform: translateY(-4px); box-shadow: 0 16px 30px rgba(3, 3, 3, 0.11); }
+.tjs-gc-card.is-chair { border-bottom-color: var(--rs-theme-yellow); }
+.tjs-gc-photo { width: 140px; height: 140px; flex: 0 0 auto; margin-bottom: 18px; border-radius: 50%; overflow: hidden; border: 4px solid #fff; box-shadow: 0 0 0 1px var(--rs-border-primary), 0 8px 20px rgba(3, 3, 3, 0.12); background: rgba(44, 51, 112, 0.08); }
+.tjs-gc-photo img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center top; }
+.tjs-gc-photo span { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--rs-theme-blue); font-size: 52px; font-weight: 700; }
+.tjs-gc-card h4 { margin: 0 0 6px; font-size: 17px; font-weight: 700; line-height: 1.35; color: var(--rs-theme-blue); }
+.tjs-gc-designation { margin: 0 0 16px !important; font-size: 13.5px; line-height: 1.55; color: var(--rs-text-secondary); }
+.tjs-gc-position { margin-top: auto; padding: 5px 14px; border-radius: 20px; background: var(--rs-bg-secondary); color: var(--rs-title-primary); font-size: 11.5px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; }
+.tjs-gc-card.is-chair .tjs-gc-position { background: var(--rs-theme-yellow); color: #fff; }
+@media (max-width: 991px) { .tjs-gc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 479px) {
+  .tjs-gc-grid { grid-template-columns: 1fr; gap: 18px; }
+  .tjs-gc-photo { width: 120px; height: 120px; }
+}
+
+/* Sports and Fitness → Sports Committee: one table per student group (Boys / Girls) */
+.tjs-sports-committee { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; align-items: start; }
+.tjs-dept-people-grid-full + .tjs-sports-committee { margin-top: 28px; }
+.tjs-sports-committee-group h4 { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 0 0 12px; padding-left: 12px; border-left: 4px solid var(--rs-theme-yellow); font-size: 18px; line-height: 1.3; color: var(--rs-theme-blue); }
+.tjs-sports-committee-group h4 span { padding: 4px 12px; border-radius: 20px; background: rgba(44, 51, 112, 0.08); color: var(--rs-theme-blue); font-family: var(--rs-ff-body); font-size: 12.5px; font-weight: 600; }
+.tjs-sports-committee .tjs-dept-table th:first-child,
+.tjs-sports-committee .tjs-dept-table td:first-child { width: 64px; text-align: center; }
+.tjs-sports-committee .tjs-dept-table tbody tr:nth-child(even) td { background: var(--rs-bg-secondary); }
+
+/* Home → Eminent Recruiters: two rows of logos until "Show More" (checkbox toggle, see app/page.js) */
+.rs-recruiters-toggle { position: absolute; opacity: 0; pointer-events: none; }
+.rs-recruiters-grid.is-collapsible { max-height: 310px; padding: 6px 0; overflow: hidden; } /* 2 × 140px cards + 18px gap + padding */
+.rs-recruiters-toggle:checked + .rs-recruiters-grid.is-collapsible { max-height: none; }
+.rs-recruiters-more { display: inline-flex; align-items: center; gap: 6px; margin-top: 26px; padding: 11px 26px; border-radius: 30px; background: var(--rs-theme-blue); color: #fff; font-size: 15px; font-weight: 600; cursor: pointer; transition: background-color 0.2s ease; user-select: none; }
+.rs-recruiters-more:hover { background: var(--rs-theme-yellow); }
+.rs-recruiters-more i { font-size: 20px; transition: transform 0.2s ease; }
+.rs-recruiters-more .is-less,
+.rs-recruiters-toggle:checked ~ .rs-recruiters-more .is-more { display: none; }
+.rs-recruiters-toggle:checked ~ .rs-recruiters-more .is-less { display: inline; }
+.rs-recruiters-toggle:checked ~ .rs-recruiters-more i { transform: rotate(180deg); }
+.rs-recruiters-toggle:focus-visible ~ .rs-recruiters-more { outline: 2px solid var(--rs-theme-yellow); outline-offset: 3px; }
+@media (max-width: 575px) { .rs-recruiters-grid.is-collapsible { max-height: 166px; } } /* 2 × 68px cards */
