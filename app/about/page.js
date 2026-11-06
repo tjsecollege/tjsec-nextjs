@@ -1,4 +1,15 @@
-export default function About() {
+import { getAboutPage } from "@/lib/wordpress";
+
+function Html({ html }) {
+  return <div dangerouslySetInnerHTML={{ __html: html }} />;
+}
+
+const PENDING = <p className="tjs-dept-pending">Content coming soon.</p>;
+
+// Content is managed in WordPress: admin.tjsec.ac.in → About → About T.J.S
+export default async function About() {
+  const d = await getAboutPage("about-tjs");
+
   return (
     <>
       <section
@@ -21,18 +32,7 @@ export default function About() {
       <div className="tjs-dept-page">
         <section id="about" className="tjs-dept-section">
           <h2>About</h2>
-          <p>
-            T.J.S. Engineering College is committed to empowering young minds through quality technical
-            education, innovation, and holistic development. The institution provides a vibrant learning
-            environment that encourages academic excellence, industry exposure, research, creativity, and
-            ethical values across various engineering disciplines.
-          </p>
-          <p>
-            T.J.S. Engineering College strives to impart knowledge and skills that prepare students to meet
-            the evolving needs of industry and society. With dedicated faculty, modern infrastructure, and
-            a student-centric approach, the institution aims to nurture competent professionals, responsible
-            citizens, and future leaders who can contribute meaningfully to the development of the nation.
-          </p>
+          {d?.about ? <Html html={d.about} /> : PENDING}
         </section>
 
         <section id="vision-mission" className="tjs-dept-section tjs-dept-section-alt">
@@ -40,29 +40,11 @@ export default function About() {
           <div className="tjs-dept-grid-2">
             <div className="tjs-dept-card">
               <h3>Vision</h3>
-              <p>
-                To nurture empowered, ethical, and future-ready professionals through excellence in
-                education, innovation, and technology for the betterment of society.
-              </p>
+              {d?.vision ? <Html html={d.vision} /> : PENDING}
             </div>
             <div className="tjs-dept-card">
               <h3>Mission</h3>
-              <ul>
-                <li>
-                  To provide holistic and industry-oriented education that develops technical knowledge,
-                  professional skills, and employability.
-                </li>
-                <li>To foster innovation, research, creativity, and lifelong learning among students and faculty.</li>
-                <li>
-                  To develop socially responsible professionals with strong ethical values and a commitment
-                  to serving society.
-                </li>
-                <li>To promote industry interaction and emerging technologies to prepare students for evolving global challenges.</li>
-                <li>
-                  To create an inclusive and supportive learning environment that enables every student to
-                  achieve their full potential.
-                </li>
-              </ul>
+              {d?.mission ? <Html html={d.mission} /> : PENDING}
             </div>
           </div>
         </section>

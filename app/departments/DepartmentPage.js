@@ -8,6 +8,7 @@ import LabAccordion from "./LabAccordion";
 import ProgrammeTabs from "./ProgrammeTabs";
 import DeptHeroSlider from "./DeptHeroSlider";
 import ZoomableImage from "./ZoomableImage";
+import { ZoomableGrid } from "../components/AlbumGallery";
 
 const ArrowIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -792,11 +793,7 @@ export default function DepartmentPage({ dept }) {
         <section id="gallery" className="tjs-dept-section">
           <h2>Gallery</h2>
           {gallery.length ? (
-            <div className="tjs-dept-event-imgs">
-              {gallery.map((img) => (
-                <img key={img.src} src={img.src} alt={img.alt} />
-              ))}
-            </div>
+            <ZoomableGrid photos={gallery.map((img) => ({ url: img.src, alt: img.alt }))} fallbackAlt={dept.title} />
           ) : (
             PENDING
           )}

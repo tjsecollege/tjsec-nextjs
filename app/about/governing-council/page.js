@@ -1,23 +1,17 @@
 import Link from "next/link";
-
-const MEMBERS = [
-  { name: "Mr. T.J. Govindarajan", position: "Chairman", designation: "Chairman, TJS Group of Institutions", photo: "/assets/images/directorphotos/CHAIRMAN-TJG.jpg" },
-  { name: "Mr. T.J. Arumugam", position: "Member", designation: "Trustee, TJS Group of Institutions", photo: "/assets/images/directorphotos/T.J.Arumugam.jpg" },
-  { name: "Mr. T.J. Desamuthu", position: "Member", designation: "Trustee, TJS Group of Institutions", photo: "/assets/images/directorphotos/T.J.Desamuthu.jpg" },
-  { name: "A. Kabilan", position: "Member", designation: "Director, TJS Group of Institutions", photo: "/assets/images/directorphotos/A.Kabilan.jpg" },
-  { name: "Dr. J. Prakash", position: "Member Secretary", designation: "Principal, T.J.S. Engineering College", photo: "/assets/images/principal.jpg" },
-  { name: "Dr. E. Sivakumar", position: "Advisor", designation: "Professor", photo: "/assets/images/sivakumar-150x150.jpeg" },
-  { name: "Mr. S. Elumalai", position: "Member", designation: "Administrative Officer, T.J.S. Engineering College", photo: "/assets/images/directorphotos/S. ELUMALAI.jpeg" },
-  { name: "Dr. Subramanin", position: "Member / Industrialist", designation: "Managing Director, Malathi Engineering Works" },
-];
+import { getAboutPage } from "@/lib/wordpress";
 
 // "Dr. Subramanin" -> "S" (titles and initials skipped), for members without a photo.
 function initial(name) {
-  const word = name.split(/\s+/).find((w) => !/^(mr|mrs|ms|dr|prof)\.?$/i.test(w) && !/^[A-Z]\.?$/.test(w));
-  return (word || name)[0];
+  const word = (name || "").split(/\s+/).find((w) => !/^(mr|mrs|ms|dr|prof)\.?$/i.test(w) && !/^[A-Z]\.?$/.test(w));
+  return (word || name || "?")[0];
 }
 
-export default function GoverningCouncil() {
+// Content is managed in WordPress: admin.tjsec.ac.in → About → Governing Council
+export default async function GoverningCouncil() {
+  const d = await getAboutPage("governing-council");
+  const members = Array.isArray(d?.members) ? d.members : [];
+
   return (
     <>
       <section
@@ -39,22 +33,29 @@ export default function GoverningCouncil() {
             Governing Council
           </h2>
 
-          <div className="tjs-gc-grid">
-            {MEMBERS.map((member) => (
-              <article className={"tjs-gc-card" + (member.position === "Chairman" ? " is-chair" : "")} key={member.name}>
-                <div className="tjs-gc-photo">
-                  {member.photo ? (
-                    <img src={member.photo} alt={member.name} />
-                  ) : (
-                    <span aria-hidden="true">{initial(member.name)}</span>
-                  )}
-                </div>
-                <h4>{member.name}</h4>
-                <p className="tjs-gc-designation">{member.designation}</p>
-                <span className="tjs-gc-position">{member.position}</span>
-              </article>
-            ))}
-          </div>
+          {members.length ? (
+            <div className="tjs-gc-grid">
+              {members.map((member, i) => (
+                <article
+                  className={"tjs-gc-card" + (member.position === "Chairman" ? " is-chair" : "")}
+                  key={member.name + i}
+                >
+                  <div className="tjs-gc-photo">
+                    {member.photo?.url ? (
+                      <img src={member.photo.url} alt={member.photo.alt || member.name} />
+                    ) : (
+                      <span aria-hidden="true">{initial(member.name)}</span>
+                    )}
+                  </div>
+                  <h4>{member.name}</h4>
+                  <p className="tjs-gc-designation">{member.designation}</p>
+                  <span className="tjs-gc-position">{member.position}</span>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <p className="tjs-dept-pending">Content coming soon.</p>
+          )}
         </section>
       </div>
     </>

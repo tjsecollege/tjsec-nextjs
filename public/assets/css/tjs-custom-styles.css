@@ -977,7 +977,7 @@ p.tjs-dept-group-label {
 }
 /* Zoomable photo galleries (Sports, Alumni, Science & Humanities): columns
    stretch to fill the panel instead of leaving a gap on the right. */
-.tjs-dept-event-imgs.tjs-photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.tjs-dept-event-imgs.tjs-photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
 .tjs-dept-event-imgs.tjs-photo-grid img { width: 100%; height: auto; aspect-ratio: 16 / 11; }
 
 /* Blog-card style horizontal slider (Events & Achievements) */

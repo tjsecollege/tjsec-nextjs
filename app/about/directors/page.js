@@ -1,13 +1,15 @@
 import Link from "next/link";
+import { getAboutPage } from "@/lib/wordpress";
 
-const DIRECTORS = [
-  { name: "Dr. A. Palani", qual: "B.D.S.,", role: "Director", photo: "/assets/images/directorphotos/Dr.A.Palani.jpg" },
-  { name: "A. Vijayakumar", qual: "M.E.,", role: "Director", photo: "/assets/images/directorphotos/A.Vijayakumar.jpg" },
-  { name: "D. Dinesh", qual: "B.Com., L.L.B.,", role: "Director", photo: "/assets/images/directorphotos/D.Dinesh.jpg" },
-  { name: "Manoj", qual: "B.Com., M.B.A.,", role: "Director", photo: "/assets/images/directorphotos/Manoj.jpg" },
-];
+function Html({ html }) {
+  return <div dangerouslySetInnerHTML={{ __html: html }} />;
+}
 
-export default function Directors() {
+// Content is managed in WordPress: admin.tjsec.ac.in → About → Directors
+export default async function Directors() {
+  const d = await getAboutPage("directors");
+  const members = Array.isArray(d?.members) ? d.members : [];
+
   return (
     <>
       <section
@@ -29,50 +31,31 @@ export default function Directors() {
             Directors
           </h2>
 
-          <div className="tjs-team-grid">
-            {DIRECTORS.map((d) => (
-              <div className="tjs-team-card" key={d.name}>
-                <div className="tjs-team-photo">
-                  {d.photo ? <img src={d.photo} alt={d.name} /> : <span>Photo</span>}
+          {members.length ? (
+            <div className="tjs-team-grid">
+              {members.map((d, i) => (
+                <div className="tjs-team-card" key={d.name + i}>
+                  <div className="tjs-team-photo">
+                    {d.photo?.url ? <img src={d.photo.url} alt={d.photo.alt || d.name} /> : <span>Photo</span>}
+                  </div>
+                  <div className="tjs-team-info">
+                    <h4>{d.name}</h4>
+                    {d.qualification && <p className="tjs-trustee-qualification">{d.qualification}</p>}
+                    <p>{d.role}</p>
+                  </div>
                 </div>
-                <div className="tjs-team-info">
-                  <h4>{d.name}</h4>
-                  {d.qual && <p className="tjs-trustee-qualification">{d.qual}</p>}
-                  <p>{d.role}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <p className="tjs-dept-pending">Content coming soon.</p>
+          )}
 
-          <div className="tjs-trustee-message-card" style={{ marginTop: 32 }}>
-            <h3>Directors&apos; Message</h3>
-            <p>
-              At T.J.S. Engineering College, we believe that every student has the potential to achieve
-              excellence when provided with the right knowledge, guidance, and opportunities. Our
-              commitment is to build an academic environment that encourages students to learn, innovate,
-              explore, and grow with confidence.
-            </p>
-            <p>
-              We continuously strive to strengthen teaching and learning through modern technologies,
-              industry interaction, research, skill development, and experiential education. Along with
-              technical competence, we place equal importance on discipline, leadership, teamwork, ethical
-              values, and social responsibility.
-            </p>
-            <p>
-              Our endeavour is to prepare students to meet the demands of a rapidly evolving professional
-              world and to become capable individuals who can create meaningful impact in society.
-            </p>
-            <p>
-              With the dedicated efforts of our faculty, staff, students, and stakeholders, we look forward
-              to taking T.J.S. Engineering College towards greater academic excellence and continued
-              growth.
-            </p>
-            <p className="tjs-dept-hod-sign">
-              <strong>Directors</strong>
-              <br />
-              <em>T.J.S. Engineering College</em>
-            </p>
-          </div>
+          {d?.message && (
+            <div className="tjs-trustee-message-card" style={{ marginTop: 32 }}>
+              <h3>Directors&apos; Message</h3>
+              <Html html={d.message} />
+            </div>
+          )}
         </section>
       </div>
     </>

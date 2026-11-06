@@ -1,4 +1,9 @@
-export default function Organogram() {
+import { getAboutPage } from "@/lib/wordpress";
+
+// Content is managed in WordPress: admin.tjsec.ac.in → About → Organogram
+export default async function Organogram() {
+  const d = await getAboutPage("organogram");
+
   return (
     <>
       <section
@@ -20,9 +25,13 @@ export default function Organogram() {
             Organogram
           </h2>
 
-          <div className="tjs-organogram-card">
-            <img src="/assets/images/about/organogram.png" alt="T.J.S. Engineering College Organogram" />
-          </div>
+          {d?.image?.url ? (
+            <div className="tjs-organogram-card">
+              <img src={d.image.url} alt={d.image.alt || "T.J.S. Engineering College Organogram"} />
+            </div>
+          ) : (
+            <p className="tjs-dept-pending">Content coming soon.</p>
+          )}
         </section>
       </div>
     </>

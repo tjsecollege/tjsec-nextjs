@@ -14,18 +14,18 @@ if (!defined('ABSPATH')) {
 
 const TJS_APPROVALS_ID = 'approvals'; // SCF "post id" the options are stored under
 
+// Nested under the "About" menu (tjs-about.php) to match the website, where
+// Approval & Affiliation is one of the items in the About dropdown.
 add_action('acf/init', function () {
-    if (!function_exists('acf_add_options_page')) {
+    if (!function_exists('acf_add_options_sub_page')) {
         return;
     }
-    acf_add_options_page([
+    acf_add_options_sub_page([
         'page_title' => 'Approval & Affiliations',
-        'menu_title' => 'Approvals',
+        'menu_title' => 'Approval & Affiliation',
         'menu_slug' => 'tjs-approvals',
+        'parent_slug' => 'tjs-about',
         'capability' => 'edit_posts',
-        'icon_url' => 'dashicons-media-document',
-        'position' => 8,
-        'redirect' => false,
         'post_id' => TJS_APPROVALS_ID,
         'update_button' => 'Save Approvals Page',
         'updated_message' => 'Approval & Affiliations page saved. Changes will appear on the website shortly.',
