@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import DeptMegaNav from "./DeptMegaNav";
 import PeopleCarousel from "./PeopleCarousel";
 import DeptPhotoSlider from "./DeptPhotoSlider";
@@ -8,6 +9,7 @@ import LabAccordion from "./LabAccordion";
 import ProgrammeTabs from "./ProgrammeTabs";
 import DeptHeroSlider from "./DeptHeroSlider";
 import ZoomableImage from "./ZoomableImage";
+import PublicationYearTabs from "./PublicationYearTabs";
 import { ZoomableGrid } from "../components/AlbumGallery";
 
 const ArrowIcon = () => (
@@ -118,6 +120,22 @@ function list(value) {
   return Array.isArray(value) ? value : [];
 }
 
+// Dated rows newest first (dates come as "2025-02-27"); rows without a date
+// keep their admin order after the dated ones.
+function latestFirst(value, field = "start_date") {
+  return list(value)
+    .map((row, i) => ({ row, i }))
+    .sort((a, b) => {
+      const da = a.row[field] || "";
+      const db = b.row[field] || "";
+      if (da === db) return a.i - b.i;
+      if (!da) return 1;
+      if (!db) return -1;
+      return db.localeCompare(da);
+    })
+    .map(({ row }) => row);
+}
+
 // "2025-02-27" -> "27-02-2025"
 function formatDate(ymd, sep = "-") {
   const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(ymd || "");
@@ -224,12 +242,12 @@ function LinkList({ items }) {
 }
 
 function Slider({ rows, category }) {
-  const items = list(rows).map((r) => toSlide(r, category));
+  const items = latestFirst(rows).map((r) => toSlide(r, category));
   return items.length ? <EventSlider items={items} /> : PENDING;
 }
 
 function YearList({ rows, title }) {
-  const items = list(rows).map(toYearEntry);
+  const items = latestFirst(rows).map(toYearEntry);
   return items.length ? <YearGroupedVisits items={items} title={title} /> : PENDING;
 }
 
@@ -282,7 +300,7 @@ export default function DepartmentPage({ dept }) {
       href: m.document.url,
     }));
 
-  const internships = list(dept.internships);
+  const internships = latestFirst(dept.internships);
   const publications = list(dept.publications);
   const patents = list(dept.patents);
   // Grouped by academic year, newest first (admin order kept within a year);
@@ -309,10 +327,10 @@ export default function DepartmentPage({ dept }) {
     };
   });
 
-  const fdpSlides = list(dept.fdp_workshops).map(fdpSlide);
-  const courses = list(dept.value_added_courses);
+  const fdpSlides = latestFirst(dept.fdp_workshops).map(fdpSlide);
+  const courses = latestFirst(dept.value_added_courses);
   const recruiters = list(dept.recruiters).filter((r) => r.logo?.url);
-  const placed = list(dept.placed_students).map((s) => ({
+  const placed = latestFirst(dept.placed_students, "placed_date").map((s) => ({
     name: s.name,
     photo: s.photo?.url,
     role: s.company,
@@ -384,11 +402,14 @@ export default function DepartmentPage({ dept }) {
                 {dept.hod_message_title && <h3>{dept.hod_message_title}</h3>}
                 {dept.hod_message && <Html html={dept.hod_message} />}
                 {dept.hod_quote && <p className="tjs-dept-hod-quote">&ldquo;{stripQuotes(dept.hod_quote)}&rdquo;</p>}
-                {(dept.hod_name || dept.hod_designation) && (
+                {(dept.hod_name || dept.hod_position || dept.hod_designation) && (
                   <p className="tjs-dept-hod-sign">
-                    {dept.hod_name}
-                    {dept.hod_name && dept.hod_designation && <br />}
-                    {dept.hod_designation}
+                    {[dept.hod_name, dept.hod_position, dept.hod_designation].filter(Boolean).map((line, i) => (
+                      <Fragment key={i}>
+                        {i > 0 && <br />}
+                        {line}
+                      </Fragment>
+                    ))}
                   </p>
                 )}
               </div>
@@ -551,42 +572,7 @@ export default function DepartmentPage({ dept }) {
 
         <section id="publication" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Publication</h2>
-          {publications.length ? (
-            <div className="tjs-pub-list">
-              {publications.map((p, i) => {
-                const Card = p.link ? "a" : "div";
-                const linkProps = p.link ? { href: p.link, target: "_blank", rel: "noopener" } : {};
-                const source = joinNonEmpty([p.published_in, p.year], ", ");
-                return (
-                  <Card className="tjs-pub-card" key={p.title + i} {...linkProps}>
-                    <div className="tjs-pub-icon">
-                      <i className="ri-file-text-line"></i>
-                    </div>
-                    <div className="tjs-pub-content">
-                      <h4 className="tjs-pub-title">
-                        {p.title.trim()} {p.link && <i className="ri-external-link-line"></i>}
-                      </h4>
-                      {(p.authors || source) && (
-                        <p className="tjs-pub-meta">
-                          {p.authors && <strong>{p.authors}</strong>}
-                          {p.authors && source && <> &middot; </>}
-                          {source}
-                        </p>
-                      )}
-                      {(p.impact_factor || p.citations) && (
-                        <div className="tjs-pub-badges">
-                          {p.impact_factor && <span className="tjs-pub-badge">Impact Factor {p.impact_factor}</span>}
-                          {p.citations && <span className="tjs-pub-badge tjs-pub-badge-alt">Citation {p.citations}</span>}
-                        </div>
-                      )}
-                    </div>
-                  </Card>
-                );
-              })}
-            </div>
-          ) : (
-            PENDING
-          )}
+          {publications.length ? <PublicationYearTabs publications={publications} /> : PENDING}
         </section>
 
         <section id="patent" className="tjs-dept-section">

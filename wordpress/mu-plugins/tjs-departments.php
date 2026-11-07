@@ -318,6 +318,7 @@ function tjs_department_fields() {
         tjs_heading("HOD's Desk", "Menu: About → HOD's Desk"),
         tjs_image('hod_photo', 'HOD photo', tjs_third()),
         tjs_text('hod_name', 'HOD name', array_merge(tjs_third(), ['placeholder' => 'e.g. Mrs. M. Shunmuga Sankari'])),
+        tjs_text('hod_position', 'Position', array_merge(tjs_third(), ['placeholder' => 'e.g. Associate Professor', 'instructions' => 'Shown between the name and the designation.'])),
         tjs_text('hod_designation', 'HOD designation', array_merge(tjs_third(), ['placeholder' => 'e.g. HOD, Department of EEE'])),
         tjs_text('hod_message_title', 'Message heading', ['placeholder' => 'e.g. Welcome to the Department of Electrical and Electronics Engineering']),
         tjs_editor('hod_message', "HOD's message", ['instructions' => 'Use the "Heading 4" style from the Paragraph dropdown for sub-headings.']),

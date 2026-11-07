@@ -49,6 +49,10 @@ function tjs_sports_fields() {
     return [
         tjs_heading('How to edit this page', 'Pick a section from the menu on the left — they match the sidebar of the Sports and Fitness page. Use the <strong>+ Add</strong> buttons to add rows, drag the ☰ handle to re-order, and the <strong>–</strong> button to remove. Click <strong>Save Sports Page</strong> when done. Sections left empty show “Content coming soon” on the website.'),
 
+        tjs_tab('Top Photos'),
+        tjs_heading('Top Photos', 'The photo strip just below the page banner: 3 photos at a time on computers, sliding automatically. Visitors can click a photo to zoom.'),
+        tjs_gallery('top_photos', 'Photos', ['instructions' => 'Wide (landscape) photos look best. Click "Add to gallery" to upload or pick photos; drag photos to change their order.']),
+
         tjs_tab('Overview'),
         tjs_heading('Overview', 'Sidebar: Overview'),
         tjs_editor('overview', 'Overview'),

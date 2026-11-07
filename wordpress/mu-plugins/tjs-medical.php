@@ -52,18 +52,24 @@ function tjs_medical_fields() {
     return [
         tjs_heading('How to edit this page', 'Use the <strong>+ Add</strong> buttons to add facilities or objectives, drag the ☰ handle to re-order, and the <strong>–</strong> button to remove. Click <strong>Save Medical Centre Page</strong> when done.'),
         tjs_text('page_title', 'Page heading', ['placeholder' => 'e.g. Medical Centre']),
+        tjs_text('subtitle', 'Sub-heading (optional)', ['placeholder' => 'e.g. Healthcare and Medical Facilities']),
         tjs_editor('intro', 'Introduction'),
         tjs_gallery('photos', 'Photos (optional)', ['instructions' => 'Shown as a photo slider beside the introduction.']),
 
         tjs_heading('Facilities Available', 'Shown as cards with an icon.'),
-        tjs_text('facilities_heading', 'Section heading', ['placeholder' => 'e.g. Facilities Available']),
+        tjs_text('facilities_heading', 'Section heading', ['placeholder' => 'e.g. Facilities and Services']),
+        tjs_textarea('facilities_intro', 'Intro line (optional)', ['rows' => 2, 'placeholder' => 'e.g. The Medical Centre provides the following facilities and services:']),
         tjs_repeater('facilities', 'Facilities', '+ Add Facility', [
             tjs_select('icon', 'Icon', tjs_medical_icons(), ['wrapper' => ['width' => '20']]),
             tjs_text('title', 'Title', ['required' => 1, 'placeholder' => 'e.g. First Aid Services', 'wrapper' => ['width' => '30']]),
             tjs_textarea('description', 'Description', ['rows' => 2, 'wrapper' => ['width' => '50']]),
         ], ['layout' => 'table']),
 
-        tjs_heading('Objectives', 'Shown as a numbered list.'),
+        tjs_heading('Commitment', 'A heading with a few paragraphs, shown after the facilities.'),
+        tjs_text('commitment_heading', 'Section heading', ['placeholder' => 'e.g. Commitment to Campus Health and Safety']),
+        tjs_editor('commitment', 'Text'),
+
+        tjs_heading('Objectives (optional)', 'Shown as a numbered list. Leave empty to hide this section.'),
         tjs_text('objectives_heading', 'Section heading', ['placeholder' => 'e.g. Objectives']),
         tjs_repeater('objectives', 'Objectives', '+ Add Objective', [
             tjs_textarea('text', 'Objective', ['rows' => 2, 'required' => 1]),

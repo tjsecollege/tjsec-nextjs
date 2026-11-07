@@ -24,6 +24,7 @@ export default async function MedicalCentre() {
             <span className="tjs-subpage-title-bar"></span>
             {title}
           </h2>
+          {m.subtitle && <p className="tjs-medical-subtitle">{m.subtitle}</p>}
 
           {m.photos.length > 0 ? (
             <div className="tjs-dept-media-row">
@@ -41,6 +42,7 @@ export default async function MedicalCentre() {
           {m.facilities.length > 0 && (
             <>
               <h3 className="tjs-medical-heading">{m.facilitiesHeading || "Facilities Available"}</h3>
+              {m.facilitiesIntro && <p className="tjs-medical-lead">{m.facilitiesIntro}</p>}
               <div className="tjs-medical-grid">
                 {m.facilities.map((f, i) => (
                   <div className="tjs-medical-card" key={f.title + i}>
@@ -53,6 +55,18 @@ export default async function MedicalCentre() {
                     </div>
                   </div>
                 ))}
+              </div>
+            </>
+          )}
+
+          {m.commitment && (
+            <>
+              <h3 className="tjs-medical-heading">{m.commitmentHeading || "Our Commitment"}</h3>
+              <div className="tjs-medical-commitment">
+                <span className="tjs-medical-icon">
+                  <i className="ri-shield-cross-line"></i>
+                </span>
+                <div className="tjs-dept-richtext" dangerouslySetInnerHTML={{ __html: m.commitment }} />
               </div>
             </>
           )}
@@ -71,7 +85,7 @@ export default async function MedicalCentre() {
             </>
           )}
 
-          {!m.intro && !m.facilities.length && !m.objectives.length && (
+          {!m.intro && !m.facilities.length && !m.commitment && !m.objectives.length && (
             <p className="tjs-dept-pending">Content coming soon.</p>
           )}
         </section>

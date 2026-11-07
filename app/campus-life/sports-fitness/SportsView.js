@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import YearPdfTabs from "../../components/YearPdfTabs";
 import AlbumGallery, { ZoomableGrid } from "../../components/AlbumGallery";
+import PhotoStrip from "../../components/PhotoStrip";
 
 const CATEGORIES = [
   { id: "overview", label: "Overview" },
@@ -91,6 +92,8 @@ export default function SportsView({ sports, initialSection = "overview" }) {
           <span>Sports and Fitness</span>
         </nav>
       </section>
+
+      <PhotoStrip photos={sports.topPhotos} fallbackAlt="Sports and Fitness at T.J.S Engineering College" />
 
       <div className="tjs-dept-page">
         <section className="tjs-dept-section">

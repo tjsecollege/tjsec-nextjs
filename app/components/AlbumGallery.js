@@ -42,19 +42,42 @@ export default function AlbumGallery({ albums }) {
 // arrows (and ← → / Esc keys) to move through the album.
 export function ZoomableGrid({ photos, fallbackAlt }) {
   const [zoomIndex, setZoomIndex] = useState(null);
-  const isOpen = zoomIndex !== null;
+
+  return (
+    <>
+      <div className="tjs-dept-event-imgs tjs-photo-grid">
+        {photos.map((img, i) => (
+          <img
+            key={img.url}
+            src={img.url}
+            alt={img.alt || fallbackAlt}
+            className="tjs-modal-img-zoomable"
+            onClick={() => setZoomIndex(i)}
+          />
+        ))}
+      </div>
+      <ZoomOverlay photos={photos} index={zoomIndex} onChange={setZoomIndex} fallbackAlt={fallbackAlt} />
+    </>
+  );
+}
+
+// Full-screen photo viewer: index is the open photo (null = closed); onChange(i)
+// moves to another photo or closes it with null. Prev/next arrows and ← → / Esc keys.
+export function ZoomOverlay({ photos, index, onChange, fallbackAlt }) {
+  const isOpen = index !== null && index !== undefined;
+  const count = photos.length;
 
   function go(direction) {
-    setZoomIndex((i) => (i + direction + photos.length) % photos.length);
+    onChange((index + direction + count) % count);
   }
 
   // Keyboard controls + lock page scroll while open (same as the site's other zoom popups).
   useEffect(() => {
     if (!isOpen) return;
     function onKey(e) {
-      if (e.key === "Escape") setZoomIndex(null);
-      if (e.key === "ArrowLeft") setZoomIndex((i) => (i - 1 + photos.length) % photos.length);
-      if (e.key === "ArrowRight") setZoomIndex((i) => (i + 1) % photos.length);
+      if (e.key === "Escape") onChange(null);
+      if (e.key === "ArrowLeft") onChange((index - 1 + count) % count);
+      if (e.key === "ArrowRight") onChange((index + 1) % count);
     }
     function stopBubble(e) {
       e.stopPropagation();
@@ -74,74 +97,58 @@ export function ZoomableGrid({ photos, fallbackAlt }) {
       window.tjsLenis?.start();
       document.body.classList.remove("tjs-zoom-open");
     };
-  }, [isOpen, photos.length]);
+  }, [isOpen, index, count, onChange]);
 
-  const current = isOpen ? photos[zoomIndex] : null;
+  const current = isOpen ? photos[index] : null;
+  if (!current) return null;
 
-  return (
-    <>
-      <div className="tjs-dept-event-imgs tjs-photo-grid">
-        {photos.map((img, i) => (
-          <img
-            key={img.url}
-            src={img.url}
-            alt={img.alt || fallbackAlt}
-            className="tjs-modal-img-zoomable"
-            onClick={() => setZoomIndex(i)}
-          />
-        ))}
-      </div>
-
-      {/* Portal to <body> so no other image on the page can paint above the overlay (Chromium layering quirk). */}
-      {current &&
-        createPortal(
-        <div className="tjs-modal-zoom-overlay" onClick={() => setZoomIndex(null)}>
+  // Portal to <body> so no other image on the page can paint above the overlay (Chromium layering quirk).
+  return createPortal(
+    <div className="tjs-modal-zoom-overlay" onClick={() => onChange(null)}>
+      <button
+        type="button"
+        className="tjs-modal-close"
+        aria-label="Close zoomed image"
+        onClick={(e) => {
+          e.stopPropagation();
+          onChange(null);
+        }}
+      >
+        <i className="ri-close-line"></i>
+      </button>
+      {count > 1 && (
+        <>
           <button
             type="button"
-            className="tjs-modal-close"
-            aria-label="Close zoomed image"
+            className="tjs-modal-img-nav tjs-modal-img-prev"
+            aria-label="Previous photo"
             onClick={(e) => {
               e.stopPropagation();
-              setZoomIndex(null);
+              go(-1);
             }}
           >
-            <i className="ri-close-line"></i>
+            <i className="ri-arrow-left-s-line"></i>
           </button>
-          {photos.length > 1 && (
-            <>
-              <button
-                type="button"
-                className="tjs-modal-img-nav tjs-modal-img-prev"
-                aria-label="Previous photo"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  go(-1);
-                }}
-              >
-                <i className="ri-arrow-left-s-line"></i>
-              </button>
-              <button
-                type="button"
-                className="tjs-modal-img-nav tjs-modal-img-next"
-                aria-label="Next photo"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  go(1);
-                }}
-              >
-                <i className="ri-arrow-right-s-line"></i>
-              </button>
-            </>
-          )}
-          <img
-            src={current.url}
-            alt={current.alt || fallbackAlt}
-            className="tjs-modal-zoom-img"
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>,
-          document.body
-        )}
-    </>
+          <button
+            type="button"
+            className="tjs-modal-img-nav tjs-modal-img-next"
+            aria-label="Next photo"
+            onClick={(e) => {
+              e.stopPropagation();
+              go(1);
+            }}
+          >
+            <i className="ri-arrow-right-s-line"></i>
+          </button>
+        </>
+      )}
+      <img
+        src={current.url}
+        alt={current.alt || fallbackAlt}
+        className="tjs-modal-zoom-img"
+        onClick={(e) => e.stopPropagation()}
+      />
+    </div>,
+    document.body
   );
 }
