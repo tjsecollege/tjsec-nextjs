@@ -24,7 +24,7 @@ function PeopleGrid({ people, withIds }) {
       {people.map((p, i) => (
         <div className="tjs-dept-people-card" key={p.name + i}>
           <div className="tjs-dept-people-photo">
-            {p.photo?.url ? <img src={p.photo.url} alt={p.photo.alt || p.name} /> : <span>Photo</span>}
+            {p.photo?.url ? <img loading="lazy" src={p.photo.url} alt={p.photo.alt || p.name} /> : <span>Photo</span>}
           </div>
           <h4>{p.name}</h4>
           <p className="tjs-dept-people-role">{[p.designation, p.qualification].filter(Boolean).join(", ")}</p>

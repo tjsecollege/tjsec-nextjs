@@ -182,7 +182,7 @@ export default function SportsView({ sports, initialSection = "overview" }) {
                       {sports.committee.map((m, i) => (
                         <div className="tjs-dept-people-card" key={m.name + i}>
                           <div className="tjs-dept-people-photo">
-                            {m.photo ? <img src={m.photo} alt={m.name} /> : <span>Photo</span>}
+                            {m.photo ? <img loading="lazy" src={m.photo} alt={m.name} /> : <span>Photo</span>}
                           </div>
                           <h4>{m.name}</h4>
                           {m.role && <p className="tjs-dept-people-role">{m.role}</p>}

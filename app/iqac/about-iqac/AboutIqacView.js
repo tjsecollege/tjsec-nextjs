@@ -81,7 +81,7 @@ function SectionBody({ section }) {
         <>
           {section.title && <h4>{section.title}</h4>}
           <div className="tjs-iqac-contact-card">
-            {section.photo && <img src={section.photo.src} alt={section.photo.alt} />}
+            {section.photo && <img loading="lazy" src={section.photo.src} alt={section.photo.alt} />}
             <div>
               <h4>{section.name}</h4>
               {section.role && <p className="tjs-trustee-role">{section.role}</p>}

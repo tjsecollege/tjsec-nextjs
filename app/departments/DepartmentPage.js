@@ -396,7 +396,7 @@ export default function DepartmentPage({ dept }) {
           {dept.hod_message || dept.hod_name ? (
             <div className="tjs-dept-hod">
               <div className="tjs-dept-hod-photo">
-                {dept.hod_photo?.url && <img src={dept.hod_photo.url} alt={dept.hod_photo.alt || `${dept.hod_name}, Head of Department`} />}
+                {dept.hod_photo?.url && <img loading="lazy" src={dept.hod_photo.url} alt={dept.hod_photo.alt || `${dept.hod_name}, Head of Department`} />}
               </div>
               <div className="tjs-dept-hod-message">
                 {dept.hod_message_title && <h3>{dept.hod_message_title}</h3>}
@@ -436,7 +436,7 @@ export default function DepartmentPage({ dept }) {
               {nonTeaching.map((s, i) => (
                 <div className="tjs-dept-people-card" key={s.name + i}>
                   <div className="tjs-dept-people-photo">
-                    {s.photo?.url ? <img src={s.photo.url} alt={s.photo.alt || s.name} /> : <span>Photo</span>}
+                    {s.photo?.url ? <img loading="lazy" src={s.photo.url} alt={s.photo.alt || s.name} /> : <span>Photo</span>}
                   </div>
                   <h4>{s.name}</h4>
                   <p className="tjs-dept-people-role">{s.designation}</p>
@@ -743,7 +743,7 @@ export default function DepartmentPage({ dept }) {
           {recruiters.length ? (
             <div className="tjs-dept-photo-grid">
               {recruiters.map((r, i) => (
-                <img key={r.name + i} src={r.logo.url} alt={r.name} title={r.name} className="tjs-dept-logo-real" />
+                <img loading="lazy" key={r.name + i} src={r.logo.url} alt={r.name} title={r.name} className="tjs-dept-logo-real" />
               ))}
             </div>
           ) : (

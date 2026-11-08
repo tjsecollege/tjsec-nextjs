@@ -94,7 +94,7 @@ export default function PeopleCarousel({ items, className = "" }) {
         {items.map((item, i) => (
           <div className="tjs-dept-people-card" key={(item.name || "") + i}>
             <div className="tjs-dept-people-photo">
-              {item.photo ? <img src={item.photo} alt={item.name} /> : <span>Photo</span>}
+              {item.photo ? <img loading="lazy" src={item.photo} alt={item.name} /> : <span>Photo</span>}
             </div>
             <h4>{item.name}</h4>
             {item.role && <p className="tjs-dept-people-role">{item.role}</p>}

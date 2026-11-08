@@ -37,7 +37,7 @@ export default async function ProfessorOfPractice() {
               {professors.map((p, i) => (
                 <article className="tjs-gc-card" key={p.name + i}>
                   <div className="tjs-gc-photo">
-                    {p.photo ? <img src={p.photo.src} alt={p.photo.alt} /> : <span aria-hidden="true">{initial(p.name)}</span>}
+                    {p.photo ? <img loading="lazy" src={p.photo.src} alt={p.photo.alt} /> : <span aria-hidden="true">{initial(p.name)}</span>}
                   </div>
                   <h4>{p.name}</h4>
                   {p.designation && <p className="tjs-gc-designation">{p.designation}</p>}

@@ -42,7 +42,7 @@ export default async function GoverningCouncil() {
                 >
                   <div className="tjs-gc-photo">
                     {member.photo?.url ? (
-                      <img src={member.photo.url} alt={member.photo.alt || member.name} />
+                      <img loading="lazy" src={member.photo.url} alt={member.photo.alt || member.name} />
                     ) : (
                       <span aria-hidden="true">{initial(member.name)}</span>
                     )}

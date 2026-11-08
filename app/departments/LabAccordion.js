@@ -12,7 +12,7 @@ function LabContent({ lab }) {
       {lab.imgs && lab.imgs.length > 0 && (
         <div className="tjs-dept-event-imgs">
           {lab.imgs.map((img) => (
-            <img key={img.src} src={img.src} alt={img.alt} />
+            <img loading="lazy" key={img.src} src={img.src} alt={img.alt} />
           ))}
         </div>
       )}

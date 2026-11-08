@@ -80,7 +80,7 @@ export default function DeptPhotoSlider({ images }) {
   return (
     <div className="tjs-dept-photo-slider">
       <div className="tjs-dept-photo-slider-frame" ref={frameRef}>
-        <img
+        <img loading="lazy"
           src={images[index].src}
           alt={images[index].alt}
           className="tjs-modal-img-zoomable"

@@ -36,7 +36,7 @@ export default function EventAccordion({ items }) {
               {item.imgs && item.imgs.length > 0 && (
                 <div className="tjs-dept-event-imgs">
                   {item.imgs.map((img) => (
-                    <img key={img.src} src={img.src} alt={img.alt} className={img.wide ? "tjs-dept-event-img-wide" : ""} />
+                    <img loading="lazy" key={img.src} src={img.src} alt={img.alt} className={img.wide ? "tjs-dept-event-img-wide" : ""} />
                   ))}
                 </div>
               )}

@@ -1,3 +1,4 @@
+import Link from "next/link";
 export default function Contact() {
   return (
     <>
@@ -7,7 +8,7 @@ export default function Contact() {
       >
         <h1>Contact</h1>
         <nav className="tjs-subpage-crumb">
-          <a href="/">Home</a>
+          <Link href="/">Home</Link>
           <span>/</span>
           <span>Contact</span>
         </nav>

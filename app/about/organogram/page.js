@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getAboutPage } from "@/lib/wordpress";
 
 // Content is managed in WordPress: admin.tjsec.ac.in → About → Organogram
@@ -12,7 +13,7 @@ export default async function Organogram() {
       >
         <h1>About</h1>
         <nav className="tjs-subpage-crumb">
-          <a href="/">Home</a>
+          <Link href="/">Home</Link>
           <span>/</span>
           <span>Organogram</span>
         </nav>
@@ -27,7 +28,7 @@ export default async function Organogram() {
 
           {d?.image?.url ? (
             <div className="tjs-organogram-card">
-              <img src={d.image.url} alt={d.image.alt || "T.J.S. Engineering College Organogram"} />
+              <img loading="lazy" src={d.image.url} alt={d.image.alt || "T.J.S. Engineering College Organogram"} />
             </div>
           ) : (
             <p className="tjs-dept-pending">Content coming soon.</p>

@@ -36,7 +36,7 @@ export default async function Directors() {
               {members.map((d, i) => (
                 <div className="tjs-team-card" key={d.name + i}>
                   <div className="tjs-team-photo">
-                    {d.photo?.url ? <img src={d.photo.url} alt={d.photo.alt || d.name} /> : <span>Photo</span>}
+                    {d.photo?.url ? <img loading="lazy" src={d.photo.url} alt={d.photo.alt || d.name} /> : <span>Photo</span>}
                   </div>
                   <div className="tjs-team-info">
                     <h4>{d.name}</h4>

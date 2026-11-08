@@ -32,7 +32,7 @@ function Photos({ items }) {
   return items.length > 0 ? (
     <div className="tjs-lib-photo-grid">
       {items.map((p) => (
-        <img key={p.src} src={p.src} alt={p.alt} />
+        <img loading="lazy" key={p.src} src={p.src} alt={p.alt} />
       ))}
     </div>
   ) : null;

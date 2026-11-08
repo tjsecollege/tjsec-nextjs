@@ -176,7 +176,7 @@ export default function PlacementsView({ placedStudents = [], recruiterGroups = 
 
               {activeCat === "what-we-do" && (
                 <>
-                  <img
+                  <img loading="lazy"
                     src={infographic("image_6.png")}
                     alt="Career Development Centre overview"
                     className="tjs-cdc-infographic"
@@ -213,7 +213,7 @@ export default function PlacementsView({ placedStudents = [], recruiterGroups = 
                     commitments. Students are advised to regularly check for updates and follow the latest schedule
                     communicated by the CDC.
                   </p>
-                  <img src={infographic("image_5.png")} alt="CDC Training & Placement Calendar" className="tjs-cdc-infographic" />
+                  <img loading="lazy" src={infographic("image_5.png")} alt="CDC Training & Placement Calendar" className="tjs-cdc-infographic" />
 
                   <hr className="tjs-ivy-divider" />
 
@@ -228,7 +228,7 @@ export default function PlacementsView({ placedStudents = [], recruiterGroups = 
                       <li key={t}>{t}</li>
                     ))}
                   </ul>
-                  <img src={infographic("image_4.png")} alt="Training offered by the Career Development Centre" className="tjs-cdc-infographic" />
+                  <img loading="lazy" src={infographic("image_4.png")} alt="Training offered by the Career Development Centre" className="tjs-cdc-infographic" />
 
                   <hr className="tjs-ivy-divider" />
 
@@ -239,7 +239,7 @@ export default function PlacementsView({ placedStudents = [], recruiterGroups = 
                     Students are expected to actively participate in placement activities and follow the procedures
                     communicated by the CDC.
                   </p>
-                  <img src={infographic("image_3.png")} alt="CDC placement process" className="tjs-cdc-infographic" />
+                  <img loading="lazy" src={infographic("image_3.png")} alt="CDC placement process" className="tjs-cdc-infographic" />
 
                   <hr className="tjs-ivy-divider" />
 
@@ -249,7 +249,7 @@ export default function PlacementsView({ placedStudents = [], recruiterGroups = 
                       <li key={i}>{s}</li>
                     ))}
                   </ul>
-                  <img src={infographic("image_2.png")} alt="Campus recruitment process" className="tjs-cdc-infographic" />
+                  <img loading="lazy" src={infographic("image_2.png")} alt="Campus recruitment process" className="tjs-cdc-infographic" />
 
                   <hr className="tjs-ivy-divider" />
 
@@ -360,7 +360,7 @@ export default function PlacementsView({ placedStudents = [], recruiterGroups = 
                   {recruiterGroup?.logos.length ? (
                     <div className="tjs-dept-photo-grid" style={{ marginTop: 20 }}>
                       {recruiterGroup.logos.map((r) => (
-                        <img key={r.url} src={r.url} alt={r.name} title={r.name} className="tjs-dept-logo-real" />
+                        <img loading="lazy" key={r.url} src={r.url} alt={r.name} title={r.name} className="tjs-dept-logo-real" />
                       ))}
                     </div>
                   ) : (

@@ -47,7 +47,7 @@ export function ZoomableGrid({ photos, fallbackAlt }) {
     <>
       <div className="tjs-dept-event-imgs tjs-photo-grid">
         {photos.map((img, i) => (
-          <img
+          <img loading="lazy"
             key={img.url}
             src={img.url}
             alt={img.alt || fallbackAlt}

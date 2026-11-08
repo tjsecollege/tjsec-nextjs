@@ -83,7 +83,7 @@ export default function RootLayout({ children }) {
         <Script src="/assets/js/plugins/flatpickr.min.js" strategy="afterInteractive" />
         <Script src="/assets/js/plugins/nouislider.min.js" strategy="afterInteractive" />
         <Script src="/assets/js/vendor/odometer.min.js" strategy="afterInteractive" />
-        <Script src="/assets/js/main.js?=3" strategy="afterInteractive" />
+        <Script src="/assets/js/main.js?=4" strategy="afterInteractive" />
 
         <Script
           id="tjs-chatbot-inline"

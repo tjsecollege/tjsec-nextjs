@@ -125,7 +125,7 @@ export default function CoeView({ coe }) {
                       {coe.people.map((p, i) => (
                         <div className="tjs-dept-people-card" key={p.name + i}>
                           <div className="tjs-dept-people-photo">
-                            {p.photo ? <img src={p.photo} alt={p.name} /> : <span>Photo</span>}
+                            {p.photo ? <img loading="lazy" src={p.photo} alt={p.name} /> : <span>Photo</span>}
                           </div>
                           <h4>{p.name}</h4>
                           {p.designation && <p className="tjs-dept-people-role">{p.designation}</p>}

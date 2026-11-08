@@ -29,7 +29,7 @@ export default function FacultyTabs({ departments }) {
               {active.faculty.map((f, i) => (
                 <div className="tjs-dept-people-card" key={f.name + i}>
                   <div className="tjs-dept-people-photo">
-                    {f.photo ? <img src={f.photo} alt={f.name} /> : <span>Photo</span>}
+                    {f.photo ? <img loading="lazy" src={f.photo} alt={f.name} /> : <span>Photo</span>}
                   </div>
                   <h4>{f.name}</h4>
                   {f.role && <p className="tjs-dept-people-role">{f.role}</p>}

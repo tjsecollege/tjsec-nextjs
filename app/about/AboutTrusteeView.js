@@ -1,3 +1,4 @@
+import Link from "next/link";
 function Html({ html }) {
   return <div dangerouslySetInnerHTML={{ __html: html }} />;
 }
@@ -15,7 +16,7 @@ export default function AboutTrusteeView({ crumbLabel, pageTitle, messageTitle, 
       >
         <h1>About</h1>
         <nav className="tjs-subpage-crumb">
-          <a href="/">Home</a>
+          <Link href="/">Home</Link>
           <span>/</span>
           <span>{crumbLabel}</span>
         </nav>
@@ -32,7 +33,7 @@ export default function AboutTrusteeView({ crumbLabel, pageTitle, messageTitle, 
             <div className="tjs-trustee-side">
               <div className="tjs-trustee-photo-card">
                 <div className="tjs-trustee-photo">
-                  {t.photo?.url ? <img src={t.photo.url} alt={t.photo.alt || t.name} /> : <span>Photo</span>}
+                  {t.photo?.url ? <img loading="lazy" src={t.photo.url} alt={t.photo.alt || t.name} /> : <span>Photo</span>}
                 </div>
               </div>
               <div className="tjs-trustee-name-card">

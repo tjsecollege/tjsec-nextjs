@@ -39,7 +39,7 @@ export default function ZoomableImage({ src, alt }) {
 
   return (
     <>
-      <img src={src} alt={alt} className="tjs-modal-img-zoomable" onClick={() => setZoomed(true)} />
+      <img loading="lazy" src={src} alt={alt} className="tjs-modal-img-zoomable" onClick={() => setZoomed(true)} />
       {zoomed &&
         typeof document !== "undefined" &&
         createPortal(

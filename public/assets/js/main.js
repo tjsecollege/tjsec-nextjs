@@ -74,6 +74,11 @@
         $(".offcanvas-overlay").removeClass("overlay-open");
     });
     $(".sidebar-toggle").on("click", function () {
+        // The side menu gallery photos are only downloaded once the menu is opened.
+        $(".offcanvas-area img[data-src]").each(function () {
+            this.src = this.getAttribute("data-src");
+            this.removeAttribute("data-src");
+        });
         $(".offcanvas-area").addClass("info-open");
         $(".offcanvas-overlay").addClass("overlay-open");
     });

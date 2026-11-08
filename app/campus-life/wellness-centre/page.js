@@ -60,7 +60,7 @@ export default async function WellnessCentre() {
             </div>
             <div className="tjs-well-hero-side">
               {w.heroPhoto ? (
-                <img src={w.heroPhoto.src} alt={w.heroPhoto.alt} />
+                <img loading="lazy" src={w.heroPhoto.src} alt={w.heroPhoto.alt} />
               ) : (
                 <span className="tjs-well-hero-icon" aria-hidden="true">
                   <i className="ri-heart-pulse-line"></i>

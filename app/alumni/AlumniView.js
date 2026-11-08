@@ -164,7 +164,7 @@ export default function AlumniView({ alumni }) {
                       <div className="tjs-dept-card" key={t.name + i} style={i > 0 ? { marginTop: 16 } : undefined}>
                         <div style={{ display: "flex", gap: 16, alignItems: "flex-start" }}>
                           {t.photo?.url && (
-                            <img
+                            <img loading="lazy"
                               src={t.photo.url}
                               alt={t.photo.alt || t.name}
                               style={{ width: 72, height: 72, borderRadius: "50%", objectFit: "cover", flexShrink: 0 }}

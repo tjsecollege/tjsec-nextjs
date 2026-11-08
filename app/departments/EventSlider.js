@@ -8,7 +8,7 @@ const AUTO_SCROLL_INTERVAL = 3000;
 function SimpleCard({ img, date, title, desc, onClick }) {
   return (
     <div className="tjs-slider-card" onClick={onClick} role="button" tabIndex={0}>
-      {img ? <img src={img} alt={title} className="tjs-slider-card-img" /> : <div className="tjs-slider-card-img-spacer" aria-hidden="true" />}
+      {img ? <img loading="lazy" src={img} alt={title} className="tjs-slider-card-img" /> : <div className="tjs-slider-card-img-spacer" aria-hidden="true" />}
       <div className="tjs-slider-card-body">
         {date && (
           <div className="tjs-slider-card-meta">
@@ -82,7 +82,7 @@ function EventModal({ item, onClose }) {
         <div className="tjs-modal-scroll">
           {imgs.length > 0 ? (
             <div className="tjs-modal-img-wrap">
-              <img
+              <img loading="lazy"
                 src={imgs[imgIndex]}
                 alt={item.title}
                 className="tjs-modal-img tjs-modal-img-zoomable"
