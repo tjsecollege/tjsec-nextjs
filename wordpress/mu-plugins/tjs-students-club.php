@@ -14,18 +14,17 @@ if (!defined('ABSPATH')) {
 
 const TJS_STUDENTS_CLUB_ID = 'students_club'; // SCF "post id" the options are stored under
 
+// Nested under the "Campus Life" menu (tjs-campus-life.php) to match the website.
 add_action('acf/init', function () {
-    if (!function_exists('acf_add_options_page')) {
+    if (!function_exists('acf_add_options_sub_page')) {
         return;
     }
-    acf_add_options_page([
+    acf_add_options_sub_page([
         'page_title' => 'Students Club Page',
         'menu_title' => 'Students Club',
         'menu_slug' => 'tjs-students-club',
+        'parent_slug' => 'tjs-campus-life',
         'capability' => 'edit_posts',
-        'icon_url' => 'dashicons-groups',
-        'position' => 10,
-        'redirect' => false,
         'post_id' => TJS_STUDENTS_CLUB_ID,
         'update_button' => 'Save Students Club Page',
         'updated_message' => 'Students Club page saved. Changes will appear on the website shortly.',

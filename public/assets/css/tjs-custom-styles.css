@@ -1820,3 +1820,15 @@ a.tjs-approvals-cat.active, a.tjs-approvals-cat.active:hover { color: #fff; }
 .tjs-medical-commitment .tjs-dept-richtext p:last-child { margin-bottom: 0; }
 @media (max-width: 991px) { .tjs-medical-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 575px) { .tjs-medical-grid { grid-template-columns: 1fr; } .tjs-medical-commitment { flex-direction: column; padding: 20px; } }
+
+/* Controller of Examinations: link quick-cards, circular dates, contact list */
+a.tjs-coe-quicklink { color: var(--rs-title-primary); }
+a.tjs-coe-quicklink:hover { color: var(--rs-theme-blue); }
+.tjs-coe-circular-date { display: block; margin-top: 2px; font-size: 12.5px; font-weight: 500; color: var(--rs-text-secondary); }
+.tjs-coe-contact { display: flex; flex-direction: column; gap: 14px; margin: 0; padding: 0 !important; list-style: none; }
+.tjs-coe-contact li { display: flex; align-items: flex-start; gap: 12px; line-height: 1.6; color: var(--rs-text-primary); }
+.tjs-coe-contact i { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: rgba(44, 51, 112, 0.08); color: var(--rs-theme-blue); font-size: 18px; }
+.tjs-coe-contact a { color: var(--rs-theme-blue); }
+
+/* Industry Interface → Professor of Practice: expertise line on the person cards */
+.tjs-dept-section .tjs-pop-expertise { margin: -8px 0 16px; font-size: 13px; line-height: 1.55; color: var(--rs-text-primary); font-style: italic; }

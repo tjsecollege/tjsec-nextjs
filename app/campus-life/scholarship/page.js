@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { useState } from "react";
 
 const SCHEMES = [
@@ -96,7 +98,7 @@ export default function Scholarship() {
       >
         <h1>Campus Life</h1>
         <nav className="tjs-subpage-crumb">
-          <a href="/">Home</a>
+          <Link href="/">Home</Link>
           <span>/</span>
           <span>Scholarship</span>
         </nav>

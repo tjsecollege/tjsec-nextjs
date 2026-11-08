@@ -14,18 +14,17 @@ if (!defined('ABSPATH')) {
 
 const TJS_IV_FORMS_ID = 'iv_forms'; // SCF "post id" the options are stored under
 
+// Nested under the "Industry Interface" menu (tjs-industry-interface.php) to match the website.
 add_action('acf/init', function () {
-    if (!function_exists('acf_add_options_page')) {
+    if (!function_exists('acf_add_options_sub_page')) {
         return;
     }
-    acf_add_options_page([
+    acf_add_options_sub_page([
         'page_title' => 'Industry Visit (IV) Forms Page',
         'menu_title' => 'IV Forms',
         'menu_slug' => 'tjs-iv-forms',
+        'parent_slug' => 'tjs-industry-interface',
         'capability' => 'edit_posts',
-        'icon_url' => 'dashicons-clipboard',
-        'position' => 15,
-        'redirect' => false,
         'post_id' => TJS_IV_FORMS_ID,
         'update_button' => 'Save IV Forms Page',
         'updated_message' => 'IV Forms page saved. Changes will appear on the website shortly.',

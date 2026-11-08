@@ -14,18 +14,17 @@ if (!defined('ABSPATH')) {
 
 const TJS_MOUS_ID = 'mous'; // SCF "post id" the options are stored under
 
+// Nested under the "Industry Interface" menu (tjs-industry-interface.php) to match the website.
 add_action('acf/init', function () {
-    if (!function_exists('acf_add_options_page')) {
+    if (!function_exists('acf_add_options_sub_page')) {
         return;
     }
-    acf_add_options_page([
+    acf_add_options_sub_page([
         'page_title' => 'List of MoUs Page',
         'menu_title' => 'List of MoUs',
         'menu_slug' => 'tjs-mous',
+        'parent_slug' => 'tjs-industry-interface',
         'capability' => 'edit_posts',
-        'icon_url' => 'dashicons-media-document',
-        'position' => 14,
-        'redirect' => false,
         'post_id' => TJS_MOUS_ID,
         'update_button' => 'Save List of MoUs',
         'updated_message' => 'List of MoUs saved. Changes will appear on the website shortly.',

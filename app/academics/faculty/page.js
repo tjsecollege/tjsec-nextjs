@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getDepartment, getShDepartment } from "@/lib/wordpress";
 import FacultyTabs from "./FacultyTabs";
 
@@ -42,7 +43,7 @@ export default async function FacultyPage() {
       >
         <h1>Academics</h1>
         <nav className="tjs-subpage-crumb">
-          <a href="/">Home</a>
+          <Link href="/">Home</Link>
           <span>/</span>
           <span>Faculty</span>
         </nav>

@@ -14,18 +14,17 @@ if (!defined('ABSPATH')) {
 
 const TJS_WELLNESS_ID = 'wellness_centre'; // SCF "post id" the options are stored under
 
+// Nested under the "Campus Life" menu (tjs-campus-life.php) to match the website.
 add_action('acf/init', function () {
-    if (!function_exists('acf_add_options_page')) {
+    if (!function_exists('acf_add_options_sub_page')) {
         return;
     }
-    acf_add_options_page([
+    acf_add_options_sub_page([
         'page_title' => 'Wellness Centre Page',
         'menu_title' => 'Wellness Centre',
         'menu_slug' => 'tjs-wellness-centre',
+        'parent_slug' => 'tjs-campus-life',
         'capability' => 'edit_posts',
-        'icon_url' => 'dashicons-heart',
-        'position' => 17,
-        'redirect' => false,
         'post_id' => TJS_WELLNESS_ID,
         'update_button' => 'Save Wellness Centre Page',
         'updated_message' => 'Wellness Centre page saved. Changes will appear on the website shortly.',

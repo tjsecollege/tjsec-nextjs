@@ -14,18 +14,18 @@ if (!defined('ABSPATH')) {
 
 const TJS_REGULATIONS_ID = 'regulations'; // SCF "post id" the options are stored under
 
+// Nested under the "Academics" menu (tjs-academics.php) to match the website,
+// where Regulations and Curriculum is one of the items in the Academics dropdown.
 add_action('acf/init', function () {
-    if (!function_exists('acf_add_options_page')) {
+    if (!function_exists('acf_add_options_sub_page')) {
         return;
     }
-    acf_add_options_page([
+    acf_add_options_sub_page([
         'page_title' => 'Regulations and Curriculum Page',
-        'menu_title' => 'Regulations',
+        'menu_title' => 'Regulations and Curriculum',
         'menu_slug' => 'tjs-regulations',
+        'parent_slug' => 'tjs-academics',
         'capability' => 'edit_posts',
-        'icon_url' => 'dashicons-book',
-        'position' => 13,
-        'redirect' => false,
         'post_id' => TJS_REGULATIONS_ID,
         'update_button' => 'Save Regulations Page',
         'updated_message' => 'Regulations and Curriculum page saved. Changes will appear on the website shortly.',
