@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AlbumGallery from "../components/AlbumGallery";
+import TestimonialSlider from "../components/TestimonialSlider";
 
 const CATEGORIES = [
   { id: "about", label: "About us" },
@@ -34,6 +35,20 @@ function Html({ html }) {
 
 export default function AlumniView({ alumni }) {
   const [activeCat, setActiveCat] = useState(CATEGORIES[0].id);
+
+  // Links like /alumni#testimonials (e.g. from the home page) open that section.
+  useEffect(() => {
+    function openFromHash() {
+      const id = window.location.hash.slice(1);
+      if (CATEGORIES.some((c) => c.id === id)) setActiveCat(id);
+    }
+    const timer = setTimeout(openFromHash, 0);
+    window.addEventListener("hashchange", openFromHash);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("hashchange", openFromHash);
+    };
+  }, []);
   const bearers = list(alumni.office_bearers);
   const meets = list(alumni.meets);
   const albums = list(alumni.gallery_albums).filter((a) => list(a.photos).length);
@@ -160,33 +175,7 @@ export default function AlumniView({ alumni }) {
                 <div className="tjs-committee-body">
                   <h4>Testimonials</h4>
                   {testimonials.length ? (
-                    testimonials.map((t, i) => (
-                      <div className="tjs-dept-card" key={t.name + i} style={i > 0 ? { marginTop: 16 } : undefined}>
-                        <div style={{ display: "flex", gap: 16, alignItems: "flex-start" }}>
-                          {t.photo?.url && (
-                            <img loading="lazy"
-                              src={t.photo.url}
-                              alt={t.photo.alt || t.name}
-                              style={{ width: 72, height: 72, borderRadius: "50%", objectFit: "cover", flexShrink: 0 }}
-                            />
-                          )}
-                          <div>
-                            {(t.message || "")
-                              .split(/\n\s*\n/)
-                              .filter(Boolean)
-                              .map((para, j) => (
-                                <p key={j}>
-                                  <em>{para}</em>
-                                </p>
-                              ))}
-                            <p style={{ marginBottom: 0 }}>
-                              <strong>{t.name}</strong>
-                              {t.details && <> &ndash; {t.details}</>}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    ))
+                    <TestimonialSlider items={testimonials} />
                   ) : (
                     <Pending text="Content will be given later." />
                   )}

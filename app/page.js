@@ -1,7 +1,8 @@
 import fs from "fs";
 import path from "path";
 import Script from "next/script";
-import { getPlacements } from "@/lib/wordpress";
+import HomeTestimonials from "./components/HomeTestimonials";
+import { getAlumni, getPlacements } from "@/lib/wordpress";
 
 // Home page's own section markup (banner, about, courses, etc.) — kept
 // verbatim as one HTML fragment for the same reason as the rest of the
@@ -51,13 +52,34 @@ async function recruitersGrid() {
 <label for="rs-recruiters-more" class="rs-recruiters-more"><span class="is-more">Show More</span><span class="is-less">Show Less</span><i class="ri-arrow-down-s-line"></i></label>`;
 }
 
+// The template's testimonial section in home-main.html. When the Alumni page has
+// testimonials it is replaced by <HomeTestimonials>; otherwise the static one stays.
+const TESTIMONIALS_SECTION = /<!-- testimonial area start -->[\s\S]*?<!-- testimonial area end -->/;
+
+async function alumniTestimonials() {
+  const alumni = await getAlumni();
+  return (Array.isArray(alumni.testimonials) ? alumni.testimonials : [])
+    .filter((t) => t.name && t.message)
+    .map((t) => ({ name: t.name, details: t.details || "", message: t.message, photo: t.photo?.url ? { url: t.photo.url, alt: t.photo.alt } : null }));
+}
+
 export default async function Home() {
   const mainHtml = readContent("home-main.html").replace(RECRUITERS_SLOT, await recruitersGrid());
   const youtubeJs = readContent("youtube-caption.js");
+  const testimonials = await alumniTestimonials();
+  const match = testimonials.length ? mainHtml.match(TESTIMONIALS_SECTION) : null;
 
   return (
     <>
-      <div dangerouslySetInnerHTML={{ __html: mainHtml }} />
+      {match ? (
+        <>
+          <div dangerouslySetInnerHTML={{ __html: mainHtml.slice(0, match.index) }} />
+          <HomeTestimonials items={testimonials} />
+          <div dangerouslySetInnerHTML={{ __html: mainHtml.slice(match.index + match[0].length) }} />
+        </>
+      ) : (
+        <div dangerouslySetInnerHTML={{ __html: mainHtml }} />
+      )}
 
       <Script
         id="rs-yt-caption-fix"

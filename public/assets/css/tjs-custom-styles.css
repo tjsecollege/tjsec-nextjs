@@ -1845,3 +1845,61 @@ a.tjs-coe-quicklink:hover { color: var(--rs-theme-blue); }
 .tjs-book-table th:nth-child(1) { width: 46%; }
 .tjs-book-table th:nth-child(3) { width: 24%; }
 @media (max-width: 767px) { .tjs-book-table { table-layout: auto; min-width: 560px; } }
+
+/* Testimonial slider (app/components/TestimonialSlider.js): home page box and Alumni page */
+.tjs-tslider-track { display: grid; }
+/* Every slide stretches to the tallest one; the name row sits at the bottom.
+   The old slide fades out first, then the new one fades in (no text over text). */
+.tjs-tslider-slide { grid-area: 1 / 1; display: flex; flex-direction: column; margin: 0; opacity: 0; visibility: hidden; transition: opacity 0.25s ease, visibility 0s linear 0.25s; }
+.tjs-tslider-slide.active { opacity: 1; visibility: visible; transition: opacity 0.45s ease 0.25s, visibility 0s; }
+.tjs-tslider-slide > figcaption { margin-top: auto; }
+.tjs-tslider blockquote { margin: 0; padding: 0; border: 0; }
+.tjs-tslider blockquote p { margin: 0 0 12px; }
+.tjs-tslider blockquote p:last-child { margin-bottom: 0; }
+.tjs-tslider-initial { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; width: 60px; height: 60px; border-radius: 50%; font-size: 24px; font-weight: 700; }
+.tjs-tslider-controls { position: relative; z-index: 1; display: flex; align-items: center; gap: 14px; margin-top: 26px; }
+.tjs-tslider-arrow { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; padding: 0; border-radius: 50%; font-size: 22px; cursor: pointer; transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+.tjs-tslider-dots { display: flex; align-items: center; gap: 8px; }
+.tjs-tslider-dots button { width: 10px; height: 10px; padding: 0; border: 0; border-radius: 50%; cursor: pointer; transition: width 0.25s ease, background-color 0.25s ease; }
+.tjs-tslider-dots button.active { width: 26px; border-radius: 6px; }
+
+/* Home page: inside the template's blue box */
+.tjs-tslider.is-home .rs-testimonial-desc { margin-bottom: 30px; }
+.tjs-tslider.is-home .rs-testimonial-desc p { color: inherit; font: inherit; line-height: inherit; }
+.tjs-tslider.is-home .rs-testimonial-avater-wrapper { gap: 16px; flex-wrap: nowrap; }
+.tjs-tslider.is-home .rs-testimonial-avater-thumb,
+.tjs-tslider-photo { flex: 0 0 auto; }
+.tjs-tslider.is-home .rs-testimonial-avater-thumb img { display: block; width: 60px; height: 60px; max-width: none; border-radius: 50%; object-fit: cover; object-position: 50% 20%; }
+.tjs-tslider.is-home .rs-testimonial-avater-info { display: flex; flex-direction: column; }
+.tjs-tslider.is-home .rs-testimonial-avater-title { font-size: 20px; font-weight: 700; }
+.tjs-tslider.is-home .tjs-tslider-initial { background: rgba(255, 255, 255, 0.14); color: #fff; }
+.tjs-tslider.is-home .tjs-tslider-arrow { border: 1px solid rgba(255, 255, 255, 0.5); background: transparent; color: #fff; }
+.tjs-tslider.is-home .tjs-tslider-arrow:hover { border-color: var(--rs-theme-yellow); background: var(--rs-theme-yellow); }
+.tjs-tslider.is-home .tjs-tslider-dots button { background: rgba(255, 255, 255, 0.35); }
+.tjs-tslider.is-home .tjs-tslider-dots button.active { background: var(--rs-theme-yellow); }
+.tjs-home-testimonials-more { display: inline-flex; align-items: center; gap: 6px; margin-top: 22px; color: rgba(255, 255, 255, 0.85); font-weight: 600; }
+.tjs-home-testimonials-more:hover { color: var(--rs-theme-yellow); }
+
+/* Alumni page: white card */
+.tjs-tslider.is-page .tjs-tslider-track { transition: height 0.45s ease; }
+.tjs-tslider.is-page .tjs-tslider-slide { align-self: start; padding: 30px 32px 26px; border: 1px solid var(--rs-border-primary); border-radius: 14px; background: #fff; box-shadow: 0 8px 22px rgba(3, 3, 3, 0.05); }
+.tjs-tslider-quote { display: block; margin: -8px 0 4px -4px; font-size: 44px; line-height: 1; color: rgba(236, 106, 64, 0.4); }
+.tjs-tslider-text { font-size: 16.5px; font-style: italic; line-height: 1.8; color: var(--rs-text-primary); }
+.tjs-tslider.is-page .tjs-tslider-text { margin-bottom: 22px; }
+.tjs-tslider-person { display: flex; align-items: center; gap: 16px; padding-top: 18px; border-top: 1px dashed var(--rs-border-primary); }
+.tjs-tslider-photo img { display: block; width: 64px; height: 64px; max-width: none; border-radius: 50%; object-fit: cover; object-position: 50% 20%; box-shadow: 0 6px 16px rgba(3, 3, 3, 0.12); }
+.tjs-tslider.is-page .tjs-tslider-initial { width: 64px; height: 64px; background: rgba(44, 51, 112, 0.08); color: var(--rs-theme-blue); }
+.tjs-tslider-who { display: flex; flex-direction: column; gap: 3px; }
+.tjs-tslider-name { font-size: 17px; color: var(--rs-theme-blue); }
+.tjs-tslider-details { font-size: 14px; line-height: 1.5; color: var(--rs-text-secondary); }
+.tjs-tslider.is-page .tjs-tslider-controls { justify-content: center; }
+.tjs-tslider.is-page .tjs-tslider-arrow { border: 1px solid var(--rs-border-primary); background: #fff; color: var(--rs-theme-blue); }
+.tjs-tslider.is-page .tjs-tslider-arrow:hover { border-color: var(--rs-theme-blue); background: var(--rs-theme-blue); color: #fff; }
+.tjs-tslider.is-page .tjs-tslider-dots button { background: #d3d5e2; }
+.tjs-tslider.is-page .tjs-tslider-dots button.active { background: var(--rs-theme-blue); }
+@media (max-width: 575px) {
+  .tjs-tslider.is-page .tjs-tslider-slide { padding: 24px 20px 20px; }
+  .tjs-tslider-text { font-size: 15.5px; }
+  .tjs-tslider-person { align-items: flex-start; }
+  .tjs-tslider.is-home .rs-testimonial-avater-title { font-size: 17px; }
+}
