@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import YearTabs from "./YearTabs";
 
 // Shared by the Alumni and Sports and Fitness galleries; ZoomableGrid also by
 // the Science & Humanities department galleries.
@@ -18,20 +19,7 @@ export default function AlbumGallery({ albums }) {
   return (
     <>
       {albums.length > 1 && (
-        <div className="tjs-approvals-year-tabs-row">
-          <div className="tjs-approvals-year-tabs">
-            {albums.map((a, i) => (
-              <button
-                key={a.title + i}
-                type="button"
-                className={"tjs-approvals-year" + (a === album ? " active" : "")}
-                onClick={() => setActive(i)}
-              >
-                {a.title}
-              </button>
-            ))}
-          </div>
-        </div>
+        <YearTabs tabs={albums.map((a) => a.title)} active={albums.indexOf(album)} onSelect={setActive} />
       )}
       <ZoomableGrid key={active} photos={list(album.photos)} fallbackAlt={album.title} />
     </>

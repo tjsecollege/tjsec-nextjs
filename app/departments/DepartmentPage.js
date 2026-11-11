@@ -10,6 +10,8 @@ import ProgrammeTabs from "./ProgrammeTabs";
 import DeptHeroSlider from "./DeptHeroSlider";
 import ZoomableImage from "./ZoomableImage";
 import PublicationYearTabs from "./PublicationYearTabs";
+import PatentYearTabs from "./PatentYearTabs";
+import BookYearTabs from "./BookYearTabs";
 import { ZoomableGrid } from "../components/AlbumGallery";
 
 const ArrowIcon = () => (
@@ -118,6 +120,16 @@ const PENDING = <p className="tjs-dept-pending">Content coming soon.</p>;
 
 function list(value) {
   return Array.isArray(value) ? value : [];
+}
+
+// Rows grouped by their `year` ("2023-24" or 2016), newest first, admin order
+// kept within a year; rows without a year come last (year "").
+// -> [{ year, items }] for the year-tab sections (Patent, Books & Chapters).
+function yearGroups(rows) {
+  const key = (r) => (r.year ? String(r.year) : "");
+  return [...new Set(rows.map(key))]
+    .sort((a, b) => (a === "" ? 1 : b === "" ? -1 : b.localeCompare(a)))
+    .map((year) => ({ year, items: rows.filter((r) => key(r) === year) }));
 }
 
 // Dated rows newest first (dates come as "2025-02-27"); rows without a date
@@ -303,13 +315,10 @@ export default function DepartmentPage({ dept }) {
   const internships = latestFirst(dept.internships);
   const publications = list(dept.publications);
   const patents = list(dept.patents);
-  // Grouped by academic year, newest first (admin order kept within a year);
-  // patents without a year come last.
-  const patentGroups = [...new Set(patents.map((p) => p.year || ""))]
-    .sort((a, b) => (a === "" ? 1 : b === "" ? -1 : b.localeCompare(a)))
-    .map((year) => ({ year, items: patents.filter((p) => (p.year || "") === year) }));
+  const patentGroups = yearGroups(patents);
   const patentHasStatus = patents.some((p) => p.status);
   const books = list(dept.books);
+  const bookGroups = yearGroups(books);
 
   const labs = list(dept.labs).map((lab, i) => {
     const subLabs = list(lab.sub_labs).map((s) => ({
@@ -577,84 +586,12 @@ export default function DepartmentPage({ dept }) {
 
         <section id="patent" className="tjs-dept-section">
           <h2>Patent</h2>
-          {patents.length ? (
-            <div className="tjs-dept-table-wrap">
-              <table className="tjs-dept-table">
-                <thead>
-                  <tr>
-                    <th>Academic Year</th>
-                    <th>Name of the Faculty</th>
-                    <th>Title of Patent</th>
-                    <th>Application Number</th>
-                    {patentHasStatus && <th>Status</th>}
-                  </tr>
-                </thead>
-                <tbody>
-                  {patentGroups.map((g) =>
-                    g.items.map((p, i) => (
-                      <tr key={g.year + i}>
-                        {i === 0 && <td rowSpan={g.items.length}>{g.year || "—"}</td>}
-                        <td>{p.inventors}</td>
-                        <td>
-                          {p.document?.url ? (
-                            <a href={p.document.url} target="_blank" rel="noopener">
-                              {p.title}
-                            </a>
-                          ) : (
-                            p.title
-                          )}
-                        </td>
-                        <td>{p.application_number}</td>
-                        {patentHasStatus && <td style={{ textTransform: "capitalize" }}>{p.status}</td>}
-                      </tr>
-                    ))
-                  )}
-                </tbody>
-              </table>
-            </div>
-          ) : (
-            PENDING
-          )}
+          {patents.length ? <PatentYearTabs groups={patentGroups} hasStatus={patentHasStatus} /> : PENDING}
         </section>
 
         <section id="books-chapters" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Books &amp; Chapters</h2>
-          {books.length ? (
-            <div className="tjs-dept-table-wrap">
-              <table className="tjs-dept-table">
-                <thead>
-                  <tr>
-                    <th>Year</th>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Publisher</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {books.map((b, i) => (
-                    <tr key={b.title + i}>
-                      <td>{b.year}</td>
-                      <td>
-                        {b.link ? (
-                          <a href={b.link} target="_blank" rel="noopener">
-                            {b.title}
-                          </a>
-                        ) : (
-                          b.title
-                        )}
-                        {b.type === "chapter" && <span className="tjs-book-tag">Book Chapter</span>}
-                        {b.isbn && <span className="tjs-book-isbn">ISBN: {b.isbn}</span>}
-                      </td>
-                      <td style={{ whiteSpace: "pre-line" }}>{b.authors}</td>
-                      <td>{b.publisher}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          ) : (
-            PENDING
-          )}
+          {books.length ? <BookYearTabs groups={bookGroups} /> : PENDING}
         </section>
 
         <section id="facilities" className="tjs-dept-section">

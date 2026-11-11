@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import ZoomableImage from "../../departments/ZoomableImage";
+import YearTabs from "../../components/YearTabs";
 
 // Uploaded file wins; otherwise the pasted link.
 function docUrl(item) {
@@ -110,20 +111,7 @@ function PdfTabs({ tabs, title }) {
   if (!current) return null;
   return (
     <>
-      <div className="tjs-approvals-year-tabs-row">
-        <div className="tjs-approvals-year-tabs">
-          {items.map((tab, i) => (
-            <button
-              key={tab.label + i}
-              type="button"
-              className={"tjs-approvals-year" + (tab === current ? " active" : "")}
-              onClick={() => setActive(i)}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-      </div>
+      <YearTabs tabs={items.map((tab) => tab.label)} active={items.indexOf(current)} onSelect={setActive} />
       <PdfViewer url={docUrl(current)} title={`${title} ${current.label}`} />
     </>
   );

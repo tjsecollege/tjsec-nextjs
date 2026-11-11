@@ -1832,3 +1832,16 @@ a.tjs-coe-quicklink:hover { color: var(--rs-theme-blue); }
 
 /* Industry Interface → Professor of Practice: expertise line on the person cards */
 .tjs-dept-section .tjs-pop-expertise { margin: -8px 0 16px; font-size: 13px; line-height: 1.55; color: var(--rs-text-primary); font-style: italic; }
+
+/* Department Patent year tabs: same column widths on every tab */
+.tjs-patent-table { table-layout: fixed; }
+.tjs-patent-table th:nth-child(1) { width: 28%; }
+.tjs-patent-table th:nth-child(3) { width: 18%; }
+.tjs-patent-table th:nth-child(4) { width: 13%; }
+@media (max-width: 767px) { .tjs-patent-table { table-layout: auto; min-width: 640px; } }
+
+/* Department Books & Chapters year tabs: same column widths on every tab */
+.tjs-book-table { table-layout: fixed; }
+.tjs-book-table th:nth-child(1) { width: 46%; }
+.tjs-book-table th:nth-child(3) { width: 24%; }
+@media (max-width: 767px) { .tjs-book-table { table-layout: auto; min-width: 560px; } }
