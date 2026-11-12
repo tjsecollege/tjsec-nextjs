@@ -970,6 +970,10 @@ p.tjs-dept-group-label {
 .tjs-dept-intern-photos { margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--rs-border-primary); }
 .tjs-dept-intern-photos:first-of-type { margin-top: 22px; padding-top: 0; border-top: none; }
 .tjs-dept-intern-org { color: var(--rs-theme-blue); font-size: 16px; font-weight: 700; margin: 0 0 4px; }
+/* Internship photos are often portrait certificates: show their top (logo + title). */
+.tjs-dept-intern-photos .tjs-dept-event-imgs img { object-position: center top; }
+/* Internship "Students" text: each line typed in admin shows on its own line. */
+.tjs-dept-intern-students { white-space: pre-line; }
 .tjs-dept-event-imgs img { width: 320px; height: 220px; object-fit: cover; border-radius: 10px; border: 1px solid var(--rs-border-primary); box-shadow: 0 6px 18px rgba(3, 3, 3, 0.08); }
 .tjs-dept-event-imgs img.tjs-dept-event-img-wide { width: 100%; height: auto; max-width: 640px; max-height: 420px; object-fit: contain; }
 @media (max-width: 575px) {
@@ -1845,6 +1849,23 @@ a.tjs-coe-quicklink:hover { color: var(--rs-theme-blue); }
 .tjs-book-table th:nth-child(1) { width: 46%; }
 .tjs-book-table th:nth-child(3) { width: 24%; }
 @media (max-width: 767px) { .tjs-book-table { table-layout: auto; min-width: 560px; } }
+/* Linked book / chapter titles: look clickable, like the publication cards. */
+.tjs-book-table td a { color: var(--rs-theme-blue); font-weight: 600; }
+.tjs-book-table td a:hover { color: var(--rs-theme-orange, #ec6a40); text-decoration: underline; }
+.tjs-book-table td a i { margin-left: 2px; font-size: 14px; vertical-align: -1px; }
+/* Area of Consultancy table (DepartmentPage.js Consultancy) */
+.tjs-consultancy-table th:nth-child(1) { width: 13%; }
+.tjs-consultancy-table th:nth-child(2) { width: 30%; }
+.tjs-consultancy-table th:nth-child(5) { width: 15%; }
+.tjs-consultancy-table td a { color: var(--rs-theme-blue); font-weight: 600; }
+.tjs-consultancy-table td a:hover { color: var(--rs-theme-orange, #ec6a40); text-decoration: underline; }
+.tjs-consultancy-type { display: block; margin-top: 4px; font-size: 13px; color: var(--rs-text-secondary); }
+@media (max-width: 767px) { .tjs-consultancy-table { min-width: 640px; } }
+/* MoU tab without an uploaded PDF (MouTabsViewer.js) */
+.tjs-mou-nodoc { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; min-height: 260px; padding: 30px 20px; border: 1px dashed var(--rs-border-primary); border-radius: 8px; background: var(--rs-bg-secondary, #f6f7fb); text-align: center; color: var(--rs-text-secondary); }
+.tjs-mou-nodoc i { font-size: 44px; line-height: 1; color: var(--rs-theme-blue); opacity: 0.8; }
+.tjs-mou-nodoc strong { font-size: 18px; color: var(--rs-theme-blue); }
+.tjs-mou-nodoc-note { font-size: 14px; font-style: italic; }
 
 /* Testimonial slider (app/components/TestimonialSlider.js): home page box and Alumni page */
 .tjs-tslider-track { display: grid; }

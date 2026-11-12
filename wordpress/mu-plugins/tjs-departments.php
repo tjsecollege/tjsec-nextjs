@@ -376,7 +376,17 @@ function tjs_department_fields() {
             tjs_file('document', 'MoU document (PDF)', ['mime_types' => 'pdf', 'instructions' => 'Upload the scanned MoU as a PDF.']),
         ]),
         tjs_heading('Area of Consultancy', 'Menu: Industry Interface → Area of Consultancy'),
-        tjs_doc_repeater('consultancy', 'Consultancy Work', '+ Add Consultancy'),
+        // Title + Document as before (same field names, so saved data stays); the
+        // rest is optional. When any row has them the website shows a table.
+        tjs_repeater('consultancy', 'Consultancy Work', '+ Add Consultancy', [
+            tjs_text('title', 'Title', ['required' => 1, 'placeholder' => 'e.g. Transferable Mechanized Concrete Blending Machine']),
+            tjs_file('document', 'Document'),
+            tjs_select('year', 'Academic year (optional)', tjs_academic_years(), array_merge(tjs_third(), ['default_value' => ''])),
+            tjs_text('investigators', 'Principal Investigator / Co-investigator (optional)', array_merge(tjs_third(), ['placeholder' => 'e.g. Dr. K. Kamal Babu & Mr. M. Vinoth Kumar'])),
+            tjs_text('agency', 'Funding agency (optional)', array_merge(tjs_third(), ['placeholder' => 'e.g. APVK Infra Private Ltd'])),
+            tjs_select('agency_type', 'Type (optional)', ['' => '— Not shown —', 'Government' => 'Government', 'Non-Government' => 'Non-Government'], array_merge(tjs_half(), ['default_value' => '', 'allow_null' => 1])),
+            tjs_text('amount', 'Amount sanctioned in ₹ lakhs (optional)', array_merge(tjs_half(), ['placeholder' => 'e.g. 4.80'])),
+        ]),
         tjs_heading('Industry Visits', 'Menu: Industry Interface → Industry Visits. Grouped by year on the website.'),
         tjs_event_repeater('industry_visits', 'Industry Visits', '+ Add Industry Visit', [
             tjs_people_subrepeater('coordinators', 'Faculty coordinators (optional)', '+ Add Coordinator', 'Designation (e.g. AP/EEE)'),

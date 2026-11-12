@@ -253,6 +253,55 @@ function LinkList({ items }) {
   );
 }
 
+// Area of Consultancy: a table when any row has the optional details (academic
+// year, investigators, funding agency, type, amount); otherwise the document list.
+function Consultancy({ rows }) {
+  const items = list(rows);
+  const detailed = items.some((r) => r.year || r.investigators || r.agency || r.agency_type || r.amount);
+  if (!detailed) return <LinkList items={docLinks(items)} />;
+  const sorted = items
+    .map((r, i) => ({ r, i }))
+    .sort((a, b) => (b.r.year || "").localeCompare(a.r.year || "") || a.i - b.i)
+    .map(({ r }) => r);
+  return (
+    <div className="tjs-dept-table-wrap">
+      <table className="tjs-dept-table tjs-consultancy-table">
+        <thead>
+          <tr>
+            <th>Academic Year</th>
+            <th>Project / Consultancy</th>
+            <th>Principal Investigator / Co-investigator</th>
+            <th>Funding Agency</th>
+            <th>Amount Sanctioned (₹ Lakhs)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {sorted.map((r, i) => (
+            <tr key={r.title + i}>
+              <td>{r.year}</td>
+              <td>
+                {r.document?.url ? (
+                  <a href={r.document.url} target="_blank" rel="noopener">
+                    {r.title} <i className="ri-external-link-line" aria-hidden="true"></i>
+                  </a>
+                ) : (
+                  r.title
+                )}
+              </td>
+              <td>{r.investigators}</td>
+              <td>
+                {r.agency}
+                {r.agency_type && <span className="tjs-consultancy-type">{r.agency_type}</span>}
+              </td>
+              <td>{r.amount}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 function Slider({ rows, category }) {
   const items = latestFirst(rows).map((r) => toSlide(r, category));
   return items.length ? <EventSlider items={items} /> : PENDING;
@@ -305,11 +354,14 @@ export default function DepartmentPage({ dept }) {
     dept.bos_venue && ["Venue", dept.bos_venue],
   ].filter(Boolean);
 
+  // MoUs without an uploaded PDF still get a tab (the viewer shows a note instead).
   const mous = list(dept.mous)
-    .filter((m) => m.document?.url)
+    .filter((m) => m.company)
     .map((m) => ({
       label: m.signed_date ? `${m.company} (${formatDate(m.signed_date, ".")})` : m.company,
-      href: m.document.url,
+      href: m.document?.url || "",
+      company: m.company,
+      date: formatDate(m.signed_date, "."),
     }));
 
   const internships = latestFirst(dept.internships);
@@ -527,7 +579,7 @@ export default function DepartmentPage({ dept }) {
         {showConsultancy && (
           <section id="consultancy" className="tjs-dept-section">
             <h2>Area of Consultancy</h2>
-            <LinkList items={docLinks(dept.consultancy)} />
+            <Consultancy rows={dept.consultancy} />
           </section>
         )}
 
@@ -554,7 +606,7 @@ export default function DepartmentPage({ dept }) {
                       <tr key={row.organisation + i}>
                         <td>{row.organisation}</td>
                         <td>{dateRange(row.start_date, row.end_date)}</td>
-                        <td>{row.students}</td>
+                        <td className="tjs-dept-intern-students">{row.students}</td>
                       </tr>
                     ))}
                   </tbody>

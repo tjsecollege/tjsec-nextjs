@@ -28,7 +28,7 @@ export default function BookYearTabs({ groups }) {
                 <td>
                   {b.link ? (
                     <a href={b.link} target="_blank" rel="noopener">
-                      {b.title}
+                      {b.title} <i className="ri-external-link-line" aria-hidden="true"></i>
                     </a>
                   ) : (
                     b.title

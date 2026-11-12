@@ -16,7 +16,10 @@ function parseYear(date) {
  * Symposium and Seminars & Activities.
  */
 export default function YearGroupedVisits({ items, title = "Events" }) {
-  const years = Array.from(new Set(items.map((item) => parseYear(item.date)))).sort((a, b) => b.localeCompare(a));
+  // Newest year first; entries without a date ("Other") always last.
+  const years = Array.from(new Set(items.map((item) => parseYear(item.date)))).sort((a, b) =>
+    a === "Other" ? 1 : b === "Other" ? -1 : b.localeCompare(a)
+  );
   const [activeYear, setActiveYear] = useState(years[0]);
 
   const yearItems = items.filter((item) => parseYear(item.date) === activeYear);
@@ -40,15 +43,18 @@ export default function YearGroupedVisits({ items, title = "Events" }) {
         <h3>{title} {activeYear}</h3>
 
         {yearItems.map((item, i) => (
-          <div className="tjs-ivy-entry" key={item.title + item.date}>
+          <div className="tjs-ivy-entry" key={item.title + item.date + i}>
             <div className="tjs-dept-media-row">
-              <div className="tjs-dept-media-row-img">
-                {item.imgs && item.imgs.length > 1 ? (
-                  <DeptPhotoSlider images={item.imgs} />
-                ) : item.imgs && item.imgs.length === 1 ? (
-                  <ZoomableImage src={item.imgs[0].src} alt={item.imgs[0].alt} />
-                ) : null}
-              </div>
+              {/* No photos yet: no empty image column, the text takes the full width. */}
+              {item.imgs && item.imgs.length > 0 && (
+                <div className="tjs-dept-media-row-img">
+                  {item.imgs.length > 1 ? (
+                    <DeptPhotoSlider images={item.imgs} />
+                  ) : (
+                    <ZoomableImage src={item.imgs[0].src} alt={item.imgs[0].alt} />
+                  )}
+                </div>
+              )}
               <div className="tjs-dept-media-row-text">
                 {item.date && <span className="tjs-dept-event-date">{item.date}</span>}
                 <h4 className="tjs-ivy-title">{item.title}</h4>

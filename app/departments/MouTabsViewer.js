@@ -81,9 +81,17 @@ export default function MouTabsViewer({ items }) {
         )}
       </div>
 
-      {active && (
+      {active?.href && (
         <div className="tjs-approvals-viewer">
           <iframe key={active.href} src={active.href} title={active.label} />
+        </div>
+      )}
+      {active && !active.href && (
+        <div className="tjs-mou-nodoc">
+          <i className="ri-shake-hands-line" aria-hidden="true"></i>
+          <strong>{active.company || active.label}</strong>
+          {active.date && <span>MoU signed on {active.date}</span>}
+          <span className="tjs-mou-nodoc-note">The MoU document is not available online.</span>
         </div>
       )}
     </div>

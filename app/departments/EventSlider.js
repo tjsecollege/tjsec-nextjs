@@ -322,7 +322,7 @@ export default function EventSlider({ items }) {
       </button>
       <div className="tjs-slider-track" ref={trackRef}>
         {items.map((item, i) => (
-          <SimpleCard key={item.title} {...item} onClick={() => setActiveIndex(i)} />
+          <SimpleCard key={item.title + i} {...item} onClick={() => setActiveIndex(i)} />
         ))}
       </div>
       <button
