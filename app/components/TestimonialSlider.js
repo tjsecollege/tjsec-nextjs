@@ -20,10 +20,12 @@ function paragraphs(text) {
 // One testimonial at a time, fading to the next every few seconds (paused on
 // hover / touch), with ‹ › arrows and dots. All slides share one grid cell,
 // so the box keeps the height of the longest one instead of jumping.
-// variant "home": the home page's blue testimonial box (template classes);
-// variant "page": white cards on the Alumni page.
+// variant "home": the home page's blue testimonial box (the quote is one
+// paragraph, clamped in CSS so every slide is the same height);
+// variant "page": white cards on the Alumni page (full text).
+// footer: optional content shown at the right end of the arrows / dots row.
 // items: [{ name, details, message, photo: { url, alt } | null }]
-export default function TestimonialSlider({ items, variant = "page" }) {
+export default function TestimonialSlider({ items, variant = "page", footer = null }) {
   const [index, setIndex] = useState(0);
   const boxRef = useRef(null);
   const pausedRef = useRef(false);
@@ -81,15 +83,21 @@ export default function TestimonialSlider({ items, variant = "page" }) {
       <div className="tjs-tslider-track" ref={trackRef}>
         {items.map((t, i) => (
           <figure className={"tjs-tslider-slide" + (i === index ? " active" : "")} key={t.name + i} aria-hidden={i !== index}>
-            {!home && <i className="ri-double-quotes-l tjs-tslider-quote" aria-hidden="true"></i>}
-            <blockquote className={home ? "rs-testimonial-desc" : "tjs-tslider-text"}>
-              {paragraphs(t.message).map((p, j) => (
-                <p key={j}>{p}</p>
-              ))}
-            </blockquote>
-            <figcaption className={home ? "rs-testimonial-avater-wrapper" : "tjs-tslider-person"}>
+            {home ? (
+              <blockquote className="tjs-ht-text">{paragraphs(t.message).join(" ")}</blockquote>
+            ) : (
+              <>
+                <i className="ri-double-quotes-l tjs-tslider-quote" aria-hidden="true"></i>
+                <blockquote className="tjs-tslider-text">
+                  {paragraphs(t.message).map((p, j) => (
+                    <p key={j}>{p}</p>
+                  ))}
+                </blockquote>
+              </>
+            )}
+            <figcaption className={home ? "tjs-ht-person" : "tjs-tslider-person"}>
               {t.photo?.url ? (
-                <span className={home ? "rs-testimonial-avater-thumb" : "tjs-tslider-photo"}>
+                <span className={home ? "tjs-ht-photo" : "tjs-tslider-photo"}>
                   <img loading="lazy" src={t.photo.url} alt={t.photo.alt || t.name} />
                 </span>
               ) : (
@@ -97,34 +105,39 @@ export default function TestimonialSlider({ items, variant = "page" }) {
                   {initial(t.name)}
                 </span>
               )}
-              <span className={home ? "rs-testimonial-avater-info" : "tjs-tslider-who"}>
-                <strong className={home ? "rs-testimonial-avater-title" : "tjs-tslider-name"}>{t.name}</strong>
-                {t.details && <span className={home ? "rs-testimonial-avater-designation" : "tjs-tslider-details"}>{t.details}</span>}
+              <span className={home ? "tjs-ht-who" : "tjs-tslider-who"}>
+                <strong className={home ? "tjs-ht-name" : "tjs-tslider-name"}>{t.name}</strong>
+                {t.details && <span className={home ? "tjs-ht-details" : "tjs-tslider-details"}>{t.details}</span>}
               </span>
             </figcaption>
           </figure>
         ))}
       </div>
 
-      {count > 1 && (
+      {(count > 1 || footer) && (
         <div className="tjs-tslider-controls">
-          <button type="button" className="tjs-tslider-arrow" aria-label="Previous testimonial" onClick={() => go(-1)}>
-            <i className="ri-arrow-left-s-line"></i>
-          </button>
-          <div className="tjs-tslider-dots">
-            {items.map((t, i) => (
-              <button
-                type="button"
-                key={t.name + i}
-                className={i === index ? "active" : ""}
-                aria-label={`Show testimonial ${i + 1}`}
-                onClick={() => setIndex(i)}
-              />
-            ))}
-          </div>
-          <button type="button" className="tjs-tslider-arrow" aria-label="Next testimonial" onClick={() => go(1)}>
-            <i className="ri-arrow-right-s-line"></i>
-          </button>
+          {count > 1 && (
+            <>
+              <button type="button" className="tjs-tslider-arrow" aria-label="Previous testimonial" onClick={() => go(-1)}>
+                <i className="ri-arrow-left-s-line"></i>
+              </button>
+              <div className="tjs-tslider-dots">
+                {items.map((t, i) => (
+                  <button
+                    type="button"
+                    key={t.name + i}
+                    className={i === index ? "active" : ""}
+                    aria-label={`Show testimonial ${i + 1}`}
+                    onClick={() => setIndex(i)}
+                  />
+                ))}
+              </div>
+              <button type="button" className="tjs-tslider-arrow" aria-label="Next testimonial" onClick={() => go(1)}>
+                <i className="ri-arrow-right-s-line"></i>
+              </button>
+            </>
+          )}
+          {footer && <div className="tjs-tslider-footer">{footer}</div>}
         </div>
       )}
     </div>

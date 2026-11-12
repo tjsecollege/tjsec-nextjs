@@ -1884,22 +1884,56 @@ a.tjs-coe-quicklink:hover { color: var(--rs-theme-blue); }
 .tjs-tslider-dots button { width: 10px; height: 10px; padding: 0; border: 0; border-radius: 50%; cursor: pointer; transition: width 0.25s ease, background-color 0.25s ease; }
 .tjs-tslider-dots button.active { width: 26px; border-radius: 6px; }
 
-/* Home page: inside the template's blue box */
-.tjs-tslider.is-home .rs-testimonial-desc { margin-bottom: 30px; }
-.tjs-tslider.is-home .rs-testimonial-desc p { color: inherit; font: inherit; line-height: inherit; }
-.tjs-tslider.is-home .rs-testimonial-avater-wrapper { gap: 16px; flex-wrap: nowrap; }
-.tjs-tslider.is-home .rs-testimonial-avater-thumb,
+/* Home page testimonial section (HomeTestimonials.js): campus photo on the left
+   stretched to the box height; heading, quote (clamped to the same number of
+   lines on every slide, so the box never shows a gap), name row, and a footer
+   with the arrows / dots and the link to all testimonials. */
+.tjs-home-testimonials .tjs-ht-wrapper { align-items: stretch; }
+@media (min-width: 992px) {
+  /* Fill the whole blue box (the template's fixed 400px + 630px columns left a gap on the right). */
+  .tjs-home-testimonials .tjs-ht-wrapper { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr); gap: 30px 50px; }
+}
+.tjs-ht-thumb { height: 100%; }
+.tjs-ht-thumb img { display: block; height: 100%; min-height: 400px; object-fit: cover; }
+.tjs-ht-item { display: flex; flex-direction: column; min-width: 0; padding: 16px 30px 6px 0; }
+.tjs-ht-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; margin-bottom: 22px; }
+.tjs-ht-eyebrow { display: inline-block; margin-bottom: 6px; font-size: 14px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rs-theme-yellow); }
+.tjs-ht-title { margin: 0; font-size: 32px; line-height: 1.25; color: #fff; }
+.tjs-ht-quote { flex: 0 0 auto; font-size: 72px; line-height: 0.8; color: rgba(255, 255, 255, 0.16); }
+.tjs-tslider.is-home { display: flex; flex-direction: column; flex: 1 1 auto; }
+.tjs-tslider.is-home .tjs-tslider-slide > figcaption { margin-top: 26px; }
+.tjs-ht-text { margin: 0; font-size: 19px; font-style: italic; font-weight: 500; line-height: 1.7; color: rgba(255, 255, 255, 0.88); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 5; line-clamp: 5; overflow: hidden; min-height: calc(1.7em * 5); }
+.tjs-ht-person { display: flex; align-items: center; gap: 16px; }
+.tjs-ht-photo,
 .tjs-tslider-photo { flex: 0 0 auto; }
-.tjs-tslider.is-home .rs-testimonial-avater-thumb img { display: block; width: 60px; height: 60px; max-width: none; border-radius: 50%; object-fit: cover; object-position: 50% 20%; }
-.tjs-tslider.is-home .rs-testimonial-avater-info { display: flex; flex-direction: column; }
-.tjs-tslider.is-home .rs-testimonial-avater-title { font-size: 20px; font-weight: 700; }
-.tjs-tslider.is-home .tjs-tslider-initial { background: rgba(255, 255, 255, 0.14); color: #fff; }
+.tjs-ht-photo img { display: block; width: 64px; height: 64px; max-width: none; border: 3px solid var(--rs-theme-yellow); border-radius: 50%; object-fit: cover; object-position: 50% 20%; }
+.tjs-tslider.is-home .tjs-tslider-initial { width: 64px; height: 64px; border: 3px solid var(--rs-theme-yellow); background: rgba(255, 255, 255, 0.14); color: #fff; }
+.tjs-ht-who { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.tjs-ht-name { font-size: 20px; font-weight: 700; line-height: 1.3; color: #fff; }
+.tjs-ht-details { font-size: 15px; line-height: 1.5; color: rgba(255, 255, 255, 0.72); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; }
+.tjs-tslider.is-home .tjs-tslider-controls { flex-wrap: wrap; margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(255, 255, 255, 0.14); }
 .tjs-tslider.is-home .tjs-tslider-arrow { border: 1px solid rgba(255, 255, 255, 0.5); background: transparent; color: #fff; }
 .tjs-tslider.is-home .tjs-tslider-arrow:hover { border-color: var(--rs-theme-yellow); background: var(--rs-theme-yellow); }
 .tjs-tslider.is-home .tjs-tslider-dots button { background: rgba(255, 255, 255, 0.35); }
 .tjs-tslider.is-home .tjs-tslider-dots button.active { background: var(--rs-theme-yellow); }
-.tjs-home-testimonials-more { display: inline-flex; align-items: center; gap: 6px; margin-top: 22px; color: rgba(255, 255, 255, 0.85); font-weight: 600; }
+.tjs-tslider-footer { margin-left: auto; }
+.tjs-home-testimonials-more { display: inline-flex; align-items: center; gap: 6px; color: rgba(255, 255, 255, 0.88); font-weight: 600; }
 .tjs-home-testimonials-more:hover { color: var(--rs-theme-yellow); }
+@media (max-width: 1199px) {
+  .tjs-ht-title { font-size: 26px; }
+  .tjs-ht-text { font-size: 17px; }
+}
+@media (max-width: 991px) {
+  .tjs-ht-thumb img { min-height: 0; height: 260px; }
+  .tjs-ht-item { padding: 4px 6px 4px; }
+}
+@media (max-width: 575px) {
+  .tjs-ht-title { font-size: 22px; }
+  .tjs-ht-quote { font-size: 52px; }
+  .tjs-ht-text { font-size: 16px; -webkit-line-clamp: 7; line-clamp: 7; min-height: calc(1.7em * 7); }
+  .tjs-ht-name { font-size: 18px; }
+  .tjs-tslider-footer { width: 100%; margin-left: 0; }
+}
 
 /* Alumni page: white card */
 .tjs-tslider.is-page .tjs-tslider-track { transition: height 0.45s ease; }
