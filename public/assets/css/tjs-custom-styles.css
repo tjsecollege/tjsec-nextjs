@@ -1861,6 +1861,8 @@ a.tjs-coe-quicklink:hover { color: var(--rs-theme-blue); }
 .tjs-consultancy-table td a:hover { color: var(--rs-theme-orange, #ec6a40); text-decoration: underline; }
 .tjs-consultancy-type { display: block; margin-top: 4px; font-size: 13px; color: var(--rs-text-secondary); }
 @media (max-width: 767px) { .tjs-consultancy-table { min-width: 640px; } }
+/* Students Achievements: document list under the photo cards */
+.tjs-dept-achievement-docs { margin-top: 34px; }
 /* MoU tab without an uploaded PDF (MouTabsViewer.js) */
 .tjs-mou-nodoc { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; min-height: 260px; padding: 30px 20px; border: 1px dashed var(--rs-border-primary); border-radius: 8px; background: var(--rs-bg-secondary, #f6f7fb); text-align: center; color: var(--rs-text-secondary); }
 .tjs-mou-nodoc i { font-size: 44px; line-height: 1; color: var(--rs-theme-blue); opacity: 0.8; }

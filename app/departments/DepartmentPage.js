@@ -307,6 +307,25 @@ function Slider({ rows, category }) {
   return items.length ? <EventSlider items={items} /> : PENDING;
 }
 
+// Students Achievements has two kinds of entries in admin: cards with photos
+// (shown as a slider, like Faculty Achievements) and documents (a link list).
+// Either, both or neither may be filled.
+function StudentAchievements({ cards, documents }) {
+  const slides = latestFirst(cards).map((r) => toSlide(r, "Student Achievement"));
+  const docs = docLinks(documents);
+  if (!slides.length && !docs.length) return PENDING;
+  return (
+    <>
+      {slides.length > 0 && <EventSlider items={slides} />}
+      {docs.length > 0 && (
+        <div className={slides.length ? "tjs-dept-achievement-docs" : undefined}>
+          <LinkList items={docs} />
+        </div>
+      )}
+    </>
+  );
+}
+
 function YearList({ rows, title }) {
   const items = latestFirst(rows).map(toYearEntry);
   return items.length ? <YearGroupedVisits items={items} title={title} /> : PENDING;
@@ -752,7 +771,7 @@ export default function DepartmentPage({ dept }) {
 
         <section id="students-achievements" className="tjs-dept-section tjs-dept-section-alt">
           <h2>Students Achievements</h2>
-          <LinkList items={docLinks(dept.student_achievements)} />
+          <StudentAchievements cards={dept.student_achievement_cards} documents={dept.student_achievements} />
         </section>
 
         <section id="co-curricular" className="tjs-dept-section">

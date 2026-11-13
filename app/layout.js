@@ -50,7 +50,7 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="/assets/css/vendor/remixicon.css" />
         <link rel="stylesheet" href="/assets/css/main.css?=30" />
         {/* Consolidated page-specific overrides (was an inline <style> block in the original file) */}
-        <link rel="stylesheet" href="/assets/css/tjs-custom-styles.css?=217" />
+        <link rel="stylesheet" href="/assets/css/tjs-custom-styles.css?=218" />
       </head>
       <body className="rs-smoother-yes">
         <div dangerouslySetInnerHTML={{ __html: headerHtml }} />
