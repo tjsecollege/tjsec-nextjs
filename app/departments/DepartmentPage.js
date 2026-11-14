@@ -624,7 +624,7 @@ export default function DepartmentPage({ dept }) {
                     {internships.map((row, i) => (
                       <tr key={row.organisation + i}>
                         <td>{row.organisation}</td>
-                        <td>{dateRange(row.start_date, row.end_date)}</td>
+                        <td>{dateRange(row.start_date, row.end_date) || row.duration}</td>
                         <td className="tjs-dept-intern-students">{row.students}</td>
                       </tr>
                     ))}

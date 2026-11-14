@@ -396,6 +396,7 @@ function tjs_department_fields() {
             tjs_text('organisation', 'Organisation', ['required' => 1]),
             tjs_date('start_date', 'From', tjs_half()),
             tjs_date('end_date', 'To', tjs_half()),
+            tjs_text('duration', 'Duration (only if there are no dates)', ['placeholder' => 'e.g. 1 Month', 'instructions' => 'Shown in the Duration column when From / To are empty.']),
             tjs_textarea('students', 'Students', ['rows' => 2, 'placeholder' => 'e.g. III Year students: Hemaraj R, Logendheran R, …']),
             tjs_gallery(),
         ]),

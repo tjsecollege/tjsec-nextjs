@@ -981,8 +981,9 @@ p.tjs-dept-group-label {
 }
 /* Zoomable photo galleries (Sports, Alumni, Science & Humanities): columns
    stretch to fill the panel instead of leaving a gap on the right. */
-.tjs-dept-event-imgs.tjs-photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
-.tjs-dept-event-imgs.tjs-photo-grid img { width: 100%; height: auto; aspect-ratio: 16 / 11; }
+/* auto-fit: with fewer photos than columns the photos widen to fill the row. */
+.tjs-dept-event-imgs.tjs-photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); }
+.tjs-dept-event-imgs.tjs-photo-grid img { width: 100%; height: auto; max-height: 440px; aspect-ratio: 16 / 11; }
 
 /* Blog-card style horizontal slider (Events & Achievements) */
 .tjs-slider-wrap { position: relative; display: block; margin-bottom: 24px; }
@@ -1429,6 +1430,12 @@ p.tjs-iv-step-desc { color: var(--rs-text-primary); font-size: 13px; margin: 0; 
    tint disappears into the page here. */
 .tjs-lab-accordion .tjs-committee-toggle.active { background: var(--rs-theme-blue); color: #fff; }
 .tjs-lab-accordion .tjs-committee-toggle.active i { color: #fff; }
+.tjs-lab-accordion .tjs-committee-toggle { transition: background-color 0.2s ease, color 0.2s ease; }
+.tjs-lab-accordion .tjs-committee-toggle:not(.active):hover { background: rgba(44, 51, 112, 0.06); }
+.tjs-lab-accordion .tjs-committee-toggle:focus-visible { outline: 2px solid var(--rs-theme-blue); outline-offset: -2px; }
+.tjs-lab-accordion .tjs-committee-body { animation: tjs-lab-open 0.28s ease; }
+@keyframes tjs-lab-open { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .tjs-lab-accordion .tjs-committee-body { animation: none; } }
 
 /* Scholarship accordion — every toggle stays dark navy (not just the active
    one), with a red accent bar, matching the reference design. */
