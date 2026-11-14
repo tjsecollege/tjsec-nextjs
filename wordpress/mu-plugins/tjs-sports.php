@@ -84,6 +84,11 @@ function tjs_sports_fields() {
         tjs_editor('achievements_intro', 'Intro text (optional)'),
         tjs_sports_year_docs('achievements', 'Year-wise documents', '+ Add Year'),
 
+        tjs_tab('Reports'),
+        tjs_heading('Reports', 'Sidebar: Reports — year-wise sports reports (one PDF per academic year; the newest year opens first).'),
+        tjs_editor('reports_intro', 'Intro text (optional)'),
+        tjs_sports_year_docs('reports', 'Year-wise reports', '+ Add Year'),
+
         tjs_tab('Sports Gallery'),
         tjs_heading('Sports Gallery', 'Sidebar: Sports Gallery — photos and videos of courts, fields, events and students.'),
         tjs_repeater('gallery_albums', 'Photo albums', '+ Add Album', [

@@ -13,6 +13,7 @@ const CATEGORIES = [
   { id: "fitness", label: "Fitness and Wellness" },
   { id: "events", label: "Sports Events" },
   { id: "achievements", label: "Achievements" },
+  { id: "reports", label: "Reports" },
   { id: "gallery", label: "Sports Gallery" },
   { id: "committee", label: "Sports Committee" },
 ];
@@ -133,6 +134,17 @@ export default function SportsView({ sports, initialSection = "overview" }) {
                     <YearPdfTabs docs={sports.achievements} title="Achievements" />
                   ) : (
                     <Pending text="Documents will be added soon." />
+                  )}
+                </>
+              )}
+
+              {activeCat === "reports" && (
+                <>
+                  {sports.reportsIntro && <Html html={sports.reportsIntro} />}
+                  {sports.reports.length ? (
+                    <YearPdfTabs docs={sports.reports} title="Sports Report" />
+                  ) : (
+                    <Pending text="Reports will be added soon." />
                   )}
                 </>
               )}
